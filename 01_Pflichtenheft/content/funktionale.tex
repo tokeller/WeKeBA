@@ -18,3 +18,26 @@
 
 \thispagestyle{empty}
 \chapter*{Funktionale Anforderungen}\label{chap.funktionale}
+\section{Datenlogger}
+Busmaster
+
+Uhrzeit verteilen. Wie wird Uhrzeit eingestellt? Setupfile auf SD-Karte? UART?
+
+Schnittstelle zum Steuerrechner. UART? Können hierüber auch Daten ausgelesen werden? Oder nur über SD-Karte?
+
+Erkennen der angeschlossenen Sensoren, ID erteilen
+
+Polling der Sensoren nach Daten. Token vergeben? Zeitfenster oder bis Daten fertig? Dürfen andere Sensoren verhungern=überlaufen? Welches Polling-Intervall?
+
+Abspeichern der Daten. Flash oder SD-Karte? Bei Blackout: was passiert mit den Daten? Worst Case: Datenlogger crasht, wie können Daten ausgelesen werden?
+
+Kontrolle über den Betriebsmodus der Sensoren: Nur Ereignisdaten von allen Sensoren oder Rohdaten von einem einzelnen Sensor? Rohdaten evtl. nur bei angeschlossenem Rechner wegen Speicherplatz?
+
+\section{Sensor}
+Detektion und Aufzeichnung von Ereignissen mit Timestamp: Samplingrate? Auflösung? Benötigte Daten: Zeitpunkt, Dauer, Anzahl Peaks, höchster Peak. Allenfalls die Rohdaten der Ereignissse immer übermitteln, damit alle Ereignisse vollständig erfasst werden? Speichern dieser Daten bis zum nächsten Abruf der Daten. => Wie viel Speicher nötig? / Wie lange kann aufgezeichnet werden? Persistenter oder flüchtiger Speicher?
+
+Übermittlung der Ereignisdaten bei Anfrage durch Datenlogger. Wie lange darf übermittelt werden? Gibt es bei zu vielen Ereignissen eine Möglichkeit, weniger Daten zu übermitteln? Welche Daten dürften in diesem Fall wegfallen?
+
+Sondermodus: Aufzeichnung und Speicherung von Rohdaten. Annahme 10 bit/Sample, 10kHz => 10kbit/s => Kein Problem, CAN Bus kann bis 1 Mbit/s => es könnten unter Umständen sogar mehrere Sensoren Rohdaten übermitteln. Mit 1 GB Speicher auf dem Logger könnten 10 Tage Rohdaten gesammelt werden XXX(Prüfen, es ist schon spät)XXX
+
+Übermittlung der Rohdaten bei Anfrage durch Datenlogger
