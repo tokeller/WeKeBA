@@ -21,7 +21,7 @@ void send() {
 int main() {
     pcSerial.baud(9600);
     pcSerial.printf("main()\n");
-    ticker.attach(&send, 1);
+    //ticker.attach(&send, 1);
     CANMessage msg;
     while(1) {
         if (pcSerial.readable()) {
