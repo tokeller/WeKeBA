@@ -8,11 +8,6 @@
 *.synctex.gz
 *.toc
 *.o
-*.crf
 *.d
-*.d
-*.o
 *.crf
 *.i
-*.i
-*.o
