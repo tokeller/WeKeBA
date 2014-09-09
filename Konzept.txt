@@ -10,6 +10,9 @@ A/D-Wandlung
 Ereigniserkennung
 
 
+Speicherkonzept auf Sensoreinheit
+
+
 Busprotokoll
 
 
@@ -22,4 +25,7 @@ UART-Kommandozeile
 Timestamp
 
 
-Speicherkonzept Ereignis
+Speicherkonzept Ereignis auf Datenlogger
+
+
+Tester
