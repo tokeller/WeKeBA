@@ -1,0 +1,31 @@
+
+AB HIER NUR NOCH PROVISORIUM:
+===============================
+
+Zukünftig sollen die Geophone durch eindimensionale MEMS Beschleunigungssensoren ersetzt werden, da diese kleiner sind.
+Die Kosten für zukünftige Anlagen sollen gesenkt werden. Dazu gibt es verschiedene Ansätze.
+\begin{itemize}
+\item Bauliche Massnahmen verringern
+\item Einfachere Sensorkonstruktion wählen
+\item Stromverbrauch senken
+\end{itemize}
+
+\subsection{Bauliche Massnahmen}
+Die Geophone werden in der bestehenden Konstruktion unter Stahlplatten montiert, um sie im Bachbett zu verankern. Die Stahlplatten sind in einer Betonrinne fixiert, die zugleich als Kabelkanal für die Signalkabel dient. Da die Messstationen häufig im Gebirge oder schwer zugänglichem Gelände erstellt werden, ist schon der Bau der Betonrinne sehr teuer.
+
+Mit einer Konstruktion aus Elastomerplatten, die im Bachbett verankert werden, könnte man diese Kosten senken. Der Schutz der Kabel darf natürlich nicht beeinträchtigt sein.
+
+\subsection{Sensorkonstruktion}
+Jedes Geophon ist über ein Kabel mit dem Auswertungsrechner verbunden. Der Rechner wertet die Signale aller angeschlossen Geophone kontinuierlich aus, um die Ereignisse zu detektieren. Bei mehreren Geophonen ist hier ein recht leistungsfähiger Rechner nötig, der eine entsprechend hohe Leistungsaufnahme hat. 
+
+\subsection{Stromverbrauch}
+XXX sensor und stromverbrauch hängen zusammen.... XXX
+
+ und die zu übertragende Datenmenge zu reduzieren, soll die Auswertung der Daten direkt am Sensor erfolgen. Somit könnten die Daten über ein Bussystem übertragen werden und der Auswertungsrechner bräuchte weniger Leistung.
+Dank der Bustopologie ist das Messsystem weniger komplex und kann einfa-cher installiert werden. Denkbar wäre die Integration in einer Gummimatte anstelle der Stahl- und Betonkonstruktion, da viel weniger Leitungen nötig sind.
+Ziel der Arbeit ist die Entwicklung der Auswertungshardware und des Bussys-tems. Die Auswertungsalgorithmen sind nicht Bestandteil der Arbeit und wer-den vom WSL zur Verfügung gestellt.
+Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, SZ) an einer bestehenden Schwelle zu implementieren.
+
+
+
+
