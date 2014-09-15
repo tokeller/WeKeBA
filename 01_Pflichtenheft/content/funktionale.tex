@@ -17,29 +17,39 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \thispagestyle{empty}
-\chapter*{Funktionale Anforderungen}\label{chap.funktionale}
+\chapter{Funktionale Anforderungen}\label{sec.funktionale}
 \section{Datenlogger}
-Busmaster
+\begin{description}
+\item{Busmaster}: Der Datenlogger übernimmt die Kontrolle des CAN-Bus. 
 
-Uhrzeit verteilen. Wie wird Uhrzeit eingestellt? Setupfile auf SD-Karte? UART? Wie genau kann die Uhrzeit an die Sensoren übergeben werden?
+\item{Sensorerkennung}: Die angeschlossenen Sensoren werden vom Datenlogger erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der Sensor identifiziert.\\
+Können wir die Seriennummer des Boards auslesen? Damit die ID immer gleich ist... über UART-Kommandozeile muss die ID jedes Sensors gesetzt werden können.
 
-Schnittstelle zum Steuerrechner. UART? Können hierüber auch Daten ausgelesen werden? Oder nur über SD-Karte?
 
-Alle Files auf Karte schliessen, damit diese gewechselt werden kann.
 
-Erkennen der angeschlossenen Sensoren, ID verteilen
+\item{Daten sammeln}: Der Datenlogger fragt in regelmässigen Abständen bei den Sensoreinheiten an, ob Ereignisdaten zur Übertragung bereit sind.\\
+Token vergeben? Übermitteln in Zeitfenster, gewisse Datenmenge oder bis Daten fertig? Dürfen andere Sensoren verhungern=überlaufen? Welches Polling-Intervall?
 
-Polling der Sensoren nach Daten. Token vergeben? Übermitteln in Zeitfenster, gewisse Datenmenge oder bis Daten fertig? Dürfen andere Sensoren verhungern=überlaufen? Welches Polling-Intervall?
+\item{Timestamp verteilen}: Der Datenlogger sendet ein Signal an alle Sensoreinheiten, dass der Timestamp auf Null gestellt werden soll. Ab dann beziehen sich die Timestamps auf die Dauer seit dem jetztigen Zeitpunkt.\\
+Wie wird Uhrzeit eingestellt? Setupfile auf SD-Karte? UART? Wie genau kann die Uhrzeit an die Sensoren übergeben werden?
 
-Abspeichern der Daten. Flash oder SD-Karte? Bei Blackout: was passiert mit den Daten? Worst Case: Datenlogger crasht, wie können Daten ausgelesen werden?
+\item{Schnittstelle zum Steuerrechner}: Der Datenlogger bietet eine Schnittstelle, wo ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.\\
+ UART? Können hierüber auch Daten ausgelesen werden? Oder nur über SD-Karte?
 
-Kontrolle über den Betriebsmodus der Sensoren: Nur Ereignisdaten von allen Sensoren oder Rohdaten von einem einzelnen Sensor? Rohdaten evtl. nur bei angeschlossenem Rechner wegen Speicherplatz, direkt auf Rechner übermitteln? (eher nicht, braucht wieder Protokoll, evtl noch Tool auf dem Rechner)
+\item{Daten speichern}: Die Daten werden vom Datenlogger auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.\\
+Alle Files auf Karte schliessen, damit diese gewechselt werden kann.\\
+Bei Blackout: was passiert mit den Daten? Worst Case: Datenlogger crasht, wie können Daten ausgelesen werden?
 
-\section{Sensor}
-Detektion und Aufzeichnung von Ereignissen mit Timestamp: Samplingrate? Auflösung? Benötigte Daten: Zeitpunkt, Dauer, Anzahl Peaks, höchster Peak. Allenfalls die Rohdaten der Ereignissse immer übermitteln, damit alle Ereignisse vollständig erfasst werden? Speichern dieser Daten bis zum nächsten Abruf der Daten. => Wie viel Speicher nötig? / Wie lange kann aufgezeichnet werden? Persistenter oder flüchtiger Speicher?
+\item{Steuerung Betriebsmodus}: Der Betriebsmodus der Sensoren wird vom Datenlogger aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle Sensoren oder nur bestimmte aktiv sein sollen. \\
+Nur Ereignisdaten von allen Sensoren oder Rohdaten von einem einzelnen Sensor? Rohdaten evtl. nur bei angeschlossenem Rechner wegen Speicherplatz, direkt auf Rechner übermitteln? (eher nicht, braucht wieder Protokoll, evtl noch Tool auf dem Rechner)
 
-Übermittlung der Ereignisdaten bei Anfrage durch Datenlogger. Wie lange darf übermittelt werden? Gibt es bei zu vielen Ereignissen eine Möglichkeit, weniger Daten zu übermitteln? Welche Daten dürften in diesem Fall wegfallen?
+\end{description}
 
-Sondermodus: Aufzeichnung und Speicherung von Rohdaten. Annahme 12 bit/Sample bei 10kHz => 120 kbit/s => Kein Problem, CAN Bus kann bis 1 Mbit/s => es könnten unter Umständen sogar mehrere Sensoren Rohdaten übermitteln. Mit 1 GB Speicher auf dem Logger könnten etwas mehr als 19 Stunden aufgezeichnet werden (Ohne Timestamp). Es reicht ja eigentlich der Anfangstimestamp. Richtig so?XXX bitte nachrechnen
+\section{Sensoreinheit}
+\begin{description}
+\item{Detektion}: Die Sensoreinheit liest den Sensor in definierten Zeitabständen aus und wertet die Messdaten aus. Zu jedem Ereignis werden folgende Daten gespeichert: Zeitpunkt (Timestamp), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem Ereignis gespeichert werden.
 
-Übermittlung der Rohdaten bei Anfrage durch Datenlogger
+\item{Datenübertragung}: Die Daten zu den Ereignissen werden an den Datenlogger übermittelt.
+
+\item{Rohdatenaufzeichnung}: In einem Sondermodus werden alle Messpunkte gespeichert und an den Datenlogger übertragen. In diesem Betriebsmodus  Aufzeichnung und Speicherung von Rohdaten. Annahme 12 bit/Sample bei 10kHz => 120 kbit/s => Kein Problem, CAN Bus kann bis 1 Mbit/s => es könnten unter Umständen sogar mehrere Sensoren Rohdaten übermitteln. Mit 1 GB Speicher auf dem Logger könnten etwas mehr als 19 Stunden aufgezeichnet werden.
+\end{description}
