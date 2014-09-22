@@ -21,18 +21,15 @@ void send() {
 int main() {
     pcSerial.baud(9600);
     pcSerial.printf("main()\n");
-    ticker.attach(&send, 1);
+    //ticker.attach_us(&send, 100000);
     CANMessage msg;
     while(1) {
-        /*if (pcSerial.readable()) {
-         
-            printf("loop()\n");
-            if(can2.read(msg)) {
-                pcSerial.printf("Message received: %d\n", msg.data[0]);
-            //    pcSerial.printf("Message received: %d\n", 1);
-                led2 = !led2;
-            } 
-            wait(0.2);
-        }*/
+					printf("loop()\n");
+					if(can1.read(msg)) {
+							pcSerial.printf("Message received: %d\n", msg.data[0]);
+					//    pcSerial.printf("Message received: %d\n", 1);
+							led2 = !led2;
+					} 
+					wait(0.05);
     }
 }

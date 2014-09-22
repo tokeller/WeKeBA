@@ -218,7 +218,7 @@
 */
 
 #define CLOCK_SETUP           1
-#define SCS_Val               0x00000020
+#define SCS_Val               0x00000028
 #define CLKSRCSEL_Val         0x00000001
 #define PLL0_SETUP            1
 #define PLL0CFG_Val           0x00000009
