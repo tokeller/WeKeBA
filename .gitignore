@@ -6,8 +6,3 @@
 *.lot
 *.out
 *.synctex.gz
-*.toc
-*.o
-*.d
-*.crf
-*.i

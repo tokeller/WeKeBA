@@ -3,30 +3,27 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-D:\ZHAW\BA\GitHub\WeKeBA\05_Source\mbed_SDSPI\mbed_SDSPI.uvproj
-Project File Date:  09/22/2014
+C:\Temp\weltitob\Github\WeKeBA\05_Source\mbed_SDSPI\mbed_SDSPI.uvproj
+Project File Date:  09/25/2014
 
 <h2>Output:</h2>
-Build target 'NXP LPC4088'
+Rebuild target 'NXP LPC4088'
 compiling main.cpp...
-main.cpp(41): warning:  #1-D: last line of file ends without a newline
+main.cpp(43): warning:  #1-D: last line of file ends without a newline
   }
 main.cpp: 1 warning, 0 errors
+compiling SDFileSystem.cpp...
+compiling FATFileSystem.cpp...
+compiling FATFileHandle.cpp...
+compiling FATDirHandle.cpp...
+compiling diskio.cpp...
+compiling ccsbcs.cpp...
+compiling ff.cpp...
 linking...
-mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=36152 RO-data=4836 RW-data=104 ZI-data=1616  
-Finished: 0 information, 1 warning and 0 error messages.
-After Build - User command #1: fromelf --bin -o build\mbed_SDSPI_LPC4088.bin build\mbed_SDSPI.axf
-".\build\mbed_SDSPI.axf" - 0 Error(s), 2 Warning(s).
-Load "D:\\ZHAW\\BA\\GitHub\\WeKeBA\\05_Source\\mbed_SDSPI\\build\\mbed_SDSPI.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
+.\build\mbed_SDSPI.axf: error: L6002U: Could not open file mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/sys.o: No such file or directory
+Finished: 0 information, 0 warning, 0 error and 1 fatal error messages.
+".\build\mbed_SDSPI.axf" - 1 Error(s), 1 Warning(s).
+Target not created
 </pre>
 </body>
 </html>
-ends without a newline
-  }
-main.cpp: 1 warning, 1 error
-".\build\mbed_SDSPI.axf" - 1 Error(s), 1 Warning(s).
-Target not created
