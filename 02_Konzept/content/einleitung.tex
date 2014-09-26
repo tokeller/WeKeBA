@@ -1,3 +1,4 @@
+% !TeX spellcheck = de_CH
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____   ____  _____                                          %
 % |_   _| /  __||  __ \    Institute of Computitional Physics   %
@@ -15,10 +16,57 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{XXX}\label{chap.XXX}
+\chapter{Einleitung}\label{chap.einleitung}
 
 
 
-\section{XXX}\label{sec.XXX}
-Die Eidg. Forschungsanstalt für Wald, Schnee und Landschaft (WSL) betreibt Messstationen zur Registrierung von Geschiebe-Bewegungen im Fluss mittels Geophonen, die unter Stahlplatten montiert sind. Diese Platten sind in einer Betonkonstruktion eingelassen, um sie im Flussbett zu fixieren. Die Geophone sind über Kabel mit einem Auswertungs-Rechner (Embedded PC) verbunden, der die Signale auswertet. Die baulichen Massnahmen für die Installation der Sensoren, der Auswertungsstation sowie der Stromversorgung sind sehr teuer. 
+\section{Überblick}\label{sec.ueberblick}
+Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. Die Sensoreinheiten messen kontinuierlich Vibrationen, werten die Signale aus und erkennen Ereignisse. Der Datenlogger hat die Aufgabe, von mehreren Sensoreinheiten registrierte Ereignisse zu empfangen und zu speichern. Alle Einheiten sind über ein Bussystem verbunden, um miteinander kommunizieren zu können. Die Stromversorgung der Anlage wird am Datenlogger angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
 
+\missingfigure{Hier Bild mit Datenlogger, Bussystem und mehreren Sensoreinheiten im Bach.}
+
+\section{Datenlogger}
+Der Datenlogger hat verschiedene Aufgaben zu erfüllen:
+\begin{itemize}
+\item Sammeln und speichern der Messdaten der Sensoreinheiten.
+\item Kontrolle über das Bussystem.
+\item Steuerung des Betriebs der Anlage.
+\item Schnittstelle für die Konfiguration der Anlage und für das Auslesen der Messdaten.
+\end{itemize}
+
+
+\subsection{Messdaten sammeln}
+Für jede angeschlossene Sensoreinheit führt der Datenlogger eine Datensammlung, in der die registrierten Ereignisse zeitlich sortiert abgespeichert werden. Die Datensammlungen werden in Dateien abgelegt, die auf einem externen, auswechselbaren Medium abgespeichert werden. So können die Messdaten auf einfache Art für die weitere Auswertung abgeholt werden.
+
+
+\subsection{Kontrolle über das Bussystem}
+Als Busmaster hat der Datenlogger die Aufgabe, allen angeschlossenen Einheiten eine eindeutige Identifikationsnummer (ID) zuzuweisen. Über diese ID erkennt der Datenlogger, von welcher Sensoreinheit Daten übertragen werden. Für die Zuordnung der Messdaten zu einem bestimmten Sensor benötigen die Sensoreinheiten ein fixes Erkennungsmerkmal, z.B. eine Seriennummer, die mit den Messdaten abgespeichert werden soll.
+
+
+\subsection{Steuerung des Betriebs}
+Die Messstation hat verschiedene Betriebsmodi, die über den Datenlogger angewählt werden können. Der Datenlogger steuert die einzelnen Sensoreinheiten entsprechend an.
+
+
+\subsection{Schnittstelle nach Aussen}
+Über eine Schnittstelle am Datenlogger kann ein Computer angeschlossen werden. Per Kommandozeile wird die Messstation konfiguriert, der Zustand überprüft und der Betriebsmodus gewählt.
+
+
+\section{Sensoreinheit}
+Die Aufgaben der Sensoreinheit umfassen:
+\begin{itemize}
+\item Erfassung von Messdaten.
+\item Erkennung von Ereignissen.
+\item Übertragung der Ereignisdaten an den Datenlogger.
+\end{itemize}
+
+\subsection{Messdatenerfassung}
+Der Sensor zur Erfassung der Daten wird mit vordefinierter Abtastrate ausgelesen. Die Abtastrate muss so gewählt werden, dass einzelne Ereignisse erkannt werden können, ohne unnötig viel Messdaten zu generieren.
+
+\subsection{Ereigniserkennung}
+Im Mikroprozessor werden die Messdaten fortlaufend analysiert. Überschreitet das gemessene Signal einen gewissen Pegel (Threshold), markiert dies den Beginn eines Ereignisses. Das Ereignis ist beendet, wenn der Signalpegel für eine gewisse Zeit unterhalb des Threshold bleibt. Für jedes Ereignis wird abgespeichert, wann es aufgetreten ist (Timestamp), wie lange es gedauert hat, wie hoch der Signalpegel maximal ausschlug und wie viele Signalspitzen (Peaks) aufgetreten sind. Allenfalls können auch die Höhen aller Peaks übertragen werden.
+
+\subsection{Datenübertragung}
+Der Datenlogger fragt regelmässig bei der Sensoreinheit an, ob Messdaten zur Übertragung vorhanden sind. Die Sensoreinheit sendet diese dann über das Bussystem. Nach Bestätigung des Erhalts werden die Messdaten aus dem Speicher der Sensoreinheit gelöscht.
+
+\section{Bussystem}
+Das Bussystem verbindet die Einheiten der Messstation miteinander. Die gesamten Messdaten und Steuerkommandos werden über den Bus übertragen. Das Bussystem muss die Datenmenge der angeschlossenen Sensoren bewältigen können, über die geforderte Distanz funktionieren und möglichst robust gegenüber äusseren Einflüssen sein. Der Busmaster hat die Möglichkeit, laufende Übertragungen von Sensoreinheiten zu unterbrechen, um Steuerkommandos zu senden.

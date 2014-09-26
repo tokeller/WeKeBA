@@ -1,6 +1,8 @@
+% !TeX spellcheck = de_CH
+% !TeX spellcheck = de_CH
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %  _____   ____  _____                                          %
-% |_   _| /  __||  __ \    Institute of Computitional Physics   %
+% |_   _| /  __||  __ \    Institute of Computational Physics   %
 %   | |  |  /   | |__) |   Zuercher Hochschule Winterthur       %
 %   | |  | (    |  ___/    (University of Applied Sciences)     %
 %  _| |_ |  \__ | |        8401 Winterthur, Switzerland         %
@@ -19,44 +21,58 @@
 \chapter{Funktionale Anforderungen}\label{chap.funktionale}
 \section{Datenlogger (F1\ldots)}
 
+
 \subsection{F110 Busmaster}
-Der Datenlogger übernimmt die Kontrolle des CAN-Bus. 
+Der Datenlogger übernimmt die Kontrolle des Bus. Bei Inbetriebnahme des Systems tastet der Datenlogger den Bus nach Sensoreinheiten ab und erteilt jeder Sensoreinheit eine eindeutige Identifikationsnummer (ID). Die ID des Datenloggers soll so gewählt werden, dass er jederzeit Priorität hat, auf den Bus zu schreiben.
+
 
 \subsection{F120 Sensorerkennung}
 Die angeschlossenen Sensoren werden vom Datenlogger erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der Sensor identifiziert.\\
 Können wir die Seriennummer des Boards auslesen? Damit die ID immer gleich ist... über UART-Kommandozeile muss die ID jedes Sensors gesetzt werden können.
 
+
+\subsection{F130 Uhrzeit}
+Der Datenlogger verfügt über eine interne Uhr, um die Ereignisse in den Dateien mit einem lesbaren Zeitstempel zu versehen.
+
+
 \subsection{F140 Timestamp verteilen}
-Der Datenlogger sendet ein Signal an alle Sensoreinheiten, dass der Timestamp auf Null gestellt werden soll. Ab dann beziehen sich die Timestamps auf die Dauer seit dem jetztigen Zeitpunkt.\\
-Wie wird Uhrzeit eingestellt? Setupfile auf SD-Karte? UART? Wie genau kann die Uhrzeit an die Sensoren übergeben werden?
+Der Datenlogger sendet ein Signal an alle Sensoreinheiten, dass der Zeitstempel (Timestamp) neu gestellt werden soll. Ab dann beziehen sich die Timestamps auf die Dauer seit dem jetzigen Zeitpunkt.
+
 
 \subsection{F160 Schnittstelle zum Steuerrechner}
-Der Datenlogger bietet eine Schnittstelle, wo ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.\\
-UART? Können hierüber auch Daten ausgelesen werden? Oder nur über SD-Karte?
+Der Datenlogger bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.
+
 
 \subsection{F170 Steuerung Betriebsmodus}
 Der Betriebsmodus der Sensoren wird vom Datenlogger aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle Sensoren oder nur bestimmte aktiv sein sollen. \\
-Nur Ereignisdaten von allen Sensoren oder Rohdaten von einem einzelnen Sensor? Rohdaten evtl. nur bei angeschlossenem Rechner wegen Speicherplatz, direkt auf Rechner übermitteln? (eher nicht, braucht wieder Protokoll, evtl noch Tool auf dem Rechner)
+Folgende Betreibsmodi sind verfügbar:
+\begin{itemize}
+\item Normaler Modus: Alle Sensoren übermitteln die verarbeiteten Ereignisdaten. Zeitpunkt, Intensität, Dauer und Anzahl Ausschläge jedes Ereignis werden gespeichert.
+\item Detaillierter Modus: Alle Sensoren übermitteln die verarbeiteten Ereignisdaten sowie die gesamten Messdaten für die Dauer des Ereignis.
+\item Rohdatenmodus: Ein Sensor übermittelt kontinuierlich Rohdaten, die anderen Sensoren werden vorübergehend abgeschaltet.
+\end{itemize}
+
 
 \subsection{F180 Daten sammeln}
-Der Datenlogger fragt in regelmässigen Abständen bei den Sensoreinheiten an, ob Ereignisdaten zur Übertragung bereit sind.\\
-Token vergeben? Übermitteln in Zeitfenster, gewisse Datenmenge oder bis Daten fertig? Dürfen andere Sensoren verhungern=überlaufen? Welches Polling-Intervall?
+Der Datenlogger fragt in regelmässigen Abständen bei den Sensoreinheiten an, ob Ereignisdaten zur Übertragung bereit sind. Diese übermitteln die vorliegenden Ereignisdaten.
+
 
 \subsection{F190 Daten speichern}
-Die Daten werden vom Datenlogger auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.\\
-Alle Files auf Karte schliessen, damit diese gewechselt werden kann.\\
-Bei Blackout: was passiert mit den Daten? Worst Case: Datenlogger crasht, wie können Daten ausgelesen werden?
+Die Daten werden vom Datenlogger auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.
 
 
 \section{Sensoreinheit (F4\ldots)}
 
-\subsection{F410 Detektion}
-Die Sensoreinheit liest den Sensor in definierten Zeitabständen aus und wertet die Messdaten aus. Zu jedem Ereignis werden folgende Daten gespeichert: Zeitpunkt (Timestamp), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem Ereignis gespeichert werden.
+
+\subsection{F410 Ereignisdetektion}
+Die Sensoreinheit liest den Sensor mit einer definierten Abtastrate (Samplingrate) aus und wertet die Messdaten aus. Der Prozessor erkennt Ereignisse anhand definierter Kriterien. Zu jedem Ereignis werden folgende Daten gespeichert: Zeitpunkt (Timestamp), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem Ereignis gespeichert werden.
+
 
 \subsection{F430 Datenübertragung}
-Die Daten zu den Ereignissen werden an den Datenlogger übermittelt.
+Die Sensoreinheit übermittelt die Ereignisdaten über das Bussystem an den Datenlogger.
+
 
 \subsection{F450 Rohdatenaufzeichnung}
-In einem Sondermodus werden alle Messpunkte gespeichert und an den Datenlogger übertragen. In diesem Betriebsmodus  Aufzeichnung und Speicherung von Rohdaten. Annahme 12 bit/Sample bei 10kHz => 120 kbit/s => Kein Problem, CAN Bus kann bis 1 Mbit/s => es könnten unter Umständen sogar mehrere Sensoren Rohdaten übermitteln. Mit 1 GB Speicher auf dem Logger könnten etwas mehr als 19 Stunden aufgezeichnet werden.
+In einem Sondermodus werden alle Messpunkte gespeichert und über das Bussystem an den Datenlogger übertragen. In diesem Betriebsmodus kann nur eine Sensoreinheit aktiv sein, die anderen werden auf Standby geschaltet.
 
 
