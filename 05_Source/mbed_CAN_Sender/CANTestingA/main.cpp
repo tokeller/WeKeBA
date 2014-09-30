@@ -21,7 +21,7 @@ void send() {
 int main() {
     pcSerial.baud(9600);
     pcSerial.printf("main()\n");
-    //ticker.attach_us(&send, 100000);
+    ticker.attach_us(&send, 100);
     CANMessage msg;
     while(1) {
 					printf("loop()\n");
@@ -30,6 +30,6 @@ int main() {
 					//    pcSerial.printf("Message received: %d\n", 1);
 							led2 = !led2;
 					} 
-					wait(0.05);
+					//wait(0.05);
     }
 }
