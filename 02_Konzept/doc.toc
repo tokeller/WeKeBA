@@ -2,60 +2,60 @@
 \contentsline {section}{\numberline {1.1}\IeC {\"U}berblick}{4}{section.1.1}
 \contentsline {section}{\numberline {1.2}Datenlogger}{4}{section.1.2}
 \contentsline {subsection}{\numberline {1.2.1}Messdaten sammeln}{4}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Kontrolle \IeC {\"u}ber das Bussystem}{4}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.2}Kontrolle \IeC {\"u}ber das Bussystem}{5}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Steuerung des Betriebs}{5}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}Schnittstelle nach Aussen}{5}{subsection.1.2.4}
 \contentsline {section}{\numberline {1.3}Sensoreinheit}{5}{section.1.3}
 \contentsline {subsection}{\numberline {1.3.1}Messdatenerfassung}{5}{subsection.1.3.1}
 \contentsline {subsection}{\numberline {1.3.2}Ereigniserkennung}{5}{subsection.1.3.2}
 \contentsline {subsection}{\numberline {1.3.3}Daten\IeC {\"u}bertragung}{5}{subsection.1.3.3}
-\contentsline {section}{\numberline {1.4}Bussystem}{5}{section.1.4}
-\contentsline {chapter}{\numberline {2}Hardware-Konzept}{6}{chapter.2}
-\contentsline {section}{\numberline {2.1}Hardware-Architektur}{6}{section.2.1}
-\contentsline {section}{\numberline {2.2}Komponentenauswahl}{6}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Mikroprozessor}{6}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Bus-System}{6}{subsection.2.2.2}
-\contentsline {paragraph}{Kommentare}{6}{paragraph*.3}
-\contentsline {paragraph}{Entscheidung}{6}{paragraph*.4}
-\contentsline {subsection}{\numberline {2.2.3}Speichermedium}{8}{subsection.2.2.3}
-\contentsline {paragraph}{Kriterien}{8}{paragraph*.5}
-\contentsline {paragraph}{Datenmenge}{8}{paragraph*.6}
-\contentsline {paragraph}{Unabh\IeC {\"a}ngige Betriebsdauer}{8}{paragraph*.7}
-\contentsline {paragraph}{Kapazit\IeC {\"a}t}{8}{paragraph*.8}
-\contentsline {paragraph}{Datentransfer}{8}{paragraph*.9}
-\contentsline {paragraph}{Vergleich}{8}{paragraph*.10}
-\contentsline {paragraph}{Entscheid}{8}{paragraph*.12}
-\contentsline {subsection}{\numberline {2.2.4}Sensor}{9}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}Schnittstelle}{9}{subsection.2.2.5}
-\contentsline {section}{\numberline {2.3}Komponenten}{9}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Cortex M4 Mikroprozessor}{9}{subsection.2.3.1}
-\contentsline {subsubsection}{Flash Speicher}{9}{subsubsection*.13}
-\contentsline {subsubsection}{SDRAM}{9}{subsubsection*.14}
-\contentsline {subsection}{\numberline {2.3.2}Beschleunigungs-Sensor}{9}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}CAN Bus}{9}{subsection.2.3.3}
-\contentsline {subsubsection}{CAN Transceiver}{9}{subsubsection*.15}
-\contentsline {subsection}{\numberline {2.3.4}SD Karte}{9}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}UART Schnittstelle}{9}{subsection.2.3.5}
-\contentsline {section}{\numberline {2.4}Datenlogger}{9}{section.2.4}
-\contentsline {section}{\numberline {2.5}Sensoreinheit}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Software-Konzept}{10}{chapter.3}
-\contentsline {section}{\numberline {3.1}Software-Stack}{10}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}\IeC {\"U}berblick}{10}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Messdatenerfassung}{10}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Ereigniserkennung}{10}{subsection.3.1.3}
-\contentsline {subsection}{\numberline {3.1.4}Timestamp}{10}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}Busprotokoll}{10}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}Filesystem}{10}{subsection.3.1.6}
-\contentsline {subsection}{\numberline {3.1.7}UART-Kommandozeile}{10}{subsection.3.1.7}
-\contentsline {section}{\numberline {3.2}Funktionalit\IeC {\"a}t}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Konfiguration}{10}{section.3.3}
-\contentsline {chapter}{\numberline {4}Verzeichnisse}{11}{chapter.4}
-\contentsline {section}{Literaturverzeichnis}{12}{chapter*.16}
-\contentsline {section}{(Abbildungsverzeichnis)}{13}{chapter*.17}
-\contentsline {section}{(Tabellenverzeichnis)}{14}{chapter*.18}
-\contentsline {section}{\numberline {4.1}(Glossar)}{15}{section.4.1}
-\contentsline {section}{(Abk\IeC {\"u}rzungsverzeichnis)}{15}{section.4.1}
-\contentsline {section}{(Listingverzeichnis)}{16}{chapter*.19}
+\contentsline {section}{\numberline {1.4}Bussystem}{6}{section.1.4}
+\contentsline {chapter}{\numberline {2}Hardware-Konzept}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Hardware-Architektur}{7}{section.2.1}
+\contentsline {section}{\numberline {2.2}Komponentenauswahl}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Mikroprozessor}{7}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Bus-System}{7}{subsection.2.2.2}
+\contentsline {paragraph}{Kommentare}{7}{paragraph*.3}
+\contentsline {paragraph}{Entscheidung}{9}{paragraph*.4}
+\contentsline {subsection}{\numberline {2.2.3}Speichermedium}{9}{subsection.2.2.3}
+\contentsline {paragraph}{Kriterien}{9}{paragraph*.5}
+\contentsline {paragraph}{Datenmenge}{9}{paragraph*.6}
+\contentsline {paragraph}{Unabh\IeC {\"a}ngige Betriebsdauer}{9}{paragraph*.7}
+\contentsline {paragraph}{Kapazit\IeC {\"a}t}{9}{paragraph*.8}
+\contentsline {paragraph}{Datentransfer}{9}{paragraph*.9}
+\contentsline {paragraph}{Vergleich}{9}{paragraph*.10}
+\contentsline {paragraph}{Entscheid}{9}{paragraph*.12}
+\contentsline {subsection}{\numberline {2.2.4}Sensor}{10}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}Schnittstelle}{10}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Komponenten}{10}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Cortex M4 Mikroprozessor}{10}{subsection.2.3.1}
+\contentsline {subsubsection}{Flash Speicher}{10}{subsubsection*.13}
+\contentsline {subsubsection}{SDRAM}{10}{subsubsection*.14}
+\contentsline {subsection}{\numberline {2.3.2}Beschleunigungs-Sensor}{10}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}CAN Bus}{10}{subsection.2.3.3}
+\contentsline {subsubsection}{CAN Transceiver}{10}{subsubsection*.15}
+\contentsline {subsection}{\numberline {2.3.4}SD Karte}{10}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}UART Schnittstelle}{10}{subsection.2.3.5}
+\contentsline {section}{\numberline {2.4}Datenlogger}{10}{section.2.4}
+\contentsline {section}{\numberline {2.5}Sensoreinheit}{10}{section.2.5}
+\contentsline {chapter}{\numberline {3}Software-Konzept}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Software-Stack}{11}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}\IeC {\"U}berblick}{11}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Messdatenerfassung}{11}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Ereigniserkennung}{11}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Timestamp}{11}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Busprotokoll}{11}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.6}Filesystem}{11}{subsection.3.1.6}
+\contentsline {subsection}{\numberline {3.1.7}UART-Kommandozeile}{11}{subsection.3.1.7}
+\contentsline {section}{\numberline {3.2}Funktionalit\IeC {\"a}t}{11}{section.3.2}
+\contentsline {section}{\numberline {3.3}Konfiguration}{11}{section.3.3}
+\contentsline {chapter}{\numberline {4}Verzeichnisse}{12}{chapter.4}
+\contentsline {section}{Literaturverzeichnis}{13}{chapter*.16}
+\contentsline {section}{(Abbildungsverzeichnis)}{14}{chapter*.17}
+\contentsline {section}{(Tabellenverzeichnis)}{15}{chapter*.18}
+\contentsline {section}{\numberline {4.1}(Glossar)}{16}{section.4.1}
+\contentsline {section}{(Abk\IeC {\"u}rzungsverzeichnis)}{16}{section.4.1}
+\contentsline {section}{(Listingverzeichnis)}{17}{chapter*.19}
 \contentsline {chapter}{\numberline {A}Anhang}{I}{appendix.A}
 \contentsline {section}{\numberline {A.1}Projektmanagement}{I}{section.A.1}
 \contentsline {section}{\numberline {A.2}Weiteres}{I}{section.A.2}
