@@ -4,5 +4,7 @@
 *.log
 *.lol
 *.lot
+*.toc
+*.tdo
 *.out
 *.synctex.gz
