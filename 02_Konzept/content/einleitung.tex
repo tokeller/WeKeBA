@@ -21,9 +21,23 @@
 
 
 \section{Überblick}\label{sec.ueberblick}
-Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. Die Sensoreinheiten messen kontinuierlich Vibrationen, werten die Signale aus und erkennen Ereignisse. Der Datenlogger hat die Aufgabe, von mehreren Sensoreinheiten registrierte Ereignisse zu empfangen und zu speichern. Alle Einheiten sind über ein Bussystem verbunden, um miteinander kommunizieren zu können. Die Stromversorgung der Anlage wird am Datenlogger angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
+Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. Die Sensoreinheiten messen kontinuierlich Vibrationen, werten die Signale aus und erkennen Ereignisse, die einer vordefinierten Signalform entsprechen. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Der Datenlogger hat die Aufgabe, von mehreren Sensoreinheiten registrierte Ereignisse zu empfangen und zu speichern. Alle Einheiten sind über ein Bussystem verbunden, um miteinander kommunizieren zu können. Die Stromversorgung der Anlage wird am Datenlogger angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
 
-\missingfigure{Hier Bild mit Datenlogger, Bussystem und mehreren Sensoreinheiten im Bach.}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/situationskroki.pdf}
+	\caption{Eine Messstation mit einem Datenlogger, der mehrere Sensoreinheiten im Bach steuert.}
+	\label{fig.situationskroki}
+\end{figure}
+
+Der Aufbau der Messstation kann grob in drei Komponenten aufgeteilt werden:
+\begin{enumerate}
+\item Datenlogger
+\item Sensoreinheit
+\item Bussystem
+\end{enumerate}
+
+Diese drei Einheiten werden im Folgenden genauer definiert.
 
 \section{Datenlogger}
 Der Datenlogger hat verschiedene Aufgaben zu erfüllen:
