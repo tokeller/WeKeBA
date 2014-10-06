@@ -1,0 +1,44 @@
+<=  Zum Datenlogger von Sensoreinheit
+ => Vom Datenlogger zur Sensoreinheit
+<=> Zweiweg (Halbduplex)
+
+
+Was muss über den Bus?
+======================
+
+Steuerkommandos (Betriebsmodus =>)
+
+Setup-Kommandos (ID vergeben =>, Sensoreinheiten detektieren <=>)
+
+Ereignisdaten (Anpollen =>, Datenübertragung <=>)
+
+
+
+
+Wie gross sind die Nachrichten?
+
+
+
+
+
+
+
+
+CAN-Frames:
+Data Frame: Daten von Transmitter zu Receivern
+Remote Frame: Request data frame mit ID 
+Error Frame: Meldet Bus-Fehler
+Overload Frame: Hält den Bus auf Dominant, um Zeitfenster zwischen Messages zu verlängern.
+
+CAN-Frame Aufbau:
+=================
+
+1 Start of Frame	1 d Bit
+2 Arbitration Field	identifier (11bit) & RTR-Bit (Data: 0, Remote: 1)
+3 Control Field		6 bit: 2 bit reserve + 4 bit data length code
+4 Data Field		8 bytes, MSB first
+5 CRC Field		15 bit
+6 ACK Field		2 bit lang + 1 bit lang ACK delimiter
+7 End of Frame		
+Interframe Space or Overload Frame
+
