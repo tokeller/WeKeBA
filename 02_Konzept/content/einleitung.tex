@@ -21,7 +21,13 @@
 
 
 \section{Überblick}\label{sec.ueberblick}
-Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. Die Sensoreinheiten messen kontinuierlich Vibrationen, werten die Signale aus und erkennen Ereignisse, die einer vordefinierten Signalform entsprechen. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Der Datenlogger hat die Aufgabe, von mehreren Sensoreinheiten registrierte Ereignisse zu empfangen und zu speichern. Alle Einheiten sind über ein Bussystem verbunden, um miteinander kommunizieren zu können. Die Stromversorgung der Anlage wird am Datenlogger angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
+Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. 
+\begin{enumerate}
+\item Datenlogger
+\item Sensoreinheit
+\item Bussystem
+\end{enumerate}
+Der Datenlogger hat die Aufgabe, von mehreren Sensoreinheiten registrierte Ereignisse zu empfangen und zu speichern. Die Sensoreinheiten messen kontinuierlich Vibrationen, werten die Signale aus und erkennen Ereignisse, die einer vordefinierten Signalform entsprechen. Alle Einheiten sind über ein Bussystem verbunden, um miteinander kommunizieren zu können. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Die Stromversorgung der Anlage wird am Datenlogger angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
 
 \begin{figure}[H]
 	\centering
@@ -30,12 +36,6 @@ Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. 
 	\label{fig.situationskroki}
 \end{figure}
 
-Der Aufbau der Messstation kann grob in drei Komponenten aufgeteilt werden:
-\begin{enumerate}
-\item Datenlogger
-\item Sensoreinheit
-\item Bussystem
-\end{enumerate}
 
 Diese drei Einheiten werden im Folgenden genauer definiert.
 
@@ -74,13 +74,13 @@ Die Aufgaben der Sensoreinheit umfassen:
 \end{itemize}
 
 \subsection{Messdatenerfassung}
-Der Sensor zur Erfassung der Daten wird mit vordefinierter Abtastrate ausgelesen. Die Abtastrate muss so gewählt werden, dass einzelne Ereignisse erkannt werden können, ohne unnötig viel Messdaten zu generieren.
+Der Sensor zur Erfassung der Daten wird mit einer vordefinierten Abtastrate ausgelesen. Die Abtastrate muss so gewählt werden, dass einzelne Ereignisse erkannt werden können, ohne unnötig viel Messdaten zu generieren.
 
 \subsection{Ereigniserkennung}
 Im Mikroprozessor werden die Messdaten fortlaufend analysiert. Überschreitet das gemessene Signal einen gewissen Pegel (Threshold), markiert dies den Beginn eines Ereignisses. Das Ereignis ist beendet, wenn der Signalpegel für eine gewisse Zeit unterhalb des Threshold bleibt. Für jedes Ereignis wird abgespeichert, wann es aufgetreten ist (Timestamp), wie lange es gedauert hat, wie hoch der Signalpegel maximal ausschlug und wie viele Signalspitzen (Peaks) aufgetreten sind. Allenfalls können auch die Höhen aller Peaks übertragen werden.
 
 \subsection{Datenübertragung}
-Der Datenlogger fragt regelmässig bei der Sensoreinheit an, ob Messdaten zur Übertragung vorhanden sind. Die Sensoreinheit sendet diese dann über das Bussystem. Nach Bestätigung des Erhalts werden die Messdaten aus dem Speicher der Sensoreinheit gelöscht.
+Die Sensoreinheit sendet die Messdaten regelmässig über das Bussystem an den Datenlogger. Nach Bestätigung des Erhalts werden die Messdaten aus dem Speicher der Sensoreinheit gelöscht.
 
 \section{Bussystem}
 Das Bussystem verbindet die Einheiten der Messstation miteinander. Die gesamten Messdaten und Steuerkommandos werden über den Bus übertragen. Das Bussystem muss die Datenmenge der angeschlossenen Sensoren bewältigen können, über die geforderte Distanz funktionieren und möglichst robust gegenüber äusseren Einflüssen sein. Der Busmaster hat die Möglichkeit, laufende Übertragungen von Sensoreinheiten zu unterbrechen, um Steuerkommandos zu senden.
