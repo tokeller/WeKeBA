@@ -25,13 +25,13 @@
 Anhand der funktionalen Vorgaben für die Messstation werden der Datenlogger, die Sensoreinheit und das Bussytem im folgenden genauer spezifiziert und die Komponenten ausgewählt.
 
 \subsection{Datenlogger}
-Der Datenlogger sammelt die Daten der Sensoreinheiten über das Bussystem ein und speichert sie ab. Dafür benötigt er das Bussystem, einen Mikroprozessor, internen Speicher und ein leicht auswechselbares Speichermedium.
+Der Datenlogger sammelt die Daten der Sensoreinheiten über das Bussystem ein und speichert sie ab. Dafür benötigt er das Bussystem, einen Mikroprozessor, internen Speicher und ein leicht auswechselbares Speichermedium. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der Datenlogger wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des Speichermediums wäre eine verschraubbare Öffnung denkbar.
 
 \subsection{Sensoreinheit}
-Die 
+Die Sensoreinheit benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (ADC) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das Bussystem an den Datenlogger übertragen.
 
 \subsection{Bussystem}
-
+Das Bussystem muss die Daten und Befehle zwischen Datenlogger und Sensoreinheiten übertragen. Die Reichweite des Bussystems muss genügen, um alle Komponenten der Messinstallation zu verbinden. Die Datenbandbreite muss die Übertragung der Messresultate aller Sensoren erlauben.
 
 
 \section{Komponentenauswahl}
@@ -48,12 +48,13 @@ Bei der Auswahl des Mikroprozessors werden folgende Kriterien berücksichtigt:
 \item möglichst geringer Stromverbrauch.
 \end{itemize}
 
+\todo{Tabelle verschiedener uCs zum Vergleich}
 
 \subsection{Bus-System}
 Anhand folgender Kriterien wurde ein Bussystem ausgewählt:
 
 \begin{itemize}
-\item Übertragungsbandbreite genügend für laufende Übertragung von Rohdaten einer Sensoreinheit.
+\item Übertragungsbandbreite genügend für fortlaufende Übertragung von Rohdaten einer Sensoreinheit.
 \item Reichweite mindestens 20 Meter.
 \item Robust gegenüber äusseren Einflüssen.
 \item Mindestens zwanzig Busteilnehmer möglich.
@@ -98,7 +99,7 @@ slave select
 \end{minipage}\\
 \hline 
 \end{tabular}
-\caption{Entscheidungsmatrix zur Auswahl des Bussystems.}
+\caption{Entscheidungsmatrix für die Auswahl des Bussystems.}
 \label{table.bussystem}
 \end{table} 
 
@@ -106,7 +107,7 @@ In Tabelle \ref{table.bussystem} sind die Eigenschaften diverser Bussysteme aufg
 
 \paragraph{Kommentare}
 SPI und I2C sind nur für kurze Distanzen geeignet und sind deshalb keine Option.
-Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf jeder Sensoreinheit voraussetzen, um die Sensoren in einer Daisychain zusammenzuhängen. Jedes Paket müsste vom Microcontroller weitergeleitet werden, wenn es für einen anderen Empfänger bestimmt ist. Dies führte zu einer zusätzlichen Belastung der Microcontroller. Neben dem Datenkabel wäre noch ein Kabel für die Stromversorgung notwendig.
+Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf jeder Sensoreinheit voraussetzen, um die Sensoren hintereinander zusammenzuhängen (Daisychain). Jedes Paket müsste vom Microcontroller weitergeleitet werden, wenn es für einen anderen Empfänger bestimmt ist. Dies führte zu einer zusätzlichen Belastung der Microcontroller. Stromversorgung über Ethernet ist mit PowerOverEthernet (PoE) zwar möglich, erfordert aber spezielle Geräte zur Speisung über den Stecker des Datenkabels. Dies verunmöglicht eine Daisychain mit PoE, neben dem Datenkabel wäre noch ein Kabel für die Stromversorgung notwendig.
 
 \paragraph{Entscheidung}
 CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. Für CAN-Bus sind Bus-Treiber (Transceiver) erhältlich, die mit hohen Spannungen umgehen können, was das Bussystem robuster gegenüber Umwelteinflüssen macht. 
@@ -139,7 +140,9 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 \end{table} 
 
 \todo{Referenzen (wiki) in Tabelle \ref{table.speichermedium}}
-\paragraph{Entscheid} 
+
+
+\paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross werden. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der Datenlogger mit einem SD-Kartenleser ausgestattet.
 
 \subsection{Sensor}
 
@@ -171,4 +174,22 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 \section{Datenlogger}
 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/hardware_logger.pdf}
+	\caption{Schematischer Hardware-Aufbau des Datenloggers.}
+	\label{fig.hw_logger}
+\end{figure}
+
+
+
 \section{Sensoreinheit}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/hardware_sensor.pdf}
+	\caption{Schematischer Hardware-Aufbau der Sensoreinheit.}
+	\label{fig.hw_sensor}
+\end{figure}
+
+
