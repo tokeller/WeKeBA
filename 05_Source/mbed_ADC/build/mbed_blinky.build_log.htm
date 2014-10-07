@@ -1,0 +1,134 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\ZHAW\BA\WeKeBA\05_Source\mbed_ADC\mbed_blinky.uvproj
+Project File Date:  10/06/2014
+
+<h2>Output:</h2>
+Build target 'NXP LPC4088'
+compiling main.cpp...
+linking...
+mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
+Program Size: Code=16728 RO-data=2240 RW-data=72 ZI-data=512  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\mbed_blinky_LPC4088.bin build\mbed_blinky.axf
+".\build\mbed_blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_ADC\\build\\mbed_blinky.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+K.
+(s), 2 Warning(s).
+gitalOut.h(101): warning:  #12-D: parsing restarts here after previous syntax error
+      gpio_t gpio;
+mbed\DigitalOut.h(102): error:  #169: expected a declaration
+  };
+mbed\DigitalOut.h(104): error:  #169: expected a declaration
+  } // namespace mbed
+mbed\DigitalInOut.h(109): warning:  #12-D: parsing restarts here after previous syntax error
+      gpio_t gpio;
+mbed\DigitalInOut.h(110): error:  #169: expected a declaration
+  };
+mbed\DigitalInOut.h(112): error:  #169: expected a declaration
+  } // namespace mbed
+mbed\BusIn.h(44): warning:  #12-D: parsing restarts here after previous syntax error
+      BusIn(PinName pins[16]);
+mbed\BusIn.h(46): warning:  #77-D: this declaration has no storage class or type specifier
+      virtual ~BusIn();
+mbed\BusIn.h(46): error:  #65: expected a ";"
+      virtual ~BusIn();
+mbed\BusIn.h(53): warning:  #1295-D: Deprecated declaration read - give arg types
+      int read();
+mbed\BusIn.h(64): warning:  #77-D: this declaration has no storage class or type specifier
+      operator int();
+mbed\BusIn.h(64): error:  #65: expected a ";"
+      operator int();
+mbed\BusIn.h(67): warning:  #77-D: this declaration has no storage class or type specifier
+  protected:
+mbed\BusIn.h(67): error:  #65: expected a ";"
+  protected:
+mbed\BusIn.h(71): warning:  #77-D: this declaration has no storage class or type specifier
+  private:
+mbed\BusIn.h(71): error:  #65: expected a ";"
+  private:
+mbed\BusIn.h(73): warning:  #77-D: this declaration has no storage class or type specifier
+      BusIn & operator = (const BusIn&);
+mbed\BusIn.h(73): error:  #65: expected a ";"
+      BusIn & operator = (const BusIn&);
+mbed\BusIn.h(74): error:  #169: expected a declaration
+  };
+mbed\BusIn.h(76): error:  #169: expected a declaration
+  } // namespace mbed
+mbed\BusOut.h(42): warning:  #12-D: parsing restarts here after previous syntax error
+      BusOut(PinName pins[16]);
+mbed\BusOut.h(44): warning:  #77-D: this declaration has no storage class or type specifier
+      virtual ~BusOut();
+mbed\BusOut.h(44): error:  #65: expected a ";"
+      virtual ~BusOut();
+mbed\BusOut.h(57): warning:  #1295-D: Deprecated declaration read - give arg types
+      int read();
+mbed\BusOut.h(62): warning:  #77-D: this declaration has no storage class or type specifier
+      BusOut& operator= (int v);
+mbed\BusOut.h(62): error:  #65: expected a ";"
+      BusOut& operator= (int v);
+mbed\BusOut.h(63): warning:  #77-D: this declaration has no storage class or type specifier
+      BusOut& operator= (BusOut& rhs);
+mbed\BusOut.h(63): error:  #65: expected a ";"
+      BusOut& operator= (BusOut& rhs);
+mbed\BusOut.h(67): warning:  #77-D: this declaration has no storage class or type specifier
+      operator int();
+mbed\BusOut.h(67): error:  #65: expected a ";"
+      operator int();
+mbed\BusOut.h(70): warning:  #77-D: this declaration has no storage class or type specifier
+  protected:
+mbed\BusOut.h(70): error:  #65: expected a ";"
+  protected:
+mbed\BusOut.h(74): warning:  #77-D: this declaration has no storage class or type specifier
+  private:
+mbed\BusOut.h(74): error:  #65: expected a ";"
+  private:
+mbed\BusOut.h(76): warning:  #77-D: this declaration has no storage class or type specifier
+      BusOut & operator = (const BusOut&);
+mbed\BusOut.h(76): error:  #65: expected a ";"
+      BusOut & operator = (const BusOut&);
+mbed\BusOut.h(77): error:  #169: expected a declaration
+  };
+mbed\BusOut.h(79): error:  #169: expected a declaration
+  } // namespace mbed
+mbed\BusInOut.h(42): warning:  #12-D: parsing restarts here after previous syntax error
+      BusInOut(PinName pins[16]);
+mbed\BusInOut.h(44): warning:  #77-D: this declaration has no storage class or type specifier
+      virtual ~BusInOut();
+mbed\BusInOut.h(44): error:  #65: expected a ";"
+      virtual ~BusInOut();
+mbed\BusInOut.h(60): warning:  #1295-D: Deprecated declaration read - give arg types
+      int read();
+mbed\BusInOut.h(64): warning:  #1295-D: Deprecated declaration output - give arg types
+      void output();
+mbed\BusInOut.h(68): warning:  #1295-D: Deprecated declaration input - give arg types
+      void input();
+mbed\BusInOut.h(79): warning:  #77-D: this declaration has no storage class or type specifier
+      BusInOut& operator= (int v);
+mbed\BusInOut.h(79): error:  #65: expected a ";"
+      BusInOut& operator= (int v);
+mbed\BusInOut.h(80): warning:  #77-D: this declaration has no storage class or type specifier
+      BusInOut& operator= (BusInOut& rhs);
+mbed\BusInOut.h(80): error:  #65: expected a ";"
+      BusInOut& operator= (BusInOut& rhs);
+mbed\BusInOut.h(84): warning:  #77-D: this declaration has no storage class or type specifier
+      operator int();
+mbed\BusInOut.h(84): error:  #65: expected a ";"
+      operator int();
+mbed\BusInOut.h(87): warning:  #77-D: this declaration has no storage class or type specifier
+  protected:
+mbed\BusInOut.h(87): error:  #65: expected a ";"
+  protected:
+mbed\BusInOut.h(91): warning:  #77-D: this declaration has no storage class or type specifier
+  private:
+mbed\BusInOut.h(91): error:  #65: expected a ";"
+  private:
+ADC_4088.c: 30 warnings, 30 errors
+".\build\mbed_blinky.axf" - 30 Error(s), 30 Warning(s).
+Target not created
