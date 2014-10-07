@@ -6,11 +6,11 @@ static inline int div_round_up(int x, int y) {
   return (x + (y - 1)) / y;
 };
 
-int register_ADC_interrupt(PinName pin, uint32_t ADC_IRQHandler, uint32_t time){
-	
-	pinmap_peripheral(pin, PinMap_ADC);
-	int adc = (ADCName)pinmap_peripheral(pin, PinMap_ADC);
-	MBED_ASSERT(adc != (ADCName)NC);
+int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t time){
+	obj->adc = (ADCName) pinmap_peripheral(pin, PinMap_ADC);
+	if (obj->adc == (ADCName)NC){
+		return 1;
+	}
 
 	// PowerOn
 	LPC_SC->PCONP |= (1<<12);
@@ -30,7 +30,8 @@ int register_ADC_interrupt(PinName pin, uint32_t ADC_IRQHandler, uint32_t time){
 
 
 	// Set the generic software-controlled ADC settings
-	LPC_ADC->CR = (0 << 0)        // SEL: 0 = no channels selected
+	//LPC_ADC->CR = (0 << 0)        // SEL: 0 = no channels selected
+	LPC_ADC->CR = (1 << (int)obj->adc)        // SEL: 0 = no channels selected
 								| (clkdiv << 8) // CLKDIV:
 								| (0 << 16)     // BURST: 0 = software control
 								| (1 << 21)     // PDN: 1 = operational
@@ -52,10 +53,10 @@ int register_ADC_interrupt(PinName pin, uint32_t ADC_IRQHandler, uint32_t time){
 	
 };
 
-int reset_ADC_interrupt()
+int reset_ADC_interrupt(analogin_s *obj)
 {
-	
-	LPC_ADC->CR = (0 << 0)        // SEL: 0 = no channels selected
+	//LPC_ADC->CR = (0 << 0)        // SEL: 0 = no channels selected
+	LPC_ADC->CR = (1 << (int)obj->adc)        // SEL: 0 = no channels selected
                   | (clkdiv << 8) // CLKDIV:
                   | (0 << 16)     // BURST: 0 = software control
                   | (1 << 21)     // PDN: 1 = operational
@@ -63,4 +64,13 @@ int reset_ADC_interrupt()
                   | (0 << 27);    // EDGE: not applicable
 	return 0;
 	
-}
+};
+
+int get_ADC_result(analogin_s *obj){
+	unsigned int data;
+  data = LPC_ADC->GDR;
+	return (data >> 4) & 0xFFF; // 12 bit range
+	
+};
+
+

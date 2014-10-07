@@ -25,19 +25,27 @@ extern "C" {
 #endif
 
 /** Function to register an interrupt routine to an ADC input pin with a defined intervall
+ *	@param *obj						Reference to a struct, containing the name of the ADC to configure
+ *  											struct analogin_s {ADCName adc;};
  *  @param pin  					PinName of analog input.
  *  @param ADC_IRQHandler Function pointer to callback on interrupt.
  *  @param time 					Time for capture.
  */
-int register_ADC_interrupt(PinName pin, uint32_t ADC_IRQHandler, uint32_t time);
+int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t time);
 
 
-/** Function to reset an interrupt
+/** Function to reset an ADC interrupt
  *  @param none
  */
 	
-int reset_ADC_interrupt(void);
+int reset_ADC_interrupt(analogin_s *obj);
 
+
+/** Function to read an ADC value
+ *  @param obj
+ */	
+int get_ADC_result(analogin_s *obj);
+	
 #ifdef __cplusplus
 }
 #endif
