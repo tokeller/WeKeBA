@@ -29,16 +29,16 @@ extern "C" {
  *  											struct analogin_s {ADCName adc;};
  *  @param pin  					PinName of analog input.
  *  @param ADC_IRQHandler Function pointer to callback on interrupt.
- *  @param time 					Time for capture.
+ *  @param rate 					sampling rate for ADC.
  */
-int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t time);
+int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t rate);
 
 
 /** Function to reset an ADC interrupt
  *  @param none
  */
 	
-int reset_ADC_interrupt(analogin_s *obj);
+void reset_ADC_interrupt(analogin_s *obj);
 
 
 /** Function to read an ADC value
