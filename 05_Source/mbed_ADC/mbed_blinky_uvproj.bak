@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\build\</OutputDirectory>
-          <OutputName>mbed_ADC</OutputName>
+          <OutputName>mbed_blinky</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -75,7 +75,7 @@
           <AfterMake>
             <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name>fromelf --bin -o build\mbed_ADC_LPC4088.bin build\mbed_ADC.axf</UserProg1Name>
+            <UserProg1Name>fromelf --bin -o build\mbed_blinky_LPC4088.bin build\mbed_blinky.axf</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -348,9 +348,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--gnu </MiscControls>
-              <Define> TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1410784669.24,  __MBED__=1,  __ASSERT_MSG, </Define>
+              <Define> TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1412594140.88,  __MBED__=1,  __ASSERT_MSG, </Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  mbed;  mbed/TARGET_LPC4088;  mbed/TARGET_LPC4088/TARGET_NXP;  mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;  mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;  </IncludePath>
+              <IncludePath>  .;  mbed;  mbed/TARGET_LPC4088;  mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;  mbed/TARGET_LPC4088/TARGET_NXP;  mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;  </IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -383,19 +383,19 @@
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>
             
-              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/sys.o
-            
-              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/cmsis_nvic.o
+              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/retarget.o
             
               mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/sys_helper.o
             
-              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.o
-            
               mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/system_LPC407x_8x_177x_8x.o
+            
+              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.o
             
               mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/board.o
             
-              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/retarget.o
+              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/cmsis_nvic.o
+            
+              mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/sys.o
             
               mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/mbed.ar
             
