@@ -15,10 +15,11 @@ uint32_t data = 0;
 
 extern "C" void ADC_IRQHandler()
 {
-	//reset_ADC_interrupt(&adc);
 	data = get_ADC_result(&adc);
 	ctr++;
   pinser = ctr%2;
+	//pcSerial.printf("working\n");
+	stop_ADC_Conversion();
 } 
 
 
@@ -30,7 +31,7 @@ int main() {
 	uint32_t CCLK = SystemCoreClock;
 	pcSerial.printf("cclock: %d\n", CCLK);
 	
-	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,1000);
+	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
 	pcSerial.printf("clkdiv: %d\n", clkd);
 	while(1) {
 		pcSerial.printf("huhu\n");

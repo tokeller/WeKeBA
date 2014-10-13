@@ -34,11 +34,11 @@ extern "C" {
 int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t rate);
 
 
-/** Function to reset an ADC interrupt
+/** Function to stop an ADC conversion
  *  @param none
  */
 	
-void reset_ADC_interrupt(analogin_s *obj);
+void stop_ADC_Conversion(void);
 
 
 /** Function to read an ADC value
