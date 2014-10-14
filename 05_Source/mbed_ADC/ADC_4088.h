@@ -29,9 +29,9 @@ extern "C" {
  *  											struct analogin_s {ADCName adc;};
  *  @param pin  					PinName of analog input.
  *  @param ADC_IRQHandler Function pointer to callback on interrupt.
- *  @param rate 					sampling rate for ADC.
+ *  @param interval				sampling rate for ADC.
  */
-int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t rate);
+int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t interval);
 
 
 /** Function to stop an ADC conversion

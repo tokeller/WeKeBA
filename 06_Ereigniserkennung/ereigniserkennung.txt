@@ -27,4 +27,3 @@ standard detail: timestamp, length, max intensity, number of peaks, peak_intensi
 
 high detail: timestamp, number of samples, samples[nrofsamples]
 
-rohdaten: samples[recording_time*sampling_rate]

@@ -14,7 +14,7 @@ void start_ADC_Conversion(){
 
 }
 
-int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t time){
+int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler, uint32_t interval){
 	
 	
 	obj->adc = (ADCName) pinmap_peripheral(pin, PinMap_ADC);
@@ -59,7 +59,7 @@ int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler
 	//enable ADC interrupt
 	NVIC_EnableIRQ(ADC_IRQn);
 
-	ticker.attach_us(&start_ADC_Conversion,time);
+	ticker.attach_us(&start_ADC_Conversion, interval);
 	
 	return clkdiv;
 	

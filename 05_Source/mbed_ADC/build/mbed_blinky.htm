@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\mbed_blinky.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\mbed_blinky.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 13 12:56:41 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Oct 14 16:26:14 2014
 <BR><P>
 <H3>Maximum Stack Usage =        352 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1036,9 +1036,9 @@ Global Symbols
 <P><STRONG><a name="[d8]"></a>_printf_wctomb</STRONG> (Thumb, 182 bytes, Stack size 56 bytes, _printf_wctomb.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = _printf_wctomb &rArr; _wcrtomb &rArr; __rt_ctype_table
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_wcrtomb
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
+<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_wcrtomb
 </UL>
 <BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_lcs_common
 </UL>
@@ -1179,8 +1179,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setvbuf
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED
 </UL>
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_lib_init_stdio_2
 </UL>
@@ -1349,16 +1349,16 @@ Global Symbols
 <P><STRONG><a name="[ea]"></a>__sig_exit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, defsig_exit.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[fd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED
-<LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGPVFN
+<BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGPVFN
 <LI><a href="#[ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED
 </UL>
 
 <P><STRONG><a name="[e6]"></a>__rt_SIGRTRED</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, defsig_rtred_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __rt_SIGRTRED &rArr; __rt_SIGRTRED_inner &rArr; __default_signal_display &rArr; _ttywrch
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED_inner
+<BR>[Calls]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED_inner
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
@@ -1380,8 +1380,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_locale
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_wcrtomb
-<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isspace
+<BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isspace
+<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_wcrtomb
 </UL>
 
 <P><STRONG><a name="[8d]"></a>__rt_locale</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_locale.o(.text))
@@ -1431,9 +1431,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ttywrch
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGPVFN_inner
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
+<BR>[Called By]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTRED_inner
+<LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGPVFN_inner
 </UL>
 
 <P><STRONG><a name="[fe]"></a>__rt_SIGRTRED_inner</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, defsig_rtred_inner.o(.text))
@@ -1447,8 +1447,8 @@ Global Symbols
 <P><STRONG><a name="[ee]"></a>__rt_SIGRTMEM</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, defsig_rtmem_outer.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = __rt_SIGRTMEM &rArr; __rt_SIGRTMEM_inner &rArr; __default_signal_display &rArr; _ttywrch
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
+<BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_SIGRTMEM_inner
+<LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sig_exit
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_init_alloc
 <LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__Heap_Broken
@@ -1556,9 +1556,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memmove4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_ADC_interrupt
+<BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_ADC_interrupt
 <LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_init
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
 
 <P><STRONG><a name="[10a]"></a>SystemCoreClockUpdate</STRONG> (Thumb, 504 bytes, Stack size 12 bytes, system_LPC407x_8x_177x_8x.o(i.SystemCoreClockUpdate))
@@ -1651,8 +1651,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_insert_event
 </UL>
-<BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::handler()
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
+<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::handler()
 </UL>
 
 <P><STRONG><a name="[117]"></a>mbed::TimerEvent::remove()</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, TimerEvent.o(i._ZN4mbed10TimerEvent6removeEv))
@@ -1660,8 +1660,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_remove_event
 </UL>
-<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
+<BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned long long)
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
 </UL>
 
 <P><STRONG><a name="[b8]"></a>mbed::TimerEvent::TimerEvent__sub_object()</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, TimerEvent.o(i._ZN4mbed10TimerEventC2Ev))
@@ -1684,13 +1684,13 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> TimerEvent.o(.constdata__ZTVN4mbed10TimerEventE)
 </UL>
 <P><STRONG><a name="[10f]"></a>mbed::FunctionPointer::call()</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointer4callEv))
-<BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::handler()
-<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::_irq_handler(unsigned, SerialIrq)
+<BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::_irq_handler(unsigned, SerialIrq)
+<LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::handler()
 </UL>
 
 <P><STRONG><a name="[b6]"></a>mbed::FunctionPointer::attach(void(*)())</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointer6attachEPFvvE))
-<BR><BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_ADC_interrupt
+<BR><BR>[Called By]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_ADC_interrupt
+<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
 </UL>
 
 <P><STRONG><a name="[b9]"></a>mbed::FunctionPointer::FunctionPointer(void(*)())</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointerC1EPFvvE))
@@ -1791,17 +1791,17 @@ Global Symbols
 <P><STRONG><a name="[5b]"></a>mbed::Ticker::handler()</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, Ticker.o(i._ZN4mbed6Ticker7handlerEv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = mbed::Ticker::handler() &rArr; mbed::TimerEvent::insert(unsigned long long) &rArr; us_ticker_insert_event
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::insert(unsigned long long)
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::call()
+<BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::call()
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::insert(unsigned long long)
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> Ticker.o(.constdata__ZTVN4mbed6TickerE)
 </UL>
 <P><STRONG><a name="[46]"></a>mbed::Ticker::~Ticker()</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, Ticker.o(i._ZN4mbed6TickerD1Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = mbed::Ticker::~Ticker() &rArr; mbed::TimerEvent::~TimerEvent__sub_object() &rArr; us_ticker_remove_event
 </UL>
-<BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::attach(void(*)())
+<BR>[Calls]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::attach(void(*)())
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::~TimerEvent__sub_object()
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> Ticker.o(.constdata__ZTVN4mbed6TickerE)
 <LI> adc_4088.o(.text)
@@ -1849,8 +1849,8 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>mbed::FileLike::~FileLike__sub_object()</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, FileLike.o(i._ZN4mbed8FileLikeD2Ev))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = mbed::FileLike::~FileLike__sub_object() &rArr; mbed::FileHandle::~FileHandle__sub_object()
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileBase::~FileBase()
-<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileHandle::~FileHandle__sub_object()
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileHandle::~FileHandle__sub_object()
+<LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FileBase::~FileBase()
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::~Stream__sub_object()
 </UL>
@@ -2234,10 +2234,10 @@ Global Symbols
 <P><STRONG><a name="[4f]"></a>us_ticker_irq_handler</STRONG> (Thumb, 62 bytes, Stack size 8 bytes, us_ticker_api.o(i.us_ticker_irq_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = us_ticker_irq_handler &rArr; us_ticker_read &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_set_interrupt
+<BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_set_interrupt
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_disable_interrupt
 <LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_clear_interrupt
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> us_ticker.o(i.us_ticker_init)
 <LI> us_ticker.o(i.us_ticker_read)
@@ -2259,8 +2259,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_set_interrupt
 <LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_disable_interrupt
 </UL>
-<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
-<LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::~TimerEvent__sub_object()
+<BR>[Called By]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::~TimerEvent__sub_object()
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
 </UL>
 
 <P><STRONG><a name="[119]"></a>us_ticker_set_handler</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, us_ticker_api.o(i.us_ticker_set_handler))

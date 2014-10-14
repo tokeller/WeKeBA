@@ -436,6 +436,11 @@
               <FileType>8</FileType>
               <FilePath>.\ADC_4088.cpp</FilePath>
             </File>
+            <File>
+              <FileName>impact_fsm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\impact_fsm.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

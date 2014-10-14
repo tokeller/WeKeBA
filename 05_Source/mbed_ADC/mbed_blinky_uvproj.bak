@@ -431,6 +431,11 @@
               <FileType>8</FileType>
               <FilePath>main.cpp</FilePath>
             </File>
+            <File>
+              <FileName>ADC_4088.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ADC_4088.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
