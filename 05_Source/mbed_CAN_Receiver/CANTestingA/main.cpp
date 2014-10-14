@@ -1,5 +1,7 @@
 #include "mbed.h"
 
+#define LPC_CAN1_ERR LPC_CAN1_BASE + 0x08;
+
 Serial pcSerial(USBTX, USBRX);
 Ticker ticker;
 DigitalOut led1(LED1);
@@ -9,6 +11,7 @@ CAN can2(p34, p33);
 AnalogIn ain(p20);
 char counter = 0;
 float ainO = 0.0;
+char message[15] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 void send() {
     pcSerial.printf("send()\n");
@@ -21,17 +24,20 @@ void send() {
 }
 
 int main() {
+		int err = 0;
     pcSerial.baud(9600);
     pcSerial.printf("main()\n");
     //ticker.attach(&send, 1);
-    CANMessage msg;
+    CANMessage msg = CANMessage(1337, message, 15, CANData, CANExtended);
     while(1) {
         //if (pcSerial.readable()) {
 					//	ainO = ain.read();
 						//printf("analog read: %f\n", ainO);
         //    printf("loop()\n");
           	if(can1.read(msg)) {
-                pcSerial.printf("Message received: %d\n", msg.data[0]);
+                pcSerial.printf("Message received: %s\n", msg.data);
+								err = LPC_CAN1_ERR;
+								pcSerial.printf("error: %d\n",(err));
             //    pcSerial.printf("Message received: %d\n", 1);
                 led2 = !led2;
             } 
