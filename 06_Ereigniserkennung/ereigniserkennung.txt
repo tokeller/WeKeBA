@@ -1,9 +1,17 @@
-(singleton)
 constructor(singleton)
 
+methods:
+========
 setter: threshold, base_level, detail_level
 
 getter: threshold, base_level, detail_level 
+
+isr_nextValue {ISR to get next measurement}
+
+store_event {save event to file system}
+
+
+
 
 state machine
 =============
@@ -13,7 +21,7 @@ actions: new_impact, peak_start, peak_end
 
 
 
-data structure:
+data structures:
 ===============
 standard detail: timestamp, length, max intensity, number of peaks, peak_intensities[noOfPeaks]
 
