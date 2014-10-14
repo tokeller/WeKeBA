@@ -1,5 +1,6 @@
 #include "mbed.h"
 #include "ADC_4088.h"
+#include "impact_fsm.h"
 
 Serial pcSerial(USBTX, USBRX);
 DigitalOut myled(LED1);

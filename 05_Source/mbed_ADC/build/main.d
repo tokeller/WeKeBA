@@ -81,3 +81,6 @@
 .\build\main.o: mbed\rtc_time.h
 .\build\main.o: ADC_4088.h
 .\build\main.o: mbed\pinmap.h
+.\build\main.o: impact_fsm.h
+.\build\main.o: impact_event.h
+.\build\main.o: impact_action.h
