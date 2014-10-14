@@ -1,0 +1,22 @@
+(singleton)
+constructor(singleton)
+
+setter: threshold, base_level, detail_level
+
+getter: threshold, base_level, detail_level 
+
+state machine
+=============
+events: input_high, input_low, timeout, no_event
+
+actions: new_impact, peak_start, peak_end
+
+
+
+data structure:
+===============
+standard detail: timestamp, length, max intensity, number of peaks, peak_intensities[noOfPeaks]
+
+high detail: timestamp, number of samples, samples[nrofsamples]
+
+rohdaten: samples[recording_time*sampling_rate]
