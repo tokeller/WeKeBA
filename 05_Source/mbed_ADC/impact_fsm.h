@@ -29,7 +29,7 @@ void init_impact_fsm(void);
 /** The Finite State Machine
 *   Event handling depending on current state of the FSM
 */
-void impact_fsm(Event new_event, signed int value);
+void impact_fsm(Event new_event);
 	
 #ifdef __cplusplus
 };

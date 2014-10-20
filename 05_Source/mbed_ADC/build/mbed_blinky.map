@@ -1460,7 +1460,7 @@ Removing Unused input sections from the image.
     Removing adc_4088.o(.ARM.exidx), (8 bytes).
     Removing impact_fsm.o(.rev16_text), (4 bytes).
     Removing impact_fsm.o(.revsh_text), (4 bytes).
-    Removing impact_fsm.o(.text), (168 bytes).
+    Removing impact_fsm.o(.text), (180 bytes).
     Removing impact_fsm.o(.ARM.exidx), (8 bytes).
     Removing impact_fsm.o(.data), (1 bytes).
     Removing retarget.o(.rev16_text), (4 bytes).
@@ -1741,7 +1741,7 @@ Removing Unused input sections from the image.
     Removing FileBase.o(.constdata__ZTIN4mbed8FileBaseE), (8 bytes).
     Removing FileBase.o(.constdata__ZTSN4mbed8FileBaseE), (17 bytes).
 
-288 unused section(s) (total 4221 bytes) removed from the image.
+288 unused section(s) (total 4233 bytes) removed from the image.
 
 ==============================================================================
 

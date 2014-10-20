@@ -21,16 +21,23 @@ extern Serial pcSerial;
  */
 void init_impact_fsm(void)
 {
-    Event event = E_RESET;    
-    fsm(event, 0);
+  Event event;
+	event.id= E_RESET;
+  event.timestamp = 0;
+  event.value = 0;
+  impact_fsm(event);
 }
  
 /*
  * See header file
  */
-void impact_fsm(Event event, signed int value)
+void impact_fsm(Event event)
 {
 	static State state = S_NOT_IN_EVENT;
+	
+	// TODO hier noch eine while-schleife drüber, um alle events abzuarbeiten.
+	
+	EventID id = event.id;
 	
 	// TODO in impact_event: decrease timeout counter, if zero, we have event E_TIMEOUT
 	switch(state){
@@ -39,7 +46,7 @@ void impact_fsm(Event event, signed int value)
 		* ------------------------------------------------------- */
 		case S_NOT_IN_EVENT:
 			
-			switch(event){
+			switch(id){
 				
 				case E_RESET:
 					break;
@@ -68,7 +75,7 @@ void impact_fsm(Event event, signed int value)
 		* ------------------------------------------------------- */			
 		case S_IN_EVENT_PEAK:
 			
-			switch(event){
+			switch(id){
 				
 				case E_RESET:
 					state = S_NOT_IN_EVENT;
@@ -98,7 +105,7 @@ void impact_fsm(Event event, signed int value)
 		* ------------------------------------------------------- */
 		case S_IN_EVENT_NO_PEAK:
 			
-			switch(event){
+			switch(id){
 				
 				case E_RESET:
 					state = S_NOT_IN_EVENT;
