@@ -19,7 +19,7 @@ extern Serial pcSerial;
 /*
  * See header file
  */
-void init_state_machine(void)
+void init_impact_fsm(void)
 {
     Event event = E_RESET;    
     fsm(event, 0);
@@ -28,10 +28,11 @@ void init_state_machine(void)
 /*
  * See header file
  */
-void fsm(Event event, signed int value)
+void impact_fsm(Event event, signed int value)
 {
 	static State state = S_NOT_IN_EVENT;
 	
+	// TODO in impact_event: decrease timeout counter, if zero, we have event E_TIMEOUT
 	switch(state){
 		
 		/* -- State Not_In_Event

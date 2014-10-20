@@ -24,12 +24,12 @@ extern "C" {
 /* 
  * Initialize the state machine
  */
-void init_state_machine(void);
+void init_impact_fsm(void);
 
 /** The Finite State Machine
 *   Event handling depending on current state of the FSM
 */
-void fsm(Event new_event, signed int value);
+void impact_fsm(Event new_event, signed int value);
 	
 #ifdef __cplusplus
 };
