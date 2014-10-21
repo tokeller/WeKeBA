@@ -10,7 +10,8 @@
  
 typedef void (*IAP)(unsigned long [], unsigned long[] );
 IAP iap_entry = (IAP) IAP_LOCATION;
- 
+
+AnalogOut signal(p18);
 DigitalOut myled(LED1);
  
 int main() {
@@ -36,9 +37,10 @@ int main() {
     printf("\r\nSerial number:\r\n");
     iap_entry(command, result);
     if (result[0] == 0) {
-        for(int i = 1; i < 5; i++) {
+        /*for(int i = 1; i < 5; i++) {
             printf( "0x%x\r\n", result[i] );
-        }
+        }*/
+				printf("serial: 0x%x\r\n", ((result[1] & 0x0000ffff)<< 16) | (result[3] & 0x0000ffff));
     } else {
         printf("Status error!\r\n");
     }
@@ -47,9 +49,14 @@ int main() {
         
     // and now back to the default new project, just flash a LED
     while(1) {
-        myled = 1;
+       for(float i=0.0; i<1.0; i+=0.001) {
+            signal = i;
+            //wait(0.0001);
+        }
+  /*
+				myled = 1;
         wait(0.2);
         myled = 0;
         wait(0.2);
-    }
+    */}
 }
