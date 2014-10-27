@@ -12,6 +12,15 @@ store_event {save event to file system}
 
 
 
+modi
+====
+detail_low
+detail_std
+raw
+
+Die Modi haben je eine eigene Statemachine. 
+Moduswechsel von den Detail-Modi aus nur im Status No_Event.
+
 
 state machine
 =============
