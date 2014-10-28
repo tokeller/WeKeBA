@@ -3,11 +3,11 @@
 <title>Static Call Graph - [.\build\mbed_blinky.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\mbed_blinky.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 20 15:36:28 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 27 10:47:41 2014
 <BR><P>
-<H3>Maximum Stack Usage =        352 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        416 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-__sti___8_main_cpp_pcSerial &rArr; mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+__sti___8_main_cpp_pcSerial &rArr; mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 <P>
 <H3>
 Mutually Recursive functions
@@ -26,7 +26,7 @@ Mutually Recursive functions
  <LI><a href="#[133]">pin_mode</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[10b]">mbed_assert_internal</a><BR>
  <LI><a href="#[131]">pin_function</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[10b]">mbed_assert_internal</a><BR>
  <LI><a href="#[12f]">gpio_dir</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[10b]">mbed_assert_internal</a><BR>
- <LI><a href="#[e5]">_sys_write</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[113]">serial_init</a><BR>
+ <LI><a href="#[9c]">exit</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[c9]">fflush</a><BR>
 </UL>
 <P>
 <H3>
@@ -365,8 +365,8 @@ Global Symbols
 <P><STRONG><a name="[14d]"></a>__rt_lib_init_signal_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$0000001B))
 
 <P><STRONG><a name="[91]"></a>__rt_lib_init_stdio_2</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, libinit2.o(.ARM.Collect$$libinit$$00000022))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
-<LI>Call Chain = __rt_lib_init_stdio_2 &rArr; _initio &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
+<LI>Call Chain = __rt_lib_init_stdio_2 &rArr; _initio &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_initio
 </UL>
@@ -420,8 +420,8 @@ Global Symbols
 <P><STRONG><a name="[156]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[9a]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
-<LI>Call Chain = __rt_entry_main &rArr; main &rArr; $Super$$main &rArr; register_ADC_interrupt &rArr; pinmap_pinout &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 368 + Unknown Stack Size
+<LI>Call Chain = __rt_entry_main &rArr; main &rArr; $Super$$main &rArr; mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -633,7 +633,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_file
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 </UL>
 
 <P><STRONG><a name="[a0]"></a>__2fprintf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, __2fprintf.o(.text))
@@ -671,25 +671,26 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::Stream__sub_object(const char*)
 </UL>
 
-<P><STRONG><a name="[2d]"></a>ADC_IRQHandler</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192 + Unknown Stack Size
-<LI>Call Chain = ADC_IRQHandler &rArr; mbed::DigitalOut::write(int) &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<P><STRONG><a name="[2d]"></a>ADC_IRQHandler</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
+<LI>Call Chain = ADC_IRQHandler &rArr; mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::write(int)
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_ADC_Conversion
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stop_ADC_Conversion
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_ADC_result
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 </UL>
 <BR>[Address Reference Count : 2]<UL><LI> main.o(.text)
 <LI> startup_LPC407x_8x_177x_8x.o(RESET)
 </UL>
-<P><STRONG><a name="[aa]"></a>$Super$$main</STRONG> (Thumb, 88 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
-<LI>Call Chain = $Super$$main &rArr; register_ADC_interrupt &rArr; pinmap_pinout &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<P><STRONG><a name="[ab]"></a>$Super$$main</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
+<LI>Call Chain = $Super$$main &rArr; mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_ADC_interrupt
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -699,7 +700,7 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[ad]"></a>register_ADC_interrupt</STRONG> (Thumb, 228 bytes, Stack size 56 bytes, adc_4088.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240 + Unknown Stack Size
-<LI>Call Chain = register_ADC_interrupt &rArr; pinmap_pinout &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<LI>Call Chain = register_ADC_interrupt &rArr; pinmap_pinout &rArr; error &rArr; exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_pinout
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pinmap_peripheral
@@ -707,10 +708,10 @@ Global Symbols
 <LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::attach(void(*)())
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_SetVector
 </UL>
-<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
-<P><STRONG><a name="[a9]"></a>stop_ADC_Conversion</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, adc_4088.o(.text))
+<P><STRONG><a name="[aa]"></a>stop_ADC_Conversion</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, adc_4088.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_IRQHandler
 </UL>
 
@@ -793,7 +794,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c6]"></a>_do_fflush</STRONG> (Thumb, 54 bytes, Stack size 16 bytes, fflush.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
+<LI>Call Chain = _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fflush
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fseek
@@ -802,17 +804,18 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c9]"></a>fflush</STRONG> (Thumb, 42 bytes, Stack size 16 bytes, fflush.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 328 + Unknown Stack Size
+<LI>Call Chain = fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_do_fflush
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
+<BR>[Called By]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
 <P><STRONG><a name="[ca]"></a>freopen</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, fopen.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 288 + Unknown Stack Size
-<LI>Call Chain = freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
+<LI>Call Chain = freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_open
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fclose_internal
@@ -823,8 +826,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cd]"></a>fopen</STRONG> (Thumb, 74 bytes, Stack size 24 bytes, fopen.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 312 + Unknown Stack Size
-<LI>Call Chain = fopen &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
+<LI>Call Chain = fopen &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
@@ -834,7 +837,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[cb]"></a>_fclose_internal</STRONG> (Thumb, 76 bytes, Stack size 32 bytes, fclose.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 328 + Unknown Stack Size
+<LI>Call Chain = _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_close
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
@@ -1147,7 +1151,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e2]"></a>_writebuf</STRONG> (Thumb, 84 bytes, Stack size 32 bytes, stdio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = _writebuf &rArr; _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 280 + Unknown Stack Size
+<LI>Call Chain = _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_write
 <LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_seek
@@ -1158,7 +1163,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c7]"></a>_fflush</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, stdio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = _fflush &rArr; _writebuf &rArr; _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
+<LI>Call Chain = _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_writebuf
 </UL>
@@ -1174,8 +1180,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[92]"></a>_initio</STRONG> (Thumb, 210 bytes, Stack size 8 bytes, initio.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296 + Unknown Stack Size
-<LI>Call Chain = _initio &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
+<LI>Call Chain = _initio &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;freopen
@@ -1541,12 +1547,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9b]"></a>main</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, retarget.o(i.$Sub$$main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
-<LI>Call Chain = main &rArr; $Super$$main &rArr; register_ADC_interrupt &rArr; pinmap_pinout &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 368 + Unknown Stack Size
+<LI>Call Chain = main &rArr; $Super$$main &rArr; mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_main
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -1622,12 +1628,12 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_)
 </UL>
-<P><STRONG><a name="[ab]"></a>mbed::SerialBase::baud(int)</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBase4baudEi))
+<P><STRONG><a name="[ac]"></a>mbed::SerialBase::baud(int)</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBase4baudEi))
 <BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = mbed::SerialBase::baud(int) &rArr; serial_baud
 </UL>
 <BR>[Calls]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_baud
 </UL>
-<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[111]"></a>mbed::SerialBase::SerialBase(PinName, PinName)</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, SerialBase.o(i._ZN4mbed10SerialBaseC1E7PinNameS1_))
@@ -1701,8 +1707,8 @@ Global Symbols
 <P><STRONG><a name="[171]"></a>mbed::FunctionPointer::FunctionPointer__sub_object(void(*)())</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointerC1EPFvvE), UNUSED)
 
 <P><STRONG><a name="[af]"></a>mbed::Serial::Serial(PinName, PinName, const char*)</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, Serial.o(i._ZN4mbed6SerialC1E7PinNameS1_PKc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 344 + Unknown Stack Size
-<LI>Call Chain = mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 408 + Unknown Stack Size
+<LI>Call Chain = mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::Stream__sub_object(const char*)
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::SerialBase(PinName, PinName)
@@ -1744,19 +1750,20 @@ Global Symbols
 <BR>[Address Reference Count : 2]<UL><LI> Serial.o(.constdata__ZTVN4mbed6SerialE)
 <LI> Stream.o(.constdata__ZTVN4mbed6StreamE)
 </UL>
-<P><STRONG><a name="[ac]"></a>mbed::Stream::printf(const char*, ...)</STRONG> (Thumb, 30 bytes, Stack size 32 bytes, Stream.o(i._ZN4mbed6Stream6printfEPKcz))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
-<LI>Call Chain = mbed::Stream::printf(const char*, ...) &rArr; __c89vfprintf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<P><STRONG><a name="[a9]"></a>mbed::Stream::printf(const char*, ...)</STRONG> (Thumb, 30 bytes, Stack size 32 bytes, Stream.o(i._ZN4mbed6Stream6printfEPKcz))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
+<LI>Call Chain = mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fflush
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vfprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_IRQHandler
 </UL>
 
 <P><STRONG><a name="[11a]"></a>mbed::Stream::Stream__sub_object(const char*)</STRONG> (Thumb, 54 bytes, Stack size 24 bytes, Stream.o(i._ZN4mbed6StreamC2EPKc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 336 + Unknown Stack Size
-<LI>Call Chain = mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 400 + Unknown Stack Size
+<LI>Call Chain = mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setbuf
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fopen
@@ -1999,8 +2006,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[e5]"></a>_sys_write</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, retarget.o(i._sys_write))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16 + In Cycle
-<LI>Call Chain = _sys_write &rArr;  serial_init (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 248 + Unknown Stack Size
+<LI>Call Chain = _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_putc
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
@@ -2010,7 +2017,7 @@ Global Symbols
 
 <P><STRONG><a name="[12c]"></a>error</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, error.o(i.error))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
-<LI>Call Chain = error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<LI>Call Chain = error &rArr; exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vfprintf
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -2021,7 +2028,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9c]"></a>exit</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, exit.o(i.exit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 152 + In Cycle
+<LI>Call Chain = exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fflush
@@ -2135,7 +2143,7 @@ Global Symbols
 
 <P><STRONG><a name="[135]"></a>pinmap_merge</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, pinmap_common.o(i.pinmap_merge))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = pinmap_merge &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<LI>Call Chain = pinmap_merge &rArr; error &rArr; exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 </UL>
@@ -2144,7 +2152,7 @@ Global Symbols
 
 <P><STRONG><a name="[b2]"></a>pinmap_peripheral</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, pinmap_common.o(i.pinmap_peripheral))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = pinmap_peripheral &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<LI>Call Chain = pinmap_peripheral &rArr; error &rArr; exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;error
 </UL>
@@ -2154,7 +2162,7 @@ Global Symbols
 
 <P><STRONG><a name="[b3]"></a>pinmap_pinout</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, pinmap_common.o(i.pinmap_pinout))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
-<LI>Call Chain = pinmap_pinout &rArr; error &rArr; exit &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<LI>Call Chain = pinmap_pinout &rArr; error &rArr; exit &rArr;  fflush (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pin_mode
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pin_function
@@ -2168,7 +2176,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = serial_baud
 </UL>
 <BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
 </UL>
 
 <P><STRONG><a name="[136]"></a>serial_format</STRONG> (Thumb, 154 bytes, Stack size 32 bytes, serial_api.o(i.serial_format))
@@ -2282,7 +2290,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 </UL>
-<BR>[Called By]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[134]"></a>wait_ms</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, wait_api.o(i.wait_ms))
@@ -2339,9 +2347,9 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[5e]"></a>__sti___8_main_cpp_pcSerial</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 352 + Unknown Stack Size
-<LI>Call Chain = __sti___8_main_cpp_pcSerial &rArr; mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _sys_open &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
+<P><STRONG><a name="[5e]"></a>__sti___8_main_cpp_pcSerial</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 416 + Unknown Stack Size
+<LI>Call Chain = __sti___8_main_cpp_pcSerial &rArr; mbed::Serial::Serial(PinName, PinName, const char*) &rArr; mbed::Stream::Stream__sub_object(const char*) &rArr; fopen &rArr; freopen &rArr; _fclose_internal &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::DigitalOut(PinName)
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Serial::Serial(PinName, PinName, const char*)

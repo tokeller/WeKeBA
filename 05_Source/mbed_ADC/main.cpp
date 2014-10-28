@@ -19,7 +19,7 @@ extern "C" void ADC_IRQHandler()
 	data = get_ADC_result(&adc);
 	ctr++;
   pinser = ctr%2;
-	//pcSerial.printf("working\n");
+	pcSerial.printf("get: %d\n", data);
 	stop_ADC_Conversion();
 } 
 
@@ -28,7 +28,7 @@ extern "C" void ADC_IRQHandler()
 int main() {
 	pcSerial.baud(9600);
 	pcSerial.printf("start\n");
-	PinName pin = p19;
+	PinName pin = p15;
 	uint32_t CCLK = SystemCoreClock;
 	pcSerial.printf("cclock: %d\n", CCLK);
 	
