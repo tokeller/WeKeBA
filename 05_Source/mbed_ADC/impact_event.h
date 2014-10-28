@@ -12,7 +12,11 @@ extern "C" {
  * -- Constants, macros
  * --------------------------------------------------------------- */
 
-#define EVENTQUEUE_LEN  8 
+#define EVENTQUEUE_LEN  8       // how many events can be cached in the ring buffer
+#define MAX_EVENT_LENGTH 512    // XXX this will later be made configurable
+#define SAMPLES_UNTIL_TIMEOUT 15 // how many samples need to pass with values below threshold for the event to end.
+#define THRESHOLD 100           // measurement threshold
+#define BASELINE 2047           // baseline of the signal
 	
 /* ------------------------------------------------------------------
  * -- Constants, macros
@@ -30,13 +34,21 @@ extern "C" {
 		EventID id;
 		unsigned int timestamp;
 		signed int value;
-	} Event;
+	} Event_FSM;
 	
 	typedef struct {
-		Event queue[EVENTQUEUE_LEN];
+		Event_FSM queue[EVENTQUEUE_LEN];
 		unsigned char read_pos;
 		unsigned char write_pos;
-	} Event_rb;
+	} Event_ringbuf;
+	
+	typedef struct {
+		unsigned int starttime;
+		unsigned int duration;
+		unsigned short samples[MAX_EVENT_LENGTH];
+		unsigned short peaks[MAX_EVENT_LENGTH]; //XXX allenfalls kürzer, wie viel?
+		unsigned short max_amplitude;
+	} Event_t;
 	
 	/* ------------------------------------------------------------------
 	* -- Function prototypes
@@ -65,13 +77,13 @@ extern "C" {
 	 * Add an event to the queue
 	 * @param   event: new event
 	 */
-	void enqueue_event(Event event);
+	void enqueue_event(Event_FSM event);
 
 	/*
 	 * Retrieve next event from the queue
 	 * @retval  next event in queue or E_NO_EVENT
 	 */
-	Event dequeue_event(void);
+	Event_FSM dequeue_event(void);
 
 	/*
 	 * Test the queue for available events

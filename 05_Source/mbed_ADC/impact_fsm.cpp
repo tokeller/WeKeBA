@@ -21,7 +21,7 @@ extern Serial pcSerial;
  */
 void init_impact_fsm(void)
 {
-  Event event;
+  Event_FSM event;
 	event.id= E_RESET;
   event.timestamp = 0;
   event.value = 0;
@@ -31,7 +31,7 @@ void init_impact_fsm(void)
 /*
  * See header file
  */
-void impact_fsm(Event event)
+void impact_fsm(Event_FSM event)
 {
 	static State state = S_NOT_IN_EVENT;
 	
