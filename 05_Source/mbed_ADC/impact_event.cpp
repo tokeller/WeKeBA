@@ -12,12 +12,14 @@ extern unsigned int timestamp;
  * -- Global Variables
  * --------------------------------------------------------------- */
 
-static Event_ringbuf event_queue;
-static unsigned int baseline = BASELINE;
-static unsigned int threshold = THRESHOLD;
-static unsigned int samples_timeout = SAMPLES_UNTIL_TIMEOUT;
-static unsigned int max_event_length = MAX_EVENT_LENGTH;
+static Input_ringbuf input_queue;
+static unsigned int baseline = BASELINE;     // zero position of sensor signal
+static unsigned int threshold = THRESHOLD;   // event detection threshold
+static unsigned int peak_noise_threshold;    // threshold on peak plateau
+static unsigned int samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
+                                             // below threshold for impact to end
 static unsigned int timeout_counter;
+static unsigned char timeout_active;         // is timeout counter active (1) or not(0)
 
 
 /* ------------------------------------------------------------------
@@ -29,7 +31,7 @@ static unsigned int timeout_counter;
 	 */
 	void isr_nextMeasurement(){
 		pcSerial.printf("ISR ADC Event Recognition called.\n");
-		// XXX retrieve value, hand it over to event_detection
+		// XXX retrieve value, enqueue
 	}
 
 	/*
@@ -37,7 +39,7 @@ static unsigned int timeout_counter;
 	 */
 	void event_detection(unsigned int input_value)
 	{
-		//XXX get difference of abs(Value - baseline) and Threshold, 
+		//XXX get difference of abs(value - baseline) and threshold,
 		//    if positive we have an E_INPUT_HIGH, otherwise it's E_INPUT_LOW
 		signed int value; 
 		
@@ -75,18 +77,18 @@ static unsigned int timeout_counter;
 	void init_event_handler(void)
 	{
 		// neue queue erstellen, initialisieren
-		init_event_queue();
+		init_input_queue();
 		// XXXsetze nullwert, threshold, peak-erkennungshöhe, timeout
 	}
 
 	/*
 	 * See header file
 	 */
-	void init_event_queue(void)
+	void init_input_queue(void)
 	{
 		unsigned char i;
 		
-		for(i = 0; i < EVENTQUEUE_LEN; i++){
+		for(i = 0; i < INPUTQUEUE_LEN; i++){
 			event_queue.queue[i].id = E_NO_EVENT;
 			event_queue.queue[i].timestamp = 0;
 			event_queue.queue[i].value = 0;
@@ -99,7 +101,7 @@ static unsigned int timeout_counter;
 	/*
 	 * See header file
 	 */
-	void enqueue_event(Event event)
+	void enqueue_input(Event event)
 	{
 		// XXX critical, disable INT
 		
@@ -108,7 +110,7 @@ static unsigned int timeout_counter;
 	/*
 	 * See header file
 	 */
-	Event dequeue_event(void)
+	Event dequeue_input(void)
 	{
 		// XXX critical, disable INT
 		
@@ -117,7 +119,7 @@ static unsigned int timeout_counter;
 	/*
 	 * See header file
 	 */
-	unsigned char has_event(void)
+	unsigned char has_input(void)
 	{
 		// XXX critical, disable INT
 		

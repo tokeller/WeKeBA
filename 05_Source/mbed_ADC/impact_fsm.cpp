@@ -35,8 +35,7 @@ void impact_fsm(Event_FSM event)
 {
 	static State state = S_NOT_IN_EVENT;
 	
-	// TODO hier noch eine while-schleife drüber, um alle events abzuarbeiten.
-	
+    
 	EventID id = event.id;
 	
 	// TODO in impact_event: decrease timeout counter, if zero, we have event E_TIMEOUT
@@ -56,7 +55,6 @@ void impact_fsm(Event_FSM event)
 				  // new impact
 				  // add peak
 				  // update_peak_maximum
-				  // update_impact_maximum
 					state = S_IN_EVENT_PEAK;
 					break;
 				
@@ -84,7 +82,6 @@ void impact_fsm(Event_FSM event)
 				case E_INPUT_HIGH:
 					// action
 				  // update_peak_maximum
-				  // update_impact_maximum
 					break;
 				
 				case E_INPUT_LOW:
@@ -114,8 +111,7 @@ void impact_fsm(Event_FSM event)
 				case E_INPUT_HIGH:
 					// action
 				  // add_peak
-				  // update_peak_maximum
-				  // update_impact_maximum
+				  // update_maxima
 					state = S_IN_EVENT_PEAK;
 					break;
 				

@@ -12,9 +12,9 @@ extern "C" {
  * -- Constants, macros
  * --------------------------------------------------------------- */
 
-#define EVENTQUEUE_LEN  8       // how many events can be cached in the ring buffer
+#define INPUTQUEUE_LEN  8       // how many input values can be cached in the ring buffer
 #define MAX_EVENT_LENGTH 512    // XXX this will later be made configurable
-#define SAMPLES_UNTIL_TIMEOUT 15 // how many samples need to pass with values below threshold for the event to end.
+#define SAMPLES_UNTIL_TIMEOUT 15 // how many samples need to pass with values below threshold for the impact to end.
 #define THRESHOLD 100           // measurement threshold
 #define BASELINE 2047           // baseline of the signal
 	
@@ -22,6 +22,11 @@ extern "C" {
  * -- Constants, macros
  * --------------------------------------------------------------- */
 	
+    
+    /**
+     * EventID 
+     * Tells the FSM what happened
+     */
 	typedef enum {
 		E_RESET = 0,
 		E_INPUT_HIGH,
@@ -30,67 +35,93 @@ extern "C" {
 		E_NO_EVENT
 	} EventID;
 	
+    /**
+     * Input_t
+     * struct that takes up the timestamp and value of a measurement
+     */
 	typedef struct {
-		EventID id;
 		unsigned int timestamp;
 		signed int value;
-	} Event_FSM;
+    } Input_t;
 	
+    /**
+     * Input_ringbuf
+     * Ringbuffer to hold the input measurements until the event detection 
+     * can process them.
+     * Has an Input_t array and the reading and writing indices
+     */
 	typedef struct {
-		Event_FSM queue[EVENTQUEUE_LEN];
+		Input_t queue[INPUTQUEUE_LEN];
 		unsigned char read_pos;
 		unsigned char write_pos;
-	} Event_ringbuf;
+	} Input_ringbuf;
 	
+    /**
+     * Impact_t
+     * Struct to hold all the data for one impact
+     * Start time, duration, peak count, peak maximums and impact maximum
+     */
 	typedef struct {
 		unsigned int starttime;
-		unsigned int duration;
+        unsigned short sample_count;
+        unsigned short peak_count;
 		unsigned short samples[MAX_EVENT_LENGTH];
 		unsigned short peaks[MAX_EVENT_LENGTH]; //XXX allenfalls kürzer, wie viel?
 		unsigned short max_amplitude;
-	} Event_t;
+	} Impact_t;
 	
 	/* ------------------------------------------------------------------
-	* -- Function prototypes
-	* --------------------------------------------------------------- */
+	 * -- Function prototypes
+	 * --------------------------------------------------------------- */
 	
-	/** Interrupt Service Routine to read the newest measurement value from the ADC
+	/** 
+     * Interrupt Service Routine to read the newest measurement value from the ADC
 	 */
 	void isr_nextMeasurement(void);
 	
-	/** Function to translate input into events
-	*   Detect if there is an Event concerning the FSM
-	*/
+	/** 
+     * Function to translate input into events
+	 * Detect if there is an Event concerning the FSM and call the FSM accordingly
+     *
+     * Will be called by a ticker
+	 */
 	void event_detection();
 	
-	/* 
+	/**
 	 * Initialize the module event_handler
 	 */
 	void init_event_handler(void);
 
-	/*
-	 * Initialize the event queue
+	/**
+	 * Initialize the input queue
 	 */
-	void init_event_queue(void);
+	void init_input_queue(void);
 
-	/*
-	 * Add an event to the queue
-	 * @param   event: new event
+	/**
+	 * Add an input to the queue
+	 * @param   input: new input containing timestamp and measured value
 	 */
-	void enqueue_event(Event_FSM event);
+	void enqueue_input(Input_t input);
 
-	/*
-	 * Retrieve next event from the queue
-	 * @retval  next event in queue or E_NO_EVENT
+	/**
+	 * Retrieve next input from the queue
+	 * @retval  next input from queue or NULL pointer
 	 */
-	Event_FSM dequeue_event(void);
+	Input_t dequeue_input(void);
 
-	/*
-	 * Test the queue for available events
-	 * @retval  0 if no events in queue
-	 *          1 if event available in queue
+	/**
+	 * Test the queue for available inputs
+	 * @retval  0 if no inputs in queue
+	 *          >= 1 if inputs available in queue
 	 */
-	unsigned char has_event(void);
+	unsigned char has_input(void);
+    
+    /**
+     * Test if the queue has room for more inputs
+     * @retval  0 if queue is full
+     *          1 if queue has room for more inputs
+     */
+    unsigned char has_room(void);
 
 	
 #ifdef __cplusplus
