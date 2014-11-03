@@ -4,9 +4,56 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Temp\weltitob\GitHub\WeKeBA\05_Source\mbed_ADC\mbed_blinky.uvproj
-Project File Date:  10/14/2014
+Project File Date:  11/03/2014
 
 <h2>Output:</h2>
+Build target 'NXP LPC4088'
+compiling main.cpp...
+compiling impact_event.cpp...
+impact_event.cpp(19): warning:  #177-D: variable "peak_noise_threshold" was declared but never referenced
+  static uint32_t peak_noise_threshold;    // threshold on peak plateau
+impact_event.cpp: 1 warning, 0 errors
+linking...
+mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
+Program Size: Code=17500 RO-data=2480 RW-data=84 ZI-data=580  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\mbed_blinky_LPC4088.bin build\mbed_blinky.axf
+".\build\mbed_blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "C:\\Temp\\weltitob\\GitHub\\WeKeBA\\05_Source\\mbed_ADC\\build\\mbed_blinky.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
 </pre>
 </body>
 </html>
+ impact_action.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 3 error messages.
+".\build\mbed_blinky.axf" - 3 Error(s), 2 Warning(s).
+Target not created
+d a ";"
+        {
+impact_event.cpp(183): warning:  #1-D: last line of file ends without a newline
+        
+impact_event.cpp(183): warning: At end of source:  #12-D: parsing restarts here after previous syntax error
+impact_event.cpp(183): error: At end of source:  #67: expected a "}"
+impact_event.cpp(19): warning:  #177-D: variable "peak_noise_threshold" was declared but never referenced
+  static uint32_t peak_noise_threshold;    // threshold on peak plateau
+impact_event.cpp(20): warning:  #177-D: variable "samples_timeout" was declared but never referenced
+  static uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
+impact_event.cpp: 4 warnings, 6 errors
+".\build\mbed_blinky.axf" - 6 Error(s), 4 Warning(s).
+Target not created
+: missing return statement at end of non-void function "has_input"
+        }
+impact_event.cpp(175): warning:  #940-D: missing return statement at end of non-void function "has_room"
+        }
+impact_event.cpp(176): warning:  #1-D: last line of file ends without a newline
+        
+impact_event.cpp(18): warning:  #177-D: variable "peak_noise_threshold" was declared but never referenced
+  static uint32_t peak_noise_threshold;    // threshold on peak plateau
+impact_event.cpp(19): warning:  #177-D: variable "samples_timeout" was declared but never referenced
+  static uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
+impact_event.cpp: 5 warnings, 10 errors
+".\build\mbed_blinky.axf" - 10 Error(s), 5 Warning(s).
+Target not created

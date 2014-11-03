@@ -1,4 +1,5 @@
 #include "impact_event.h"
+#include "impact_fsm.h"
 
 /* ------------------------------------------------------------------
  * -- Externals 
@@ -11,15 +12,16 @@ extern unsigned int timestamp;
 /* ------------------------------------------------------------------
  * -- Global Variables
  * --------------------------------------------------------------- */
-
+ 
 static Input_ringbuf input_queue;
-static unsigned int baseline = BASELINE;     // zero position of sensor signal
-static unsigned int threshold = THRESHOLD;   // event detection threshold
-static unsigned int peak_noise_threshold;    // threshold on peak plateau
-static unsigned int samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
-                                             // below threshold for impact to end
-static unsigned int timeout_counter;
-static unsigned char timeout_active;         // is timeout counter active (1) or not(0)
+static uint32_t baseline = BASELINE;     // zero position of sensor signal
+static uint32_t threshold = THRESHOLD;   // event detection threshold
+static uint32_t peak_noise_threshold;    // threshold on peak plateau
+uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
+                                                   // below threshold for impact to end
+uint32_t timeout_counter;
+uint8_t timeout_active;         // is timeout counter active (1) or not(0)
+
 
 
 /* ------------------------------------------------------------------
@@ -30,45 +32,62 @@ static unsigned char timeout_active;         // is timeout counter active (1) or
 	 * See header file
 	 */
 	void isr_nextMeasurement(){
+		uint32_t value;
+		uint32_t timestamp;
 		pcSerial.printf("ISR ADC Event Recognition called.\n");
-		// XXX retrieve value, enqueue
+		// read ADC measurement from Register, automatically resets IRQ
+		value = LPC_ADC->GDR;
+		timestamp = 1; // TODO hole Timestamp
+		enqueue_input(timestamp, value);
+		
 	}
 
 	/*
 	 * See header file
 	 */
-	void event_detection(unsigned int input_value)
+	void event_detection()
 	{
 		//XXX get difference of abs(value - baseline) and threshold,
 		//    if positive we have an E_INPUT_HIGH, otherwise it's E_INPUT_LOW
 		signed int value; 
 		
-		EventID new_event_id = E_NO_EVENT;
-		Event new_event;
+		EventID new_event_id;
+		Input_t input;
 		
-		// decrease the timeout_timer. If zero, event is TIMEOUT
-		if(timeout_timer >0){
-			timeout_timer--;
-			if(timeout_timer == 0){
-				new_event_id = E_TIMEOUT;
+		// TODO add while(1) loop, os_delay etc so it can run as a task.
+		
+		if(input_queue.count > 0){
+			
+			new_event_id = E_NO_EVENT;
+			
+			// if there is a measurement value waiting, we have to determine whether
+			// it is above threshold value and generate the according event.
+			// Input above threshold (E_INPUT_HIGH) will stop the timeout counter.
+			input = dequeue_input();
+			if(input.value > baseline){
+				value = input.value - baseline;
+			} else {
+				value = baseline - input.value;
+			}
+			
+			if(value >= threshold){
+				new_event_id = E_INPUT_HIGH;
+			} else if(timeout_active == 1){
+				// decrease the timeout counter. If zero, event is E_TIMEOUT
+				timeout_counter--;
+				if(timeout_counter == 0){
+					new_event_id = E_TIMEOUT;
+				}
+			} else {
+				new_event_id = E_INPUT_LOW;
+			}
+			
+			// call the FSM with the event, then reset the event.
+			if(new_event_id != E_NO_EVENT){
+				new_event_id = new_event_id;
+				impact_fsm(new_event_id, input);
 			}
 		}
-		
-		value = abs(input_value - baseline);
-		if(value >= threshold){
-			new_event_id = E_INPUT_HIGH;
-		} else {
-			new_event_id = E_INPUT_LOW;
-		}
-		
-		if(new_event_id != E_NO_EVENT)
-			new_event.id = new_event_id;
-			new_event.timestamp = timestamp;
-			new_event.value = input_value;
-			enqueue_event(new_event);
-		
-		
-		
 	}
 	
 	/*
@@ -76,9 +95,14 @@ static unsigned char timeout_active;         // is timeout counter active (1) or
 	 */
 	void init_event_handler(void)
 	{
-		// neue queue erstellen, initialisieren
+		// initialize new input queue and timeout counter
 		init_input_queue();
-		// XXXsetze nullwert, threshold, peak-erkennungshöhe, timeout
+		timeout_active = 0;
+		timeout_counter = 0;
+		
+		// TODO set baseline, threshold, peak amplitude bandwidth and timeout sample count
+		
+		// TODO add event_detection as task.
 	}
 
 	/*
@@ -86,41 +110,86 @@ static unsigned char timeout_active;         // is timeout counter active (1) or
 	 */
 	void init_input_queue(void)
 	{
-		unsigned char i;
+		unsigned short i;
 		
 		for(i = 0; i < INPUTQUEUE_LEN; i++){
-			event_queue.queue[i].id = E_NO_EVENT;
-			event_queue.queue[i].timestamp = 0;
-			event_queue.queue[i].value = 0;
+			input_queue.queue[i].timestamp = 0;
+			input_queue.queue[i].value = 0;
 		}
 		
-		event_queue.read_pos = 0;
-		event_queue.write_pos = 0;
+		input_queue.read_pos = 0;
+		input_queue.write_pos = 0;
+		input_queue.count = 0;
 	}
 
 	/*
 	 * See header file
 	 */
-	void enqueue_input(Event event)
+	void enqueue_input(uint32_t timestamp, uint32_t value)
 	{
 		// XXX critical, disable INT
+    
+		if(input_queue.count > 0){
+			/* Insert event in queue */
+			input_queue.queue[input_queue.write_pos].timestamp = timestamp;
+			input_queue.queue[input_queue.write_pos].timestamp = value;
+	
+			/* Update write position */
+			input_queue.write_pos++;
+			input_queue.count++;
+			if (input_queue.write_pos >= INPUTQUEUE_LEN) {
+					input_queue.write_pos = 0;
+			}
+		}
+    
+		// TODO enable INT
 		
 	}
 
 	/*
 	 * See header file
 	 */
-	Event dequeue_input(void)
+	Input_t dequeue_input(void)
 	{
-		// XXX critical, disable INT
-		
+		Input_t the_input;
+		// TODO critical, disable INT
+		if(input_queue.count < INPUTQUEUE_LEN){
+			the_input = input_queue.queue[input_queue.read_pos];
+			input_queue.read_pos++;
+			input_queue.count--;
+			if(input_queue.read_pos >= INPUTQUEUE_LEN){
+				input_queue.read_pos = 0;
+			}
+			return the_input;
+		} else {
+			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
+			the_input.timestamp = 0;
+			the_input.value = 0;
+			return the_input;
+		}
+		// TODO enable INT
 	}
 
 	/*
 	 * See header file
 	 */
-	unsigned char has_input(void)
+/*	unsigned char has_input(void)
 	{
-		// XXX critical, disable INT
+		// TODO critical, disable INT
+		return
+		// TODO enable INT 
 		
 	}
+*/
+	
+	/*
+	 * See header file
+	 */
+/*	unsigned char has_room(void)
+	{
+		// TODO critical, disable INT
+		
+        input_queue.queue[input_queue.write_pos].timestamp = timestamp;
+		// TODO enable INT
+	}
+	*/

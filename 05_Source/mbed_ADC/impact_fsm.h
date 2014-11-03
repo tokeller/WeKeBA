@@ -35,7 +35,7 @@ void init_impact_fsm(void);
  *   @param   input: Input_t with timestamp and value
  *   @retval  none
  */
-void impact_fsm(Event_t new_event, Input_t input);
+void impact_fsm(EventID new_event, Input_t input);
 	
 #ifdef __cplusplus
 };
