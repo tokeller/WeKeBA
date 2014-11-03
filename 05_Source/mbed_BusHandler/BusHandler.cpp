@@ -10,16 +10,10 @@ unsigned long result[5] = {0,0,0,0,0};
 #define CAN_HDR_EXT 						0x1fffffff
 
 //									P	Type	Mess-ID			Source Addr	Target Addr							
-//Logger Maske			1	1000	0000	0000	0000	0000	1111	1111
-//									18			00					00					FF
-#define CAN_FILTER_MASK_LOGGER 			0x180000ff
 //Logger Filter			1	1000	0000	0000	0000	0000	0000	0001
 //									18			00					00					01							
 #define CAN_FILTER_LOGGER						0x18000001
 
-//Sensor Maske			1	1000	0000	0000	1111	1111	1111	1111
-//									18			00					FF					FF
-#define CAN_FILTER_MASK_SENSOR			0x1800ffff
 //Sensor Filter			0	0000	0000	0000	0000	0001	____	____
 //									00			00					01					<SensorID>							
 #define CAN_FILTER_SENSOR						0x00000100
@@ -29,10 +23,10 @@ unsigned long result[5] = {0,0,0,0,0};
 
 
 //									0	0000	0000	0000	0000	0000	1111	1111
-#define CAN_FILTER_SENDER						0x000000ff
+#define CAN_FILTER_RECEIVER						0x000000ff
 
 //									0	0000	0000	0000	1111	1111	0000	0000	
-#define CAN_FILTER_RECEIVER					0x0000ff00
+#define CAN_FILTER_SENDER					0x0000ff00
 
 
 CAN can(p9, p10);
@@ -93,7 +87,7 @@ uint32_t getSerialBroadcast(void){
 /**
   * Setup acceptance filter on CAN
   */
-void CAN_wrFilter (uint32_t id)  {
+void setCANFilter (uint32_t id)  {
   static int CAN_std_cnt = 0;
   static int CAN_ext_cnt = 0;
          uint32_t buf0, buf1;
@@ -154,21 +148,17 @@ void CAN_wrFilter (uint32_t id)  {
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
 uint32_t init(deviceType_t device){
-		deviceType = device;
-		// Set CAN acceptance filter off, for configuration
-		LPC_CANAF->AFMR = 0x00000001;
-		if (device == SENSOR){
-			deviceSerial = getSerialNumber();
-			// setup CAN acceptance filter for broadcasts only (until a deviceID was received)
-			CAN_wrFilter(CAN_FILTER_SENSOR_BC);
-		} else {
-			deviceSerial = 0x0001;
-			// since the deviceID of the logger is always 0x01, we can set the final filter 
-			CAN_wrFilter(CAN_FILTER_LOGGER);
-		}
-		// Set CAN acceptance filter on, after configuration
-		LPC_CANAF->AFMR = 0x00000000;
-		return 0;
+	deviceType = device;
+	if (device == SENSOR){
+		deviceSerial = getSerialNumber();
+		// setup CAN acceptance filter for broadcasts only (until a deviceID was received)
+		setCANFilter(CAN_FILTER_SENSOR_BC);
+	} else {
+		deviceSerial = 0x0001;
+		// since the deviceID of the logger is always 0x01, we can set the final filter 
+		setCANFilter(CAN_FILTER_LOGGER);
+	}
+	return 0;
 }
 
 /**	Function to register a message handler function and a message buffer
@@ -176,8 +166,26 @@ uint32_t init(deviceType_t device){
 	* @param  msgBuffer							Buffer for storing received messages
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
-uint32_t registerMsgHandler(uint32_t processMsg, message_t *msgBuffer){
-	
+uint32_t registerMsgHandler(void (*processMsg)(), message_t *msgBuffer){
+	can.attach(processMsg);
+	return 0;
+}
+
+/**	Function to set the a CAN filter for a device
+	*	@param  device 							  Device type, only SENSOR allowed (LOGGER will be set when calling init() and shouldn't
+	*																have more than one filter
+	* @param 	deviceID							8 bit deviceID, received from the logger
+	*	@retval returnCode						returns 0 for sucess, 1 for failure
+	*/
+uint32_t setFilterForID(deviceType_t device, uint32_t deviceID){
+	if (device == SENSOR){
+		// mask bits 8 till 31 of the deviceID, add them to the filter mask and 
+		// setup the CAN acceptance filter with the proper deviceID
+		setCANFilter(CAN_FILTER_SENSOR | (deviceID & CAN_FILTER_RECEIVER));
+	} else {
+		// the LOGGER already has his fixed deviceID and the filter was set. return an error
+		return 1;
+	}	
 	return 0;
 }
 
@@ -187,8 +195,8 @@ uint32_t registerMsgHandler(uint32_t processMsg, message_t *msgBuffer){
 	*/
 uint32_t sendMsg(message_t message){
 	char data[8] = {68,65,66,67,68,69,66,0};
-	//CANMessage msg(CAN_FILTER_SENSOR_BC, data, 8 ,CANData, CANExtended);
-	CANMessage msg(CAN_FILTER_RECEIVER, data, 8 ,CANData, CANExtended);
+	CANMessage msg(CAN_FILTER_SENSOR_BC, data, 8 ,CANData, CANExtended);
+	//CANMessage msg(CAN_FILTER_RECEIVER, data, 8 ,CANData, CANExtended);
 	
 	if(can.write(msg)) {
 			printf("Sent!");

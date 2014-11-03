@@ -6,6 +6,7 @@
 #define BUS_4088_H
 
 #include "mbed.h"
+#include "CAN.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,17 +67,29 @@ typedef struct {
 
 /**	Function to initialize the bus handler on CAN-port 1 as a specific device
 	*	@param  device 							  Device type, either LOGGER or SENSOR
+	*																Sensors will only be able to receive broadcast messages until 
+	*																they've been assigned a deviceID from the logger
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
 uint32_t init(deviceType_t device);
 
+							
 /**	Function to register a message handler function and a message buffer
 	*	@param  processMsg 						Message handling procedure
 	* @param  msgBuffer							Buffer for storing received messages
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
-uint32_t registerMsgHandler(uint32_t processMsg, message_t *msgBuffer);
+uint32_t registerMsgHandler(void (*processMsg)(), message_t *msgBuffer);
 
+/**	Function to set the a CAN filter for a device
+	*	@param  device 							  Device type, only SENSOR allowed (LOGGER will be set when calling init() and shouldn't
+	*																have more than one filter
+	* @param 	deviceID							8 bit deviceID, received from the logger
+	*	@retval returnCode						returns 0 for sucess, 1 for failure
+	*/
+uint32_t setFilterForID(deviceType_t device, uint32_t deviceID);
+							
+							
 /**	Function to send a message
 	* @param  message								Message to be sent
 	* @param  receiver							Device that should receive the message
