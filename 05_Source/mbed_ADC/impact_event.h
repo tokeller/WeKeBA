@@ -12,10 +12,10 @@ extern "C" {
  * -- Constants, macros
  * --------------------------------------------------------------- */
 
-#define INPUTQUEUE_LEN  8       // how many input values can be cached in the ring buffer
+#define INPUTQUEUE_LEN  512       // how many input values can be cached in the ring buffer
 #define MAX_EVENT_LENGTH 512    // XXX this will later be made configurable
 #define SAMPLES_UNTIL_TIMEOUT 15 // how many samples need to pass with values below threshold for the impact to end.
-#define THRESHOLD 100           // measurement threshold
+#define THRESHOLD 200           // measurement threshold
 #define BASELINE 2047           // baseline of the signal
 	
 /* ------------------------------------------------------------------
@@ -40,8 +40,8 @@ extern "C" {
      * struct that takes up the timestamp and value of a measurement
      */
 	typedef struct {
-		unsigned int timestamp;
-		signed int value;
+		uint32_t timestamp;
+		int32_t value;
     } Input_t;
 	
     /**
@@ -52,8 +52,9 @@ extern "C" {
      */
 	typedef struct {
 		Input_t queue[INPUTQUEUE_LEN];
-		unsigned char read_pos;
-		unsigned char write_pos;
+		uint16_t read_pos;
+		uint16_t write_pos;
+		uint16_t count;
 	} Input_ringbuf;
 	
     /**
@@ -62,12 +63,12 @@ extern "C" {
      * Start time, duration, peak count, peak maximums and impact maximum
      */
 	typedef struct {
-		unsigned int starttime;
-        unsigned short sample_count;
-        unsigned short peak_count;
-		unsigned short samples[MAX_EVENT_LENGTH];
-		unsigned short peaks[MAX_EVENT_LENGTH]; //XXX allenfalls kürzer, wie viel?
-		unsigned short max_amplitude;
+		uint32_t starttime;
+    uint16_t sample_count;
+    uint16_t peak_count;
+		uint16_t samples[MAX_EVENT_LENGTH];
+		uint16_t peaks[MAX_EVENT_LENGTH]; //XXX allenfalls kürzer, wie viel?
+		uint16_t max_amplitude;
 	} Impact_t;
 	
 	/* ------------------------------------------------------------------
@@ -80,10 +81,10 @@ extern "C" {
 	void isr_nextMeasurement(void);
 	
 	/** 
-     * Function to translate input into events
+   * Function to translate input into events
 	 * Detect if there is an Event concerning the FSM and call the FSM accordingly
-     *
-     * Will be called by a ticker
+   *
+   * This will run as a separate task
 	 */
 	void event_detection();
 	
@@ -99,9 +100,10 @@ extern "C" {
 
 	/**
 	 * Add an input to the queue
-	 * @param   input: new input containing timestamp and measured value
+	 * @param   timestamp: timestamp of this measurement
+	 * @param   value    : measurement value
 	 */
-	void enqueue_input(Input_t input);
+	void enqueue_input(uint32_t timestamp, uint32_t value);
 
 	/**
 	 * Retrieve next input from the queue
@@ -114,14 +116,14 @@ extern "C" {
 	 * @retval  0 if no inputs in queue
 	 *          >= 1 if inputs available in queue
 	 */
-	unsigned char has_input(void);
+//	unsigned char has_input(void);
     
-    /**
-     * Test if the queue has room for more inputs
-     * @retval  0 if queue is full
-     *          1 if queue has room for more inputs
-     */
-    unsigned char has_room(void);
+  /**
+   * Test if the queue has room for more inputs
+   * @retval  0 if queue is full
+   *          1 if queue has room for more inputs
+   */
+//  unsigned char has_room(void);
 
 	
 #ifdef __cplusplus

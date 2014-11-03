@@ -21,22 +21,21 @@ extern Serial pcSerial;
  */
 void init_impact_fsm(void)
 {
-  Event_FSM event;
-	event.id= E_RESET;
-  event.timestamp = 0;
-  event.value = 0;
-  impact_fsm(event);
+  EventID event;
+	Input_t input;
+	
+	event= E_RESET;
+  input.timestamp = 0;
+  input.value = 0;
+  impact_fsm(event, input);
 }
  
 /*
  * See header file
  */
-void impact_fsm(Event_FSM event)
+void impact_fsm(EventID event, Input_t input)
 {
 	static State state = S_NOT_IN_EVENT;
-	
-    
-	EventID id = event.id;
 	
 	// TODO in impact_event: decrease timeout counter, if zero, we have event E_TIMEOUT
 	switch(state){
@@ -45,14 +44,16 @@ void impact_fsm(Event_FSM event)
 		* ------------------------------------------------------- */
 		case S_NOT_IN_EVENT:
 			
-			switch(id){
+			switch(event){
 				
 				case E_RESET:
+					// stop timer
 					break;
 				
 				case E_INPUT_HIGH:
 					// action
 				  // new impact
+				  // add sample
 				  // add peak
 				  // update_peak_maximum
 					state = S_IN_EVENT_PEAK;
@@ -62,6 +63,7 @@ void impact_fsm(Event_FSM event)
 					break;
 				
 				case E_TIMEOUT:
+					// stop timer
 					break;
 				
 				default: ;
@@ -73,24 +75,29 @@ void impact_fsm(Event_FSM event)
 		* ------------------------------------------------------- */			
 		case S_IN_EVENT_PEAK:
 			
-			switch(id){
+			switch(event){
 				
 				case E_RESET:
+					// stop timer
 					state = S_NOT_IN_EVENT;
 				  break;
 				
 				case E_INPUT_HIGH:
 					// action
+				  // add sample
 				  // update_peak_maximum
 					break;
 				
 				case E_INPUT_LOW:
 					// action
+				  // add sample
+				  // end peak
 				  // start_timer
 					state = S_IN_EVENT_NO_PEAK;
 					break;
 				
 				case E_TIMEOUT:
+					// stop timer
 					break;
 				
 				default: ;
@@ -102,24 +109,28 @@ void impact_fsm(Event_FSM event)
 		* ------------------------------------------------------- */
 		case S_IN_EVENT_NO_PEAK:
 			
-			switch(id){
+			switch(event){
 				
 				case E_RESET:
+					// stop timer
 					state = S_NOT_IN_EVENT;
 				  break;
 				
 				case E_INPUT_HIGH:
 					// action
-				  // add_peak
-				  // update_maxima
+				  // add sample
+				  // stop timer
 					state = S_IN_EVENT_PEAK;
 					break;
 				
 				case E_INPUT_LOW:
+					// action
+				  // add sample
 					break;
 				
 				case E_TIMEOUT:
 					// action
+				  // stop timer
 				  // write impact to file
 					state = S_NOT_IN_EVENT;
 					break;

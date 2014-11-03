@@ -4,11 +4,11 @@
 
 Serial pcSerial(USBTX, USBRX);
 DigitalOut myled(LED1);
-DigitalOut pinser(p14);/*
-DigitalOut pinser1(p18);
-DigitalOut pinser2(p17);
-DigitalOut pinser3(p16);
-DigitalOut pinser4(p15);*/
+DigitalOut pinser(p14);
+AnalogIn pinser1(p18);
+AnalogIn pinser2(p17);
+AnalogIn pinser3(p16);
+/*DigitalOut pinser4(p15);*/
 char ctr = 0;
 analogin_s adc;
 uint32_t data = 0;
@@ -20,10 +20,9 @@ extern "C" void ADC_IRQHandler()
 	data = get_ADC_result(&adc);
 	ctr++;
   pinser = ctr%2;
-	if ((data > old_data + 80) | (data < old_data - 80)){
-		
-		pcSerial.printf("get: %d\n", data);
-		old_data = data;
+
+	if(data > 2100 || data < 1900){
+	  pcSerial.printf("get: %d\n", data);
 	}
 	stop_ADC_Conversion();
 } 
