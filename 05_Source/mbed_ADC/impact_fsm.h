@@ -21,15 +21,21 @@ extern "C" {
  * -- Function prototypes
  * --------------------------------------------------------------- */
 
-/* 
+/**
  * Initialize the state machine
+ *   @param   none
+ *   @retval  none
  */
 void init_impact_fsm(void);
 
-/** The Finite State Machine
-*   Event handling depending on current state of the FSM
-*/
-void impact_fsm(Event new_event);
+/**
+ *   The Finite State Machine
+ *   Event handling depending on current state of the FSM
+ *   @param   new_event: Event_t defining what happened
+ *   @param   input: Input_t with timestamp and value
+ *   @retval  none
+ */
+void impact_fsm(Event_t new_event, Input_t input);
 	
 #ifdef __cplusplus
 };
