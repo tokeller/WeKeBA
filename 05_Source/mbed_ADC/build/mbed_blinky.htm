@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\mbed_blinky.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\mbed_blinky.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 27 10:47:41 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Oct 28 10:39:48 2014
 <BR><P>
 <H3>Maximum Stack Usage =        416 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -671,7 +671,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::Stream__sub_object(const char*)
 </UL>
 
-<P><STRONG><a name="[2d]"></a>ADC_IRQHandler</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, main.o(.text))
+<P><STRONG><a name="[2d]"></a>ADC_IRQHandler</STRONG> (Thumb, 118 bytes, Stack size 16 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 376 + Unknown Stack Size
 <LI>Call Chain = ADC_IRQHandler &rArr; mbed::Stream::printf(const char*, ...) &rArr; fflush &rArr; _do_fflush &rArr; _fflush &rArr; _writebuf &rArr; _sys_write &rArr; serial_init &rArr; serial_format &rArr; mbed_assert_internal &rArr; mbed_die &rArr;  mbed_assert_internal (Cycle)
 </UL>

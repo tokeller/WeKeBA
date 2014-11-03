@@ -12,6 +12,7 @@ DigitalOut pinser4(p15);*/
 char ctr = 0;
 analogin_s adc;
 uint32_t data = 0;
+uint32_t old_data = 0;
 
 
 extern "C" void ADC_IRQHandler()
@@ -19,7 +20,11 @@ extern "C" void ADC_IRQHandler()
 	data = get_ADC_result(&adc);
 	ctr++;
   pinser = ctr%2;
-	pcSerial.printf("get: %d\n", data);
+	if ((data > old_data + 80) | (data < old_data - 80)){
+		
+		pcSerial.printf("get: %d\n", data);
+		old_data = data;
+	}
 	stop_ADC_Conversion();
 } 
 
