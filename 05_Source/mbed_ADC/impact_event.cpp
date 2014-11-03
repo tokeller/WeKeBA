@@ -6,7 +6,6 @@
  * --------------------------------------------------------------- */ 
  
 extern Serial pcSerial;
-extern unsigned int timestamp;
 
 
 /* ------------------------------------------------------------------
@@ -22,6 +21,8 @@ uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remai
 uint32_t timeout_counter;
 uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 
+uint32_t timestamp = 0;           // timestamp for samples
+
 
 
 /* ------------------------------------------------------------------
@@ -34,10 +35,11 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 	void isr_nextMeasurement(){
 		uint32_t value;
 		uint32_t timestamp;
-		pcSerial.printf("ISR ADC Event Recognition called.\n");
+		//pcSerial.printf("ISR ADC Event Recognition called.\n");
 		// read ADC measurement from Register, automatically resets IRQ
 		value = LPC_ADC->GDR;
-		timestamp = 1; // TODO hole Timestamp
+		value = (value >> 4) & 0xFFF;
+		timestamp++;
 		enqueue_input(timestamp, value);
 		
 	}
@@ -72,6 +74,7 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 			
 			if(value >= threshold){
 				new_event_id = E_INPUT_HIGH;
+				pcSerial.printf("peng!\n");
 			} else if(timeout_active == 1){
 				// decrease the timeout counter. If zero, event is E_TIMEOUT
 				timeout_counter--;
@@ -129,10 +132,10 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 	{
 		// XXX critical, disable INT
     
-		if(input_queue.count > 0){
+		if(input_queue.count < INPUTQUEUE_LEN){
 			/* Insert event in queue */
 			input_queue.queue[input_queue.write_pos].timestamp = timestamp;
-			input_queue.queue[input_queue.write_pos].timestamp = value;
+			input_queue.queue[input_queue.write_pos].value = value;
 	
 			/* Update write position */
 			input_queue.write_pos++;
@@ -140,7 +143,11 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 			if (input_queue.write_pos >= INPUTQUEUE_LEN) {
 					input_queue.write_pos = 0;
 			}
+		} else {
+			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
+			
 		}
+		
     
 		// TODO enable INT
 		
@@ -153,8 +160,9 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 	{
 		Input_t the_input;
 		// TODO critical, disable INT
-		if(input_queue.count < INPUTQUEUE_LEN){
-			the_input = input_queue.queue[input_queue.read_pos];
+		if(input_queue.count > 0){
+			the_input.timestamp = input_queue.queue[input_queue.read_pos].timestamp;
+			the_input.value = input_queue.queue[input_queue.read_pos].value;
 			input_queue.read_pos++;
 			input_queue.count--;
 			if(input_queue.read_pos >= INPUTQUEUE_LEN){
@@ -162,7 +170,7 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 			}
 			return the_input;
 		} else {
-			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
+			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Underflow.\n==================================\n\n");
 			the_input.timestamp = 0;
 			the_input.value = 0;
 			return the_input;

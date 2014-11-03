@@ -36,11 +36,13 @@ int main() {
 	uint32_t CCLK = SystemCoreClock;
 	pcSerial.printf("cclock: %d\n", CCLK);
 	
-	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
+	//uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
+	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) isr_nextMeasurement,100);
+	
 	pcSerial.printf("clkdiv: %d\n", clkd);
 	while(1) {
-		pcSerial.printf("huhu\n");
-		wait(5);
+		event_detection();
+		wait_us(50);
 		/*myled = 1;
 		wait(0.2);
 		myled = 0;
