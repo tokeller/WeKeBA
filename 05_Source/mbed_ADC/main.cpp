@@ -12,6 +12,7 @@ AnalogIn pinser3(p16);
 char ctr = 0;
 analogin_s adc;
 uint32_t data = 0;
+uint32_t old_data = 0;
 
 
 extern "C" void ADC_IRQHandler()
@@ -19,6 +20,7 @@ extern "C" void ADC_IRQHandler()
 	data = get_ADC_result(&adc);
 	ctr++;
   pinser = ctr%2;
+
 	if(data > 2100 || data < 1900){
 	  pcSerial.printf("get: %d\n", data);
 	}
