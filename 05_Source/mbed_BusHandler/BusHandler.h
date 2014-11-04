@@ -37,19 +37,19 @@ typedef enum {LOGGER, SENSOR} deviceType_t;
 	* 	IMPACT_STD_SINGLE							Targeted message, sending standard data of one impact to the logger
 	* 	ACK_SENSOR_SINGLE							Targeted message, ACK to the logger for a received command
 	*/
-typedef enum {GET_SENSOR_SERIAL_BC,
-							SET_SENSOR_ID_BC,
-							SENSOR_CONFIG_SINGLE,
-							SENSOR_CONFIG_BC,
-							OP_MODE_SINGLE,
-							OP_MODE_BC,
-							SEND_TOKEN_SINGLE,
-							ACK_LOGGER_SINGLE,
-							TIME_SYNC_BC,
-							SERIAL_SINGLE,
-							RAW_DATA_SINGLE,
-							IMPACT_EXT_SINGLE,
-							IMPACT_STD_SINGLE,
+typedef enum {GET_SENSOR_SERIAL_BC		,
+							SET_SENSOR_ID_BC				,
+							SENSOR_CONFIG_SINGLE		,
+							SENSOR_CONFIG_BC				,
+							OP_MODE_SINGLE					,
+							OP_MODE_BC							,
+							SEND_TOKEN_SINGLE				,
+							ACK_LOGGER_SINGLE				,
+							TIME_SYNC_BC						,
+							SERIAL_SINGLE						,
+							RAW_DATA_SINGLE					,
+							IMPACT_EXT_SINGLE				,
+							IMPACT_STD_SINGLE				,
 							ACK_SENSOR_SINGLE
 							} msgType_t;
 
@@ -61,8 +61,9 @@ typedef enum {GET_SENSOR_SERIAL_BC,
 
 typedef struct {
 							msgType_t msgType;
-							char			receiver[8];
-							char		  payload[64];
+							uint32_t	msgId;
+							uint32_t	receiver;
+							char		  payload[8];
 							} message_t;
 
 /**	Function to initialize the bus handler on CAN-port 1 as a specific device

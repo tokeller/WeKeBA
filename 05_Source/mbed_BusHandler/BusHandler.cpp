@@ -43,12 +43,12 @@ deviceType_t deviceType;
 	*/
 typedef enum {GET_SENSOR_SERIAL_HDR_BC = 0x000001ff, 
 							SET_SENSOR_ID_HDR_BC     = 0x010001ff,
-							SENSOR_CONFIG_HDR_BC     = 0x020001ff, 
-							SENSOR_CONFIG_HDR_SGL    = 0x02000100,  // receiver address must be device ID
-							OP_MODE_HDR_BC  				 = 0x030001ff,
-							OP_MODE_HDR_SGL  				 = 0x03000100,  // receiver address must be device ID
-							SEND_TOKEN_HDR_SGL 			 = 0x04000100,  // receiver address must be device ID
-							ACK_LOGGER_HDR_SGL 			 = 0x05000100,  // receiver address must be device ID
+							SENSOR_CONFIG_HDR_SGL    = 0x02000100,  // receiver address must be device ID	
+							SENSOR_CONFIG_HDR_BC     = 0x030001ff,
+							OP_MODE_HDR_SGL  				 = 0x04000100,  // receiver address must be device ID 
+							OP_MODE_HDR_BC  				 = 0x050001ff,
+							SEND_TOKEN_HDR_SGL 			 = 0x06000100,  // receiver address must be device ID
+							ACK_LOGGER_HDR_SGL 			 = 0x07000100,  // receiver address must be device ID
 							TIME_SYNC_HDR_BC 				 = 0x080001ff,
 							SERIAL_HDR_SGL 					 = 0x18000001,  // sender address must be 0 (serial is to long)
 							RAW_DATA_HDR_SGL 				 = 0x19000001,  // sender address must be deviceID, received from logger
@@ -194,6 +194,8 @@ uint32_t setFilterForID(deviceType_t device, uint32_t deviceID){
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
 uint32_t sendMsg(message_t message){
+	
+	
 	char data[8] = {68,65,66,67,68,69,66,0};
 	CANMessage msg(CAN_FILTER_SENSOR_BC, data, 8 ,CANData, CANExtended);
 	//CANMessage msg(CAN_FILTER_RECEIVER, data, 8 ,CANData, CANExtended);
