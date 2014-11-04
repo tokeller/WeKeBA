@@ -1,6 +1,7 @@
 --cpu Cortex-M4.fp
 ".\build\main.o"
 ".\build\bushandler.o"
+".\build\busprotocol.o"
 --strict --scatter "mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct"
 
 

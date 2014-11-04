@@ -80,3 +80,4 @@
 .\build\bushandler.o: mbed\wait_api.h
 .\build\bushandler.o: mbed\sleep_api.h
 .\build\bushandler.o: mbed\rtc_time.h
+.\build\bushandler.o: BusProtocol.h

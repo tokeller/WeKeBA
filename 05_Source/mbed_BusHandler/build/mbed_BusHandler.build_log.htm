@@ -10,12 +10,18 @@ Project File Date:  11/03/2014
 Rebuild target 'NXP LPC4088'
 compiling main.cpp...
 compiling BusHandler.cpp...
+compiling BusProtocol.cpp...
 linking...
-Program Size: Code=18624 RO-data=2536 RW-data=104 ZI-data=1056  
+Program Size: Code=19784 RO-data=2536 RW-data=104 ZI-data=17456  
 After Build - User command #1: fromelf --bin -o build\mbed_BusHandler_LPC4088.bin build\mbed_BusHandler.axf
 ".\build\mbed_BusHandler.axf" - 0 Error(s), 0 Warning(s).
-T_LPC408X/gpio_object.h(19): error:  #5: cannot open source input file "mbed_assert.h": No such file or directory
-  #include "mbed_assert.h"
-BusHandler.cpp: 0 warnings, 1 error
-".\build\mbed_BusHandler.axf" - 2 Error(s), 0 Warning(s).
+tic outputRingbuf outputNormalPrio;
+BusProtocol.cpp: 2 warnings, 0 errors
+linking...
+Program Size: Code=19180 RO-data=2536 RW-data=104 ZI-data=25648  
+After Build - User command #1: fromelf --bin -o build\mbed_BusHandler_LPC4088.bin build\mbed_BusHandler.axf
+".\build\mbed_BusHandler.axf" - 0 Error(s), 2 Warning(s).
+build\mbed_BusHandler_LPC4088.bin build\mbed_BusHandler.axf
+".\build\mbed_BusHandler.axf" - 0 Error(s), 3 Warning(s).
+Error(s), 4 Warning(s).
 Target not created

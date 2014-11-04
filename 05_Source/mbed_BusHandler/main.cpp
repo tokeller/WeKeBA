@@ -1,8 +1,5 @@
 #include "mbed.h"
-#include "BusHandler.h"
-
-#define LOGGER_UNIT
-//#define SENSOR_UNIT
+#include "BusProtocol.h"
 
 CAN can1(p9, p10);
 Serial pcSerial(USBTX, USBRX);
