@@ -31,43 +31,48 @@ static Impact_t impact;
 	/*
 	 * See header file
 	 */
-	void new_impact(uint32_t value)
+	void new_impact(Input_t imp_input)
 	{
 		uint16_t i;
-		
-		impact.starttime = 0;
+		pcSerial.printf("\t\tnew impact\n");
+		impact.starttime = imp_input.timestamp;
 		impact.sample_count = 0;
 		impact.peak_count = 0;
 		impact.max_amplitude = 0;
 		// OPTION: don't reset arrays to zero.
-		for ( i = 0; i < MAX_EVENT_LENGTH; i++){
+		for ( i = 0; i < MAX_IMPACT_LENGTH; i++){
 			impact.samples[i] = 0;
-			impact.peaks[i] = 0;
+			impact.peaks[i].timestamp = 0;
+			impact.peaks[i].value = 0;
 		}
 		
-		add_sample(value);
+		add_sample(imp_input);
 	}
 	
 	/*
 	 * See header file
 	 */
-	void end_impact(uint32_t value)
+	void end_impact(Input_t imp_input)
 	{
-		
+		// TODO
 	}
 	
-	void add_sample(uint32_t value)
+	void add_sample(Input_t smp_input)
 	{
-		impact.samples[impact.sample_count] = value;
+		impact.samples[impact.sample_count] = smp_input.value;
 		impact.sample_count++;
 		// TODO watch out, if impact is too long => seg fault!
 		
 		// update current peak and impact maximum
-		if(value > impact.peaks[impact.peak_count]){
-			impact.peaks[impact.peak_count] = value;
-			if(value > impact.max_amplitude)
-				impact.max_amplitude = value;
+		if(smp_input.value > impact.peaks[impact.peak_count].value){
+			impact.peaks[impact.peak_count].value = smp_input.value;
+			impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+
 		}
+		if(smp_input.value > impact.max_amplitude){
+				impact.max_amplitude = smp_input.value;
+			  impact.max_amplitude_timestamp = smp_input.timestamp;
+			}
 		
 		
 	}
@@ -111,11 +116,19 @@ static Impact_t impact;
 	 */
 	void store_impact(void)
 	{
-		pcSerial.printf("***********\n");
-		pcSerial.printf("Impact complete:\n");
-		pcSerial.printf("Starttime: %d\n", impact.starttime);
-		pcSerial.printf("Samples: %d\n", impact.samples);
-		pcSerial.printf("Peaks: %d\n", impact.peak_count);
-		pcSerial.printf("Maximum: %d\n", impact.max_amplitude);
-		pcSerial.printf("***********\n");
+		uint16_t i;
+		pcSerial.printf("\nImpact complete:\nStarttime: %d\n", impact.starttime);
+		pcSerial.printf("Samples: %d\nPeaks: %d\nMaximum: %d\n***********\n", impact.sample_count, impact.peak_count, impact.max_amplitude);
+		
+		// samples
+		for(i = 0; i < impact.sample_count; i++){
+			pcSerial.printf("%u, %hu\t", impact.starttime + i, impact.samples[i]);
+		}
+		pcSerial.printf("\n\n");
+		
+		// peaks
+		for(i = 0; i < impact.peak_count + 3; i++){
+			pcSerial.printf("%hu:\t%u\t%hu\n", i, impact.peaks[i].timestamp, impact.peaks[i].value);
+		}
+		pcSerial.printf("\n");
 	}

@@ -3,6 +3,7 @@
 #define IMPACT_ACTION
 
 #include "mbed.h"
+#include "impact_event.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,26 +23,26 @@ extern "C" {
 	 * 
 	 * @param value		the first measurement value that crossed the threshold
 	 */
-	void new_impact(uint32_t value);
+	void new_impact(Input_t imp_input);
 
 	/**
 	 * End impact
 	 * The current impact has ended. Trim the trailing values below threshold, then
 	 * call function store_impact.
 	 */
-	void end_impact(uint32_t value);
+	void end_impact(Input_t imp_input);
 	
 	/**
 	 * Adds a sample to the current impact
 	 */ 
-	 void add_sample(uint32_t value);
+	 void add_sample(Input_t imp_input);
 	
 	/**
 	 * Adds a peak to the current impact
 	 * 
 	 * @param value		the first measurement value that crossed the threshold
 	 */
-	void add_peak(uint32_t value);
+	void add_peak(Input_t imp_input);
 	
 	/**
 	 * Ends the current peak
@@ -53,7 +54,7 @@ extern "C" {
 	 * 
 	 * @param value		the current measurement value to be compared to the current maxima
 	 */
-	void update_maxima(uint32_t value);
+	void update_maxima(Input_t imp_input);
 	
 	/**
 	 * Start the timeout counter of state S_IN_EVENT_NO_PEAK

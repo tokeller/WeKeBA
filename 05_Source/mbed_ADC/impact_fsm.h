@@ -11,9 +11,9 @@ extern "C" {
 #endif
 	
 	typedef enum state{
-		S_NOT_IN_EVENT,
-		S_IN_EVENT_PEAK,
-		S_IN_EVENT_NO_PEAK
+		S_NOT_IN_IMPACT,
+		S_IN_IMPACT_PEAK,
+		S_IN_IMPACT_NO_PEAK
 	} State;
 	
 

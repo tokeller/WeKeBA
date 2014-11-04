@@ -5,8 +5,8 @@
 Serial pcSerial(USBTX, USBRX);
 DigitalOut myled(LED1);
 DigitalOut pinser(p14);
-AnalogIn pinser1(p18);
-AnalogIn pinser2(p17);
+AnalogOut pinser1(p18);
+DigitalOut pinser2(p17);
 AnalogIn pinser3(p16);
 /*DigitalOut pinser4(p15);*/
 char ctr = 0;
@@ -30,7 +30,7 @@ extern "C" void ADC_IRQHandler()
 
 
 int main() {
-	pcSerial.baud(9600);
+	pcSerial.baud(115200);
 	pcSerial.printf("start\n");
 	PinName pin = p15;
 	uint32_t CCLK = SystemCoreClock;
@@ -40,12 +40,9 @@ int main() {
 	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) isr_nextMeasurement,100);
 	
 	pcSerial.printf("clkdiv: %d\n", clkd);
+	init_event_handler();
 	while(1) {
 		event_detection();
 		wait_us(50);
-		/*myled = 1;
-		wait(0.2);
-		myled = 0;
-		wait(0.2);*/
 	}
 }

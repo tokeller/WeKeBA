@@ -27,8 +27,22 @@ Anhand der funktionalen Vorgaben für die Messstation werden der Datenlogger, di
 \subsection{Datenlogger}
 Der Datenlogger sammelt die Daten der Sensoreinheiten über das Bussystem ein und speichert sie ab. Dafür benötigt er das Bussystem, einen Mikroprozessor, internen Speicher und ein leicht auswechselbares Speichermedium. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der Datenlogger wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des Speichermediums wäre eine verschraubbare Öffnung denkbar.
 
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_logger.pdf}
+	\caption{Hardwarekonzept des Datenloggers.}
+	\label{fig.hwkonzept_logger}
+\end{figure}
+
 \subsection{Sensoreinheit}
 Die Sensoreinheit benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (ADC) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das Bussystem an den Datenlogger übertragen.
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_sensor.pdf}
+	\caption{Hardwarekonzept der Sensoreinheit.}
+	\label{fig.hwkonzept_sensor}
+\end{figure}
 
 \subsection{Bussystem}
 Das Bussystem muss die Daten und Befehle zwischen Datenlogger und Sensoreinheiten übertragen. Die Reichweite des Bussystems muss genügen, um alle Komponenten der Messinstallation zu verbinden. Die Datenbandbreite muss die Übertragung der Messresultate aller Sensoren erlauben.
@@ -145,35 +159,44 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 \paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross werden. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der Datenlogger mit einem SD-Kartenleser ausgestattet.
 
 \subsection{Sensor}
-
+\todo{Sensorauswahl beschreiben}
 
 \subsection{Schnittstelle}
-
+\todo{Schnittstellenauswahl beschreiben}
 
 
 
 \section{Komponenten}
-
+\todo{Texten}
 \subsection{Cortex M4 Mikroprozessor}
 
+\todo{Texten}
 \subsubsection{Flash Speicher}
 
+\todo{Texten}
 \subsubsection{SDRAM}
 
+\todo{Texten}
 
 \subsection{Beschleunigungs-Sensor}
 
+\todo{Texten}
 \subsection{CAN Bus}
 
+\todo{Texten}
 \subsubsection{CAN Transceiver}
 
+\todo{Texten}
 
 \subsection{SD Karte}
 
+\todo{Texten}
 \subsection{UART Schnittstelle}
 
+\todo{Texten}
 \section{Datenlogger}
 
+\todo{Texten}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_logger.pdf}
@@ -185,6 +208,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 \section{Sensoreinheit}
 
+\todo{Texten}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_sensor.pdf}

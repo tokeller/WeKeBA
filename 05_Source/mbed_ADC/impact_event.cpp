@@ -6,6 +6,8 @@
  * --------------------------------------------------------------- */ 
  
 extern Serial pcSerial;
+extern AnalogOut pinser1;
+// DEBUG extern DigitalOut pinser2;
 
 
 /* ------------------------------------------------------------------
@@ -21,8 +23,11 @@ uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remai
 uint32_t timeout_counter;
 uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 
-uint32_t timestamp = 0;           // timestamp for samples
+static uint32_t timestamp = 0;           // timestamp for samples
+static uint32_t value = 0;               // sampled value
 
+// DEBUG static uint8_t toggle1 = 0;
+// DEBUG static uint8_t toggle2 = 0;
 
 
 /* ------------------------------------------------------------------
@@ -33,13 +38,13 @@ uint32_t timestamp = 0;           // timestamp for samples
 	 * See header file
 	 */
 	void isr_nextMeasurement(){
-		uint32_t value;
-		uint32_t timestamp;
 		//pcSerial.printf("ISR ADC Event Recognition called.\n");
 		// read ADC measurement from Register, automatically resets IRQ
 		value = LPC_ADC->GDR;
 		value = (value >> 4) & 0xFFF;
 		timestamp++;
+		// DEBUG toggle1 = 1 - toggle1;
+		// DEBUG pinser2 = toggle1;
 		enqueue_input(timestamp, value);
 		
 	}
@@ -56,6 +61,13 @@ uint32_t timestamp = 0;           // timestamp for samples
 		EventID new_event_id;
 		Input_t input;
 		
+		// DEBUG toggle2 = 1 - toggle2;
+		// DEBUG pinser1 = toggle2;
+		
+		// DEBUG
+		// output of buffer level to analog out to watch for buffer overflow.
+		pinser1 = (double)input_queue.count/512;
+		// DEBUG pcSerial.printf("f %d", input_queue.count);
 		// TODO add while(1) loop, os_delay etc so it can run as a task.
 		
 		if(input_queue.count > 0){
@@ -74,7 +86,7 @@ uint32_t timestamp = 0;           // timestamp for samples
 			
 			if(value >= threshold){
 				new_event_id = E_INPUT_HIGH;
-				pcSerial.printf("peng!\n");
+				//pcSerial.printf("high input\n");
 			} else if(timeout_active == 1){
 				// decrease the timeout counter. If zero, event is E_TIMEOUT
 				timeout_counter--;
@@ -85,11 +97,10 @@ uint32_t timestamp = 0;           // timestamp for samples
 				new_event_id = E_INPUT_LOW;
 			}
 			
-			// call the FSM with the event, then reset the event.
-			if(new_event_id != E_NO_EVENT){
-				new_event_id = new_event_id;
+			// call the FSM with the event.
+			//if(new_event_id != E_NO_EVENT){
 				impact_fsm(new_event_id, input);
-			}
+			//}
 		}
 	}
 	
@@ -103,6 +114,7 @@ uint32_t timestamp = 0;           // timestamp for samples
 		timeout_active = 0;
 		timeout_counter = 0;
 		
+		init_impact_fsm();
 		// TODO set baseline, threshold, peak amplitude bandwidth and timeout sample count
 		
 		// TODO add event_detection as task.
@@ -144,7 +156,7 @@ uint32_t timestamp = 0;           // timestamp for samples
 					input_queue.write_pos = 0;
 			}
 		} else {
-			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
+			//pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
 			
 		}
 		
@@ -170,7 +182,7 @@ uint32_t timestamp = 0;           // timestamp for samples
 			}
 			return the_input;
 		} else {
-			pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Underflow.\n==================================\n\n");
+			//pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Underflow.\n==================================\n\n");
 			the_input.timestamp = 0;
 			the_input.value = 0;
 			return the_input;

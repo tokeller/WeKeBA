@@ -13,8 +13,8 @@ extern "C" {
  * --------------------------------------------------------------- */
 
 #define INPUTQUEUE_LEN  512       // how many input values can be cached in the ring buffer
-#define MAX_EVENT_LENGTH 512    // XXX this will later be made configurable
-#define SAMPLES_UNTIL_TIMEOUT 15 // how many samples need to pass with values below threshold for the impact to end.
+#define MAX_IMPACT_LENGTH 512    // XXX this will later be made configurable
+#define SAMPLES_UNTIL_TIMEOUT 30 // how many samples need to pass with values below threshold for the impact to end.
 #define THRESHOLD 200           // measurement threshold
 #define BASELINE 2047           // baseline of the signal
 	
@@ -66,9 +66,10 @@ extern "C" {
 		uint32_t starttime;
     uint16_t sample_count;
     uint16_t peak_count;
-		uint16_t samples[MAX_EVENT_LENGTH];
-		uint16_t peaks[MAX_EVENT_LENGTH]; //XXX allenfalls kürzer, wie viel?
+		uint16_t samples[MAX_IMPACT_LENGTH];
+		Input_t peaks[MAX_IMPACT_LENGTH]; //XXX allenfalls kürzer, wie viel?
 		uint16_t max_amplitude;
+		uint32_t max_amplitude_timestamp;
 	} Impact_t;
 	
 	/* ------------------------------------------------------------------
