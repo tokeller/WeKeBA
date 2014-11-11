@@ -76,7 +76,7 @@ uint32_t queueOutput(CANMessage message){
 			outputNormalPrio.count++;
 			outputNormalPrio.write_pos++;
 		} else {
-			printf("Normal queue overflow");
+			printf("Normal queue overflow\n");
 		}
 	} else {
 		if (outputHighPrio.count < OUTPUTQUEUE_LEN){
@@ -90,7 +90,7 @@ uint32_t queueOutput(CANMessage message){
 			outputHighPrio.count++;
 			outputHighPrio.write_pos++;
 		} else {
-			printf("High queue overflow");
+			printf("High queue overflow\n");
 		}
 	}
 	return 0;
@@ -365,7 +365,7 @@ uint32_t sendMsg(message_t message){
 	CANMessage msg(msgIdHeader, message.payload, message.dataLength ,CANData, CANExtended);
 	
 	if(can.write(msg)) {
-			printf("Sent!");
+			printf("Sent!\n");
 	}
 	return 0;
 }
