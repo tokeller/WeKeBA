@@ -8,22 +8,24 @@ Project File Date:  11/11/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
-compiling main.cpp...
+compiling BusHandler.cpp...
+BusHandler.cpp(7): warning:  #550-D: variable "stat" was set but never used
+        osStatus stat;
+BusHandler.cpp(117): warning:  #177-D: variable "outbound" was declared but never referenced
+                        message_t outbound = *((message_t *) ev.value.p);
+BusHandler.cpp: 2 warnings, 0 errors
 linking...
-Program Size: Code=30460 RO-data=2728 RW-data=568 ZI-data=21096  
-After Build - User command #1: fromelf --bin -o build\mbed_BusHandler_LPC4088.bin build\mbed_BusHandler.axf
-".\build\mbed_BusHandler.axf" - 0 Error(s), 0 Warning(s).
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandler\\build\\mbed_BusHandler.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-
-Program Size: Code=30436 RO-data=2728 RW-data=536 ZI-data=21096  
+Program Size: Code=30492 RO-data=2728 RW-data=568 ZI-data=21096  
 After Build - User command #1: fromelf --bin -o build\mbed_BusHandler_LPC4088.bin build\mbed_BusHandler.axf
 ".\build\mbed_BusHandler.axf" - 0 Error(s), 2 Warning(s).
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandler\\build\\mbed_BusHandler.axf" 
 Erase Done.
 Programming Done.
+Verify OK.
+</pre>
+</body>
+</html>
+ramming Done.
 Verify OK.
 .c...
 compiling Thread.cpp...

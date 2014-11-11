@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\mbed_BusHandler.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\mbed_BusHandler.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Nov 11 15:42:30 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Nov 11 16:21:33 2014
 <BR><P>
 <H3>Maximum Stack Usage =       2688 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -542,12 +542,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[b3]"></a>sendMessage(unsigned, char*, char, msgType_t)</STRONG> (Thumb, 164 bytes, Stack size 64 bytes, bushandler.o(.text))
+<P><STRONG><a name="[b3]"></a>sendMessage(unsigned, char*, char, msgType_t)</STRONG> (Thumb, 186 bytes, Stack size 64 bytes, bushandler.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 464 + Unknown Stack Size
 <LI>Call Chain = sendMessage(unsigned, char*, char, msgType_t) &rArr; rtos::Queue&lang;message_t, (unsigned)50&rang;::put(message_t*, unsigned) &rArr; osMessagePut &rArr; isrMessagePut &rArr; isr_mbx_send &rArr; rt_psq_enq &rArr; os_error &rArr; mbed_die &rArr; gpio_init_out &rArr; gpio_init &rArr; pin_function &rArr; mbed_assert_internal &rArr;  mbed_die (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rtos::Queue&lang;message_t, (unsigned)50&rang;::put(message_t*, unsigned)
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
@@ -558,15 +559,15 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rtos::Queue&lang;message_t, (unsigned)50&rang;::get(unsigned)
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendMsg
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
 <P><STRONG><a name="[bf]"></a>processMessagesSensor(const void*)</STRONG> (Thumb, 116 bytes, Stack size 40 bytes, bushandler.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rtos::Queue&lang;message_t, (unsigned)50&rang;::get(unsigned)
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
 
@@ -574,7 +575,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 176 + Unknown Stack Size
 <LI>Call Chain = queueOutput(mbed::CANMessage) &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;storeReceivedMsg()
 </UL>
@@ -588,14 +589,14 @@ Global Symbols
 <P><STRONG><a name="[c6]"></a>getSerialNumber()</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, busprotocol.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = getSerialNumber()
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 </UL>
 
 <P><STRONG><a name="[c7]"></a>setCANFilter(unsigned)</STRONG> (Thumb, 162 bytes, Stack size 20 bytes, busprotocol.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = setCANFilter(unsigned)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setFilterForID
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 </UL>
 
 <P><STRONG><a name="[c3]"></a>storeReceivedMsg()</STRONG> (Thumb, 58 bytes, Stack size 56 bytes, busprotocol.o(.text))
@@ -608,7 +609,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> busprotocol.o(.text)
 </UL>
-<P><STRONG><a name="[bb]"></a>init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, busprotocol.o(.text))
+<P><STRONG><a name="[bc]"></a>init</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, busprotocol.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = init &rArr; mbed::CAN::attach(void(*)(), mbed::CAN::IrqType) &rArr; can_irq_set &rArr; NVIC_SetVector &rArr; __aeabi_memmove4
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::CAN::attach(void(*)(), mbed::CAN::IrqType)
@@ -635,7 +636,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::CAN::write(mbed::CANMessage)
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processMessagesLogger(const void*)
 </UL>
@@ -1533,21 +1534,21 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> rt_cmsis.o(.text)
 </UL>
 <P><STRONG><a name="[145]"></a>osPoolCreate</STRONG> (Thumb, 52 bytes, Stack size 8 bytes, rt_cmsis.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
+<BR><BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_CONTROL
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
 </UL>
 
 <P><STRONG><a name="[146]"></a>osPoolAlloc</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, rt_cmsis.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
+<BR><BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_CONTROL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
 </UL>
 
 <P><STRONG><a name="[147]"></a>osPoolCAlloc</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, rt_cmsis.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
-<LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
+<BR><BR>[Calls]<UL><LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_IPSR
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__get_CONTROL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
 </UL>
 
 <P><STRONG><a name="[148]"></a>osPoolFree</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, rt_cmsis.o(.text), UNUSED)
@@ -1706,15 +1707,15 @@ Global Symbols
 <P><STRONG><a name="[141]"></a>_init_box</STRONG> (Thumb, 88 bytes, Stack size 20 bytes, rt_membox.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = _init_box
 </UL>
-<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMailCreate
+<BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMailCreate
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
 </UL>
 
 <P><STRONG><a name="[3f]"></a>rt_alloc_box</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, rt_membox.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
+<BR><BR>[Called By]<UL><LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_mbx_psh
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysMailFree
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysMailAlloc
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> hal_cm4.o(.emb_text)
 </UL>
@@ -1748,14 +1749,14 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_die
 </UL>
-<BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcSemaphoreCreate
+<BR>[Called By]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcSemaphoreCreate
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMutexCreate
 <LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcTimerCreate
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMessageCreate
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcThreadCreate
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcKernelInitialize
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcMailCreate
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;svcPoolCreate
 </UL>
 
 <P><STRONG><a name="[6b]"></a>_mutex_initialize</STRONG> (Thumb, 44 bytes, Stack size 16 bytes, rtx_conf_cm.o(.text))
@@ -2082,7 +2083,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 </UL>
 
-<P><STRONG><a name="[bc]"></a>__2printf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, __2printf.o(.text))
+<P><STRONG><a name="[bb]"></a>__2printf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, __2printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -2091,6 +2092,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;queueOutput(mbed::CANMessage)
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendMsg
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processMessagesLogger(const void*)
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sendMessage(unsigned, char*, char, msgType_t)
 </UL>
 
 <P><STRONG><a name="[15d]"></a>__2fprintf</STRONG> (Thumb, 20 bytes, Stack size 24 bytes, __2fprintf.o(.text))
@@ -2779,7 +2781,7 @@ Global Symbols
 <LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_common
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2fprintf
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__c89vfprintf
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vfprintf
 </UL>
@@ -3158,7 +3160,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;can_irq_set
 <LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::attach(void(*)())
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init
 </UL>
 
 <P><STRONG><a name="[b4]"></a>mbed::CAN::CAN(PinName, PinName)</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, CAN.o(i._ZN4mbed3CANC1E7PinNameS1_))
@@ -3941,8 +3943,8 @@ Local Symbols
 <P><STRONG><a name="[143]"></a>rt_clr_box</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, rt_cmsis.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = rt_clr_box
 </UL>
-<BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
-<LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysMailAlloc
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysMailAlloc
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sysPoolAlloc
 </UL>
 
 <P><STRONG><a name="[102]"></a>__get_CONTROL</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rt_cmsis.o(.text))
@@ -3962,8 +3964,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[101]"></a>__get_IPSR</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, rt_cmsis.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreDelete
-<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreRelease
+<BR><BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreRelease
 <LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreWait
 <LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreCreate
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexDelete
@@ -3999,6 +4000,7 @@ Local Symbols
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osPoolCAlloc
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osPoolAlloc
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osPoolCreate
+<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreDelete
 </UL>
 
 <P><STRONG><a name="[155]"></a>rt_ret_regs</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, hal_cm.o(.text))

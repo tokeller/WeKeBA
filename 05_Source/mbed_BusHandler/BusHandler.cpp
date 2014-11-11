@@ -23,12 +23,14 @@ uint32_t sendMessage(uint32_t dataLength, char *payload, char receiver, msgType_
 			message_t msg;
 			msg.msgType = msgType;
 			msg.msgId = numberOfMessages - i;
-			if (i == (numberOfMessages - 1)){
+			if ((i == (numberOfMessages - 1)) && (restSize > 0)){
 				msg.dataLength =restSize;
 				memcpy(msg.payload,payload+(i*8),restSize);
+				printf("payload %s\n",msg.payload+0x00);
 			}else{
 				msg.dataLength =8;
 				memcpy(msg.payload,payload+(i*8),8);
+				printf("payload %s\n",msg.payload+0x00);
 			}
 			stat = outQueue.put(&msg);
 		};
