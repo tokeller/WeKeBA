@@ -35,8 +35,18 @@ extern "C" {
 	/**
 	 * Adds a sample to the current impact
 	 */ 
-	 void add_sample(Input_t imp_input);
+	void add_sample(Input_t imp_input);
 	
+	/**
+	 * Updates the current peak and impact maxima for a positive peak
+	 */ 
+	void update_maxima_pos(Input_t smp_input);
+	
+	/**
+	* Updates the current peak and impact maxima for a negative peak
+	 */
+	void update_maxima_neg(Input_t smp_input);
+	 
 	/**
 	 * Adds a peak to the current impact
 	 * 

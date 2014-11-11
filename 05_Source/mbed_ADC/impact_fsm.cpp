@@ -36,10 +36,7 @@ void init_impact_fsm(void)
 void impact_fsm(EventID event, Input_t fsm_input)
 {
 	static State state = S_NOT_IN_IMPACT;
-	// DEBUG uint32_t timest = fsm_input.timestamp;
-	// DEBUG uint32_t val = fsm_input.value;
 	
-	// TODO in impact_event: decrease timeout counter, if zero, we have event E_TIMEOUT
 	switch(state){
 		
 		/* -- State Not_In_Impact
@@ -52,10 +49,20 @@ void impact_fsm(EventID event, Input_t fsm_input)
 				  stop_timer();
 					break;
 				
-				case E_INPUT_HIGH:
+				case E_INPUT_HIGH_POS:
 				  new_impact(fsm_input);
+					add_sample(fsm_input);
+					update_maxima_pos(fsm_input);
 				  stop_timer();
-					state = S_IN_IMPACT_PEAK;
+					state = S_IN_IMPACT_PEAK_POS;
+					break;
+				
+				case E_INPUT_HIGH_NEG:
+					new_impact(fsm_input);
+					add_sample(fsm_input);
+					update_maxima_neg(fsm_input);
+					stop_timer();
+					state = S_IN_IMPACT_PEAK_NEG;
 					break;
 				
 				case E_INPUT_LOW:
@@ -65,14 +72,15 @@ void impact_fsm(EventID event, Input_t fsm_input)
 				  stop_timer();
 					break;
 				
-				default: ;
+				default: 
+					break;
 			}
 			
 			break;
 		
-		/* -- State S_IN_IMPACT_PEAK
+		/* -- State S_IN_IMPACT_PEAK_POS
 		* ------------------------------------------------------- */			
-		case S_IN_IMPACT_PEAK:
+		case S_IN_IMPACT_PEAK_POS:
 			
 			switch(event){
 				
@@ -81,8 +89,16 @@ void impact_fsm(EventID event, Input_t fsm_input)
 					state = S_NOT_IN_IMPACT;
 				  break;
 				
-				case E_INPUT_HIGH:
+				case E_INPUT_HIGH_POS:
 				  add_sample(fsm_input);
+					update_maxima_pos(fsm_input);
+					break;
+				
+				case E_INPUT_HIGH_NEG:
+					add_sample(fsm_input);
+					end_peak();
+					update_maxima_neg(fsm_input);
+					state = S_IN_IMPACT_PEAK_NEG;
 					break;
 				
 				case E_INPUT_LOW:
@@ -96,7 +112,48 @@ void impact_fsm(EventID event, Input_t fsm_input)
 				  stop_timer();
 					break;
 				
-				default: ;
+				default: 
+					break;
+			}
+			
+			break;
+		
+		/* -- State S_IN_IMPACT_PEAK_NEG
+		* ------------------------------------------------------- */			
+		case S_IN_IMPACT_PEAK_NEG:
+			
+			switch(event){
+				
+				case E_RESET:
+				  stop_timer();
+					state = S_NOT_IN_IMPACT;
+				  break;
+				
+				case E_INPUT_HIGH_POS:
+				  add_sample(fsm_input);
+					end_peak();
+					update_maxima_pos(fsm_input);
+					state = S_IN_IMPACT_PEAK_POS;
+					break;
+				
+				case E_INPUT_HIGH_NEG:
+					add_sample(fsm_input);
+					update_maxima_neg(fsm_input);
+					break;
+				
+				case E_INPUT_LOW:
+				  add_sample(fsm_input);
+				  end_peak();
+				  start_timer();
+					state = S_IN_IMPACT_NO_PEAK;
+					break;
+				
+				case E_TIMEOUT:
+				  stop_timer();
+					break;
+				
+				default: 
+					break;
 			}
 			
 			break;
@@ -112,11 +169,18 @@ void impact_fsm(EventID event, Input_t fsm_input)
 					state = S_NOT_IN_IMPACT;
 				  break;
 				
-				case E_INPUT_HIGH:
+				case E_INPUT_HIGH_POS:
 				  add_sample(fsm_input);
+					update_maxima_pos(fsm_input);
 				  stop_timer();
-					state = S_IN_IMPACT_PEAK;
+					state = S_IN_IMPACT_PEAK_POS;
 					break;
+				
+				case E_INPUT_HIGH_NEG:
+					add_sample(fsm_input);
+					update_maxima_neg(fsm_input);
+					stop_timer();
+					state = S_IN_IMPACT_PEAK_NEG;
 				
 				case E_INPUT_LOW:
 				  add_sample(fsm_input);
@@ -124,16 +188,18 @@ void impact_fsm(EventID event, Input_t fsm_input)
 				
 				case E_TIMEOUT:
 				  stop_timer();
+					// end impact
 					store_impact();
 					state = S_NOT_IN_IMPACT;
 					break;
 				
-				default: ;
+				default: 
+					break;
 			}
 			
 			break;
 		
-		default: ;
+		default: 
 			break;
 	}
 	

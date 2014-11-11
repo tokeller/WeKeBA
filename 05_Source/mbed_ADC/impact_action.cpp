@@ -9,6 +9,7 @@ extern Serial pcSerial;
 extern uint32_t timeout_counter;
 extern uint8_t timeout_active;
 extern uint32_t samples_timeout;
+extern uint32_t baseline;
 
 /* ------------------------------------------------------------------
  * -- Global variables
@@ -36,6 +37,7 @@ static Impact_t impact;
 		uint16_t i;
 		pcSerial.printf("\t\tnew impact\n");
 		impact.starttime = imp_input.timestamp;
+		impact.baseline = baseline;
 		impact.sample_count = 0;
 		impact.peak_count = 0;
 		impact.max_amplitude = 0;
@@ -45,8 +47,6 @@ static Impact_t impact;
 			impact.peaks[i].timestamp = 0;
 			impact.peaks[i].value = 0;
 		}
-		
-		add_sample(imp_input);
 	}
 	
 	/*
@@ -54,36 +54,66 @@ static Impact_t impact;
 	 */
 	void end_impact(Input_t imp_input)
 	{
-		// TODO
-	}
-	
-	void add_sample(Input_t smp_input)
-	{
-		impact.samples[impact.sample_count] = smp_input.value;
-		impact.sample_count++;
-		// TODO watch out, if impact is too long => seg fault!
-		
-		// update current peak and impact maximum
-		if(smp_input.value > impact.peaks[impact.peak_count].value){
-			impact.peaks[impact.peak_count].value = smp_input.value;
-			impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
-
-		}
-		if(smp_input.value > impact.max_amplitude){
-				impact.max_amplitude = smp_input.value;
-			  impact.max_amplitude_timestamp = smp_input.timestamp;
-			}
-		
-		
+		// TODO trim trailing samples below threshold, adjust sample count
 	}
 	
 	/*
 	 * See header file
 	 */
+	void add_sample(Input_t smp_input)
+	{
+		impact.samples[impact.sample_count] = smp_input.value;
+		impact.sample_count++;
+		// TODO watch out, if impact is too long => seg fault!
+
+	}
+	
+	/*
+	 * See header file
+	 */
+	void update_maxima_pos(Input_t smp_input)
+	{
+		// update current peak maximum
+		if(smp_input.value > impact.peaks[impact.peak_count].value){
+				impact.peaks[impact.peak_count].value = smp_input.value;
+				impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+			}
+		
+		// update impact maximum
+		if(smp_input.value > impact.max_amplitude){
+				impact.max_amplitude = smp_input.value;
+			  impact.max_amplitude_timestamp = smp_input.timestamp;
+			}
+	}
+	
+	/*
+	 * See header file
+	 */
+	void update_maxima_neg(Input_t smp_input)
+	{
+		// update current peak minimum
+		if(smp_input.value < impact.peaks[impact.peak_count].value){
+				impact.peaks[impact.peak_count].value = smp_input.value;
+				impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+			}
+		
+		// update impact maximum (inverse value!)
+		if( 0 - smp_input.value > impact.max_amplitude){
+				impact.max_amplitude = 0 - smp_input.value;
+			  impact.max_amplitude_timestamp = smp_input.timestamp;
+			}
+	}
+		
+	
+	/*
+	 * See header file
+	 */
+	/* probably unused
 	void add_peak(uint32_t value)
 	{
 		// probably not needed, we only increase peak counter when peak is finished.
 	}
+	*/
 	
 	/*
 	 * See header file
@@ -122,13 +152,13 @@ static Impact_t impact;
 		
 		// samples
 		for(i = 0; i < impact.sample_count; i++){
-			pcSerial.printf("%u, %hu\t", impact.starttime + i, impact.samples[i]);
+			pcSerial.printf("%12u, %5hd;    ", impact.starttime + i, impact.samples[i]);
 		}
 		pcSerial.printf("\n\n");
 		
 		// peaks
 		for(i = 0; i < impact.peak_count + 3; i++){
-			pcSerial.printf("%hu:\t%u\t%hu\n", i, impact.peaks[i].timestamp, impact.peaks[i].value);
+			pcSerial.printf("%3hu: %12u %5hd\n", i, impact.peaks[i].timestamp, impact.peaks[i].value);
 		}
 		pcSerial.printf("\n");
 	}

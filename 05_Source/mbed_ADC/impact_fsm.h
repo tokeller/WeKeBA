@@ -12,7 +12,8 @@ extern "C" {
 	
 	typedef enum state{
 		S_NOT_IN_IMPACT,
-		S_IN_IMPACT_PEAK,
+		S_IN_IMPACT_PEAK_POS,
+		S_IN_IMPACT_PEAK_NEG,
 		S_IN_IMPACT_NO_PEAK
 	} State;
 	

@@ -12,8 +12,8 @@ extern "C" {
  * -- Constants, macros
  * --------------------------------------------------------------- */
 
-#define INPUTQUEUE_LEN  512       // how many input values can be cached in the ring buffer
-#define MAX_IMPACT_LENGTH 512    // XXX this will later be made configurable
+#define INPUTQUEUE_LEN  1024       // how many input values can be cached in the ring buffer
+#define MAX_IMPACT_LENGTH 1024    // XXX this will later be made configurable
 #define SAMPLES_UNTIL_TIMEOUT 30 // how many samples need to pass with values below threshold for the impact to end.
 #define THRESHOLD 200           // measurement threshold
 #define BASELINE 2047           // baseline of the signal
@@ -29,7 +29,8 @@ extern "C" {
      */
 	typedef enum {
 		E_RESET = 0,
-		E_INPUT_HIGH,
+		E_INPUT_HIGH_POS,
+		E_INPUT_HIGH_NEG,
 		E_INPUT_LOW,
 		E_TIMEOUT,
 		E_NO_EVENT
@@ -64,11 +65,12 @@ extern "C" {
      */
 	typedef struct {
 		uint32_t starttime;
+		uint16_t baseline;
     uint16_t sample_count;
     uint16_t peak_count;
-		uint16_t samples[MAX_IMPACT_LENGTH];
+		int16_t samples[MAX_IMPACT_LENGTH];
 		Input_t peaks[MAX_IMPACT_LENGTH]; //XXX allenfalls kürzer, wie viel?
-		uint16_t max_amplitude;
+		int16_t max_amplitude;
 		uint32_t max_amplitude_timestamp;
 	} Impact_t;
 	
@@ -87,30 +89,30 @@ extern "C" {
    *
    * This will run as a separate task
 	 */
-	void event_detection();
+	void impact_event_detection(void);
 	
 	/**
 	 * Initialize the module event_handler
 	 */
-	void init_event_handler(void);
+	void init_impact_event_handler(void);
 
 	/**
 	 * Initialize the input queue
 	 */
-	void init_input_queue(void);
+	void init_impact_input_queue(void);
 
 	/**
 	 * Add an input to the queue
 	 * @param   timestamp: timestamp of this measurement
 	 * @param   value    : measurement value
 	 */
-	void enqueue_input(uint32_t timestamp, uint32_t value);
+	void enqueue_impact_input(uint32_t timestamp, uint32_t value);
 
 	/**
 	 * Retrieve next input from the queue
 	 * @retval  next input from queue or NULL pointer
 	 */
-	Input_t dequeue_input(void);
+	Input_t dequeue_impact_input(void);
 
 	/**
 	 * Test the queue for available inputs

@@ -15,8 +15,8 @@ extern AnalogOut pinser1;
  * --------------------------------------------------------------- */
  
 static Input_ringbuf input_queue;
-static uint32_t baseline = BASELINE;     // zero position of sensor signal
-static uint32_t threshold = THRESHOLD;   // event detection threshold
+uint32_t baseline = BASELINE;     // zero position of sensor signal
+static int16_t threshold = THRESHOLD;   // event detection threshold
 static uint32_t peak_noise_threshold;    // threshold on peak plateau
 uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
                                                    // below threshold for impact to end
@@ -45,18 +45,18 @@ static uint32_t value = 0;               // sampled value
 		timestamp++;
 		// DEBUG toggle1 = 1 - toggle1;
 		// DEBUG pinser2 = toggle1;
-		enqueue_input(timestamp, value);
+		enqueue_impact_input(timestamp, value);
 		
 	}
 
 	/*
 	 * See header file
 	 */
-	void event_detection()
+	void impact_event_detection()
 	{
 		//XXX get difference of abs(value - baseline) and threshold,
 		//    if positive we have an E_INPUT_HIGH, otherwise it's E_INPUT_LOW
-		signed int value; 
+		int16_t value; 
 		
 		EventID new_event_id;
 		Input_t input;
@@ -66,7 +66,7 @@ static uint32_t value = 0;               // sampled value
 		
 		// DEBUG
 		// output of buffer level to analog out to watch for buffer overflow.
-		pinser1 = (double)input_queue.count/512;
+		// pinser1 = (double)input_queue.count/512;
 		// DEBUG pcSerial.printf("f %d", input_queue.count);
 		// TODO add while(1) loop, os_delay etc so it can run as a task.
 		
@@ -74,15 +74,42 @@ static uint32_t value = 0;               // sampled value
 			
 			new_event_id = E_NO_EVENT;
 			
-			// if there is a measurement value waiting, we have to determine whether
-			// it is above threshold value and generate the according event.
-			// Input above threshold (E_INPUT_HIGH) will stop the timeout counter.
-			input = dequeue_input();
+			/* if there is a measurement value waiting, we have to determine whether
+			 * it is above threshold value and generate the according event.
+			 * Input above threshold (E_INPUT_HIGH_POS or E_INPUT_HIGH_NEG) will 
+			 * stop the timeout counter.
+			 */
+			input = dequeue_impact_input();
+			// TODO catch exception
+			value = input.value - baseline;
+			if(value >= threshold || value <= 0 - threshold){
+				if(value >= threshold){
+					new_event_id = E_INPUT_HIGH_POS;
+				} else {
+					new_event_id = E_INPUT_HIGH_NEG;
+				}
+			}	else if(timeout_active == 1){
+				// decrease the timeout counter. If zero, event is E_TIMEOUT
+				timeout_counter--;
+				if(timeout_counter == 0){
+					new_event_id = E_TIMEOUT;
+				} else{
+					new_event_id = E_INPUT_LOW;
+				}
+			} else {
+				new_event_id = E_INPUT_LOW;
+			}
+			
+			input.value = value;
+			impact_fsm(new_event_id, input);
+
+/* old code
 			if(input.value > baseline){
 				value = input.value - baseline;
 			} else {
 				value = baseline - input.value;
 			}
+			
 			
 			if(value >= threshold){
 				new_event_id = E_INPUT_HIGH;
@@ -101,16 +128,17 @@ static uint32_t value = 0;               // sampled value
 			//if(new_event_id != E_NO_EVENT){
 				impact_fsm(new_event_id, input);
 			//}
+		*/
 		}
 	}
 	
 	/*
 	 * See header file
 	 */
-	void init_event_handler(void)
+	void init_impact_event_handler(void)
 	{
 		// initialize new input queue and timeout counter
-		init_input_queue();
+		init_impact_input_queue();
 		timeout_active = 0;
 		timeout_counter = 0;
 		
@@ -123,7 +151,7 @@ static uint32_t value = 0;               // sampled value
 	/*
 	 * See header file
 	 */
-	void init_input_queue(void)
+	void init_impact_input_queue(void)
 	{
 		unsigned short i;
 		
@@ -140,7 +168,7 @@ static uint32_t value = 0;               // sampled value
 	/*
 	 * See header file
 	 */
-	void enqueue_input(uint32_t timestamp, uint32_t value)
+	void enqueue_impact_input(uint32_t timestamp, uint32_t value)
 	{
 		// XXX critical, disable INT
     
@@ -168,7 +196,7 @@ static uint32_t value = 0;               // sampled value
 	/*
 	 * See header file
 	 */
-	Input_t dequeue_input(void)
+	Input_t dequeue_impact_input(void)
 	{
 		Input_t the_input;
 		// TODO critical, disable INT
