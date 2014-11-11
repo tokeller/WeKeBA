@@ -170,7 +170,7 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>4105</DriverSelection>
+            <DriverSelection>4104</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\CMSIS_AGDI.dll</Flash2>
@@ -364,7 +364,7 @@
               <MiscControls>--gnu --no_rtti </MiscControls>
               <Define> TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1414490837.88,  __MBED__=1,  __ASSERT_MSG, </Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  mbed;  mbed/TARGET_LPC4088;  mbed/TARGET_LPC4088/TARGET_NXP;  mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;  mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD</IncludePath>
+			  <IncludePath>  .;  mbed;  mbed/TARGET_LPC4088;  mbed/TARGET_LPC4088/TARGET_NXP;  mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;  mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;mbed-rtos;  mbed-rtos/rtx;  mbed-rtos/rtx/TARGET_M4;  mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM;  mbed-rtos/rtos;</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -435,6 +435,11 @@
               <FileName>BusHandler.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\BusHandler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>BusProtocol.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\BusProtocol.cpp</FilePath>
             </File>
           </Files>
         </Group>

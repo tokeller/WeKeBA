@@ -25,7 +25,7 @@ void send() {
 
 int main() {
 		int err = 0;
-    pcSerial.baud(9600);
+    pcSerial.baud(115200);
     pcSerial.printf("main()\n");
     //ticker.attach(&send, 1);
     //CANMessage msg = CANMessage(1337, message, 8, CANData, CANExtended);
@@ -37,9 +37,16 @@ int main() {
         //    printf("loop()\n");
           	if(can1.read(msg)) {
             //    pcSerial.printf("Message received: %s\n", msg.data);
-								err = LPC_CAN1_ERR;
-								pcSerial.printf("error: %d\n",(err));
-                pcSerial.printf("Message received: %d\n", 1);
+								//err = LPC_CAN1_ERR;
+								//pcSerial.printf("error: %d\n",(err));
+                pcSerial.printf("Message received: %c\n", msg.data[0]);
+                pcSerial.printf("Message received: %c\n", msg.data[1]);
+                pcSerial.printf("Message received: %c\n", msg.data[2]);
+                pcSerial.printf("Message received: %c\n", msg.data[3]);
+                pcSerial.printf("Message received: %c\n", msg.data[4]);
+                pcSerial.printf("Message received: %c\n", msg.data[5]);
+                pcSerial.printf("Message received: %c\n", msg.data[6]);
+                pcSerial.printf("Message received: %c\n", msg.data[7]);
                 led2 = !led2;
             } 
             //wait(0.2);

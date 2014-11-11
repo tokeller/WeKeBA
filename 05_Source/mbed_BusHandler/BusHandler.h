@@ -8,10 +8,15 @@
 #include "mbed.h"
 #include "CAN.h"
 #include "BusProtocol.h"
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "cmsis_os.h"
+#include "Queue.h"	
+	
+typedef struct {
+		uint32_t dataLength;
+		char *payload;
+		char receiver;
+		msgType_t msgType;
+	} msgData_t;
 
 /**	Function to package the received data and put into sending queue
 	* @param	dataLength						Length of data (in bytes)
@@ -20,19 +25,17 @@ extern "C" {
 	* @param 	msgType								Type of the message to be sent
 	*	@retval returnCode						returns 0 for success, 1 for failure
 	*/
-uint32_t prepareMsg(uint32_t dataLength, char *payload, char receiver, msgType_t msgType);
-
-
-/**	Function to read data from the receiving queue, if any present
-	* @param	dataLength						Length of complete data (in bytes)
-	* @param  data									data received
-	* @param  receiver							Device that should receive the message
-	* @param 	msgType								Type of the message to be sent
+uint32_t sendMessage(uint32_t dataLength, char *payload, char receiver, msgType_t msgType);	
+	
+	
+/**	Bushandler thread for the logger unit
 	*	@retval returnCode						returns 0 for success, 1 for failure
 	*/
+void processMessagesLogger(void const *args);
 
-	
-#ifdef __cplusplus
-}
-#endif
+/**	Bushandler Thread for the sensor unit
+	*	@retval returnCode						returns 0 for success, 1 for failure
+	*/
+void processMessagesSensor(void const *args);
+
 #endif

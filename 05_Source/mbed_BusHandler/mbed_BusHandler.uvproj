@@ -362,9 +362,9 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls>--gnu --no_rtti </MiscControls>
-              <Define> TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1414490837.88,  __MBED__=1,  __ASSERT_MSG, </Define>
+              <Define>TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1414490837.88,  __MBED__=1,  __ASSERT_MSG,</Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  mbed;  mbed/TARGET_LPC4088;  mbed/TARGET_LPC4088/TARGET_NXP;  mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;  mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD</IncludePath>
+              <IncludePath>.;mbed;mbed/TARGET_LPC4088;mbed/TARGET_LPC4088/TARGET_NXP;mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;mbed-rtos;mbed-rtos/rtx;mbed-rtos/rtx/TARGET_M4;mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM;mbed-rtos/rtos</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -416,7 +416,7 @@
               mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/mbed.ar
             
                 --any_placement=first_fit
-            </Misc>
+</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -436,6 +436,284 @@
               <FileType>8</FileType>
               <FilePath>.\BusHandler.cpp</FilePath>
             </File>
+            <File>
+              <FileName>BusProtocol.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\BusProtocol.cpp</FilePath>
+            </File>
+			
+            <File>
+              <FileName>SVC_Table.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s</FilePath>
+              
+            </File>
+
+            <File>
+              <FileName>rt_Task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Task.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_System.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_System.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_List.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_List.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Time.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Semaphore.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Semaphore.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Mailbox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Mailbox.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_CMSIS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_CMSIS.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>HAL_CM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/HAL_CM.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Robin.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Robin.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_MemBox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_MemBox.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>RTX_Conf_CM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/RTX_Conf_CM.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Event.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Event.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Mutex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/rt_Mutex.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>HAL_CM4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM/HAL_CM4.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+            <File>
+              <FileName>Thread.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>mbed-rtos/rtos/Thread.cpp</FilePath>
+              
+            </File>
+          
+            <File>
+              <FileName>RtosTimer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>mbed-rtos/rtos/RtosTimer.cpp</FilePath>
+              
+            </File>
+          
+            <File>
+              <FileName>Semaphore.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>mbed-rtos/rtos/Semaphore.cpp</FilePath>
+              
+            </File>
+          
+            <File>
+              <FileName>Mutex.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>mbed-rtos/rtos/Mutex.cpp</FilePath>
+              
+            </File>
+			
           </Files>
         </Group>
       </Groups>

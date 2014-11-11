@@ -81,3 +81,7 @@
 .\build\bushandler.o: mbed\sleep_api.h
 .\build\bushandler.o: mbed\rtc_time.h
 .\build\bushandler.o: BusProtocol.h
+.\build\bushandler.o: mbed-rtos/rtx/cmsis_os.h
+.\build\bushandler.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
+.\build\bushandler.o: mbed-rtos/rtx/os_tcb.h
+.\build\bushandler.o: mbed-rtos/rtos/Queue.h

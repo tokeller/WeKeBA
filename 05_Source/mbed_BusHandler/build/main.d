@@ -79,4 +79,9 @@
 .\build\main.o: mbed\wait_api.h
 .\build\main.o: mbed\sleep_api.h
 .\build\main.o: mbed\rtc_time.h
+.\build\main.o: BusHandler.h
 .\build\main.o: BusProtocol.h
+.\build\main.o: mbed-rtos/rtx/cmsis_os.h
+.\build\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
+.\build\main.o: mbed-rtos/rtx/os_tcb.h
+.\build\main.o: mbed-rtos/rtos/Queue.h
