@@ -14,10 +14,11 @@ analogin_s adc;
 uint32_t data = 0;
 uint32_t old_data = 0;
 
+#ifdef DEBUG_IMPACT
 Input_t deb_data[980] = 
 #include "golfb10k.h"
 ;
-
+#endif
 
 extern "C" void ADC_IRQHandler()
 {
@@ -34,7 +35,9 @@ extern "C" void ADC_IRQHandler()
 
 
 int main() {
+	#ifdef DEBUG_IMPACT
 	int deb_i;
+	#endif
 	
 	pcSerial.baud(115200);
 	pcSerial.printf("start\n");
@@ -45,17 +48,24 @@ int main() {
 	// rudimentary ADC IRQ Handler
 	//uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
 	
+	#ifndef DEBUG_IMPACT
+	// when Debugging, don't run ADC interruptS
 	// fine tuned impact recognition and processing
-	//uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) isr_nextMeasurement,100);
+	uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) isr_nextMeasurement,100);
+
 	
 	// DEBUG: disable ADC for debugging the impact recognition
-	//pcSerial.printf("clkdiv: %d\n", clkd);
+	pcSerial.printf("clkdiv: %d\n", clkd);
+	#endif
+	
 	init_impact_event_handler();
+	#ifdef DEBUG_IMPACT
+	// load debug data
 	for (deb_i = 0; deb_i < 980; deb_i++){
 		enqueue_impact_input(deb_data[deb_i].timestamp, deb_data[deb_i].value); 
 	}
-	
-	pcSerial.printf("debug data loaded, begin analysis\n");
+	pcSerial.printf("DEBUGGING MODE IMPACT RECOGNITION\n\ndebug data loaded, begin analysis\n");
+	#endif
 	while(1) {
 		impact_event_detection();
 		wait_us(50);

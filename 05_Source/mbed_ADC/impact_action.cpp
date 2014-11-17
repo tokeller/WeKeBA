@@ -35,7 +35,9 @@ static Impact_t impact;
 	void new_impact(Input_t imp_input)
 	{
 		uint16_t i;
+		#ifdef DEBUG_IMPACT
 		pcSerial.printf("\t\tnew impact\n");
+		#endif
 		impact.starttime = imp_input.timestamp;
 		impact.baseline = baseline;
 		impact.sample_count = 0;

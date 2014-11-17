@@ -103,32 +103,6 @@ static uint32_t value = 0;               // sampled value
 			input.value = value;
 			impact_fsm(new_event_id, input);
 
-/* old code
-			if(input.value > baseline){
-				value = input.value - baseline;
-			} else {
-				value = baseline - input.value;
-			}
-			
-			
-			if(value >= threshold){
-				new_event_id = E_INPUT_HIGH;
-				//pcSerial.printf("high input\n");
-			} else if(timeout_active == 1){
-				// decrease the timeout counter. If zero, event is E_TIMEOUT
-				timeout_counter--;
-				if(timeout_counter == 0){
-					new_event_id = E_TIMEOUT;
-				}
-			} else {
-				new_event_id = E_INPUT_LOW;
-			}
-			
-			// call the FSM with the event.
-			//if(new_event_id != E_NO_EVENT){
-				impact_fsm(new_event_id, input);
-			//}
-		*/
 		}
 	}
 	

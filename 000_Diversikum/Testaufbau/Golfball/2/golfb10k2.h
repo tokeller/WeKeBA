@@ -1,4 +1,5 @@
-// Inputsequenz vom Golfball-Einschlag zum Testen der Impact-Detection
+// Inputsequez vom Golfball-Einschlag zum Testen der Impact-Detection, 
+// Polarität umgekehrt, damit alle FSM-Übergänge gestestet werden können.
 {{1,2050},
 {2,2051},
 {3,2049},

@@ -6,6 +6,7 @@
  * --------------------------------------------------------------- */ 
  
 extern Serial pcSerial;
+extern uint32_t timeout_counter;
 
 /* ------------------------------------------------------------------
  * -- Global variables
@@ -42,7 +43,9 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State Not_In_Impact
 		* ------------------------------------------------------- */
 		case S_NOT_IN_IMPACT:
-			
+			#ifdef DEBUG_IMPACT
+			printf("NotInImpact, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
+			#endif
 			switch(event){
 				
 				case E_RESET:
@@ -81,7 +84,9 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_PEAK_POS
 		* ------------------------------------------------------- */			
 		case S_IN_IMPACT_PEAK_POS:
-			
+			#ifdef DEBUG_IMPACT
+			printf("InImpactPeakPos, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
+			#endif
 			switch(event){
 				
 				case E_RESET:
@@ -121,7 +126,9 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_PEAK_NEG
 		* ------------------------------------------------------- */			
 		case S_IN_IMPACT_PEAK_NEG:
-			
+			#ifdef DEBUG_IMPACT
+			printf("InImpactPeakNeg, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
+			#endif
 			switch(event){
 				
 				case E_RESET:
@@ -161,7 +168,9 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_NO_PEAK
 		* ------------------------------------------------------- */
 		case S_IN_IMPACT_NO_PEAK:
-			
+			#ifdef DEBUG_IMPACT
+			printf("InImpactNoPeak, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
+			#endif
 			switch(event){
 				
 				case E_RESET:
@@ -181,6 +190,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 					update_maxima_neg(fsm_input);
 					stop_timer();
 					state = S_IN_IMPACT_PEAK_NEG;
+					break;
 				
 				case E_INPUT_LOW:
 				  add_sample(fsm_input);
