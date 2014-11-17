@@ -47,7 +47,7 @@ Der NXP LPC4088 Microprozessor verfügt über einen 12-bit A/D-Wandler, der übe
 
 \subsection{Ereigniserkennung}\label{subsec.sw_ereignis}
 Vom WSL wurde die Ereigniserkennung bisher mittels Hilbert-Transformation gelöst. Die Hilbert-Transformation liefert die umhüllende Kurve des gemessenen Signals. Überschreitet die Umhüllende den Threshold, markiert dies den Start eines neuen Ereignisses. Fällt die Umhüllende unter den Threshold, ist das Ereignis beendet. Um den Rechenaufwand der Hilbert-Transformation zu umgehen, lösen wir die Ereigniserkennung einfacher.
-
+\todo{FSM-figur anpassen auf neue Stati}
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/magicdraw/Ereigniserkennung.pdf}
