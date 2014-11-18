@@ -42,7 +42,7 @@ extern "C" {
      */
 	typedef struct {
 		uint32_t timestamp;
-		int32_t value;
+		int16_t value;
     } Input_t;
 	
     /**
@@ -52,27 +52,12 @@ extern "C" {
      * Has an Input_t array and the reading and writing indices
      */
 	typedef struct {
-		Input_t queue[INPUTQUEUE_LEN];
+		// old: Input_t queue[INPUTQUEUE_LEN];
+		Input_t *queue;
 		uint16_t read_pos;
 		uint16_t write_pos;
 		uint16_t count;
 	} Input_ringbuf;
-	
-    /**
-     * Impact_t
-     * Struct to hold all the data for one impact
-     * Start time, duration, peak count, peak maximums and impact maximum
-     */
-	typedef struct {
-		uint32_t starttime;
-		uint16_t baseline;
-    uint16_t sample_count;
-    uint16_t peak_count;
-		int16_t samples[MAX_IMPACT_LENGTH];
-		Input_t peaks[MAX_IMPACT_LENGTH]; //XXX allenfalls kürzer, wie viel?
-		int16_t max_amplitude;
-		uint32_t max_amplitude_timestamp;
-	} Impact_t;
 	
 	/* ------------------------------------------------------------------
 	 * -- Function prototypes
@@ -102,6 +87,11 @@ extern "C" {
 	void init_impact_input_queue(void);
 
 	/**
+	 * Free the input queue
+	 */
+	void free_impact_input_queue(void);
+		
+	/**
 	 * Add an input to the queue
 	 * @param   timestamp: timestamp of this measurement
 	 * @param   value    : measurement value
@@ -128,6 +118,46 @@ extern "C" {
    */
 //  unsigned char has_room(void);
 
+	/**
+   * Reset the timestamp counter to zero
+   * @retval  none
+   */
+	void reset_timestamp(void);
+	
+	/**
+	 * Set the baseline value of the sensor input
+	 * @param  uint16_t baseline: what value shall be considered zero g
+	 */
+	void set_baseline(uint16_t base_in);
+	 
+	/**
+	 * Set the threshold value
+	 * @param uint_16_t threshold: at what level input is considered 'HIGH'
+	 */
+	void set_threshold(uint16_t threshold_in);
+	
+	/**
+	 * Set the maximum impact length. How many samples should an impact have at most.
+	 * @param uint_16_t max_impact_len: number of samples an impact can have
+	 */
+	void set_max_impact_length(uint16_t max_impact_len);
+	
+	/**
+	 * Set the impact queue length. How many samples can be cached for evaluation.
+	 * @param uint_16_t input_queue_len: number of samples an impact can have
+	 */
+	void set_input_queue_length(uint16_t queue_len);
+	
+	/**
+	 * Set the samples until timeout. How many samples must input remain below
+	 * threshold for the impact to be considered finished.
+	 * @param uint_16_t samples_until_timeout
+	 */
+	void set_samples_until_timeout(uint16_t samples);
+	
+	
+	
+	
 	
 #ifdef __cplusplus
 };

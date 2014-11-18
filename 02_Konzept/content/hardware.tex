@@ -125,7 +125,7 @@ Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf
 
 \paragraph{Vergleich CAN-Bus und RS485}
 \todo{Kriterienliste RS485/CAN einfügen, Lit-Referenz auf White Paper von IXXAT}
-CAN&RS: Stecker nicht definiert => wasserdichte Stecker einfach zu finden.
+CAN und RS: Stecker nicht definiert => wasserdichte Stecker einfach zu finden.
 
 \paragraph{Entscheidung}
 CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits Kollisionserkennung und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (Transceiver) erhältlich, die mit hohen Spannungen umgehen können, was das Bussystem robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was ein klarer Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 

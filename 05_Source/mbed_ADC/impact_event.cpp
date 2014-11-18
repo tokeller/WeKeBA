@@ -1,12 +1,22 @@
 #include "impact_event.h"
 #include "impact_fsm.h"
 
+/* TO DO
+ * - set up impact recognition as task that runs in fixed intervals
+ * - in initialisation of impact rec set baseline, threshold etc 
+ * - 
+ * 
+ */
+
 /* ------------------------------------------------------------------
  * -- Externals 
  * --------------------------------------------------------------- */ 
  
 extern Serial pcSerial;
-extern AnalogOut pinser1;
+// DEBUG
+#ifdef DEBUG_IMPACT
+extern AnalogOut pinser18;
+#endif
 // DEBUG extern DigitalOut pinser2;
 
 
@@ -14,10 +24,11 @@ extern AnalogOut pinser1;
  * -- Global Variables
  * --------------------------------------------------------------- */
  
-static Input_ringbuf input_queue;
+static Input_ringbuf *input_queue = NULL;
 uint32_t baseline = BASELINE;     // zero position of sensor signal
 static int16_t threshold = THRESHOLD;   // event detection threshold
-static uint32_t peak_noise_threshold;    // threshold on peak plateau
+static uint16_t input_queue_length = INPUTQUEUE_LEN;
+uint16_t maximum_impact_length = MAX_IMPACT_LENGTH;
 uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
                                                    // below threshold for impact to end
 uint32_t timeout_counter;
@@ -25,9 +36,6 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 
 static uint32_t timestamp = 0;           // timestamp for samples
 static uint32_t value = 0;               // sampled value
-
-// DEBUG static uint8_t toggle1 = 0;
-// DEBUG static uint8_t toggle2 = 0;
 
 
 /* ------------------------------------------------------------------
@@ -43,8 +51,7 @@ static uint32_t value = 0;               // sampled value
 		value = LPC_ADC->GDR;
 		value = (value >> 4) & 0xFFF;
 		timestamp++;
-		// DEBUG toggle1 = 1 - toggle1;
-		// DEBUG pinser2 = toggle1;
+		
 		enqueue_impact_input(timestamp, value);
 		
 	}
@@ -54,23 +61,21 @@ static uint32_t value = 0;               // sampled value
 	 */
 	void impact_event_detection()
 	{
-		//XXX get difference of abs(value - baseline) and threshold,
-		//    if positive we have an E_INPUT_HIGH, otherwise it's E_INPUT_LOW
 		int16_t value; 
 		
 		EventID new_event_id;
 		Input_t input;
 		
-		// DEBUG toggle2 = 1 - toggle2;
-		// DEBUG pinser1 = toggle2;
-		
 		// DEBUG
-		// output of buffer level to analog out to watch for buffer overflow.
-		// pinser1 = (double)input_queue.count/512;
+		// output of buffer level to analog out to watch externally for buffer overflow.
+		#ifdef DEBUG_IMPACT
+		pinser18 = (double)input_queue->count/INPUTQUEUE_LEN;
+		#endif
+		
 		// DEBUG pcSerial.printf("f %d", input_queue.count);
 		// TODO add while(1) loop, os_delay etc so it can run as a task.
-		
-		if(input_queue.count > 0){
+
+		if(input_queue->count > 0){
 			
 			new_event_id = E_NO_EVENT;
 			
@@ -80,7 +85,6 @@ static uint32_t value = 0;               // sampled value
 			 * stop the timeout counter.
 			 */
 			input = dequeue_impact_input();
-			// TODO catch exception
 			value = input.value - baseline;
 			if(value >= threshold || value <= 0 - threshold){
 				if(value >= threshold){
@@ -112,9 +116,13 @@ static uint32_t value = 0;               // sampled value
 	void init_impact_event_handler(void)
 	{
 		// initialize new input queue and timeout counter
+		
 		init_impact_input_queue();
+		init_impact_action_handler();
 		timeout_active = 0;
 		timeout_counter = 0;
+		
+		
 		
 		init_impact_fsm();
 		// TODO set baseline, threshold, peak amplitude bandwidth and timeout sample count
@@ -128,15 +136,37 @@ static uint32_t value = 0;               // sampled value
 	void init_impact_input_queue(void)
 	{
 		unsigned short i;
-		
-		for(i = 0; i < INPUTQUEUE_LEN; i++){
-			input_queue.queue[i].timestamp = 0;
-			input_queue.queue[i].value = 0;
+		if(input_queue == NULL){
+			input_queue = (Input_ringbuf *) malloc(sizeof(Input_ringbuf));
+			if(input_queue == NULL){
+				printf("FATAL: could not allocate memory for input_queue.\n");
+				exit(1);
+			}
+		}
+		input_queue->queue = NULL;
+		input_queue->queue = (Input_t *) malloc(input_queue_length * sizeof(Input_t));
+		if(input_queue->queue == NULL){
+			printf("FATAL: could not allocate memory for input_queue values.\n");
+			exit(1);
 		}
 		
-		input_queue.read_pos = 0;
-		input_queue.write_pos = 0;
-		input_queue.count = 0;
+		for(i = 0; i < input_queue_length; i++){
+			input_queue->queue[i].timestamp = 0;
+			input_queue->queue[i].value = 0;
+		}
+		input_queue->read_pos = 0;
+		input_queue->write_pos = 0;
+		input_queue->count = 0;
+	}
+	
+	/*
+	 * See header file
+	 */
+	void free_impact_input_queue(void)
+	{
+		free(input_queue->queue);
+		free(input_queue);
+		input_queue = NULL;
 	}
 
 	/*
@@ -144,18 +174,19 @@ static uint32_t value = 0;               // sampled value
 	 */
 	void enqueue_impact_input(uint32_t timestamp, uint32_t value)
 	{
-		// XXX critical, disable INT
-    
-		if(input_queue.count < INPUTQUEUE_LEN){
+		// critical section, disable ADC_IRQ
+		NVIC_DisableIRQ(ADC_IRQn);
+		
+		if(input_queue->count < INPUTQUEUE_LEN){
 			/* Insert event in queue */
-			input_queue.queue[input_queue.write_pos].timestamp = timestamp;
-			input_queue.queue[input_queue.write_pos].value = value;
+			input_queue->queue[input_queue->write_pos].timestamp = timestamp;
+			input_queue->queue[input_queue->write_pos].value = value;
 	
 			/* Update write position */
-			input_queue.write_pos++;
-			input_queue.count++;
-			if (input_queue.write_pos >= INPUTQUEUE_LEN) {
-					input_queue.write_pos = 0;
+			input_queue->write_pos++;
+			input_queue->count++;
+			if (input_queue->write_pos >= INPUTQUEUE_LEN) {
+					input_queue->write_pos = 0;
 			}
 		} else {
 			//pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Overflow.\n==================================\n\n");
@@ -163,7 +194,8 @@ static uint32_t value = 0;               // sampled value
 		}
 		
     
-		// TODO enable INT
+		// enable ADC_IRQ
+		NVIC_EnableIRQ(ADC_IRQn);
 		
 	}
 
@@ -173,23 +205,27 @@ static uint32_t value = 0;               // sampled value
 	Input_t dequeue_impact_input(void)
 	{
 		Input_t the_input;
-		// TODO critical, disable INT
-		if(input_queue.count > 0){
-			the_input.timestamp = input_queue.queue[input_queue.read_pos].timestamp;
-			the_input.value = input_queue.queue[input_queue.read_pos].value;
-			input_queue.read_pos++;
-			input_queue.count--;
-			if(input_queue.read_pos >= INPUTQUEUE_LEN){
-				input_queue.read_pos = 0;
+		// critical section, disable ADC_IRQ
+		
+		NVIC_DisableIRQ(ADC_IRQn);
+		if(input_queue->count > 0){
+			the_input.timestamp = input_queue->queue[input_queue->read_pos].timestamp;
+			the_input.value = input_queue->queue[input_queue->read_pos].value;
+			input_queue->read_pos++;
+			input_queue->count--;
+			if(input_queue->read_pos >= INPUTQUEUE_LEN){
+				input_queue->read_pos = 0;
 			}
-			return the_input;
 		} else {
 			//pcSerial.printf("\n\n==================================\nFATAL ERROR: Input Queue Underflow.\n==================================\n\n");
 			the_input.timestamp = 0;
 			the_input.value = 0;
-			return the_input;
 		}
-		// TODO enable INT
+		
+		// enable ADC_IRQ
+		NVIC_EnableIRQ(ADC_IRQn);
+		
+		return the_input;
 	}
 
 	/*
@@ -197,9 +233,9 @@ static uint32_t value = 0;               // sampled value
 	 */
 /*	unsigned char has_input(void)
 	{
-		// TODO critical, disable INT
+		// critical, disable INT
 		return
-		// TODO enable INT 
+		// enable INT 
 		
 	}
 */
@@ -209,9 +245,74 @@ static uint32_t value = 0;               // sampled value
 	 */
 /*	unsigned char has_room(void)
 	{
-		// TODO critical, disable INT
+		// critical, disable INT
 		
-        input_queue.queue[input_queue.write_pos].timestamp = timestamp;
-		// TODO enable INT
+		input_queue.queue[input_queue.write_pos].timestamp = timestamp;
+		// enable INT
 	}
 	*/
+	
+	/*
+	 * See header file
+	 */
+	void reset_timestamp(void)
+	{
+		// disable ADC_IRQ
+		NVIC_DisableIRQ(ADC_IRQn);
+		
+		timestamp = 0;
+		
+		// enable ADC_IRQ
+		NVIC_EnableIRQ(ADC_IRQn);
+	}
+	
+	/*
+	 * See header file
+	 */
+	void set_baseline(uint16_t base_in)
+	{
+		baseline = base_in;
+		init_impact_fsm();
+	}
+	
+	/*
+	 * See header file
+	 */
+	void set_threshold(uint16_t threshold_in)
+	{
+		threshold = threshold_in;
+		init_impact_fsm();
+	}
+	
+	/*
+	 * See header file
+	 */
+	void set_max_impact_length(uint16_t max_impact_len)
+	{
+		
+		free_impact();
+		maximum_impact_length = max_impact_len;
+		init_impact();
+		
+		init_impact_fsm(); 
+	}
+	
+	/*
+	 * See header file
+	 */
+	void set_input_queue_length(uint16_t queue_len)
+	{
+		free_impact_input_queue();		
+		input_queue_length = queue_len;
+		init_impact_input_queue();
+		init_impact_fsm();
+		
+	}
+	
+	/*
+	 * See header file
+	 */
+	void set_samples_until_timeout(uint16_t samples)
+	{
+		samples_timeout = samples;
+	}

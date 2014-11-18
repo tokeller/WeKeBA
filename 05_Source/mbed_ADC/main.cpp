@@ -5,7 +5,7 @@
 Serial pcSerial(USBTX, USBRX);
 DigitalOut myled(LED1);
 DigitalOut pinser(p14);
-AnalogIn pinser1(p18);
+AnalogOut pinser18(p18);
 AnalogIn pinser2(p17);
 AnalogIn pinser3(p16);
 /*DigitalOut pinser4(p15);*/
@@ -15,7 +15,7 @@ uint32_t data = 0;
 uint32_t old_data = 0;
 
 #ifdef DEBUG_IMPACT
-Input_t deb_data[980] = 
+Input_t deb_data[1000] = 
 #include "golfb10k.h"
 ;
 #endif
@@ -46,7 +46,7 @@ int main() {
 	pcSerial.printf("cclock: %d\n", CCLK);
 	
 	// rudimentary ADC IRQ Handler
-	//uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
+	// uint32_t clkd = register_ADC_interrupt(&adc, pin,(uint32_t) ADC_IRQHandler,100);
 	
 	#ifndef DEBUG_IMPACT
 	// when Debugging, don't run ADC interruptS
@@ -61,7 +61,7 @@ int main() {
 	init_impact_event_handler();
 	#ifdef DEBUG_IMPACT
 	// load debug data
-	for (deb_i = 0; deb_i < 980; deb_i++){
+	for (deb_i = 0; deb_i < 1000; deb_i++){
 		enqueue_impact_input(deb_data[deb_i].timestamp, deb_data[deb_i].value); 
 	}
 	pcSerial.printf("DEBUGGING MODE IMPACT RECOGNITION\n\ndebug data loaded, begin analysis\n");

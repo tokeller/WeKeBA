@@ -41,7 +41,7 @@
 
 
 \subsection{Messdatenerfassung}\label{subsec.sw_messen}
-Der NXP LPC4088 Microprozessor verfügt über einen 12-bit A/D-Wandler, der über einen Multiplexer auf acht Pins messen kann. Auf dem verwendeten Quickstart-Board stehen 6 Pins für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Eingang, da der Beschelunigungs-Sensor die Beschleunigung nur auf einer Achse misst. Der A/D-Wandler des NXP LPC4088 wird mit einer Samplingrate von 10 kHz betrieben. Falls höhere Samplingraten nötig sind, kann der A/D-Wandler mit bis zu 400 kHz betrieben werden.
+Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit A/D-Wandler, der über einen Multiplexer auf acht Pins messen kann. Auf dem verwendeten Quickstart-Board stehen 6 Pins für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Eingang, da der Beschleunigungs-Sensor die Beschleunigung nur auf einer Achse misst. Der A/D-Wandler des NXP LPC4088 wird mit einer Abtastrate von 10~kHz betrieben. Falls höhere Abtastraten nötig sind, kann der A/D-Wandler mit bis zu 400~kHz betrieben werden.
 
 
 
@@ -50,7 +50,7 @@ Vom WSL wurde die Ereigniserkennung bisher mittels Hilbert-Transformation gelös
 \todo{FSM-figur anpassen auf neue Stati}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/magicdraw/Ereigniserkennung.pdf}
+		\includegraphics[width=0.6\textwidth]{images/magicdraw/Ereigniserkennung.pdf}
 	\caption{Zustandsmaschine der Ereigniserkennung.}
 	\label{fig.fsm_impact_detection}
 \end{figure}

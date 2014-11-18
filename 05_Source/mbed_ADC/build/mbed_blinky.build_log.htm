@@ -8,27 +8,76 @@ Project File Date:  11/03/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
-compiling impact_fsm.cpp...
+compiling impact_action.cpp...
+compiling impact_event.cpp...
 linking...
 mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=19468 RO-data=2552 RW-data=7964 ZI-data=19040  
+Program Size: Code=21760 RO-data=2668 RW-data=8132 ZI-data=580  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\mbed_blinky_LPC4088.bin build\mbed_blinky.axf
 ".\build\mbed_blinky.axf" - 0 Error(s), 1 Warning(s).
-Load "C:\\Temp\\weltitob\\GitHub\\WeKeBA\\05_Source\\mbed_ADC\\build\\mbed_blinky.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 </pre>
 </body>
 </html>
-g...
-mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=19436 RO-data=2552 RW-data=7964 ZI-data=19040  
-Finished: 0 information, 1 warning and 0 error messages.
+ation, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\mbed_blinky_LPC4088.bin build\mbed_blinky.axf
-".\build\mbed_blinky.axf" - 0 Error(s), 4 Warning(s).
+".\build\mbed_blinky.axf" - 0 Error(s), 2 Warning(s).
 Load "C:\\Temp\\weltitob\\GitHub\\WeKeBA\\05_Source\\mbed_ADC\\build\\mbed_blinky.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
+
+impact_action.cpp(53): error:  #153: expression must have class type
+                        impact.samples[i] = 0;
+impact_action.cpp(54): error:  #153: expression must have class type
+                        impact.peaks[i].timestamp = 0;
+impact_action.cpp(55): error:  #153: expression must have class type
+                        impact.peaks[i].value = 0;
+impact_action.cpp(66): error:  #153: expression must have class type
+                impact.sample_count = impact.sample_count - samples_timeout;
+impact_action.cpp(66): error:  #153: expression must have class type
+                impact.sample_count = impact.sample_count - samples_timeout;
+impact_action.cpp(74): error:  #153: expression must have class type
+                impact.samples[impact.sample_count] = smp_input.value;
+impact_action.cpp(74): error:  #153: expression must have class type
+                impact.samples[impact.sample_count] = smp_input.value;
+impact_action.cpp(75): error:  #153: expression must have class type
+                impact.sample_count++;
+impact_action.cpp(86): error:  #153: expression must have class type
+                if(smp_input.value > impact.peaks[impact.peak_count].value){
+impact_action.cpp(86): error:  #153: expression must have class type
+                if(smp_input.value > impact.peaks[impact.peak_count].value){
+impact_action.cpp(87): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].value = smp_input.value;
+impact_action.cpp(87): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].value = smp_input.value;
+impact_action.cpp(88): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+impact_action.cpp(88): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+impact_action.cpp(92): error:  #153: expression must have class type
+                if(smp_input.value > impact.max_amplitude){
+impact_action.cpp(93): error:  #153: expression must have class type
+                                impact.max_amplitude = smp_input.value;
+impact_action.cpp(94): error:  #153: expression must have class type
+                          impact.max_amplitude_timestamp = smp_input.timestamp;
+impact_action.cpp(104): error:  #153: expression must have class type
+                if(smp_input.value < impact.peaks[impact.peak_count].value){
+impact_action.cpp(104): error:  #153: expression must have class type
+                if(smp_input.value < impact.peaks[impact.peak_count].value){
+impact_action.cpp(105): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].value = smp_input.value;
+impact_action.cpp(105): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].value = smp_input.value;
+impact_action.cpp(106): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+impact_action.cpp(106): error:  #153: expression must have class type
+                                impact.peaks[impact.peak_count].timestamp = smp_input.timestamp;
+impact_action.cpp(110): error:  #153: expression must have class type
+                if( 0 - smp_input.value > impact.max_amplitude){
+impact_action.cpp(111): error:  #153: expression must have class type
+                                impact.max_amplitude = 0 - smp_input.value;
+impact_action.cpp: 0 warnings, 30 errors
+compiling impact_event.cpp...
+".\build\mbed_blinky.axf" - 30 Error(s), 1 Warning(s).
+Target not created

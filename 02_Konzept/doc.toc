@@ -19,24 +19,25 @@
 \contentsline {subsection}{\numberline {2.2.1}Mikroprozessor}{8}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Bus-System}{9}{subsection.2.2.2}
 \contentsline {paragraph}{Kommentare}{9}{paragraph*.4}
-\contentsline {paragraph}{Entscheidung}{10}{paragraph*.5}
+\contentsline {paragraph}{Vergleich CAN-Bus und RS485}{10}{paragraph*.5}
+\contentsline {paragraph}{Entscheidung}{10}{paragraph*.7}
 \contentsline {subsection}{\numberline {2.2.3}Speichermedium}{10}{subsection.2.2.3}
-\contentsline {paragraph}{Kriterien}{10}{paragraph*.6}
-\contentsline {paragraph}{Datenmenge}{10}{paragraph*.7}
-\contentsline {paragraph}{Unabh\IeC {\"a}ngige Betriebsdauer}{10}{paragraph*.8}
-\contentsline {paragraph}{Kapazit\IeC {\"a}t}{10}{paragraph*.9}
-\contentsline {paragraph}{Datentransfer}{10}{paragraph*.10}
-\contentsline {paragraph}{Vergleich}{11}{paragraph*.11}
-\contentsline {paragraph}{Entscheid}{11}{paragraph*.13}
+\contentsline {paragraph}{Kriterien}{10}{paragraph*.8}
+\contentsline {paragraph}{Datenmenge}{10}{paragraph*.9}
+\contentsline {paragraph}{Unabh\IeC {\"a}ngige Betriebsdauer}{10}{paragraph*.10}
+\contentsline {paragraph}{Kapazit\IeC {\"a}t}{10}{paragraph*.11}
+\contentsline {paragraph}{Datentransfer}{10}{paragraph*.12}
+\contentsline {paragraph}{Vergleich}{10}{paragraph*.13}
+\contentsline {paragraph}{Entscheid}{11}{paragraph*.15}
 \contentsline {subsection}{\numberline {2.2.4}Sensor}{11}{subsection.2.2.4}
 \contentsline {subsection}{\numberline {2.2.5}Schnittstelle}{11}{subsection.2.2.5}
 \contentsline {section}{\numberline {2.3}Komponenten}{11}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Cortex M4 Mikroprozessor}{11}{subsection.2.3.1}
-\contentsline {subsubsection}{Flash Speicher}{11}{subsubsection*.18}
-\contentsline {subsubsection}{SDRAM}{11}{subsubsection*.20}
+\contentsline {subsubsection}{Flash Speicher}{11}{subsubsection*.20}
+\contentsline {subsubsection}{SDRAM}{11}{subsubsection*.22}
 \contentsline {subsection}{\numberline {2.3.2}Beschleunigungs-Sensor}{11}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}CAN Bus}{11}{subsection.2.3.3}
-\contentsline {subsubsection}{CAN Transceiver}{12}{subsubsection*.24}
+\contentsline {subsubsection}{CAN Transceiver}{12}{subsubsection*.26}
 \contentsline {subsection}{\numberline {2.3.4}SD Karte}{12}{subsection.2.3.4}
 \contentsline {subsection}{\numberline {2.3.5}UART Schnittstelle}{12}{subsection.2.3.5}
 \contentsline {section}{\numberline {2.4}Datenlogger}{12}{section.2.4}
@@ -54,12 +55,12 @@
 \contentsline {section}{\numberline {3.2}Funktionalit\IeC {\"a}t}{18}{section.3.2}
 \contentsline {section}{\numberline {3.3}Konfiguration}{18}{section.3.3}
 \contentsline {chapter}{\numberline {4}Verzeichnisse}{19}{chapter.4}
-\contentsline {section}{Literaturverzeichnis}{20}{chapter*.38}
-\contentsline {section}{(Abbildungsverzeichnis)}{21}{chapter*.39}
-\contentsline {section}{(Tabellenverzeichnis)}{22}{chapter*.40}
+\contentsline {section}{Literaturverzeichnis}{20}{chapter*.41}
+\contentsline {section}{(Abbildungsverzeichnis)}{21}{chapter*.42}
+\contentsline {section}{(Tabellenverzeichnis)}{22}{chapter*.43}
 \contentsline {section}{\numberline {4.1}(Glossar)}{23}{section.4.1}
 \contentsline {section}{(Abk\IeC {\"u}rzungsverzeichnis)}{23}{section.4.1}
-\contentsline {section}{(Listingverzeichnis)}{24}{chapter*.41}
+\contentsline {section}{(Listingverzeichnis)}{24}{chapter*.44}
 \contentsline {chapter}{\numberline {A}Anhang}{I}{appendix.A}
 \contentsline {section}{\numberline {A.1}Projektmanagement}{I}{section.A.1}
 \contentsline {section}{\numberline {A.2}Weiteres}{I}{section.A.2}

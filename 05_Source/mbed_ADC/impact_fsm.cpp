@@ -1,5 +1,13 @@
 #include "impact_fsm.h"
 
+/* TO DO
+ * 
+ *
+ *
+ *
+ */
+
+
 
 /* ------------------------------------------------------------------
  * -- Externals 
@@ -43,7 +51,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State Not_In_Impact
 		* ------------------------------------------------------- */
 		case S_NOT_IN_IMPACT:
-			#ifdef DEBUG_IMPACT
+			#ifdef DEBUG_IMPACT_
 			printf("NotInImpact, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
 			#endif
 			switch(event){
@@ -84,7 +92,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_PEAK_POS
 		* ------------------------------------------------------- */			
 		case S_IN_IMPACT_PEAK_POS:
-			#ifdef DEBUG_IMPACT
+			#ifdef DEBUG_IMPACT_
 			printf("InImpactPeakPos, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
 			#endif
 			switch(event){
@@ -126,7 +134,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_PEAK_NEG
 		* ------------------------------------------------------- */			
 		case S_IN_IMPACT_PEAK_NEG:
-			#ifdef DEBUG_IMPACT
+			#ifdef DEBUG_IMPACT_
 			printf("InImpactPeakNeg, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
 			#endif
 			switch(event){
@@ -168,7 +176,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 		/* -- State S_IN_IMPACT_NO_PEAK
 		* ------------------------------------------------------- */
 		case S_IN_IMPACT_NO_PEAK:
-			#ifdef DEBUG_IMPACT
+			#ifdef DEBUG_IMPACT_
 			printf("InImpactNoPeak, E: %d, T: %d, V: %d, TO: %d\n", event, fsm_input.timestamp, fsm_input.value, timeout_counter);
 			#endif
 			switch(event){
@@ -198,7 +206,7 @@ void impact_fsm(EventID event, Input_t fsm_input)
 				
 				case E_TIMEOUT:
 				  stop_timer();
-					// end impact
+					end_impact();
 					store_impact();
 					state = S_NOT_IN_IMPACT;
 					break;

@@ -1,23 +1,25 @@
 \contentsline {todo}{Tabelle verschiedener uCs zum Vergleich}{8}{section*.3}
-\contentsline {todo}{Literatur-Referenzen in Tabelle \ref {table.speichermedium}}{11}{section*.12}
-\contentsline {todo}{Sensorauswahl beschreiben}{11}{section*.14}
-\contentsline {todo}{Schnittstellenauswahl beschreiben}{11}{section*.15}
-\contentsline {todo}{Texten}{11}{section*.16}
-\contentsline {todo}{Texten}{11}{section*.17}
+\contentsline {todo}{Kriterienliste RS485/CAN einf\IeC {\"u}gen, Lit-Referenz auf White Paper von IXXAT}{10}{section*.6}
+\contentsline {todo}{Literatur-Referenzen in Tabelle \ref {table.speichermedium}}{10}{section*.14}
+\contentsline {todo}{Sensorauswahl beschreiben}{11}{section*.16}
+\contentsline {todo}{Schnittstellenauswahl beschreiben}{11}{section*.17}
+\contentsline {todo}{Texten}{11}{section*.18}
 \contentsline {todo}{Texten}{11}{section*.19}
 \contentsline {todo}{Texten}{11}{section*.21}
-\contentsline {todo}{Texten}{11}{section*.22}
 \contentsline {todo}{Texten}{11}{section*.23}
-\contentsline {todo}{Texten}{12}{section*.25}
-\contentsline {todo}{Texten}{12}{section*.26}
+\contentsline {todo}{Texten}{11}{section*.24}
+\contentsline {todo}{Texten}{11}{section*.25}
 \contentsline {todo}{Texten}{12}{section*.27}
 \contentsline {todo}{Texten}{12}{section*.28}
 \contentsline {todo}{Texten}{12}{section*.29}
-\contentsline {todo}{Ereigniserkennung beschreiben}{16}{section*.30}
-\contentsline {todo}{Busverwaltung beschreiben}{16}{section*.31}
-\contentsline {todo}{Figur \ref {fig.seq_startup} aufteilen auf zwei Seiten. (PDF-crop)}{17}{section*.32}
-\contentsline {todo}{Busprotokoll aust\IeC {\"u}fteln. Darstellung siehe HW-Konzept Rioxo}{18}{section*.33}
-\contentsline {todo}{Texten}{18}{section*.34}
-\contentsline {todo}{Texten}{18}{section*.35}
-\contentsline {todo}{Texten}{18}{section*.36}
+\contentsline {todo}{Texten}{12}{section*.30}
+\contentsline {todo}{Texten}{12}{section*.31}
+\contentsline {todo}{FSM-figur anpassen auf neue Stati}{15}{section*.32}
+\contentsline {todo}{Ereigniserkennung beschreiben}{16}{section*.33}
+\contentsline {todo}{Busverwaltung beschreiben}{16}{section*.34}
+\contentsline {todo}{Figur \ref {fig.seq_startup} aufteilen auf zwei Seiten. (PDF-crop)}{17}{section*.35}
+\contentsline {todo}{Busprotokoll aust\IeC {\"u}fteln. Darstellung siehe HW-Konzept Rioxo}{18}{section*.36}
 \contentsline {todo}{Texten}{18}{section*.37}
+\contentsline {todo}{Texten}{18}{section*.38}
+\contentsline {todo}{Texten}{18}{section*.39}
+\contentsline {todo}{Texten}{18}{section*.40}

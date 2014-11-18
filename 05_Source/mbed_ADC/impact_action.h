@@ -8,7 +8,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif	
-
+	
+/* ------------------------------------------------------------------
+ * -- Constants, macros
+ * --------------------------------------------------------------- */
+	
+	
+	/**
+	 * Impact_t
+	 * Struct to hold all the data for one impact
+	 * Start time, duration, peak count, peak maximums and impact maximum
+	 */
+	typedef struct {
+		uint32_t starttime;
+		uint16_t baseline;
+    uint16_t sample_count;
+    uint16_t peak_count;
+		int16_t *samples;
+		Input_t *peaks;
+		int16_t max_amplitude;
+		uint32_t max_amplitude_timestamp;
+	} Impact_t;
 	/* ------------------------------------------------------------------
 	 * -- Function prototypes
 	 * --------------------------------------------------------------- */    
@@ -16,8 +36,18 @@ extern "C" {
 	/**
 	 * Initializes the module action_handler
 	 */
-	void init_action_handler(void);
+	void init_impact_action_handler(void);
+	
+	/**
+	 * Initializes impact struct
+	 */
+	void init_impact(void);
 
+	/**
+	 * Free the impact struct
+	 */
+	void free_impact(void);
+	
 	/**
 	 * Reset the variable for impacts and store the first value.
 	 * 
@@ -27,10 +57,9 @@ extern "C" {
 
 	/**
 	 * End impact
-	 * The current impact has ended. Trim the trailing values below threshold, then
-	 * call function store_impact.
+	 * The current impact has ended. Trim the trailing values below threshold.
 	 */
-	void end_impact(Input_t imp_input);
+	void end_impact();
 	
 	/**
 	 * Adds a sample to the current impact
