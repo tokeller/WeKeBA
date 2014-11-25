@@ -38,6 +38,7 @@ typedef enum {LOGGER, SENSOR} deviceType_t;
 	* 	IMPACT_EXT_SINGLE							Targeted message, sending extended data of one impact to the logger
 	* 	IMPACT_STD_SINGLE							Targeted message, sending standard data of one impact to the logger
 	* 	ACK_SENSOR_SINGLE							Targeted message, ACK to the logger for a received command
+	*		NULL_MESSAGE									no message present
 	*/
 typedef enum {GET_SENSOR_SERIAL_BC		,
 							SET_SENSOR_ID_BC				,
@@ -46,13 +47,14 @@ typedef enum {GET_SENSOR_SERIAL_BC		,
 							OP_MODE_SINGLE					,
 							OP_MODE_BC							,
 							SEND_TOKEN_SINGLE				,
-							ACK_LOGGER_SINGLE				,
+							//ACK_LOGGER_SINGLE				,
 							TIME_SYNC_BC						,
 							SERIAL_SINGLE						,
 							RAW_DATA_SINGLE					,
 							IMPACT_EXT_SINGLE				,
 							IMPACT_STD_SINGLE				,
-							ACK_SENSOR_SINGLE
+							ACK_SENSOR_SINGLE				,
+							NULL_MESSAGE
 							} msgType_t;
 
 /**

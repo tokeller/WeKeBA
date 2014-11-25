@@ -11,22 +11,49 @@ char array1[16] = {67,67,67,67,67,67,67,67,68,68,68,68,68,68,68,68};
 
 char array2[16] = {69,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70};
 
+char array3[16] = {65,65,65,65,65,65,65,65};
+
+char array4[16] = {67,67,67,67,67,67,67,67};
+
+char array5[16] = {69,69,69,69,69,69,69,69};
+
 DigitalOut myled(LED1);
 
 int main() {
+	
 		
 		pcSerial.printf("starting\n");
 
 		osThreadDef(processMessagesLogger, osPriorityNormal, DEFAULT_STACK_SIZE);
-		
 		pcSerial.printf("thread creating\n");
-    osThreadCreate(osThread(processMessagesLogger), NULL);  
+		osThreadCreate(osThread(processMessagesLogger), NULL);  
 		pcSerial.printf("thread created\n");
-		//for(int i = 0; i < 3; i++){
-			sendMessage(16, array, 0xff, GET_SENSOR_SERIAL_BC);
-			sendMessage(16, array1, 0xff, GET_SENSOR_SERIAL_BC);
-			sendMessage(16, array2, 0xff, GET_SENSOR_SERIAL_BC);
-		//}
+		wait(5);
+		/*osThreadDef(processMessagesSensor, osPriorityNormal, DEFAULT_STACK_SIZE);
+		pcSerial.printf("thread creating\n");
+    osThreadCreate(osThread(processMessagesSensor), NULL);  
+		pcSerial.printf("thread created\n");*/
+		/*sendMessage(16, array, 0x01, IMPACT_STD_SINGLE);
+		sendMessage(16, array1, 0x01, IMPACT_STD_SINGLE);
+		sendMessage(16, array2, 0x01, IMPACT_STD_SINGLE);
+	*/
+	/*	sendMessage(8, array3, 0x01, IMPACT_STD_SINGLE);
+		sendMessage(8, array4, 0x01, IMPACT_STD_SINGLE);
+		sendMessage(8, array5, 0x01, IMPACT_STD_SINGLE);
+		printf("done\n");
+	*/
+		while(1){
+			msgData_t inbound = getInboundMessage();
+			//printf("checked queue\n");
+			// Message from outbound queue received
+			if (inbound.msgType != NULL_MESSAGE){
+				printf("inbound: %s\n",inbound.payload+0x00);
+			} else {
+				//printf("nothing received...\n");
+			}
+			//printf("status %d\n",ev.status);
+			
+		}
 		//deviceType_t log = LOGGER;
 		/*deviceType_t log = SENSOR;
 		init(log);
@@ -35,7 +62,7 @@ int main() {
 		msg.msgType = GET_SENSOR_SERIAL_BC;
 		sendMsg(msg);
 		CANMessage mesg;
-    while(1) {
+		while(1) {
 				if(can1.read(mesg)) {
 						pcSerial.printf("Message received: %s\n", mesg.data);
 						myled = !myled;
