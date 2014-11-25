@@ -1,3 +1,4 @@
+// Inputsequez vom Golfball-Einschlag zum Testen der Impact-Detection
 {{1,2046},
 {2,2045},
 {3,2047},
