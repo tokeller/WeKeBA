@@ -33,6 +33,8 @@ unsigned long result[5] = {0,0,0,0,0};
 
 
 CAN can(p9, p10);
+CANMessage msg;	
+
 uint32_t deviceSerial = 0;	// store the devices serialID
 uint32_t deviceMask = 0; 		// Mask for the CAN acceptance filter
 uint32_t deviceID = 0; 			// only one byte for serial ID available!
@@ -67,15 +69,13 @@ static outputRingbuf outputNormalPrio;
 							
 uint32_t queueOutput(CANMessage message){
 	//
-	if (message.id & 0x1C000000){
+	if ((message.id & 0x1C000000) == 0x1C000000){
 		if (outputNormalPrio.count < OUTPUTQUEUE_LEN){
 			outputNormalPrio.queue[outputNormalPrio.write_pos].format = message.format;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].id = message.id;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].len = message.len;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].type = message.type;
-			for (int i = 0; i < message.len;i++){
-				outputNormalPrio.queue[outputNormalPrio.write_pos].data[i] = message.data[i];
-			}
+			memcpy(outputNormalPrio.queue[outputNormalPrio.write_pos].data,message.data,message.len);
 			outputNormalPrio.count++;
 			if (outputNormalPrio.write_pos < OUTPUTQUEUE_LEN){
 				outputNormalPrio.write_pos++;
@@ -91,9 +91,7 @@ uint32_t queueOutput(CANMessage message){
 			outputHighPrio.queue[outputHighPrio.write_pos].id = message.id;
 			outputHighPrio.queue[outputHighPrio.write_pos].len = message.len;
 			outputHighPrio.queue[outputHighPrio.write_pos].type = message.type;
-			for (int i = 0; i < message.len;i++){
-				outputHighPrio.queue[outputHighPrio.write_pos].data[i] = message.data[i];
-			}
+			memcpy(outputHighPrio.queue[outputHighPrio.write_pos].data,message.data,message.len);
 			outputHighPrio.count++;
 			if (outputHighPrio.write_pos < OUTPUTQUEUE_LEN){
 				outputHighPrio.write_pos++;
@@ -108,16 +106,14 @@ uint32_t queueOutput(CANMessage message){
 }
 
 CANMessage dequeueOutput (void){
-	CANMessage msg;
+	CANMessage msgOut;
 	// Inbound message with high prio received
 	if (outputHighPrio.count > 0){
-		msg.format = outputHighPrio.queue[outputHighPrio.read_pos].format;
-		msg.id = outputHighPrio.queue[outputHighPrio.read_pos].id;
-		msg.len = outputHighPrio.queue[outputHighPrio.read_pos].len;
-		msg.type = outputHighPrio.queue[outputHighPrio.read_pos].type;
-		for (int i = 0; i < outputHighPrio.queue[outputHighPrio.read_pos].len;i++){
-			msg.data[i] = outputHighPrio.queue[outputHighPrio.read_pos].data[i];
-		}
+		msgOut.format = outputHighPrio.queue[outputHighPrio.read_pos].format;
+		msgOut.id = outputHighPrio.queue[outputHighPrio.read_pos].id;
+		msgOut.len = outputHighPrio.queue[outputHighPrio.read_pos].len;
+		msgOut.type = outputHighPrio.queue[outputHighPrio.read_pos].type;
+		memcpy(msgOut.data,outputHighPrio.queue[outputHighPrio.read_pos].data,outputHighPrio.queue[outputHighPrio.read_pos].len);
 		outputHighPrio.count--;
 		if (outputHighPrio.read_pos > 0){
 			outputHighPrio.read_pos--;
@@ -126,13 +122,11 @@ CANMessage dequeueOutput (void){
 		}
 	// no more high prio messages pending, check normal prio buffer
 	} else if (outputNormalPrio.count > 0){
-		msg.format = outputNormalPrio.queue[outputNormalPrio.read_pos].format;
-		msg.id = outputNormalPrio.queue[outputNormalPrio.read_pos].id;
-		msg.len = outputNormalPrio.queue[outputNormalPrio.read_pos].len;
-		msg.type = outputNormalPrio.queue[outputNormalPrio.read_pos].type;
-		for (int i = 0; i < outputNormalPrio.queue[outputNormalPrio.read_pos].len;i++){
-			msg.data[i] = outputNormalPrio.queue[outputNormalPrio.read_pos].data[i];
-		}		
+		msgOut.format = outputNormalPrio.queue[outputNormalPrio.read_pos].format;
+		msgOut.id = outputNormalPrio.queue[outputNormalPrio.read_pos].id;
+		msgOut.len = outputNormalPrio.queue[outputNormalPrio.read_pos].len;
+		msgOut.type = outputNormalPrio.queue[outputNormalPrio.read_pos].type;
+		memcpy(msgOut.data,outputNormalPrio.queue[outputNormalPrio.read_pos].data,outputNormalPrio.queue[outputNormalPrio.read_pos].len);
 		outputNormalPrio.count--;
 		if (outputNormalPrio.read_pos > 0){
 			outputNormalPrio.read_pos--;
@@ -141,11 +135,11 @@ CANMessage dequeueOutput (void){
 		}
 	// no inbound messages awaiting processing, return a 0 msg
 	} else {
-		msg.id = 0x0000;		
-		msg.len = 0x00;
+		msgOut.id = 0x0000;		
+		msgOut.len = 0x00;
 	}
 	
-	return msg;
+	return msgOut;
 	
 }
 
@@ -226,10 +220,12 @@ void setCANFilter (uint32_t id)  {
 	*	
 	*/
 void storeReceivedMsg(void){
-	CANMessage msg;
-	//printf("incoming\n");
-	// store message on queue
-	queueOutput(can.read(msg));
+	__disable_irq();
+	if (can.read(msg)){
+		// store message on queue
+		queueOutput(msg);
+	}
+	__enable_irq();
 }
 
 /**	Function to initialize the bus handler on CAN-port 1 as a specific device
@@ -260,18 +256,18 @@ uint32_t init(deviceType_t device){
 message_t readReceivedMsg(void){
 	// get message from queue
 	//printf("read msg\n");
-	CANMessage msg = dequeueOutput();
+	CANMessage msgRead = dequeueOutput();
 	message_t output;
 	// message isn't empty, meaning a message was present
-	if (msg.id != 0x0000 && msg.len != 0x00){
+	if (msgRead.id != 0x0000 && msgRead.len != 0x00){
 		printf("got one\n");
-		char len = msg.len & 0x0f;
+		char len = msgRead.len & 0x0f;
 		if (len >= 8){
 			output.dataLength = 8;
 		} else {
 			output.dataLength = len;
 		}
-		uint32_t identifier = msg.id;
+		uint32_t identifier = msgRead.id;
 		output.msgId = identifier;
 		switch (identifier & 0x1F000000){
 			case GET_SENSOR_SERIAL_HDR_BC & 0x1F000000:
@@ -319,7 +315,7 @@ message_t readReceivedMsg(void){
 			default:
 				break;
 			}
-			memcpy(output.payload,msg.data,msg.len);
+			memcpy(output.payload,msgRead.data,msgRead.len);
 		// prepare a NULL message
 		}	else {
 			output.msgType = NULL_MESSAGE;			
