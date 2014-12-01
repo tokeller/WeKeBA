@@ -13,6 +13,7 @@ unsigned long result[5] = {0,0,0,0,0};
 //Logger Filter			1	1000	0000	0000	0000	0000	0000	0001
 //									18			00					00					01							
 #define CAN_FILTER_LOGGER						0x18000001
+#define CAN_FILTER_LOGGER_TEST						0x1C000001
 
 //Sensor Filter			0	0000	0000	0000	0000	0001	____	____
 //									00			00					01					<SensorID>							
@@ -20,6 +21,8 @@ unsigned long result[5] = {0,0,0,0,0};
 //Sensor BC-Filter	0	0000	0000	0000	0000	0001	1111	1111
 //									00			00					01					ff							
 #define CAN_FILTER_SENSOR_BC				0x180001ff
+
+#define CAN_FILTER_SENSOR_TEST			0x18000102
 
 
 //									0	0000	0000	0000	0000	0000	1111	1111
@@ -30,6 +33,8 @@ unsigned long result[5] = {0,0,0,0,0};
 
 
 CAN can(p9, p10);
+CANMessage msg;	
+
 uint32_t deviceSerial = 0;	// store the devices serialID
 uint32_t deviceMask = 0; 		// Mask for the CAN acceptance filter
 uint32_t deviceID = 0; 			// only one byte for serial ID available!
@@ -44,7 +49,7 @@ deviceType_t deviceType;
 typedef enum {GET_SENSOR_SERIAL_HDR_BC = 0x000001ff, 
 							SET_SENSOR_ID_HDR_BC     = 0x010001ff,
 							TIME_SYNC_HDR_BC 				 = 0x020001ff,
-							ACK_LOGGER_HDR_SGL 			 = 0x03000100,  // receiver address must be device ID
+			//				ACK_LOGGER_HDR_SGL 			 = 0x03000100,  // receiver address must be device ID
 							SEND_TOKEN_HDR_SGL 			 = 0x04000100,  // receiver address must be device ID
 							SENSOR_CONFIG_HDR_SGL    = 0x05000100,  // receiver address must be device ID	
 							SENSOR_CONFIG_HDR_BC     = 0x060001ff,
@@ -64,17 +69,19 @@ static outputRingbuf outputNormalPrio;
 							
 uint32_t queueOutput(CANMessage message){
 	//
-	if (message.id & 0x1C000000){
+	if ((message.id & 0x1C000000) == 0x1C000000){
 		if (outputNormalPrio.count < OUTPUTQUEUE_LEN){
 			outputNormalPrio.queue[outputNormalPrio.write_pos].format = message.format;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].id = message.id;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].len = message.len;
 			outputNormalPrio.queue[outputNormalPrio.write_pos].type = message.type;
-			for (int i = 0; i < message.len;i++){
-				outputNormalPrio.queue[outputNormalPrio.write_pos].data[i] = message.data[i];
-			}
+			memcpy(outputNormalPrio.queue[outputNormalPrio.write_pos].data,message.data,message.len);
 			outputNormalPrio.count++;
-			outputNormalPrio.write_pos++;
+			if (outputNormalPrio.write_pos < OUTPUTQUEUE_LEN){
+				outputNormalPrio.write_pos++;
+			} else {
+				outputNormalPrio.write_pos = 0;
+			}
 		} else {
 			printf("Normal queue overflow\n");
 		}
@@ -84,11 +91,13 @@ uint32_t queueOutput(CANMessage message){
 			outputHighPrio.queue[outputHighPrio.write_pos].id = message.id;
 			outputHighPrio.queue[outputHighPrio.write_pos].len = message.len;
 			outputHighPrio.queue[outputHighPrio.write_pos].type = message.type;
-			for (int i = 0; i < message.len;i++){
-				outputHighPrio.queue[outputHighPrio.write_pos].data[i] = message.data[i];
-			}
+			memcpy(outputHighPrio.queue[outputHighPrio.write_pos].data,message.data,message.len);
 			outputHighPrio.count++;
-			outputHighPrio.write_pos++;
+			if (outputHighPrio.write_pos < OUTPUTQUEUE_LEN){
+				outputHighPrio.write_pos++;
+			} else {
+				outputHighPrio.write_pos = 0;
+			}
 		} else {
 			printf("High queue overflow\n");
 		}
@@ -97,26 +106,40 @@ uint32_t queueOutput(CANMessage message){
 }
 
 CANMessage dequeueOutput (void){
-	CANMessage msg;
+	CANMessage msgOut;
+	// Inbound message with high prio received
 	if (outputHighPrio.count > 0){
-		msg.format = outputHighPrio.queue[outputHighPrio.read_pos].format;
-		msg.id = outputHighPrio.queue[outputHighPrio.read_pos].id;
-		msg.len = outputHighPrio.queue[outputHighPrio.read_pos].len;
-		msg.type = outputHighPrio.queue[outputHighPrio.read_pos].type;
-		for (int i = 0; i < outputHighPrio.queue[outputHighPrio.read_pos].len;i++){
-			msg.data[i] = outputHighPrio.queue[outputHighPrio.write_pos].data[i];
+		msgOut.format = outputHighPrio.queue[outputHighPrio.read_pos].format;
+		msgOut.id = outputHighPrio.queue[outputHighPrio.read_pos].id;
+		msgOut.len = outputHighPrio.queue[outputHighPrio.read_pos].len;
+		msgOut.type = outputHighPrio.queue[outputHighPrio.read_pos].type;
+		memcpy(msgOut.data,outputHighPrio.queue[outputHighPrio.read_pos].data,outputHighPrio.queue[outputHighPrio.read_pos].len);
+		outputHighPrio.count--;
+		if (outputHighPrio.read_pos > 0){
+			outputHighPrio.read_pos--;
+		} else {
+			outputHighPrio.read_pos = OUTPUTQUEUE_LEN;
 		}
+	// no more high prio messages pending, check normal prio buffer
 	} else if (outputNormalPrio.count > 0){
-		msg.format = outputNormalPrio.queue[outputNormalPrio.read_pos].format;
-		msg.id = outputNormalPrio.queue[outputNormalPrio.read_pos].id;
-		msg.len = outputNormalPrio.queue[outputNormalPrio.read_pos].len;
-		msg.type = outputNormalPrio.queue[outputNormalPrio.read_pos].type;
-		for (int i = 0; i < outputNormalPrio.queue[outputNormalPrio.read_pos].len;i++){
-			msg.data[i] = outputNormalPrio.queue[outputNormalPrio.write_pos].data[i];
-		}		
+		msgOut.format = outputNormalPrio.queue[outputNormalPrio.read_pos].format;
+		msgOut.id = outputNormalPrio.queue[outputNormalPrio.read_pos].id;
+		msgOut.len = outputNormalPrio.queue[outputNormalPrio.read_pos].len;
+		msgOut.type = outputNormalPrio.queue[outputNormalPrio.read_pos].type;
+		memcpy(msgOut.data,outputNormalPrio.queue[outputNormalPrio.read_pos].data,outputNormalPrio.queue[outputNormalPrio.read_pos].len);
+		outputNormalPrio.count--;
+		if (outputNormalPrio.read_pos > 0){
+			outputNormalPrio.read_pos--;
+		} else {
+			outputNormalPrio.read_pos = OUTPUTQUEUE_LEN;
+		}
+	// no inbound messages awaiting processing, return a 0 msg
+	} else {
+		msgOut.id = 0x0000;		
+		msgOut.len = 0x00;
 	}
 	
-	return msg;
+	return msgOut;
 	
 }
 
@@ -197,9 +220,12 @@ void setCANFilter (uint32_t id)  {
 	*	
 	*/
 void storeReceivedMsg(void){
-	CANMessage msg;
-	// store message on queue
-	queueOutput(can.read(msg));
+	__disable_irq();
+	if (can.read(msg)){
+		// store message on queue
+		queueOutput(msg);
+	}
+	__enable_irq();
 }
 
 /**	Function to initialize the bus handler on CAN-port 1 as a specific device
@@ -214,11 +240,12 @@ uint32_t init(deviceType_t device){
 	if (device == SENSOR){
 		deviceSerial = getSerialNumber();
 		// setup CAN acceptance filter for broadcasts only (until a deviceID was received)
-		setCANFilter(CAN_FILTER_SENSOR_BC);
+		//setCANFilter(CAN_FILTER_SENSOR_BC);
+		setCANFilter(CAN_FILTER_SENSOR_TEST);
 	} else {
 		deviceSerial = 0x0001;
 		// since the deviceID of the logger is always 0x01, we can set the final filter 
-		setCANFilter(CAN_FILTER_LOGGER);
+		setCANFilter(CAN_FILTER_LOGGER_TEST);
 	}
 	return 0;
 }
@@ -228,64 +255,71 @@ uint32_t init(deviceType_t device){
 	*/	
 message_t readReceivedMsg(void){
 	// get message from queue
-	CANMessage msg = dequeueOutput();
+	//printf("read msg\n");
+	CANMessage msgRead = dequeueOutput();
 	message_t output;
-	char len = msg.len & 0x0f;
-	if (len >= 8){
-		output.dataLength = 8;
-	} else {
-		output.dataLength = len;
-	}
-	uint32_t identifier = msg.id;
-	output.msgId = (identifier>>16) & 0x000000FF;
-	switch (identifier & 0x1F000000){
-		case GET_SENSOR_SERIAL_HDR_BC & 0x1F000000:
-			output.msgType = GET_SENSOR_SERIAL_BC;
-			break;
-		case SET_SENSOR_ID_HDR_BC & 0x1F000000:
-			output.msgType = SET_SENSOR_ID_BC;
-			break;
-		case TIME_SYNC_HDR_BC & 0x1F000000:
-			output.msgType = TIME_SYNC_BC;
-			break;
-		case ACK_LOGGER_HDR_SGL & 0x1F000000:
-			output.msgType = ACK_LOGGER_SINGLE;
-			break;
-		case SEND_TOKEN_HDR_SGL & 0x1F000000:
-			output.msgType = SEND_TOKEN_SINGLE;
-			break;
-		case SENSOR_CONFIG_HDR_SGL  & 0x1F000000:
-			output.msgType = SENSOR_CONFIG_SINGLE;
-			break;
-		case SENSOR_CONFIG_HDR_BC & 0x1F000000:
-			output.msgType = SENSOR_CONFIG_BC;
-			break;
-		case OP_MODE_HDR_SGL & 0x1F000000:
-			output.msgType = OP_MODE_SINGLE;
-			break;
-		case OP_MODE_HDR_BC & 0x1F000000:
-			output.msgType = OP_MODE_BC;
-			break;
-		case SERIAL_HDR_SGL & 0x1F000000:
-			output.msgType = SERIAL_SINGLE;
-			break;
-		case ACK_SENSOR_HDR_SGL & 0x1F000000:
-			output.msgType = ACK_SENSOR_SINGLE;
-			break;		
-		case RAW_DATA_HDR_SGL & 0x1F000000:
-			output.msgType = RAW_DATA_SINGLE;
-			break;
-		case IMPACT_EXT_HDR_SGL & 0x1F000000:
-			output.msgType = IMPACT_EXT_SINGLE;
-			break;
-		case IMPACT_STD_HDR_SGL & 0x1F000000:
-			output.msgType = IMPACT_STD_SINGLE;
-			break;
-		default:
-			break;
-	}
-	
-	memcpy(output.payload,msg.data,msg.len);
+	// message isn't empty, meaning a message was present
+	if (msgRead.id != 0x0000 && msgRead.len != 0x00){
+		printf("got one\n");
+		char len = msgRead.len & 0x0f;
+		if (len >= 8){
+			output.dataLength = 8;
+		} else {
+			output.dataLength = len;
+		}
+		uint32_t identifier = msgRead.id;
+		output.msgId = identifier;
+		switch (identifier & 0x1F000000){
+			case GET_SENSOR_SERIAL_HDR_BC & 0x1F000000:
+				output.msgType = GET_SENSOR_SERIAL_BC;
+				break;
+			case SET_SENSOR_ID_HDR_BC & 0x1F000000:
+				output.msgType = SET_SENSOR_ID_BC;
+				break;
+			case TIME_SYNC_HDR_BC & 0x1F000000:
+				output.msgType = TIME_SYNC_BC;
+				break;
+	/*		case ACK_LOGGER_HDR_SGL & 0x1F000000:
+				output.msgType = ACK_LOGGER_SINGLE;
+				break;*/
+			case SEND_TOKEN_HDR_SGL & 0x1F000000:
+				output.msgType = SEND_TOKEN_SINGLE;
+				break;
+			case SENSOR_CONFIG_HDR_SGL  & 0x1F000000:
+				output.msgType = SENSOR_CONFIG_SINGLE;
+				break;
+			case SENSOR_CONFIG_HDR_BC & 0x1F000000:
+				output.msgType = SENSOR_CONFIG_BC;
+				break;
+			case OP_MODE_HDR_SGL & 0x1F000000:
+				output.msgType = OP_MODE_SINGLE;
+				break;
+			case OP_MODE_HDR_BC & 0x1F000000:
+				output.msgType = OP_MODE_BC;
+				break;
+			case SERIAL_HDR_SGL & 0x1F000000:
+				output.msgType = SERIAL_SINGLE;
+				break;
+			case ACK_SENSOR_HDR_SGL & 0x1F000000:
+				output.msgType = ACK_SENSOR_SINGLE;
+				break;		
+			case RAW_DATA_HDR_SGL & 0x1F000000:
+				output.msgType = RAW_DATA_SINGLE;
+				break;
+			case IMPACT_EXT_HDR_SGL & 0x1F000000:
+				output.msgType = IMPACT_EXT_SINGLE;
+				break;
+			case IMPACT_STD_HDR_SGL & 0x1F000000:
+				output.msgType = IMPACT_STD_SINGLE;
+				break;
+			default:
+				break;
+			}
+			memcpy(output.payload,msgRead.data,msgRead.len);
+		// prepare a NULL message
+		}	else {
+			output.msgType = NULL_MESSAGE;			
+		}
 	return output;
 }
 
@@ -293,11 +327,12 @@ message_t readReceivedMsg(void){
 /**	Function to set the a CAN filter for a device
 	*	@param  device 							  Device type, only SENSOR allowed (LOGGER will be set when calling init() and shouldn't
 	*																have more than one filter)
-	* @param 	deviceID							8 bit deviceID, received from the logger
+	* @param 	devID									8 bit deviceID, received from the logger
 	*	@retval returnCode						returns 0 for sucess, 1 for failure
 	*/
-uint32_t setFilterForID(deviceType_t device, uint32_t deviceID){
+uint32_t setFilterForID(deviceType_t device, uint32_t devID){
 	if (device == SENSOR){
+		deviceID = devID;
 		// mask bits 8 till 31 of the deviceID, add them to the filter mask and 
 		// setup the CAN acceptance filter with the proper deviceID
 		setCANFilter(CAN_FILTER_SENSOR | (deviceID & CAN_FILTER_RECEIVER));
@@ -325,9 +360,9 @@ uint32_t sendMsg(message_t message){
 		case TIME_SYNC_BC:
 			msgIdHeader |= TIME_SYNC_HDR_BC;
 			break;
-		case ACK_LOGGER_SINGLE:
+		/*case ACK_LOGGER_SINGLE:
 			msgIdHeader |= ACK_LOGGER_HDR_SGL;
-			break;
+			break;*/
 		case SEND_TOKEN_SINGLE:
 			msgIdHeader |= SEND_TOKEN_HDR_SGL;
 			break;
@@ -365,7 +400,8 @@ uint32_t sendMsg(message_t message){
 	CANMessage msg(msgIdHeader, message.payload, message.dataLength ,CANData, CANExtended);
 	
 	if(can.write(msg)) {
-			printf("Sent!\n");
+		return 0;
+	}else {
+		return 1;
 	}
-	return 0;
 }
