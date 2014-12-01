@@ -5,6 +5,7 @@
 #include "mbed.h"
 #endif
 
+#include "cmd_action.h"
 #include "cmd.h"
 
 //*****************************************************************************
@@ -215,7 +216,13 @@ void init_menu_fsm(void)
 {
 	menu_fsm_state = S_BASEMENU;
 	menu_fsm_current_sensor = 0;
+	
+	#ifdef DEBUG_MENU
 	printf("init menu fsm done\n");
+	#endif
+	
+	cmd_enter_basemenu();
+	
 }
 
 void menu_fsm(uint32_t input)
@@ -226,70 +233,81 @@ void menu_fsm(uint32_t input)
 		case(S_BASEMENU):
 			switch(input){
 				case(1):
-					// TODO list files
+					// list files
 					printf("list files\n");
 					menu_fsm_state = S_LIST_FILES;
+					cmd_enter_list_files();
 				break;
 				
 				case(2):
-					// TODO format sd card
+					// format sd card
 					printf("sd format\n");
 					menu_fsm_state = S_FORMAT_SD;
+					cmd_enter_format_sd();
 				break;
 				
 				case(3):
-					// TODO mount sd card
+					// mount sd card
 					printf("sd mount\n");
+					cmd_mount_sd();
 				break;
 				
 				case(4):
-					// TODO unmount sd
+					// unmount sd
 					printf("sd unmount\n");
+					cmd_unmount_sd();
 				break;
 				
 				case(5):
-					// TODO logger status
-					printf("logg status\n");
+					// logger status
+					printf("logger status\n");
+					cmd_print_logger_status();
 				break;
 				
 				case(6):
-					// TODO start/stop logging
+					// start/stop logging
 					printf("start/stop logging\n");
 					menu_fsm_state = S_LOGGER_START_STOP;
+					cmd_enter_logger_start();
 				break;
 				
 				case(7):
-					// TODO detail level
+					// detail level XXX wird woanders gesetzt!
 					printf("detail level\n");
 					menu_fsm_state = S_DETAIL_LEVEL;
 				break;
 				
 				case(8):
-					// TODO sensor parameters
+					// sensor parameters
 					printf("sensor parameters\n");
-					menu_fsm_state = S_SENSOR_PARAMETERS;
+					menu_fsm_state = S_SENSOR_PARAMS_GET_SENSOR_NR;
+					cmd_enter_sensor_params_get_nr();
 				break;
 				
 				case(9):
-					// TODO sensor state
+					// sensor state
 					printf("sensor state\n");
 					menu_fsm_state = S_SENSOR_STATE;
+					cmd_enter_sensor_state();
 				break;
 				
 				case(10):
-					// TODO reset timestamp
+					// reset timestamp
 					printf("reset timestamp\n");
 					menu_fsm_state = S_RESET_TIMESTAMP;
+					cmd_enter_reset_timestamp();
 				break;
 				
 				case(11):
-					// TODO internal clock
+					// internal clock
 					printf("internal clock\n");
 					menu_fsm_state = S_INTERNAL_CLOCK;
+					cmd_enter_internal_clock();
 				break;
 				
 				default:
 					// TODO invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -297,11 +315,14 @@ void menu_fsm(uint32_t input)
 		case(S_LIST_FILES):
 			switch(input){
 				case(0):
-					// TODO list files
+                    // exit
+                    menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO invalid input
+					// TODO user wants to delete a file, check file exists, print the name and ask for confirmation
+					menu_fsm_state = S_DELETE_FILE;
 				break;
 			}
 			break;
@@ -311,15 +332,18 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// TODO delete confirmed, execute
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO user wants to delete a file, check file exists, print the name and ask for confirmation
+					// TODO invalid input
+					printf("invalid input. Enter choice (0 to exit):\n");
 				break;
 			}
 			break;
@@ -329,15 +353,18 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// TODO execute format sd
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
 					// TODO invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -347,39 +374,95 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// TODO start/stop the logger
 					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
 					// TODO invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
-			break;
-			
-		case(S_DETAIL_LEVEL):
-			switch(input){
-				case(0):
-					// TODO handle input
-				break;
-				
-				default:
-					// TODO invalid input
-				break;
-			}
-			break;
+            break;
+            
+        case(S_DETAIL_LEVEL):
+            switch(input){
+                case(0):
+                    // TODO handle input
+                    break;
+                    
+                default:
+                    // TODO invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
+                    break;
+            }
+            break;
+            
+        case(S_SENSOR_PARAMS_GET_SENSOR_NR):
+            switch(input){
+                case(0):
+                    // TODO exit
+					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
+                    break;
+                    
+                default:
+                    // TODO user gave a number, check if valid, select that sensor
+                    if(42){ // TODO check if valid
+                    	current_sensor = input;
+                    	menu_fsm_state = S_SENSOR_PARAMETERS;
+						cmd_enter_sensor_params();
+                    }
+                    break;
+            }
+            break;
 			
 		case(S_SENSOR_PARAMETERS):
 			switch(input){
 				case(0):
-					// TODO handle input
+                    // exit
+					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
+				break;
+				
+				case(1):
+					// set sampling rate
+					menu_fsm_state = S_SENSOR_PARAMS_FS;
+					cmd_enter_sensor_params_fs();
+				break;
+				
+				case(2):
+					// set threshold value
+					menu_fsm_state = S_SENSOR_PARAMS_THRES;
+					cmd_enter_sensor_params_thres();
+				break;
+				
+				case(3):
+					// set baseline value
+					menu_fsm_state = S_SENSOR_PARAMS_BASELINE;
+					cmd_enter_sensor_params_baseline();
+				break;
+				
+				case(4):
+					// timeout value
+					menu_fsm_state = S_SENSOR_PARAMS_TIMEOUT;
+					cmd_enter_sensor_params_timeout();
+				break;
+				
+				case(5):
+					// detail level
+					menu_fsm_state = S_SENSOR_PARAMS_DETAIL;
+					cmd_enter_sensor_params_detail();
 				break;
 				
 				default:
 					// TODO invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -387,11 +470,14 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_FS):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 				
 				default:
-					// TODO invalid input
+					// TODO user gave a number, check if valid and set f_s
+					
 				break;
 			}
 			break;
@@ -399,7 +485,9 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_THRES):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 				
 				default:
@@ -411,11 +499,13 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_BASELINE):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 				
 				default:
-					// TODO invalid input
+					// TODO user gave a number, check if valid, set baseline
 				break;
 			}
 			break;
@@ -423,11 +513,13 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_TIMEOUT):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 				
 				default:
-					// TODO invalid input
+					// TODO user gave a number, check if valid, set timeout
 				break;
 			}
 			break;
@@ -435,11 +527,13 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_DETAIL):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 				
 				default:
-					// TODO invalid input
+					// TODO user gave a number, check if valid, set mode
 				break;
 			}
 			break;
@@ -447,7 +541,9 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_STATE):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -459,7 +555,9 @@ void menu_fsm(uint32_t input)
 		case(S_RESET_TIMESTAMP):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -471,7 +569,9 @@ void menu_fsm(uint32_t input)
 		case(S_INTERNAL_CLOCK):
 			switch(input){
 				case(0):
-					// TODO handle input
+					// exit
+					menu_fsm_state = S_BASEMENU;
+                    cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -481,6 +581,8 @@ void menu_fsm(uint32_t input)
 			break;
 		
 		default:
+			menu_fsm_state = S_BASEMENU;
+            cmd_enter_basemenu();
 		break;
 	}
 }
