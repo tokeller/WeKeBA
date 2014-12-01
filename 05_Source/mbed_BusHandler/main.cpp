@@ -2,6 +2,9 @@
 #include "BusHandler.h"
 #include "cmsis_os.h"
 
+#define SENDER
+//#define RECEIVER
+
 CAN can1(p9, p10);
 Serial pcSerial(USBTX, USBRX);
 
