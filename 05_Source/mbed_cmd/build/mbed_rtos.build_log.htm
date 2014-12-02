@@ -1,0 +1,73 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Temp\weltitob\GitHub\WeKeBA\05_Source\mbed_cmd\mbed_rtos.uvproj
+Project File Date:  12/01/2014
+
+<h2>Output:</h2>
+Build target 'NXP LPC4088'
+compiling cmd_action.cpp...
+cmd_action.cpp(20): warning:  #177-D: variable "cmd_config_modified" was declared but never referenced
+  static char cmd_config_modified = 0;
+cmd_action.cpp: 1 warning, 0 errors
+linking...
+Program Size: Code=39960 RO-data=2852 RW-data=832 ZI-data=7904  
+After Build - User command #1: fromelf --bin -o build\mbed_rtos_LPC4088.bin build\mbed_rtos.axf
+".\build\mbed_rtos.axf" - 0 Error(s), 1 Warning(s).
+Load "C:\\Temp\\weltitob\\GitHub\\WeKeBA\\05_Source\\mbed_cmd\\build\\mbed_rtos.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+</pre>
+</body>
+</html>
+ZE];
+cmd.cpp(43): warning:  #550-D: variable "menu_fsm_current_sensor" was set but never used
+  static uint8_t menu_fsm_current_sensor;
+cmd.cpp: 5 warnings, 0 errors
+compiling cmd_action.cpp...
+cmd_action.cpp(20): warning:  #177-D: variable "cmd_config_modified" was declared but never referenced
+  static char cmd_config_modified = 0;
+cmd_action.cpp: 1 warning, 0 errors
+linking...
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol cmd_read_config_file() (referred from cmd.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol cmd_enter_config_file() (referred from cmd.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol cmd_store_config_file() (referred from cmd.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol cmd_sensor_id_is_valid(char) (referred from cmd.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 4 error messages.
+".\build\mbed_rtos.axf" - 4 Error(s), 6 Warning(s).
+Target not created
+fsm_current_sensor" was set but never used
+  static uint8_t menu_fsm_current_sensor;
+cmd.cpp: 11 warnings, 0 errors
+compiling cmd_action.cpp...
+linking...
+Program Size: Code=39232 RO-data=2556 RW-data=764 ZI-data=7904  
+After Build - User command #1: fromelf --bin -o build\mbed_rtos_LPC4088.bin build\mbed_rtos.axf
+".\build\mbed_rtos.axf" - 0 Error(s), 11 Warning(s).
+printf" is undefined
+        printf("entering sensor params\n");
+cmd_action.cpp(82): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params get nr\n");
+cmd_action.cpp(90): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params fs \n");
+cmd_action.cpp(98): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params thres \n");
+cmd_action.cpp(106): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params baseline \n");
+cmd_action.cpp(114): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params timeout \n");
+cmd_action.cpp(122): error:  #20: identifier "printf" is undefined
+        printf("entering sensor params detail level \n");
+cmd_action.cpp(130): error:  #20: identifier "printf" is undefined
+        printf("entering sensor state\n");
+cmd_action.cpp(138): error:  #20: identifier "printf" is undefined
+        printf("entering timestamp reset\n");
+cmd_action.cpp(146): error:  #20: identifier "printf" is undefined
+        printf("entering internal clock\n");
+cmd_action.cpp: 0 warnings, 18 errors
+".\build\mbed_rtos.axf" - 20 Error(s), 5 Warning(s).
+Target not created
