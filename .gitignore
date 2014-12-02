@@ -10,3 +10,5 @@
 *.synctex.gz
 /05_Source/mbed_BusHandler/*.bak
 /05_Source/mbed_BusHandler/*.TsSchleppBox
+
+04_Busprotokoll/~$CAN-Messages.xlsx
