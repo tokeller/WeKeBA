@@ -34,6 +34,8 @@ osThreadDef(get_cmd_event_thread, osPriorityNormal, DEFAULT_STACK_SIZE);
  
 int main() {
 	printf("start\n");
+	set_time(1417860000); // initially set time to 06.12.2014
+	
 	osThreadCreate(osThread(led2_thread), NULL);
 	osThreadCreate(osThread(get_cmd_event_thread),NULL);
 

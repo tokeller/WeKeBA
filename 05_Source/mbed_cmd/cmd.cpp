@@ -92,109 +92,7 @@ Cmd_nix(int argc, char *argv[])
 	return(0);
 }
 
-/*
- * See header file
- */
-uint32_t Cmd_ls(int argc, char *argv[])
-{
-	return 255;
-}
 
-/*
- * See header file
- */
-uint32_t Cmd_rm(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sd_format(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sd_mount(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sd_unmount(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_logger_state(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_logging(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_mode(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sensor_parameters(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sensor_priority(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_sensor_state(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_timestamp(int argc, char *argv[])
-{
-	return 255;
-}
-
-/*
- * See header file
- */
-uint32_t Cmd_time(int argc, char *argv[])
-{
-	return 255;
-}
 
 /*
  * See header file
@@ -232,6 +130,9 @@ void menu_fsm(uint32_t input)
 		
 		case(S_BASEMENU):
 			switch(input){
+				case(0):
+					cmd_enter_basemenu();
+				break;
 				case(1):
 					// list files
 					printf("list files\n");
@@ -250,18 +151,21 @@ void menu_fsm(uint32_t input)
 					// mount sd card
 					printf("sd mount\n");
 					cmd_mount_sd();
+					cmd_enter_basemenu();
 				break;
 				
 				case(4):
 					// unmount sd
 					printf("sd unmount\n");
 					cmd_unmount_sd();
+					cmd_enter_basemenu();
 				break;
 				
 				case(5):
 					// logger status
 					printf("logger status\n");
 					cmd_print_logger_status();
+					cmd_enter_basemenu();
 				break;
 				
 				case(6):
@@ -272,42 +176,43 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				case(7):
-					// detail level XXX wird woanders gesetzt!
-					printf("detail level\n");
-					menu_fsm_state = S_DETAIL_LEVEL;
-				break;
-				
-				case(8):
 					// sensor parameters
 					printf("sensor parameters\n");
 					menu_fsm_state = S_SENSOR_PARAMS_GET_SENSOR_NR;
 					cmd_enter_sensor_params_get_nr();
 				break;
 				
-				case(9):
+				case(8):
 					// sensor state
 					printf("sensor state\n");
 					menu_fsm_state = S_SENSOR_STATE;
 					cmd_enter_sensor_state();
 				break;
 				
-				case(10):
+				case(9):
 					// reset timestamp
 					printf("reset timestamp\n");
 					menu_fsm_state = S_RESET_TIMESTAMP;
 					cmd_enter_reset_timestamp();
 				break;
 				
-				case(11):
+				case(10):
 					// internal clock
 					printf("internal clock\n");
 					menu_fsm_state = S_INTERNAL_CLOCK;
 					cmd_enter_internal_clock();
 				break;
 				
+				case(11):
+					// config file
+					printf("config file\n");
+					menu_fsm_state = S_CONFIG_FILE;
+					cmd_enter_config_file();
+				break;
+				
 				default:
 					// TODO invalid input
-					printf("invalid input. Enter choice (0 to exit): \n");
+					printf("invalid input. Enter choice (0 to print menu): \n");
 				break;
 			}
 			break;
@@ -315,9 +220,9 @@ void menu_fsm(uint32_t input)
 		case(S_LIST_FILES):
 			switch(input){
 				case(0):
-                    // exit
-                    menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					// exit
+					menu_fsm_state = S_BASEMENU;
+					cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -338,7 +243,7 @@ void menu_fsm(uint32_t input)
 				case(1):
 					// TODO delete confirmed, execute
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -353,13 +258,13 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// TODO execute format sd
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -374,13 +279,13 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// TODO start/stop the logger
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				default:
@@ -388,46 +293,37 @@ void menu_fsm(uint32_t input)
 					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
-            break;
+			break;
             
-        case(S_DETAIL_LEVEL):
-            switch(input){
-                case(0):
-                    // TODO handle input
-                    break;
-                    
-                default:
-                    // TODO invalid input
-					printf("invalid input. Enter choice (0 to exit): \n");
-                    break;
-            }
-            break;
-            
-        case(S_SENSOR_PARAMS_GET_SENSOR_NR):
-            switch(input){
-                case(0):
-                    // TODO exit
+		case(S_SENSOR_PARAMS_GET_SENSOR_NR):
+			switch(input){
+				case(0):
+					// TODO exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
-                    break;
+					cmd_enter_basemenu();
+				break;
                     
-                default:
-                    // TODO user gave a number, check if valid, select that sensor
-                    if(42){ // TODO check if valid
-                    	current_sensor = input;
-                    	menu_fsm_state = S_SENSOR_PARAMETERS;
+				default:
+					// TODO user gave a number, check if valid, select that sensor
+					if(cmd_sensor_id_is_valid(input)){ // TODO check if valid
+						menu_fsm_current_sensor = input;
+						menu_fsm_state = S_SENSOR_PARAMETERS;
 						cmd_enter_sensor_params();
-                    }
-                    break;
-            }
-            break;
+					} else {
+						printf("%d is not a valid sensor id.\n", input);
+						menu_fsm_state = S_BASEMENU;
+						cmd_enter_basemenu();
+					}
+				break;
+			}
+			break;
 			
 		case(S_SENSOR_PARAMETERS):
 			switch(input){
 				case(0):
-                    // exit
+					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				case(1):
@@ -543,11 +439,12 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -557,7 +454,12 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
+				break;
+				
+				case(1):
+					menu_fsm_state = S_BASEMENU;
+					cmd_reset_timestamp();
 				break;
 				
 				default:
@@ -571,7 +473,169 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+          cmd_enter_basemenu();
+				break;
+				
+				case(1):
+					// set the date
+					menu_fsm_state = S_INTERNAL_CLOCK_SET_DATE;
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(2):
+					// set the time
+					menu_fsm_state = S_INTERNAL_CLOCK_SET_TIME;
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				default:
+					// TODO invalid input
+				break;
+			}
+			break;
+			
+		case(S_INTERNAL_CLOCK_SET_DATE):
+			switch(input){
+				case(0):
+					// exit
+					menu_fsm_state = S_INTERNAL_CLOCK;
+					cmd_enter_internal_clock();
+				break;
+				
+				case(1):
+					// inc yr
+					cmd_internal_clock_inc_yr();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(2):
+					// dec yr
+					cmd_internal_clock_dec_yr();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(3):
+					// inc mnt
+					cmd_internal_clock_inc_mnt();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(4):
+					// dec mnt
+					cmd_internal_clock_dec_mnt();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(5):
+					// inc day
+					cmd_internal_clock_inc_10day();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(6):
+					// dec day
+					cmd_internal_clock_dec_10day();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(7):
+					// inc day
+					cmd_internal_clock_inc_day();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				case(8):
+					// dec day
+					cmd_internal_clock_dec_day();
+					cmd_enter_internal_clock_set_date();
+				break;
+				
+				default:
+					// TODO check valid input, store, proceed
+				break;
+			}
+			break;
+			
+		case(S_INTERNAL_CLOCK_SET_TIME):
+			switch(input){
+				case(0):
+					// exit
+					menu_fsm_state = S_INTERNAL_CLOCK;
+					cmd_enter_internal_clock();
+				break;
+				
+				case(1):
+					// inc hr
+					cmd_internal_clock_inc_hr();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(2):
+					// dec hr
+					cmd_internal_clock_dec_hr();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(3):
+					// inc min
+					cmd_internal_clock_inc_10min();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(4):
+					// dec min
+					cmd_internal_clock_dec_10min();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(5):
+					// inc min
+					cmd_internal_clock_inc_min();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(6):
+					// dec min
+					cmd_internal_clock_dec_min();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(7):
+					// inc sec
+					cmd_internal_clock_inc_sec();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				case(8):
+					// dec sec
+					cmd_internal_clock_dec_sec();
+					cmd_enter_internal_clock_set_time();
+				break;
+				
+				default:
+					// TODO check valid input, store, proceed
+				break;
+			}
+			break;
+			
+		case(S_CONFIG_FILE):
+			switch(input){
+				case(0):
+					// exit
+					menu_fsm_state = S_BASEMENU;
+          cmd_enter_basemenu();
+				break;
+				
+				case(1):
+					// read config file
+					menu_fsm_state = S_BASEMENU;
+					cmd_read_config_file();
+				break;
+				
+				case(2):
+					// store config file
+					menu_fsm_state = S_BASEMENU;
+					cmd_store_config_file();
 				break;
 				
 				default:
@@ -587,7 +651,4 @@ void menu_fsm(uint32_t input)
 	}
 }
 
-uint32_t bad_command(void)
-{
-	return 0;
-}
+

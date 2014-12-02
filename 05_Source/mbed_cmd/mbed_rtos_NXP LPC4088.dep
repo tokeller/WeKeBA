@@ -131,7 +131,7 @@ I (mbed-rtos/rtx/rt_System.h)(0x542AB78B)
 I (mbed-rtos/rtx/rt_HAL_CM.h)(0x542AB78B)
 I (mbed-rtos/rtx/rt_Task.h)(0x542AB78B)
 I (mbed-rtos/rtx/rt_MemBox.h)(0x542AB78B)
-F (main.cpp)(0x547C88DC)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\main.o --omf_browse .\build\main.crf --depend .\build\main.d)
+F (main.cpp)(0x547DC66E)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\main.o --omf_browse .\build\main.crf --depend .\build\main.d)
 I (mbed\mbed.h)(0x542AB78C)
 I (mbed\platform.h)(0x542AB78C)
 I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/device.h)(0x542AB78C)
@@ -218,7 +218,7 @@ I (mbed\DirHandle.h)(0x542AB78B)
 I (.\EALib\FATFileSystem\ChaN\ff.h)(0x542AB74F)
 I (.\EALib\FATFileSystem\ChaN\integer.h)(0x542AB74F)
 I (.\EALib\FATFileSystem\ChaN\ffconf.h)(0x542AB74F)
-I (cmd.h)(0x547C7EDA)
+I (cmd.h)(0x547DCCDE)
 F (mbed-rtos/rtos/Thread.cpp)(0x542AB78B)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\thread.o --omf_browse .\build\thread.crf --depend .\build\thread.d)
 I (mbed-rtos/rtos/Thread.h)(0x542AB78B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53468094)
@@ -249,7 +249,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53468094)
 I (mbed-rtos/rtx/os_tcb.h)(0x542AB78B)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x53468094)
 I (mbed\mbed_error.h)(0x542AB78C)
-F (.\cmd.cpp)(0x547C8D14)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\cmd.o --omf_browse .\build\cmd.crf --depend .\build\cmd.d)
+F (.\cmd.cpp)(0x547DCDD8)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\cmd.o --omf_browse .\build\cmd.crf --depend .\build\cmd.d)
 I (C:\Keil_v5\ARM\RV31\INC\RTL.h)(0x53467D7C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53468094)
 I (mbed\mbed.h)(0x542AB78C)
@@ -328,4 +328,84 @@ I (mbed\gpio_irq_api.h)(0x542AB78C)
 I (mbed\wait_api.h)(0x542AB78C)
 I (mbed\sleep_api.h)(0x542AB78C)
 I (mbed\rtc_time.h)(0x542AB78C)
-I (cmd.h)(0x547C7EDA)
+I (cmd_action.h)(0x547DCD23)
+I (cmd.h)(0x547DCCDE)
+F (.\cmd_action.cpp)(0x547DCF97)(--cpp -c --cpu Cortex-M4.fp -g -O0 --apcs=interwork -I. -Imbed-rtos -Imbed-rtos/rtx -Imbed-rtos/rtx/TARGET_M4 -Imbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM -Imbed-rtos/rtos -Imbed -Imbed/TARGET_LPC4088 -Imbed/TARGET_LPC4088/TARGET_NXP -Imbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X -Imbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD -I.\EALib -I.\EALib\FATFileSystem -I.\EALib\FATFileSystem\ChaN --gnu -I C:\Keil_v5\ARM\RV31\INC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-I C:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x-DTARGET_LPC4088 -DTARGET_M4 -DTARGET_NXP -DTARGET_LPC408X -DTOOLCHAIN_ARM_STD -DTOOLCHAIN_ARM -D__CORTEX_M4 -DARM_MATH_CM4 -D__FPU_PRESENT="1" -DMBED_BUILD_TIMESTAMP="1409668418.65" -D__MBED__="1" -D__ASSERT_MSG-o .\build\cmd_action.o --omf_browse .\build\cmd_action.crf --depend .\build\cmd_action.d)
+I (mbed\mbed.h)(0x542AB78C)
+I (mbed\platform.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/device.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/objects.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/cmsis.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/LPC407x_8x_177x_8x.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/core_cm4.h)(0x542AB78C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x53468094)
+I (mbed/TARGET_LPC4088/core_cmInstr.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/core_cmFunc.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/core_cm4_simd.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/system_LPC407x_8x_177x_8x.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/cmsis_nvic.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/PortNames.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/PeripheralNames.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/PinNames.h)(0x542AB78C)
+I (mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/gpio_object.h)(0x542AB78C)
+I (mbed\mbed_assert.h)(0x542AB78C)
+I (C:\Keil_v5\ARM\ARMCC\include\cstddef)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\cstdlib)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\cstdio)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\cstring)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x53468094)
+I (C:\Keil_v5\ARM\ARMCC\include\time.h)(0x53468094)
+I (mbed\mbed_error.h)(0x542AB78C)
+I (mbed\mbed_interface.h)(0x542AB78C)
+I (mbed\DigitalIn.h)(0x542AB78B)
+I (mbed\gpio_api.h)(0x542AB78C)
+I (mbed\DigitalOut.h)(0x542AB78B)
+I (mbed\DigitalInOut.h)(0x542AB78B)
+I (mbed\BusIn.h)(0x542AB78B)
+I (mbed\BusOut.h)(0x542AB78B)
+I (mbed\BusInOut.h)(0x542AB78B)
+I (mbed\PortIn.h)(0x542AB78B)
+I (mbed\port_api.h)(0x542AB78C)
+I (mbed\PortInOut.h)(0x542AB78C)
+I (mbed\PortOut.h)(0x542AB78C)
+I (mbed\AnalogIn.h)(0x542AB78B)
+I (mbed\analogin_api.h)(0x542AB78C)
+I (mbed\AnalogOut.h)(0x542AB78B)
+I (mbed\analogout_api.h)(0x542AB78C)
+I (mbed\PwmOut.h)(0x542AB78C)
+I (mbed\pwmout_api.h)(0x542AB78C)
+I (mbed\Serial.h)(0x542AB78C)
+I (mbed\Stream.h)(0x542AB78C)
+I (mbed\FileLike.h)(0x542AB78B)
+I (mbed\FileBase.h)(0x542AB78B)
+I (mbed\FileHandle.h)(0x542AB78B)
+I (mbed\SerialBase.h)(0x542AB78C)
+I (mbed\FunctionPointer.h)(0x542AB78B)
+I (mbed\serial_api.h)(0x542AB78C)
+I (mbed\SPI.h)(0x542AB78C)
+I (mbed\spi_api.h)(0x542AB78C)
+I (mbed\SPISlave.h)(0x542AB78C)
+I (mbed\I2C.h)(0x542AB78B)
+I (mbed\i2c_api.h)(0x542AB78C)
+I (mbed\I2CSlave.h)(0x542AB78B)
+I (mbed\Ethernet.h)(0x542AB78B)
+I (mbed\CAN.h)(0x542AB78B)
+I (mbed\can_api.h)(0x542AB78C)
+I (mbed\can_helper.h)(0x542AB78C)
+I (mbed\RawSerial.h)(0x542AB78C)
+I (mbed\Timer.h)(0x542AB78C)
+I (mbed\Ticker.h)(0x542AB78C)
+I (mbed\TimerEvent.h)(0x542AB78C)
+I (mbed\us_ticker_api.h)(0x542AB78C)
+I (mbed\Timeout.h)(0x542AB78C)
+I (mbed\LocalFileSystem.h)(0x542AB78B)
+I (mbed\InterruptIn.h)(0x542AB78B)
+I (mbed\gpio_irq_api.h)(0x542AB78C)
+I (mbed\wait_api.h)(0x542AB78C)
+I (mbed\sleep_api.h)(0x542AB78C)
+I (mbed\rtc_time.h)(0x542AB78C)
+I (cmd_action.h)(0x547DCD23)
