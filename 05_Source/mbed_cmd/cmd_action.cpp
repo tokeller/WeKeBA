@@ -3,8 +3,12 @@
 #endif
 
 #include "Serial.h"
+#include "main.h"
+#include "sensor_config.h"
 #include "cmd_action.h"
 
+extern SensorConfig sensors[MAX_SENSORS];
+extern uint8_t menu_fsm_current_sensor;
 
 static char detail_str[6][11] = 
 {
@@ -115,11 +119,16 @@ void cmd_enter_logger_start(void)
 void cmd_enter_sensor_params(void)
 {
 	printf("entering sensor params\n");
-	printf(" 1) set sampling rate (current: %5.0d Hz)\n", 10999); // TODO retrieve current value
-	printf(" 2) set threshold value (current: %d5.0)\n", 200); // TODO
-	printf(" 3) set baseline value (current: %d5.0)\n", 2999); // TODO
-	printf(" 4) set timeout (current: %5.0d)\n", 444); // TODO
-	printf(" 5) set detail level (current: %s)\n", detail_str[5-1]); // TODO
+	printf(" 1) set sampling rate (current: %3.0d00 Hz)\n", 
+		sensors[uint8_t menu_fsm_current_sensor].fs); // TODO retrieve current value
+	printf(" 2) set threshold value (current: %d5.0)\n", 
+		sensors[uint8_t menu_fsm_current_sensor].threshold); // TODO
+	printf(" 3) set baseline value (current: %d5.0)\n", 
+		sensors[uint8_t menu_fsm_current_sensor].baseline); // TODO
+	printf(" 4) set timeout (current: %5.0d)\n", 
+		sensors[uint8_t menu_fsm_current_sensor].timeout); // TODO
+	printf(" 5) set detail level (current: %s)\n", 
+		detail_str[sensors[uint8_t menu_fsm_current_sensor].detail_level]); // TODO
 	printf(" 0) exit\n");
 }
 
@@ -164,6 +173,16 @@ void cmd_enter_sensor_params_thres(void)
 /*
  * See header file
  */
+void cmd_set_sampling_freq(char sensor_id, uint32_t fs)
+{
+	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
+	
+	
+}
+
+/*
+ * See header file
+ */
 void cmd_enter_sensor_params_baseline(void)
 {
 	printf("entering sensor params baseline \n");
@@ -201,6 +220,10 @@ void cmd_enter_sensor_params_detail(void)
 void cmd_enter_sensor_state(void)
 {
 	printf("entering sensor state\n");
+	// TODO list the sensors
+	printf("SID  serial      fs threshold baseline timeout detail\n");
+	printf("%2d) %08x %5d      %4d     %4d    %4d %s\n", 
+		id, serial, fs, threshold, baseline, timeout, detail_level);
 	printf(" 0) exit\n");
 }
 

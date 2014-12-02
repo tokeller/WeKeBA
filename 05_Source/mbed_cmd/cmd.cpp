@@ -40,7 +40,7 @@ static char g_cTmpBuf[PATH_BUF_SIZE];
 //*****************************************************************************
 static char g_cCmdBuf[CMD_BUF_SIZE];
 static MenuState menu_fsm_state;
-static uint8_t menu_fsm_current_sensor;
+uint8_t menu_fsm_current_sensor;
 
 extern Serial pcSerial;
 

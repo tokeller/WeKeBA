@@ -8,6 +8,12 @@ DigitalOut led2(LED2);
 
 Serial pcSerial(USBTX, USBRX);
 
+// storage for the sensor configs and defaults
+SensorConfig sensors[MAX_SENSORS];
+SensorConfig sensor_defaults;
+
+
+// just some thread
 void led2_thread(void const *args) {
     while (true) {
         led2 = !led2;
@@ -15,6 +21,7 @@ void led2_thread(void const *args) {
     }
 }
 
+// command line input reader
 void get_cmd_event_thread(void const *args)
 {
 	uint32_t event;

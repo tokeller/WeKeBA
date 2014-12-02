@@ -5,6 +5,10 @@
 
 
 /* ------------------------------------------------------------------
+ * -- Constants
+ * --------------------------------------------------------------- */
+
+/* ------------------------------------------------------------------
  * -- Type definitions
  * --------------------------------------------------------------- */
 	typedef enum state{
@@ -28,6 +32,16 @@
 		S_INTERNAL_CLOCK_SET_TIME,
 		S_CONFIG_FILE
 	} MenuState;
+	
+	typedef enum sensor_config{
+		serialID // received from sensor
+		sensor_ID // ID number for this sensor in logger
+		
+		// operating parameters
+		fs
+		
+		
+	} SensorConfig;
 
 
 /* ------------------------------------------------------------------
