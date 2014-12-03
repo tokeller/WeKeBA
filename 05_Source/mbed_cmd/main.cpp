@@ -2,6 +2,8 @@
 #include "cmsis_os.h"
 #include "MCIFileSystem.h"
 #include "cmd.h"
+
+MCIFileSystem mcifs("mci");
  
 DigitalOut led1(LED1);
 DigitalOut led2(LED2);
