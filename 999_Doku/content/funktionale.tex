@@ -45,7 +45,7 @@ Der Datenlogger bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, PC)
 
 \subsection{F170 Steuerung Betriebsmodus}
 Der Betriebsmodus der Sensoren wird vom Datenlogger aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle Sensoren oder nur bestimmte aktiv sein sollen. \\
-Folgende Betriebsmodi sind verfügbar:
+Folgende Betreibsmodi sind verfügbar:
 \begin{itemize}
 \item Normaler Modus: Alle Sensoren übermitteln die verarbeiteten Ereignisdaten. Zeitpunkt, Intensität, Dauer und Anzahl Ausschläge jedes Ereignis werden gespeichert.
 \item Detaillierter Modus: Alle Sensoren übermitteln die verarbeiteten Ereignisdaten sowie die gesamten Messdaten für die Dauer des Ereignis.
@@ -66,10 +66,6 @@ Die Daten werden vom Datenlogger auf einer Speicherkarte in Dateien abgelegt. Na
 
 \subsection{F410 Ereignisdetektion}
 Die Sensoreinheit liest den Sensor mit einer definierten Abtastrate (Samplingrate) aus und wertet die Messdaten aus. Der Prozessor erkennt Ereignisse anhand definierter Kriterien. Zu jedem Ereignis werden folgende Daten gespeichert: Zeitpunkt (Timestamp), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem Ereignis gespeichert werden.
-
-\subsection{F420 Datenreduktion}
-Die Sensoreinheit verarbeitet die gewonnenen Messdaten, um die Datenmenge zu reduzieren. 
-Es stehen mehrere Detailstufen zur Verfügung, die ein grosses Spektrum an Datenmenge abdecken.
 
 
 \subsection{F430 Datenübertragung}

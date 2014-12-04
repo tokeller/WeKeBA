@@ -1,0 +1,70 @@
+% !TeX spellcheck = de_CH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  _____   ____  _____                                          %
+% |_   _| /  __||  __ \    Institute of Computitional Physics   %
+%   | |  |  /   | |__) |   Zuercher Hochschule Winterthur       %
+%   | |  | (    |  ___/    (University of Applied Sciences)     %
+%  _| |_ |  \__ | |        8401 Winterthur, Switzerland         %
+% |_____| \____||_|                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Project     : BA Welti Keller
+% Title       : 
+% File        : doc.tex Rev. 00
+% Date        : 15.09.2014
+% Author      : Tobias Welti
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{header}
+
+\begin{document}
+\title{Bachelorarbeit (IT)}
+\author{Tobias Keller, Tobias Welti}
+
+\include{content/titlepage}
+\includepdf{images/Erklaerung_BA.pdf}
+\include{content/vorwort}
+
+\setcounter{page}{1}
+\include{content/kontakt}
+
+
+%Inhaltsverzeichnis
+\tableofcontents
+\listoftodos
+\newpage
+
+
+%Kapitel
+%\setcounter{page}{1}
+%\pagenumbering{arabic}
+
+\include{content/einleitung}
+\include{content/aufgabenstellung}
+\include{content/funktionale}
+\include{content/nichtfunktionale}
+\include{content/grundlagen}
+\include{content/hardware}
+\include{content/software}
+\include{content/vorgehen}
+\include{content/resultate}
+\include{content/diskussion}
+
+
+\chapter{Verzeichnisse}\label{chap.verzeichnisse}
+ \include{content/literatur}
+ \listoffigures
+ \addcontentsline{toc}{section}{(Abbildungsverzeichnis)}
+ \listoftables
+ \addcontentsline{toc}{section}{(Tabellenverzeichnis)}
+% \addcontentsline{toc}{chapter}{(Symbolverzeichnis)}
+ \printglossaries
+\addcontentsline{toc}{section}{(Glossar)}
+ \lstlistoflistings
+ \addcontentsline{toc}{section}{(Listingverzeichnis)}
+ 
+\include{content/anhang}
+
+
+\end{document}

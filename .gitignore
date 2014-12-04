@@ -12,3 +12,15 @@
 /05_Source/mbed_BusHandler/*.TsSchleppBox
 
 04_Busprotokoll/~$CAN-Messages.xlsx
+
+*.glo
+
+*.gls
+
+*.glsdefs
+
+*.ilg
+
+*.ind
+
+*.ist

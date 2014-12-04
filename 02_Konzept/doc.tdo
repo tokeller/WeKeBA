@@ -1,25 +1,36 @@
-\contentsline {todo}{Tabelle verschiedener uCs zum Vergleich}{8}{section*.3}
-\contentsline {todo}{Kriterienliste RS485/CAN einf\IeC {\"u}gen, Lit-Referenz auf White Paper von IXXAT}{10}{section*.6}
-\contentsline {todo}{Literatur-Referenzen in Tabelle \ref {table.speichermedium}}{10}{section*.14}
-\contentsline {todo}{Sensorauswahl beschreiben}{11}{section*.16}
-\contentsline {todo}{Schnittstellenauswahl beschreiben}{11}{section*.17}
-\contentsline {todo}{Texten}{11}{section*.18}
-\contentsline {todo}{Texten}{11}{section*.19}
-\contentsline {todo}{Texten}{11}{section*.21}
-\contentsline {todo}{Texten}{11}{section*.23}
-\contentsline {todo}{Texten}{11}{section*.24}
-\contentsline {todo}{Texten}{11}{section*.25}
+\contentsline {todo}{glossareintrag wieder entfernen}{5}{section*.3}
+\contentsline {todo}{Abk\IeC {\"u}rzungsverzzzzeichnisbeispieleintrag wieder entfernen}{5}{section*.4}
+\contentsline {todo}{remove following line}{6}{section*.5}
+\contentsline {todo}{Tabelle verschiedener uCs zum Vergleich}{9}{section*.6}
+\contentsline {todo}{Kriterienliste RS485/CAN einf\IeC {\"u}gen, Lit-Referenz auf White Paper von IXXAT}{11}{section*.9}
+\contentsline {todo}{Literatur-Referenzen in Tabelle \ref {table.speichermedium}}{11}{section*.17}
+\contentsline {todo}{Sensorauswahl beschreiben}{12}{section*.19}
+\contentsline {todo}{Schnittstellenauswahl beschreiben}{12}{section*.20}
+\contentsline {todo}{Texten}{12}{section*.21}
+\contentsline {todo}{Texten}{12}{section*.22}
+\contentsline {todo}{Texten}{12}{section*.24}
+\contentsline {todo}{Texten}{12}{section*.26}
 \contentsline {todo}{Texten}{12}{section*.27}
 \contentsline {todo}{Texten}{12}{section*.28}
-\contentsline {todo}{Texten}{12}{section*.29}
-\contentsline {todo}{Texten}{12}{section*.30}
-\contentsline {todo}{Texten}{12}{section*.31}
-\contentsline {todo}{FSM-figur anpassen auf neue Stati}{15}{section*.32}
-\contentsline {todo}{Ereigniserkennung beschreiben}{16}{section*.33}
-\contentsline {todo}{Busverwaltung beschreiben}{16}{section*.34}
-\contentsline {todo}{Figur \ref {fig.seq_startup} aufteilen auf zwei Seiten. (PDF-crop)}{17}{section*.35}
-\contentsline {todo}{Busprotokoll aust\IeC {\"u}fteln. Darstellung siehe HW-Konzept Rioxo}{18}{section*.36}
-\contentsline {todo}{Texten}{18}{section*.37}
-\contentsline {todo}{Texten}{18}{section*.38}
-\contentsline {todo}{Texten}{18}{section*.39}
-\contentsline {todo}{Texten}{18}{section*.40}
+\contentsline {todo}{Texten}{13}{section*.30}
+\contentsline {todo}{Texten}{13}{section*.31}
+\contentsline {todo}{Texten}{13}{section*.32}
+\contentsline {todo}{Texten}{13}{section*.33}
+\contentsline {todo}{Texten}{13}{section*.34}
+\contentsline {todo}{Glossar: Impact, Bus, Mikroprozessor, A/D-Wandler, Pin, Sensor, Threshold/Grenzwert, }{15}{section*.35}
+\contentsline {todo}{FSM-figur anpassen auf neue Stati}{16}{section*.36}
+\contentsline {todo}{Ereigniserkennung beschreiben, welche Parameter k\IeC {\"o}nnen konfiguriert werden}{17}{section*.37}
+\contentsline {todo}{Zusammenh\IeC {\"a}nge A/D-Wandlung und Ereigniserkennung und \IeC {\"U}bertragung beschreiben}{17}{section*.38}
+\contentsline {todo}{Verschiedene Betriebsmodi mit Grafiken beschreiben}{17}{section*.39}
+\contentsline {todo}{Berechnungen, in welchem Modus wie lange gemessen werden kann, und wie lange ein Sensor mit dem vorhandenen Speicher die Resultate zwischenspeichern kann. Allenfalls ein System erw\IeC {\"a}hnen, das automatisch zwischen verschiedenen Modi hin- und herschalten kann. (Ist allerdings heikel). Wie viele Sensoren k\IeC {\"o}nnen in welchem Modus gleichzeitig am System betrieben werden, bei welcher Ereignisrate ist Schluss mit Busbandbreite.}{17}{section*.40}
+\contentsline {todo}{Timestamp beschreiben, Rechnung \IeC {\"u}ber die Dauer der eindeutigen Zuweisung.}{17}{section*.41}
+\contentsline {todo}{Busverwaltung beschreiben}{17}{section*.42}
+\contentsline {todo}{Figur \ref {fig.seq_startup} aufteilen auf zwei Seiten. (PDF-crop)}{18}{section*.43}
+\contentsline {todo}{Busprotokoll aust\IeC {\"u}fteln. Darstellung siehe HW-Konzept Rioxo, genaue Beschreibung der Nachrichtentypen. Timestamp der einzelnen Peaks bezieht sich auf Offset vom Beginn des Impacts.}{19}{section*.44}
+\contentsline {todo}{Kommunikationsdiagramm Bushandler}{19}{section*.45}
+\contentsline {todo}{Interrupt-System des Bushandlers auff\IeC {\"u}hren}{19}{section*.46}
+\contentsline {todo}{Texten}{19}{section*.47}
+\contentsline {todo}{Frage: wird f\IeC {\"u}r jeden Sensor ein eigenes File gef\IeC {\"u}hrt? Kann man alle Files offen lassen oder ist das keine gute Idee? Was ist besser, jedes mal das File-Ende zu suchen um neues anzuh\IeC {\"a}ngen?}{19}{section*.48}
+\contentsline {todo}{Dokumentation \IeC {\"u}ber die Kommandos, wird sp\IeC {\"a}ter f\IeC {\"u}r die Bedienungsanleitung gebraucht}{19}{section*.49}
+\contentsline {todo}{Texten}{19}{section*.50}
+\contentsline {todo}{Hier eine Art Bedienungsanleitung zur Konfiguration geben. Welches Kommando hat was zur Folge? (Wird Datenerfassung neu gestartet, werden allenfalls andere Sensoren deaktiviert etc.}{19}{section*.51}
