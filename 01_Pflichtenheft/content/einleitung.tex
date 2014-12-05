@@ -62,12 +62,3 @@ Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, 
 \item Eine Testinstallation in einem Bach ist nicht möglich. Allenfalls kann in der Versuchsanstalt für Wasserbau, Hydrologie und Glaziologie der ETH Zürich ein kleiner Testlauf stattfinden.
 \item
 \end{itemize}
-
-\section{Terminologie}\label{sec.terminologie}
-\begin{description}
-\item{Datenlogger}: Ein Gerät zur Speicherung von Daten. Der Datenlogger empfängt die Daten, die von den Sensoreinheiten über den Datenbus gesendet werden und speichert sie ab.
-\item{Sensor}: Ein elektronisches Bauteil zur Messung einer physikalischen Grösse wie Temperatur, Feuchtigkeit, Helligkeit, Beschleunigung.
-\item{Ereignis}: Definierte Abfolge von Messdaten eines Sensors. Wird zum Beispiel bei der Beschleunigungsmessung ein gewisser Schwellenwert (Threshold) überschritten, markiert dies den Anfang eines Ereignisses. Liegt die Messgrösse während einer definierten Zeit unterhalb des Thresholds, gilt das Ereignis als beendet.
-\item{Sensoreinheit}: Ein kombiniertes elektronisches Gerät aus einem Sensor und einem Mikroprozessor. Der Mikroprozessor verarbeitet die Messdaten und überträgt sie über das Bussystem an einen Datenlogger.
-\item{Timestamp}:  Eine Zeitmarke die verwendet wird um Messdaten zeitlich zuzuordnen. In unserem Fall gibt der Timestamp an, wie viel Zeit vergangen ist seid der Initialisierung des Systems. Die Auflösung beträgt 50 $\micro s$.
-\end{description}

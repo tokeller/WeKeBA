@@ -9,7 +9,7 @@
 % |_____| \____||_|                                             %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% Project     : Pflichtenheft BA Welti Keller
+% Project     : BA Welti Keller
 % Title       : 
 % File        : funktionale.tex Rev. 00
 % Date        : 15.09.2014
@@ -23,28 +23,28 @@
 
 
 \subsection{F110 Busmaster}
-Der Datenlogger übernimmt die Kontrolle des Bus. Bei Inbetriebnahme des Systems tastet der Datenlogger den Bus nach Sensoreinheiten ab und erteilt jeder Sensoreinheit eine eindeutige Identifikationsnummer (ID). Die ID des Datenloggers soll so gewählt werden, dass er jederzeit Priorität hat, auf den Bus zu schreiben.
+Der \gls{logger} übernimmt die Kontrolle des Bus. Bei Inbetriebnahme des Systems tastet der \gls{logger} den Bus nach Sensoreinheiten ab und erteilt jeder Sensoreinheit eine eindeutige Identifikationsnummer (ID). Die ID des \gls{logger}s soll so gewählt werden, dass er jederzeit Priorität hat, auf den Bus zu schreiben.
 
 
 \subsection{F120 Sensorerkennung}
-Die angeschlossenen Sensoren werden vom Datenlogger erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der Sensor identifiziert.\\
+Die angeschlossenen Sensoren werden vom \gls{logger} erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der Sensor identifiziert.\\
 Können wir die Seriennummer des Boards auslesen? Damit die ID immer gleich ist... über UART-Kommandozeile muss die ID jedes Sensors gesetzt werden können.
 
 
 \subsection{F130 Uhrzeit}
-Der Datenlogger verfügt über eine interne Uhr, um die Ereignisse in den Dateien mit einem lesbaren Zeitstempel zu versehen.
+Der \gls{logger} verfügt über eine interne Uhr, um die Ereignisse in den Dateien mit einem lesbaren Zeitstempel zu versehen.
 
 
 \subsection{F140 Timestamp verteilen}
-Der Datenlogger sendet ein Signal an alle Sensoreinheiten, dass der Zeitstempel (Timestamp) neu gestellt werden soll. Ab dann beziehen sich die Timestamps auf die Dauer seit dem jetzigen Zeitpunkt.
+Der \gls{logger} sendet ein Signal an alle Sensoreinheiten, dass der Zeitstempel (Timestamp) neu gestellt werden soll. Ab dann beziehen sich die Timestamps auf die Dauer seit dem jetzigen Zeitpunkt.
 
 
 \subsection{F160 Schnittstelle zum Steuerrechner}
-Der Datenlogger bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.
+Der \gls{logger} bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.
 
 
 \subsection{F170 Steuerung Betriebsmodus}
-Der Betriebsmodus der Sensoren wird vom Datenlogger aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle Sensoren oder nur bestimmte aktiv sein sollen. \\
+Der Betriebsmodus der Sensoren wird vom \gls{logger} aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle Sensoren oder nur bestimmte aktiv sein sollen. \\
 Folgende Betreibsmodi sind verfügbar:
 \begin{itemize}
 \item Normaler Modus: Alle Sensoren übermitteln die verarbeiteten Ereignisdaten. Zeitpunkt, Intensität, Dauer und Anzahl Ausschläge jedes Ereignis werden gespeichert.
@@ -54,11 +54,11 @@ Folgende Betreibsmodi sind verfügbar:
 
 
 \subsection{F180 Daten sammeln}
-Der Datenlogger fragt in regelmässigen Abständen bei den Sensoreinheiten an, ob Ereignisdaten zur Übertragung bereit sind. Diese übermitteln die vorliegenden Ereignisdaten.
+Der \gls{logger} fragt in regelmässigen Abständen bei den Sensoreinheiten an, ob Ereignisdaten zur Übertragung bereit sind. Diese übermitteln die vorliegenden Ereignisdaten.
 
 
 \subsection{F190 Daten speichern}
-Die Daten werden vom Datenlogger auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.
+Die Daten werden vom \gls{logger} auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.
 
 
 \section{Sensoreinheit (F4\ldots)}
@@ -69,10 +69,10 @@ Die Sensoreinheit liest den Sensor mit einer definierten Abtastrate (Samplingrat
 
 
 \subsection{F430 Datenübertragung}
-Die Sensoreinheit übermittelt die Ereignisdaten über das Bussystem an den Datenlogger.
+Die Sensoreinheit übermittelt die Ereignisdaten über das \gls{bussys} an den \gls{logger}.
 
 
 \subsection{F450 Rohdatenaufzeichnung}
-In einem Sondermodus werden alle Messpunkte gespeichert und über das Bussystem an den Datenlogger übertragen. In diesem Betriebsmodus kann nur eine Sensoreinheit aktiv sein, die anderen werden auf Standby geschaltet.
+In einem Sondermodus werden alle Messpunkte gespeichert und über das \gls{bussys} an den \gls{logger} übertragen. In diesem Betriebsmodus kann nur eine Sensoreinheit aktiv sein, die anderen werden auf Standby geschaltet.
 
 

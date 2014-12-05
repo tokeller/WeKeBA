@@ -1,6 +1,6 @@
-Glossar übernimmt Änderungen nicht?
 rm doc.glsdefs
-latex
+pdflatex doc.tex
+pdflatex doc.tex
 makeindex -s doc.ist -o doc.gls doc.glo
 makeindex -s doc.ist -o doc.acr doc.acn
-latex
+pdflatex doc.tex
