@@ -16,9 +16,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newacronym{wsl}{WSL}{Eidg. Forschungsanstalt für Wald, Schnee und Landschaft}
 
-\newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Eintrag im Glossar, der nur für den Zweck der Demonstration der Anwendung des Glossars angelegt wurde.}}
 
 \chapter{Einleitung}\label{chap.einleitung}
 
@@ -26,22 +24,8 @@
 \todo{was gibt es bis jetzt? wie wirds gemacht? was gäbe es für alternativen?}
 \todo{LITERATURVERWEISE!}
 \section{Ausgangslage}\label{sec.ausgangslage}
-Die \gls{wsl} betreibt Messstationen zur Registrierung von Geschiebe-Bewegungen im Fluss mittels \glspl{geophon}n, die unter Stahlplatten montiert sind. Diese Platten sind in einer Betonkonstruktion eingelassen, um sie im Flussbett zu fixieren. Die \glspl{geophon} sind über Kabel mit einem Auswertungs-Rechner (Embedded PC) verbunden, der die Signale auswertet. Die baulichen Massnahmen für die Installation der Sensoren, der Auswertungsstation sowie der Stromversorgung sind sehr teuer. 
+Die \gls{wsl} betreibt Messstationen zur Registrierung von Geschiebe-Bewegungen im Fluss mittels \glspl{geophon}n, die unter Stahlplatten montiert sind. Diese Platten sind in einer Betonkonstruktion eingelassen, um sie im Flussbett zu fixieren. Die \glspl{geophon} sind über Kabel mit einem Auswertungs-Rechner (Embedded PC) verbunden, der die Signale auswertet. Die baulichen Massnahmen für die Installation der \glspl{geophon}, der Auswertungsstation sowie der Stromversorgung sind sehr teuer. 
 
-
-\newglossaryentry{logger}{name={Datenlogger},plural={Datenlogger},description={Ein Gerät zur Sammlung und Speicherung von Messdaten von mehreren Sensoreinheiten.}, see={sensoreinh}}
-
-\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor, Sensor, Datenlogger}}
-
-\newglossaryentry{sensor}{name={Sensor},plural={Sensoren},description{Ein Messgerät für physikalische Grössen wie Temperatur, Feuchtigkeit, Luftdruck oder Beschleunigung.}}
-
-\newglossaryentry{bussys}{name={Bussystem},plural={Bussysteme},description{Ein elektrisches System für die Kommunikation zwischen mehreren Geräten. Ein Bussystem besteht aus Datenleitungen, über welche Signale gesendet werden, und aus Schnittstellen, an denen die Busteilnehmer angeschlossen werden. Die Besonderheit liegt darin, dass über ein Leitungssystem mehr als zwei Geräte miteinander kommunizieren können. Mittels eines Adressierungsschemas kann der/die Empfänger ausgewählt werden.}}
-
-\newglossaryentry{ereignis}{name={Ereignis},plural={Ereignisse},description{Eine Abfolge von Messwerten, die einer vordefinierten Form entspricht. Es kann zum Beispiel ein Schwellenwert (engl. threshold) definiert sein. Das Überschreiten dieses Wertes kann dann den Beginn, das Unterschreiten des Schwellenwertes das Ende eines Ereignisses markieren.}}
-
-\newglossaryentry{threshold}{name={Threshold},plural={Thresholds},description{Englisch für Schwellenwert.}}
-
-\newglossaryentry{timestamp}{name={Timestamp},plural={Timestamps},description{Englisch für Zeitmarke. Mittels eines Timestamps kann ein Ereignis oder ein Messwert einem genauen Zeitpunkt zugeordnet werden. Der Timestamp wird dafür zu einem bestimmten Zeitpunkt auf null gesetzt (Reset) und ab dann in allen Messgeräten in vordefiniertem Takt erhöht. Der Timestamp gibt also an, wie viel Zeit seit dem Reset vergangen ist. Durch die Wahl des Takts wird die zeitliche Auflösung definiert.}}
 
 \section{Überblick}\label{sec.ueberblick}
 Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. 
@@ -50,20 +34,18 @@ Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden.
 \item \gls{sensoreinh}
 \item \gls{bussys}
 \end{enumerate}
-Der \gls{logger} hat die Aufgabe, von mehreren \glspl{sensoreinh} registrierte Ereignisse zu empfangen und zu speichern. Die \glspl{sensoreinh} messen kontinuierlich die Beschleunigung, werten die Signale aus und erkennen Ereignisse, die einer vordefinierten Signalform entsprechen. Alle \glspl{sensoreinh} sind über ein \gls{bussys} mit dem \gls{logger} verbunden, um miteinander kommunizieren zu können. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Die Stromversorgung der Anlage wird am \gls{logger} angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der Sensoreinheiten geführt.
+Der \gls{logger} hat die Aufgabe, von mehreren \glspl{sensoreinh} registrierte \glspl{ereignis} zu empfangen und zu speichern. Die \glspl{sensoreinh} messen kontinuierlich die Beschleunigung, werten die Signale aus und erkennen \glspl{ereignis}, die einer vordefinierten Signalform entsprechen. Alle \glspl{sensoreinh} sind über ein \gls{bussys} mit dem \gls{logger} verbunden, um miteinander kommunizieren zu können. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Die Stromversorgung der Anlage wird am \gls{logger} angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der \glspl{sensoreinh} geführt.
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/visio/situationskroki.pdf}
+		\includegraphics[width=0.8\textwidth]{images/visio/Situationskroki.pdf}
 	\caption{Eine Messstation mit einem \gls{logger}, der mehrere \glspl{sensoreinh} im Bach steuert.}
 	\label{fig.situationskroki}
 \end{figure}
 
-
-
 Diese drei Einheiten werden im Folgenden genauer definiert.
 
-\section{Datenlogger}
+\section{\gls{logger}}
 Der \gls{logger} hat verschiedene Aufgaben zu erfüllen:
 \begin{itemize}
 \item Sammeln und speichern der Messdaten der \glspl{sensoreinh}.
@@ -74,11 +56,11 @@ Der \gls{logger} hat verschiedene Aufgaben zu erfüllen:
 
 
 \subsection{Messdaten sammeln}
-Für jede angeschlossene \gls{sensoreinh} führt der \gls{logger} eine Datensammlung, in der die registrierten Ereignisse zeitlich sortiert abgespeichert werden. Die Datensammlungen werden in Dateien abgelegt, die auf einem externen, auswechselbaren Medium abgespeichert werden. So können die Messdaten auf einfache Art für die weitere Auswertung abgeholt werden.
+Für jede angeschlossene \gls{sensoreinh} führt der \gls{logger} eine Datensammlung, in der die registrierten \glspl{ereignis} zeitlich sortiert abgespeichert werden. Die Datensammlungen werden in Dateien abgelegt, die auf einem externen, auswechselbaren Medium abgespeichert werden. So können die Messdaten auf einfache Art für die weitere Auswertung abgeholt werden.
 
 
 \subsection{Kontrolle über das \gls{bussys}}
-Als Busmaster hat der \gls{logger} die Aufgabe, allen angeschlossenen Einheiten eine eindeutige Identifikationsnummer (ID) zuzuweisen. Über diese ID erkennt der \gls{logger}, von welcher \gls{sensoreinh} Daten übertragen werden. Für die Zuordnung der Messdaten zu einem bestimmten Sensor benötigen die \glspl{sensoreinh} ein fixes Erkennungsmerkmal, z.B. eine Seriennummer, die mit den Messdaten abgespeichert werden soll.
+Als Busmaster hat der \gls{logger} die Aufgabe, allen angeschlossenen Einheiten eine eindeutige Identifikationsnummer (ID) zuzuweisen. Über diese ID erkennt der \gls{logger}, von welcher \gls{sensoreinh} Daten übertragen werden. Für die Zuordnung der Messdaten zu einem bestimmten \gls{sensor} benötigen die \glspl{sensoreinh} ein fixes Erkennungsmerkmal, z.B. eine Seriennummer, die mit den Messdaten abgespeichert werden soll.
 
 
 \subsection{Steuerung des Betriebs}
@@ -89,24 +71,22 @@ Die Messstation hat verschiedene Betriebsmodi, die über den \gls{logger} angew�
 Über eine Schnittstelle am \gls{logger} kann ein Computer angeschlossen werden. Per Kommandozeile wird die Messstation konfiguriert, der Zustand überprüft und der Betriebsmodus gewählt.
 
 
-\section{Sensoreinheit}
+\section{\gls{sensoreinh}}
 Die Aufgaben der \gls{sensoreinh} umfassen:
 \begin{itemize}
 \item Erfassung von Messdaten.
-\item Erkennung von Ereignissen.
+\item Erkennung von \glspl{ereignis}n.
 \item Übertragung der Ereignisdaten an den \gls{logger}.
 \end{itemize}
 
-\todo{remove following line}
-\gls{acrref}
 \subsection{Messdatenerfassung}
-Der Sensor zur Erfassung der Daten wird mit einer vordefinierten Abtastrate ausgelesen. Die Abtastrate muss so gewählt werden, dass einzelne Ereignisse erkannt werden können, ohne unnötig viel Messdaten zu generieren.
+Der \gls{sensor} zur Erfassung der Daten wird mit einer vordefinierten Abtastrate ausgelesen. Die Abtastrate muss so gewählt werden, dass einzelne \glspl{ereignis} erkannt werden können, ohne unnötig viel Messdaten zu generieren.
 
 \subsection{Ereigniserkennung}
-Im Mikroprozessor werden die Messdaten fortlaufend analysiert. Überschreitet das gemessene Signal einen gewissen Pegel (Threshold), markiert dies den Beginn eines Ereignisses. Das Ereignis ist beendet, wenn der Signalpegel für eine gewisse Zeit unterhalb des Threshold bleibt. Für jedes Ereignis wird abgespeichert, wann es aufgetreten ist (Timestamp), wie lange es gedauert hat, wie hoch der Signalpegel maximal ausschlug und wie viele Signalspitzen (Peaks) aufgetreten sind. Allenfalls können auch die Höhen aller Peaks übertragen werden.
+Im Mikroprozessor werden die Messdaten fortlaufend analysiert. Überschreitet das gemessene Signal einen gewissen Pegel (\gls{threshold}), markiert dies den Beginn eines \gls{ereignis}ses. Das \gls{ereignis} ist beendet, wenn der Signalpegel für eine gewisse Zeit unterhalb des \gls{threshold} bleibt. Für jedes \gls{ereignis} wird abgespeichert, wann es aufgetreten ist (\gls{timestamp}), wie lange es gedauert hat, wie hoch der Signalpegel maximal ausschlug und wie viele Signalspitzen (Peaks) aufgetreten sind. Allenfalls können auch die Höhen aller Peaks übertragen werden.
 
 \subsection{Datenübertragung}
 Die \gls{sensoreinh} sendet die Messdaten regelmässig über das \gls{bussys} an den \gls{logger}. Nach Bestätigung des Erhalts werden die Messdaten aus dem Speicher der \gls{sensoreinh} gelöscht.
 
-\section{Bussystem}
-Das \gls{bussys} verbindet die Einheiten der Messstation miteinander. Die gesamten Messdaten und Steuerkommandos werden über den Bus übertragen. Das \gls{bussys} muss die Datenmenge der angeschlossenen Sensoren bewältigen können, über die geforderte Distanz funktionieren und möglichst robust gegenüber äusseren Einflüssen sein. Der Busmaster hat die Möglichkeit, laufende Übertragungen von \glspl{sensoreinh} zu unterbrechen, um Steuerkommandos zu senden.
+\section{\gls{bussys}}
+Das \gls{bussys} verbindet die Einheiten der Messstation miteinander. Die gesamten Messdaten und Steuerkommandos werden über den Bus übertragen. Das \gls{bussys} muss die Datenmenge der angeschlossenen \glspl{sensor} bewältigen können, über die geforderte Distanz funktionieren und möglichst robust gegenüber äusseren Einflüssen sein. Der Busmaster hat die Möglichkeit, laufende Übertragungen von \glspl{sensoreinh} zu unterbrechen, um Steuerkommandos zu senden.

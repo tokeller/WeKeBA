@@ -23,13 +23,13 @@
 \section{Aufgabenstellung}\label{sec.aufgabenstellung}
 Im Rahmen dieser Bachelorarbeit soll eine Lösung erarbeitet werden, um zukünftige Installationen günstiger zu machen. Da solche Messanlagen an sehr vielen Orten auf der ganzen Welt aufgebaut werden, kann durch eine Vereinfachung der Installation viel Aufwand gespart werden. 
 
-Die Projektidee stammt von Bruno Fritschi (WSL). Sein Vorschlag sieht vor, die aufgezeichneten Signale direkt am Sensor auszuwerten und nur die gewünschten Ereignisse zu übertragen und zu speichern. Somit könnten die Daten über ein Bussystem übertragen werden und der Auswertungsrechner bräuchte weniger Leistung.
+Die Projektidee stammt von Bruno Fritschi (WSL). Sein Vorschlag sieht vor, die aufgezeichneten Signale direkt am \gls{sensor} auszuwerten und nur die gewünschten \glspl{ereignis} zu übertragen und zu speichern. Somit könnten die Daten über ein \gls{bussys} übertragen werden und der Auswertungsrechner bräuchte weniger Leistung.
 
 Dank der Bustopologie ist das Messsystem weniger komplex und kann einfacher installiert werden. Denkbar wäre die Integration in einer Gummimatte anstelle der Stahl- und Betonkonstruktion, da viel weniger Leitungen nötig sind.
 
-Ziel der Arbeit ist die Entwicklung der Auswertungshardware und des Bussystems. Die Qualität der gemessenen Signale soll mindestens erhalten werden. Die Auswertungsalgorithmen sind nicht Bestandteil der Arbeit und werden vom WSL zur Verfügung gestellt.
+Ziel der Arbeit ist die Entwicklung der Auswertungshardware und des \gls{bussys}s. Die Qualität der gemessenen Signale soll mindestens erhalten werden. Die Auswertungsalgorithmen sind nicht Bestandteil der Arbeit und werden vom WSL zur Verfügung gestellt.
 
-Die von der bisherigen Anlage gemachten Messdaten enthalten die Dauer und Intensität jedes Aufschlags (Ereignis) auf der Sensorplatte, sowie die Anzahl Ausschläge (Peaks) pro Aufschlag. Pro Minute wird ein Histogramm über die Intesitäten der Peaks gebildet und abgespeichert.
+Die von der bisherigen Anlage gemachten Messdaten enthalten die Dauer und Intensität jedes Aufschlags (\gls{ereignis}) auf der Sensorplatte, sowie die Anzahl Ausschläge (Peaks) pro Aufschlag. Pro Minute wird ein Histogramm über die Intesitäten der Peaks gebildet und abgespeichert.
 
 Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, SZ) an einer bestehenden Schwelle zu implementieren.
 
@@ -37,20 +37,20 @@ Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, 
 \subsection{Musskriterien}
 \begin{itemize}
 \item Die Anlage zeichnet den Geschiebetransport im Bachbett auf. Die bisherige Aufzeichnungsrate von 10'000 Messpunkten pro Sekunde soll nicht unterschritten werden.
-\item Die Anlage liefert eine minütliche Zusammenfassung über die Ereignisse an jedem Sensor. Diese Zusammenfassung enthält die Anzahl, Dauer und Intensität der einzelnen Ereignisse sowie ein Histogramm über die Intensitätsverteilung.
-\item Die Messstation ist fähig, mindestens zehn Sensoren zu betreiben und ihre Messignale aufzuzeichnen.
-\item Es ist möglich, die kompletten Rohdaten von einem Sensor über eine Dauer von 30 Minuten aufzuzeichnen. Während einer solchen Messung dürfen die anderen Sensoren ihre Messung einstellen.
-\item Die Sensoren können über bis zu fünfzehn Meter im Bachbett verteilt sein.
-\item Die Leistungsaufnahme der Anlage beim Betrieb von 10 Sensoren ist kleiner als zehn Watt.
-\item Die Datenaufzeichnung erfolgt in einem eigens entwickelten Datenlogger.
-\item Am Datenlogger kann ein Laptop angeschlossen werden, um Kontrollparameter der Messanlage zu setzen und um den Status der Anlage abzufragen.
-\item Die erfassten Messdaten werden im Datenlogger auf einer Speicherkarte gespeichert. Dies ermöglicht ein einfaches Abholen der Daten im Feld, indem die Speicherkarte ausgetauscht wird.
+\item Die Anlage liefert eine minütliche Zusammenfassung über die \glspl{ereignis} an jedem \gls{sensor}. Diese Zusammenfassung enthält die Anzahl, Dauer und Intensität der einzelnen \glspl{ereignis} sowie ein Histogramm über die Intensitätsverteilung.
+\item Die Messstation ist fähig, mindestens zehn \glspl{sensor} zu betreiben und ihre Messignale aufzuzeichnen.
+\item Es ist möglich, die kompletten Rohdaten von einem \gls{sensor} über eine Dauer von 30 Minuten aufzuzeichnen. Während einer solchen Messung dürfen die anderen \glspl{sensor} ihre Messung einstellen.
+\item Die \glspl{sensor} können über bis zu fünfzehn Meter im Bachbett verteilt sein.
+\item Die Leistungsaufnahme der Anlage beim Betrieb von 10 \glspl{sensor} ist kleiner als zehn Watt.
+\item Die Datenaufzeichnung erfolgt in einem eigens entwickelten \gls{logger}.
+\item Am \gls{logger} kann ein Laptop angeschlossen werden, um Kontrollparameter der Messanlage zu setzen und um den Status der Anlage abzufragen.
+\item Die erfassten Messdaten werden im \gls{logger} auf einer Speicherkarte gespeichert. Dies ermöglicht ein einfaches Abholen der Daten im Feld, indem die Speicherkarte ausgetauscht wird.
 \end{itemize}
 \subsection{Wunschkriterien}
 \begin{itemize}
-\item Die Anlage liefert für jedes Ereignis die Rohdaten in voller zeitlicher Auflösung.
-\item Der Sensoraufbau ermöglicht es, die Sensoren in einer Elastomerplatte zu verpacken. Die Elastomerplatte kann ohne Betonkonstruktion im Bachbett verankert werden.
-\item Am Datenlogger kann ein Laptop angeschlossen werden, um die erfassten Messdaten herunterzuladen.
+\item Die Anlage liefert für jedes \gls{ereignis} die Rohdaten in voller zeitlicher Auflösung.
+\item Der Sensoraufbau ermöglicht es, die \glspl{sensor} in einer Elastomerplatte zu verpacken. Die Elastomerplatte kann ohne Betonkonstruktion im Bachbett verankert werden.
+\item Am \gls{logger} kann ein Laptop angeschlossen werden, um die erfassten Messdaten herunterzuladen.
 \end{itemize}
 \subsection{Abgrenzungskriterien}
 \begin{itemize}

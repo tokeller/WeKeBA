@@ -55,9 +55,11 @@
 % Glossar
 \usepackage[toc,nopostdot,acronyms]{glossaries}
 %\usepackage{glossaries-german}
-
+\renewcommand*{\glossaryname}{Glossar}
+\renewcommand*{\acronymname}{Abkürzungsverzeichnis}
 \setacronymstyle{long-short}
 \makeglossaries
+\loadglsentries{content/glossar}
 %\makenoidxglossaries
 
 
