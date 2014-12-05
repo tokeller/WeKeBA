@@ -1,0 +1,10 @@
+Glossar übernimmt Änderungen nicht?
+rm doc.glsdefs
+pdflatex
+pdflatex
+makeindex -s doc.ist -o doc.gls doc.glo
+makeindex -s doc.ist -o doc.acr doc.acn
+pdflatex
+
+
+bibtex kommt dann noch…

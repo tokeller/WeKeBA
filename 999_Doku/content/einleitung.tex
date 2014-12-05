@@ -31,15 +31,17 @@ Die \gls{wsl} betreibt Messstationen zur Registrierung von Geschiebe-Bewegungen 
 
 \newglossaryentry{logger}{name={Datenlogger},plural={Datenlogger},description={Ein Gerät zur Sammlung und Speicherung von Messdaten von mehreren Sensoreinheiten.}, see={sensoreinh}}
 
-\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor, Sensor, Datenlogger}}
+\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor, Sensor, Datenlogger}}
 
 \newglossaryentry{sensor}{name={Sensor},plural={Sensoren},description{Ein Messgerät für physikalische Grössen wie Temperatur, Feuchtigkeit, Luftdruck oder Beschleunigung.}}
 
 \newglossaryentry{bussys}{name={Bussystem},plural={Bussysteme},description{Ein elektrisches System für die Kommunikation zwischen mehreren Geräten. Ein Bussystem besteht aus Datenleitungen, über welche Signale gesendet werden, und aus Schnittstellen, an denen die Busteilnehmer angeschlossen werden. Die Besonderheit liegt darin, dass über ein Leitungssystem mehr als zwei Geräte miteinander kommunizieren können. Mittels eines Adressierungsschemas kann der/die Empfänger ausgewählt werden.}}
 
-\newglossaryentry{ereignis}{name={Ereignis},plural={Ereignisse},description{Eine Abfolge von Messwerten, die einer vordefinierten Form entspricht. Es kann zum Beispiel ein Schwellenwert definiert sein. Das Überschreiten dieses Wertes kann dann den Beginn, das Unterschreiten des Schwellenwertes das Ende eines Ereignisses markieren.}}
+\newglossaryentry{ereignis}{name={Ereignis},plural={Ereignisse},description{Eine Abfolge von Messwerten, die einer vordefinierten Form entspricht. Es kann zum Beispiel ein Schwellenwert (engl. threshold) definiert sein. Das Überschreiten dieses Wertes kann dann den Beginn, das Unterschreiten des Schwellenwertes das Ende eines Ereignisses markieren.}}
 
 \newglossaryentry{threshold}{name={Threshold},plural={Thresholds},description{Englisch für Schwellenwert.}}
+
+\newglossaryentry{timestamp}{name={Timestamp},plural={Timestamps},description{Englisch für Zeitmarke. Mittels eines Timestamps kann ein Ereignis oder ein Messwert einem genauen Zeitpunkt zugeordnet werden. Der Timestamp wird dafür zu einem bestimmten Zeitpunkt auf null gesetzt (Reset) und ab dann in allen Messgeräten in vordefiniertem Takt erhöht. Der Timestamp gibt also an, wie viel Zeit seit dem Reset vergangen ist. Durch die Wahl des Takts wird die zeitliche Auflösung definiert.}}
 
 \section{Überblick}\label{sec.ueberblick}
 Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden. 
