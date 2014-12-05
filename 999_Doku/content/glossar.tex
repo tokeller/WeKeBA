@@ -16,14 +16,30 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Abkürzungen
 \newacronym{wsl}{WSL}{Eidg. Forschungsanstalt für Wald, Schnee und Landschaft}
 
+\newacronym{id}{ID}{Identifikationsnummer}
+
+\newacronym{pc}{PC}{Personal Computer}
+
+\newacronym{cpu}{CPU}{Central Processing Unit}
+
+\newacronym{cd}{CD}{Compact Disc}
+
+
+
+
+
+
+
+% Glossareinträge
 \newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Messgerät für Vibrationen des Bodens. Ein Geophon misst Bewegungen mittels einer magnetischen Masse, die beweglich in einer Spule aufgehängt ist. Wird das Geophon in Bewegung versetzt, schwingt die magnetische Masse aufgrund ihrer Trägheit und induziert dadurch einen Strom in der Spule. Durch Messung dieses Stroms kann die Bewegung registriert weden.}}
 
 
 \newglossaryentry{logger}{name={Datenlogger},plural={Datenlogger},description={Ein Gerät zur Sammlung und Speicherung von Messdaten von mehreren Sensoreinheiten.}, see={sensoreinh}}
 
-\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor, Sensor, Datenlogger}}
+\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor,sensor,logger}}
 
 \newglossaryentry{sensor}{name={Sensor},plural={Sensoren},description={Ein Messgerät für physikalische Grössen wie Temperatur, Feuchtigkeit, Luftdruck oder Beschleunigung.}}
 
@@ -33,5 +49,32 @@
 
 \newglossaryentry{threshold}{name={Threshold},plural={Thresholds},description={Englisch für Schwellenwert.}}
 
+\newglossaryentry{timeout}{name={Timeout},plural={Timeouts},description={Englisch für Zeitüberschreitung.}}
+
+\newglossaryentry{peak}{name={Peak},plural={Peaks},description={Englisch für Spitzenwert oder Signalspitze.}}
+
 \newglossaryentry{timestamp}{name={Timestamp},plural={Timestamps},description={Englisch für Zeitmarke. Mittels eines Timestamps kann ein Ereignis oder ein Messwert einem genauen Zeitpunkt zugeordnet werden. Der Timestamp wird dafür zu einem bestimmten Zeitpunkt auf null gesetzt (Reset) und in allen Messgeräten in vordefiniertem Takt erhöht. Der Timestamp gibt an, wie viel Zeit seit dem Reset vergangen ist. Durch die Wahl des Takts wird die zeitliche Auflösung definiert.}}
 
+\newglossaryentry{compi}{name={Computer},description={Englisch für Elektronenrechner. Unter einem Computer versteht man umgangssprachlich einen Personal Computer (PC) oder einen tragbaren Computer (Laptop). Heute sind Computer so leistungsfähig und so stark miniaturisiert, dass sie mühelos in einer Aktentasche Platz finden. Weniger leistungsfähig, dafür noch kleiner sind Embedded Systems, eingebettete Systeme, die Laien nicht als Computer erkannt werden.},see={pc,es}}
+
+\newglossaryentry{pcomp}{name={PC},plural={PCs},description={\gls{pc} oder umgangssprachlich Computer. Eine elektronische Rechenmaschine mit der sehr viele Rechenschritte in sehr kurzer Zeit ausgeführt werden können. Mit der richtigen Programmierung (Software) können \gls{pc}s sehr unterschiedliche, umfangreiche Aufgaben lösen.},see={software}}
+
+\newglossaryentry{es}{name={Embedded System},plural={Embedded Systems},description={Deutsch: eingebettetes System. Ein Computer, der nicht über die üblichen Ein- und Ausgabemöglichkeiten eines Computers wie Bildschirm und Tastatur verfügt. Oft werden deshalb Embedded Systems nicht als Computer wahrgenommen. Sie sind im Gegensatz zu PCs, die als Alleskönner konzipiert sind, auf eine bestimmte Aufgabe zugeschnitten und deshalb nur mit den nötigen Bedien-Elementen versehen. Oft genügen für die Aufgaben weniger leistungsfähige Prozessoren als in einem PC, sogenannte Mikroprozessoren.},see={compi,mc}}
+
+\newglossaryentry{software}{name={Software},description={Programm zur Steuerung der Rechenabläufe in einem Computer. Durch die Software wird einem Computer die Fähigkeit gegeben, bestimmte Aufgaben zu lösen und Resultate in einer für Menschen lesbaren Form darzustellen. Die Software enthält Instruktionen, die in der CPU des Computers ausgeführt werden.}}
+
+\newglossaryentry{hardware}{name={Hardware},description={Die Hardware ist das eigentliche Rechenwerk eines Computers, worauf die Software ausgeführt wird. Dazu gehören alle elektrischen, elektronischen und mechanischen Bauteile eines Computers. Die Central Processing Unit (CPU) eines Computers könnte mit dem Hirn verglichen werden, hier laufen fast sämtliche Informationen und Instruktionen zusammen.}}
+
+\newglossaryentry{mc}{name={Mikrokontroller},plural={Mikrokontroller},description={Englisch Microcontroller (MC). Ein Prozessor mit weniger universellen Fähigkeiten als eine CPU, dafür mit weniger Stromverbrauch. Ein Mikrokontroller verfügt meistens über spezielle Ein- und Ausgänge (Pins), über die zum Beispiel die anliegende Spannung gemessen oder eine bestimmte Spannung ausgegeben werden kann. Durch die kleinere Bauform und die geringere Leistungsaufnahme eignen sich diese Prozessoren besonders für den Einsatz in Embedded Systems, die oft längere Zeit unabhängig vom Stromnetz funktionieren müssen.},see={pin}}
+
+\newglossaryentry{cli}{name={Kommandozeile},plural={Kommandozeilen},description={Eine Eingabeaufforderung auf dem Bildschirm, wo der Benutzer über eine Tastatur Befehle eingeben kann, die vom Computer interpretiert und ausgeführt werden.},see={compi}}
+
+\newglossaryentry{pin}{name={Pin},plural={Pins},description={Ein Anschluss an einem Chip oder einer Leiterplatte. Über Pins werden elektronische Bauteile miteinander verbunden und Peripheriegeräte wie z.B. Sensoren angeschlossen.},see={sensor}}
+
+\newglossaryentry{modus}{name={Betriebsmodus},plural={Betriebsmodi},description={Ein Modus bestimmt die Verhaltensweise eines Systems. Je nach gewähltem Modus können mit den gleichen Eingaben und Befehlen andere Aktionen ausgeführt und andere Resultate ausgegeben werden.}}
+
+\newglossaryentry{fs}{name={Abtastrate},plural={Abtasteten},description={Definiert, in welchen zeitlichen Abständen ein Messwert erfasst werden soll. Üblicherweise wird dieser Wert in \ensuremath{Hz} oder \ensuremath{s^{-1}} angegeben.}}
+
+\newglossaryentry{busmaster}{name={Busmaster},plural={Busmaster},description={Ein Gerät, das die Kontrolle über ein Bussystem hat. Der Busmaster kann den anderen Busteilnehmern (Slaves) eine Genehmigung erteilen, Daten über das Bussystem zu übertragen. Der Busmaster hat aber jederzeit die Möglichkeit, einen Slave in der Übertragung zu unterbrechen.},see={slave}}
+
+\newglossaryentry{slave}{name={Slave},plural={Slaves},description={Ein Busteilnehmer, der nur Daten über den Busübertragen darf, wenn ihm der Busmaster die Genehmigung dafür erteilt. Dies kann z.B. in Form eines sog. Tokens geschehen.},see={busmaster}}

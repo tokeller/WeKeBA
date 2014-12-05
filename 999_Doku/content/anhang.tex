@@ -21,29 +21,64 @@
 
 \appendix
 \chapter{Anhang}\label{chap.anhang}
+\section{Offizielle Aufgabenstellung}\label{app.aufgabenstellung}
+\includepdf{images/BA_welti_keller_hs14.pdf}
 
 
+\section{Projektmanagement}\label{app.projektmanagement}
 
-\section{Projektmanagement}\label{sec.projektmanagement}
 
-\begin{itemize}
-\item Offizielle Aufgabenstellung, Projektauftrag
-\item (Zeitplan)
-\item (Besprechungsprotokolle oder Journals)
-\end{itemize}
+\todo{Zeitplan}
+\todo{Besprechungsprotokolle oder Journals}
+
 
 
 
 \section{Weiteres}\label{weiteres}
 
-\begin{itemize}
-\item CD mit dem vollständigen Bericht als pdf-File inklusive Film- und Fotomaterial
-\item (Schaltpläne und Ablaufschemata)
-\item (Spezifikationen u. Datenblätter der verwendeten Messgeräte und/oder Komponenten)
-\item (Berechnungen, Messwerte, Simulationsresultate)
-\item (Stoffdaten)
-\item (Fehlerrechnungen mit Messunsicherheiten)
-\item (Grafische Darstellungen, Fotos)
-\item (Datenträger mit weiteren Daten (z.B. Software-Komponenten) inkl. Verzeichnis der auf diesem Datenträger abgelegten Dateien)
-\item (Softwarecode)
-\end{itemize}
+
+\section{Schaltpläne}\label{app.pcb}
+\todo{dieser Abschnitt gehört in den Haupttext.}
+Für den Datenlogger und die Sensoreinheiten wurde mit der kompetenten Hilfe von Erich Ruff (ZHAW InES) und Valentin Schlatter (ZHAW InES) eine Leiterplatte entworfen sowie Gehäuse gebaut. Die Leiterplatte wurde so entworfen, dass über die Bestückung entschieden werden kann, ob ein Datenlogger oder eine Sensoreinheit gebaut wird. Für einen Datenlogger wird die Leiterplatte mit einem SD-Karten-Slot bestückt. Für die Sensoreinheit wird ein Tiefpassfilter und der Anschluss für den Sensor bestückt. Beide Varianten enthalten die Spannungsversorgung (12~V auf 5~V), einen CAN-Transceiver und die Anschlüsse für die Kabel. Der Schaltplan sowie das Leiterplattenlayout befindet sich im Anhang \ref{app.pcb}
+\includepdf[angle=90]{images/pcb/Schematic.pdf}
+\includepdf[pages={1,2},angle=90]{images/pcb/PCB_Layout.pdf}
+
+
+\section{Datenblätter}\label{app.datasheets}
+Um die Dokumentation übersichtlich zu halten, wird der Grossteil der Datenblätter nicht mit der Dokumentation ausgedruckt, sondern auf der beiliegenden \gls{cd} mitgeliefert.
+
+
+\subsection{NXP LPC4088 32-bit ARM Cortex-M4 microcontroller}
+\includepdf[pages={7}]{images/datasheets/LPC408X_7X.pdf}
+
+
+\subsection{Embedded Artists NXP LPC4088 QuickStart Board}
+
+\begin{figure}[H]
+	\centering		\includegraphics[width=0.7\textwidth]{images/datasheets/lpc4088_qsb_key_components_reva.png}
+	\caption{Hauptkomponenten des NXP LPC4088 QuickStart Boards von Embedded Artists.}
+	\label{fig.NXP_LPC4088_QSB_comps}
+\end{figure}
+
+\begin{figure}[H]
+	\centering		\includegraphics[width=0.7\textwidth]{images/datasheets/LPC4088_QSB_pinning_revA_800x769.png}
+	\caption{Pins des NXP LPC4088 QuickStart Boards von Embedded Artists.}
+	\label{fig.NXP_LPC4088_QSB_pinout}
+\end{figure}
+
+\includepdf{images/datasheets/LPC4088qsb.pdf}
+
+\subsection{Analog Devices ADXL001 Beschleunigungssensor}
+\includepdf[pages={3}]{images/datasheets/ADXL001.pdf}
+
+
+
+\todo{Spezifikationen u. Datenblätter der verwendeten Messgeräte und/oder Komponenten}
+\todo{Berechnungen, Messwerte, Simulationsresultate}
+\todo{Grafische Darstellungen, Fotos}
+
+\section{Source Code, Daten und Multimedia}\label{app.cd}
+Da der Source Code sehr umfangreich ist, wird darauf verzichtet, ihn ausgedruckt zur Verfügung zu stellen. Er befindet sich auf der beiliegenden \gls{cd}.
+
+\todo{Inhaltsverzeichnis der CD erstellen}
+\todo{CD mit dem vollständigen Bericht als pdf-File inklusive Film- und Fotomaterial}

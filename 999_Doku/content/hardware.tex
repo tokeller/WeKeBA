@@ -24,7 +24,7 @@
 
 Anhand der funktionalen Vorgaben für die Messstation werden der \gls{logger}, die \gls{sensoreinh} und das Bussytem im folgenden genauer spezifiziert und die Komponenten ausgewählt.
 
-\subsection{\gls{logger}}
+\subsection{Datenlogger}
 Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys} ein und speichert sie ab. Dafür benötigt er das \gls{bussys}, einen Mikroprozessor, internen Speicher und ein leicht auswechselbares Speichermedium. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der \gls{logger} wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des Speichermediums wäre eine verschraubbare Öffnung denkbar.
 
 \begin{figure}[H]
@@ -34,7 +34,7 @@ Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys}
 	\label{fig.hwkonzept_logger}
 \end{figure}
 
-\subsection{\gls{sensoreinh}}
+\subsection{Sensoreinheit}
 Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (ADC) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das \gls{bussys} an den \gls{logger} übertragen.
 
 \begin{figure}[H]
@@ -162,7 +162,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 \paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross werden. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der \gls{logger} mit einem SD-Kartenleser ausgestattet.
 
-\subsection{\gls{sensor}}
+\subsection{Sensor}
 \todo{Sensorauswahl beschreiben}
 
 \subsection{Schnittstelle}
@@ -182,7 +182,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 \todo{Texten}
 
-\subsection{Beschleunigungs-\gls{sensor}}
+\subsection{Beschleunigungs-Sensor}
 
 \todo{Texten}
 \subsection{CAN Bus}
@@ -210,7 +210,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 
 
-\section{\gls{sensoreinh}}
+\section{Sensoreinheit}
 
 \todo{Texten}
 \begin{figure}[H]

@@ -42,12 +42,12 @@
 
 \include{content/einleitung}
 \include{content/aufgabenstellung}
+\include{content/vorgehen}
 \include{content/funktionale}
 \include{content/nichtfunktionale}
 \include{content/grundlagen}
 \include{content/hardware}
 \include{content/software}
-\include{content/vorgehen}
 \include{content/resultate}
 \include{content/diskussion}
 
@@ -55,14 +55,15 @@
 \chapter{Verzeichnisse}\label{chap.verzeichnisse}
  \include{content/literatur}
  \listoffigures
- \addcontentsline{toc}{section}{(Abbildungsverzeichnis)}
+ %\addcontentsline{toc}{section}{(Abbildungsverzeichnis)}
  \listoftables
- \addcontentsline{toc}{section}{(Tabellenverzeichnis)}
-% \addcontentsline{toc}{chapter}{(Symbolverzeichnis)}
- \printglossaries
-\addcontentsline{toc}{section}{(Glossar)}
+ %\addcontentsline{toc}{section}{(Tabellenverzeichnis)}
+ \printglossary
+ %\addcontentsline{toc}{section}{(Glossar)}
+ \printglossary[type=acronym]
+ %\addcontentsline{toc}{section}{(Abkürzungen)}
  \lstlistoflistings
- \addcontentsline{toc}{section}{(Listingverzeichnis)}
+ %\addcontentsline{toc}{section}{(Listingverzeichnis)}
  
 \include{content/anhang}
 
