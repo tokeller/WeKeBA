@@ -27,7 +27,13 @@
 
 \newacronym{cd}{CD}{Compact Disc}
 
+\newacronym{adc}{ADC}{Analog Digital Converter}
 
+\newacronym{dft}{DFT}{diskrete Fourier-Transformation}
+
+\newacronym{idft}{IDFT}{inverse diskrete Fourier-Transformation}
+
+\newacronym{fsm}{FSM}{Finite State Machine}
 
 
 
@@ -39,19 +45,25 @@
 
 \newglossaryentry{logger}{name={Datenlogger},plural={Datenlogger},description={Ein Gerät zur Sammlung und Speicherung von Messdaten von mehreren Sensoreinheiten.}, see={sensoreinh}}
 
+\newglossaryentry{speichermedium}{name={Speichermedium},plural={Speichermedien},description={Ein Stück Hardware, auf dem Daten gespeichert werden können.}}
+
 \newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor,sensor,logger}}
 
 \newglossaryentry{sensor}{name={Sensor},plural={Sensoren},description={Ein Messgerät für physikalische Grössen wie Temperatur, Feuchtigkeit, Luftdruck oder Beschleunigung.}}
 
-\newglossaryentry{bussys}{name={Bussystem},plural={Bussysteme},description={Ein elektrisches System für die Kommunikation zwischen mehreren Geräten. Ein Bussystem besteht aus Datenleitungen, über welche Signale gesendet werden, und aus Schnittstellen, an denen die Busteilnehmer angeschlossen werden. Die Besonderheit liegt darin, dass über ein Leitungssystem mehr als zwei Geräte miteinander kommunizieren können. Mittels eines Adressierungsschemas kann der/die Empfänger ausgewählt werden.}}
+\newglossaryentry{bussys}{name={Bussystem},plural={Bussysteme},description={Ein elektrisches System für die Kommunikation zwischen mehreren Geräten. Ein Bussystem besteht aus Datenleitungen, über welche Signale gesendet werden, und aus Schnittstellen, an denen die Busteilnehmer angeschlossen werden. Die Besonderheit liegt darin, dass über ein Leitungssystem mehr als zwei Geräte miteinander kommunizieren können. Mittels eines Adressierungsschemas kann der/die Empfänger ausgewählt werden.},see={signal}}
 
 \newglossaryentry{ereignis}{name={Ereignis},plural={Ereignisse},description={Eine Abfolge von Messwerten, die einer vordefinierten Form entspricht. Es kann zum Beispiel ein Schwellenwert (engl. threshold) definiert sein. Das Überschreiten dieses Wertes kann dann den Beginn, das Unterschreiten des Schwellenwertes das Ende eines Ereignisses markieren.}}
+
+\newglossaryentry{ereignisdet}{name={Ereigniserkennung},plural={Ereigniserkennungen},description={Auswertung von Messdaten um definierte Signalformen (\glspl{ereignis}) zu erkennen.},see={ereignis,signal}}
 
 \newglossaryentry{threshold}{name={Threshold},plural={Thresholds},description={Englisch für Schwellenwert.}}
 
 \newglossaryentry{timeout}{name={Timeout},plural={Timeouts},description={Englisch für Zeitüberschreitung.}}
 
 \newglossaryentry{peak}{name={Peak},plural={Peaks},description={Englisch für Spitzenwert oder Signalspitze.}}
+
+\newglossaryentry{signal}{name={Signal},plural={Signale},description={Ein Signal ist ein Informationsträger. Die Information wird einem Signalwert zugeordnet. Ein einfaches Beispiel ist die Spannung am Ausgang eines Beschleunigungs-Sensors. Der Sensor gibt über die Höhe der Spannung an, wie stark die Beschleunigung von einem definierten Referenzwert abweicht. Die Spannung trägt also eine Information über den Messwert und ist daher ein Signal. Aus dem Datenblatt kann herausgelesen werden, wie hoch die ausgegebene Spannung bei einer bestimmten Beschleunigung ist. So kann das Signal in Information umgewandelt werden.},see={sensor}}
 
 \newglossaryentry{timestamp}{name={Timestamp},plural={Timestamps},description={Englisch für Zeitmarke. Mittels eines Timestamps kann ein Ereignis oder ein Messwert einem genauen Zeitpunkt zugeordnet werden. Der Timestamp wird dafür zu einem bestimmten Zeitpunkt auf null gesetzt (Reset) und in allen Messgeräten in vordefiniertem Takt erhöht. Der Timestamp gibt an, wie viel Zeit seit dem Reset vergangen ist. Durch die Wahl des Takts wird die zeitliche Auflösung definiert.}}
 
@@ -73,8 +85,26 @@
 
 \newglossaryentry{modus}{name={Betriebsmodus},plural={Betriebsmodi},description={Ein Modus bestimmt die Verhaltensweise eines Systems. Je nach gewähltem Modus können mit den gleichen Eingaben und Befehlen andere Aktionen ausgeführt und andere Resultate ausgegeben werden.}}
 
-\newglossaryentry{fs}{name={Abtastrate},plural={Abtasteten},description={Definiert, in welchen zeitlichen Abständen ein Messwert erfasst werden soll. Üblicherweise wird dieser Wert in \ensuremath{Hz} oder \ensuremath{s^{-1}} angegeben.}}
+\newglossaryentry{fs}{name={Abtastrate},plural={Abtastraten},description={Definiert, in welchen zeitlichen Abständen ein Messwert erfasst werden soll. Üblicherweise wird dieser Wert in \ensuremath{Hz} oder \ensuremath{s^{-1}} angegeben.}}
 
 \newglossaryentry{busmaster}{name={Busmaster},plural={Busmaster},description={Ein Gerät, das die Kontrolle über ein Bussystem hat. Der Busmaster kann den anderen Busteilnehmern (Slaves) eine Genehmigung erteilen, Daten über das Bussystem zu übertragen. Der Busmaster hat aber jederzeit die Möglichkeit, einen Slave in der Übertragung zu unterbrechen.},see={slave}}
 
 \newglossaryentry{slave}{name={Slave},plural={Slaves},description={Ein Busteilnehmer, der nur Daten über den Busübertragen darf, wenn ihm der Busmaster die Genehmigung dafür erteilt. Dies kann z.B. in Form eines sog. Tokens geschehen.},see={busmaster}}
+
+\newglossaryentry{adwandler}{name={A/D-Wandler},plural={A/D-Wandler},description={Analog/Digital-Wandler, (Englisch: \gls{adc}). Ein A/D-Wandler misst die Spannung, die an einem Pin anliegt und gibt einen digitalen Wert aus, der die Höhe der Spannung angibt. Bei der Umwandlung in einen digitalen Wert erfolgt eine Quantisierung. Je grösser die Bit-Breite des A/D-Wandlers ist, umso kleiner wird die Schrittgrösse von einem digitalen Wert zum nächst-höheren Wert.},see={quantis,bitbreite}}
+
+\newglossaryentry{Quants}{name={Quantisierung},plural={Quantisierung},description={Einteilung eines Werts aus einer kontinuierlichen Skala in eine abgestufte Skala. Bei der Quantisierung wird der nächstgelegene Wert auf der abgestuften Skala ausgewählt. Je nach Anwendung wird die abgestufte Skala mit konstanter Stufengrösse (linear) gewählt, oder mit unterschiedlichen Stufengrössen je nach absolutem Wert (z.B. exponentiell). Der Quantisierungsfehler entspricht der Differenz zwischen dem analogen und dem quantisierten, digitalen Wert. Je grösser die Bit-Breite der Quantisierung ist, desto kleiner wird der Quantisierungsfehler.},see={bitbreite}}
+
+\newglossaryentry{bitbreite}{name={Bit-Breite},plural={Bit-Breiten},description={Die Bit-Breite gibt an, wie viele Bit für die Darstellung eines Wertes verwendet werden. Je grösser die Bit-Breite, desto mehr unterschiedliche Werte können dargestellt werden. Mit einer Bit-Breite von \ensuremath{n} können \ensuremath{2^n} Werte dargestellt werden.}}
+
+\newglossaryentry{blockg}{name={Blockgrösse},plural={Blockgrössen},description={Anzahl Werte, die in einer \gls{dft} oder \gls{idft} verrechnet wird.}}
+
+\newglossaryentry{hilbert}{name={Hilbert-Transformation},plural={Hilbert-Transformationen},description={Mathematische Umrechnung einer Wertfolge, um die umhüllende Kurve zu erhalten.}}
+
+\newglossaryentry{fir}{name={FIR-Filter},plural={FIR-Filter},description={Finite Impulse Response, Englisch für Filter mit endlicher Impuls-Antwort. Ein FIR-Filter hat immer eine endliche Impulsantwort, d.h. auf einen kurzen Impuls am Eingang des Filters folgt am Ausgang eine Antwort des Filters, die garantiert endet. Die Ordnung des FIR-Filters gibt an, wie lange die Antwort dauern wird.}}
+
+\newglossaryentry{fsmgloss}{name={Finite State Machine},description={Englisch für Zustandsmaschine. Eine Finite State Machine definiert eine endliche Anzahl Zustände, die die Maschine einnehmen kann. Die \gls{fsm} reagiert auf Ereignisse, indem sie Aktionen auslöst und allenfalls in einen anderen Zustand wechselt. Für jeden Zustand ist definiert, welche möglichen Ereignisse welche Aktionen auslösen, und in welchen Folgezustand gewechselt werden soll.}}
+
+\newglossaryentry{nullpegel}{name={Nullpegel},description={Signalpegel, wenn keine Beschleunigung gemessen wird.}}
+
+\newglossaryentry{queue}{name={Queue},plural={Queues},description={Englisch für Warteschlange. In der Informationstechnologie wird eine Queue verwendet, um mehrere Werte zwischenzuspeichern, bis sie verarbeitet werden können. Eine Queue hat meistens eine vordefinierte Grösse und kann deshalb nur eine bestimmte Anzahl Werte aufnehmen. Ein Überlaufen der Queue hat einen Datenverlust zur Folge, wenn der Werte einfüllende Prozess nicht angehalten werden kann/darf, bis Platz in der Queue vorhanden ist.}}

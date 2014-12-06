@@ -23,12 +23,11 @@
 
 
 \subsection{F110 Busmaster}
-Der \gls{logger} übernimmt die Kontrolle des Bus. Bei Inbetriebnahme des Systems tastet der \gls{logger} den Bus nach \glspl{sensoreinh} ab und erteilt jeder \gls{sensoreinh} eine eindeutige Identifikationsnummer (ID). Die ID des \gls{logger}s soll so gewählt werden, dass er jederzeit Priorität hat, auf den Bus zu schreiben.
+Der \gls{logger} übernimmt die Kontrolle des \gls{bussys}. Bei Inbetriebnahme des Systems tastet der \gls{logger} den Bus nach \glspl{sensoreinh} ab und erteilt jeder \gls{sensoreinh} eine eindeutige Identifikationsnummer (ID). Die ID des \gls{logger}s soll so gewählt werden, dass er jederzeit Priorität hat, auf den Bus zu schreiben.
 
 
 \subsection{F120 Sensorerkennung}
-Die angeschlossenen \glspl{sensor} werden vom \gls{logger} erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der \gls{sensor} identifiziert.\\
-Können wir die Seriennummer des Boards auslesen? Damit die ID immer gleich ist... über UART-Kommandozeile muss die ID jedes \gls{sensor}s gesetzt werden können.
+Die angeschlossenen \glspl{sensor} werden vom \gls{logger} erkannt und mit einer ID versehen. Anhand der ID wird die Priorität bei der Datenübertragung festgelegt und der \gls{sensor} identifiziert. Ein Sensor, der bereits am System angeschlossen war, erhält wieder die gleiche \gls{id}, sofern die Konfigurationsdatei nicht gelöscht wurde.
 
 
 \subsection{F130 Uhrzeit}
@@ -40,7 +39,7 @@ Der \gls{logger} sendet ein Signal an alle \glspl{sensoreinh}, dass der Zeitstem
 
 
 \subsection{F160 Schnittstelle zum Steuerrechner}
-Der \gls{logger} bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, PC) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.
+Der \gls{logger} bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, \gls{pc}) angeschlossen werden kann. Über diese Schnittstelle kann der Betrieb der ganzen Anlage gesteuert werden.
 
 
 \subsection{F170 Steuerung Betriebsmodus}
@@ -65,7 +64,7 @@ Die Daten werden vom \gls{logger} auf einer Speicherkarte in Dateien abgelegt. N
 
 
 \subsection{F410 Ereignisdetektion}
-Die \gls{sensoreinh} liest den \gls{sensor} mit einer definierten Abtastrate (Samplingrate) aus und wertet die Messdaten aus. Der Prozessor erkennt \glspl{ereignis} anhand definierter Kriterien. Zu jedem \gls{ereignis} werden folgende Daten gespeichert: Zeitpunkt (\gls{timestamp}), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem \gls{ereignis} gespeichert werden.
+Die \gls{sensoreinh} liest den \gls{sensor} mit einer definierten \gls{fs} aus und wertet die Messdaten aus. Der Prozessor erkennt \glspl{ereignis} anhand definierter Kriterien. Zu jedem \gls{ereignis} werden folgende Daten gespeichert: Zeitpunkt (\gls{timestamp}), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem \gls{ereignis} gespeichert werden.
 
 
 \subsection{F430 Datenübertragung}
@@ -73,6 +72,6 @@ Die \gls{sensoreinh} übermittelt die Ereignisdaten über das \gls{bussys} an de
 
 
 \subsection{F450 Rohdatenaufzeichnung}
-In einem Sondermodus werden alle Messpunkte gespeichert und über das \gls{bussys} an den \gls{logger} übertragen. In diesem Betriebsmodus kann nur eine \gls{sensoreinh} aktiv sein, die anderen werden auf Standby geschaltet.
+In einem Sondermodus werden alle Messpunkte gespeichert und über das \gls{bussys} an den \gls{logger} übertragen. In diesem Betriebsmodus kann darf auch nur eine \gls{sensoreinh} aktiv sein, die anderen werden auf Standby geschaltet.
 
 

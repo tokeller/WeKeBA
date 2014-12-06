@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{wiki_hilbert}
+Autor unbekannt.
+\newblock {Wikipedia: Hilbert-Transformation}, 11 2014.
+\newblock Stand: 6.12.2014.
+
+\bibitem{wiki_hilbertFIR}
+wdwd.
+\newblock {FIR Hilbert Transform Filter}.
+\newblock Licensed under the Creative Commons Attribution-Share Alike 3.0
+  Unported., 3 2013.
+\newblock License: https://creativecommons.org/licenses/by-sa/3.0/deed.en.
+
+\bibitem{dsv1_hilbert}
+Sigisbert Wyrsch.
+\newblock {Vorlesung Digitale Signalverarbeitung 1}.
+\newblock Kap. 3, DFT und FFT, S. 48.
+
+\end{thebibliography}
