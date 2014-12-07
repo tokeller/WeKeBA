@@ -43,6 +43,7 @@
 \subsection{Messdatenerfassung}\label{subsec.sw_messen}
 Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit A/D-Wandler, der über einen Multiplexer auf acht \glspl{pin} messen kann. Auf dem verwendeten Quickstart-Board stehen sechs \glspl{pin} für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Pin, da der Beschleunigungs-\gls{sensor} die Beschleunigung nur auf einer Achse misst. Der \gls{adwandler} des NXP LPC4088 wird mit einer \gls{fs} von 10~kHz betrieben. Falls höhere \glspl{fs} nötig sind, kann der \gls{adwandler} mit bis zu 400~kHz betrieben werden.
 
+\todo{Prioritäten des Prozesse Messung, Erkennung, Übermittlung erklären, und wie wir das gelöst haben.}
 
 
 \subsection{Ereigniserkennung}\label{subsec.sw_ereignis}
@@ -76,7 +77,7 @@ Um den Rechenaufwand der Hilbert-Transformation zu umgehen, lösen wir die \gls{
  Über Parameter wird definiert, welche Signalform als \gls{ereignis} erkannt werden soll. In Abbildung \ref{fig.impact_detection_params} sind die Parameter dargestellt. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{images/magicdraw/Ereigniserkennung_Parameter.pdf}
+	\includegraphics[width=0.8\textwidth]{images/impact_params.png}
 	\caption{Parameter der Ereigniserkennung.}
 	\label{fig.impact_detection_params}
 \end{figure}
@@ -92,9 +93,9 @@ Die \gls{fsm} wird im Zustand 'keinEreignis' initialisiert. Tritt ein Messwert a
 Ein Messwert 'niedrig', also unterhalb des \gls{threshold}s, führt zu einem Übergang in den Zustand 'EreignisNichtInPeak'. Dieser Übergang startet einen Timer, der während der im Parameter 'Timeout' definierten Anzahl Messwerte läuft. Falls die \gls{fsm} bis zum Ablauf des Timers keinen Messwert 'hoch\_positiv' oder 'hoch\_negativ' erhält, wechselt sie wieder in den Zustand 'keinEreignis' und übergibt die Ereignisdaten dem Prozess, der für die Übertragung zum \gls{logger} zuständig ist. 
 
 Der Timer läuft nicht in Echtzeit, sondern zählt die Anzahl Messwerte seit seinem Start, da die Verarbeitung asynchron zur Erfassung der Messwerte läuft. Das bedeutet, dass die Verarbeitung problemlos während mehreren Messwerten stillstehen kann, ohne dass Messwerte verloren gehen. Dies ist möglich, da die Messwerte in eine Warteschlange (Queue) geschrieben werden, von wo sie von der \gls{fsm} abgeholt werden. So lange die Queue nicht überfüllt wird, gehen keine Messwerte verloren. Die Verarbeitung der Messwerte in der \gls{fsm} erfolgt im NXP LPC4088 Prozessor schnell genug, um theoretisch mit einer \gls{fs} bis \ensuremath{200~kHz} messen zu können.
-\todo{Meldung ins Protokoll für den Verlust von Messwerten!}
+\todo{Meldung ins Busprotokoll für den Verlust von Messwerten!}
 
-\todo{Zusammenhänge A/D-Wandlung und Ereigniserkennung und Übertragung beschreiben, dazu ein kommunikationsdiagramm, wo synchron, wo asynchron.}
+\todo{Zusammenhänge A/D-Wandlung und Ereigniserkennung und Übertragung beschreiben, dazu ein Kommunikationsdiagramm, wo synchron, wo asynchron.}
 
 \todo{Verschiedene Betriebsmodi mit Grafiken beschreiben}
 \todo{Berechnungen, in welchem Modus wie lange gemessen werden kann, und wie lange ein \gls{sensor} mit dem vorhandenen Speicher die Resultate zwischenspeichern kann. Allenfalls ein System erwähnen, das automatisch zwischen verschiedenen Modi hin- und herschalten kann. (Ist allerdings heikel). Wie viele \glspl{sensor} können in welchem Modus gleichzeitig am System betrieben werden, bei welcher Ereignisrate ist Schluss mit Busbandbreite.}
@@ -133,3 +134,5 @@ Der Timer läuft nicht in Echtzeit, sondern zählt die Anzahl Messwerte seit sei
 \todo{Hier eine Art Bedienungsanleitung zur Konfiguration geben. Welches Kommando hat was 
 zur Folge? (Wird Datenerfassung neu gestartet, werden allenfalls andere \glspl{sensor} deaktiviert 
 etc.}
+
+\section{Parallele Prozesse}\label{sec.parallel}

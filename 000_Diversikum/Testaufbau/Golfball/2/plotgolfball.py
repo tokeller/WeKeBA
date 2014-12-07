@@ -36,14 +36,14 @@ plot(tr,vr,'-g',linewidth=0.7)
 
 xlabel('Zeit [ms]')
 ylabel('Beschleunigung [g]')
-title('Einschlag eines Golfballs auf einer Aluplatte\nRohdaten')
+#title('Einschlag eines Golfballs auf einer Aluplatte\nRohdaten')
 
 hl=[-200/16,200/16]
-vl=[1.835,3.675]
+vl=[1.835,3.665]
 hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
 vlines(vl,-80,80,linewidth=0.7,color='red')
 grid(True)
-savefig("raw.png")
+savefig("../../../../999_Doku/images/raw.png")
 
 # Rohdaten Zoom
 figure(num=1)
@@ -58,7 +58,7 @@ ylabel('Beschleunigung [g]')
 hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
 vlines(vl,-80,80,linewidth=0.7,color='red')
 grid(True)
-savefig("rawshort.png")
+savefig("../../../../999_Doku/images/rawshort.png")
 
 # Detailmodus Zoom
 figure(num=2)
@@ -75,7 +75,7 @@ hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
 vlines(vl,-80,80,linewidth=0.7,color='red')
 
 grid(True)
-savefig("detailed.png")
+savefig("../../../../999_Doku/images/detailed.png")
 #show
 
 # Peaks
@@ -92,5 +92,5 @@ hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
 vlines(vl,-80,80,linewidth=0.7,color='red')
 
 grid(True)
-savefig("peaks.png")
+savefig("../../../../999_Doku/images/peaks.png")
 show()

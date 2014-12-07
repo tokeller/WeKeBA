@@ -17,44 +17,44 @@ A level-1 auxiliary file: content/diskussion.aux
 The style file: plain.bst
 A level-1 auxiliary file: content/anhang.aux
 Database file #1: literatur.bib
-You've used 3 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            528 strings with 4674 characters,
-and the built_in function-call counts, 617 in all, are:
-= -- 59
-> -- 21
+            538 strings with 5157 characters,
+and the built_in function-call counts, 1223 in all, are:
+= -- 113
+> -- 42
 < -- 0
-+ -- 9
-- -- 6
-* -- 23
-:= -- 116
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 12
++ -- 18
+- -- 12
+* -- 38
+:= -- 215
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 20
-empty$ -- 56
-format.name$ -- 6
-if$ -- 126
+cite$ -- 6
+duplicate$ -- 41
+empty$ -- 122
+format.name$ -- 12
+if$ -- 258
 int.to.chr$ -- 0
-int.to.str$ -- 3
+int.to.str$ -- 6
 missing$ -- 0
-newline$ -- 19
-num.names$ -- 6
-pop$ -- 20
+newline$ -- 34
+num.names$ -- 12
+pop$ -- 53
 preamble$ -- 1
-purify$ -- 9
+purify$ -- 18
 quote$ -- 0
-skip$ -- 17
+skip$ -- 35
 stack$ -- 0
-substring$ -- 15
-swap$ -- 2
+substring$ -- 30
+swap$ -- 5
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 24
 warning$ -- 0
-while$ -- 6
-width$ -- 4
-write$ -- 33
+while$ -- 12
+width$ -- 7
+write$ -- 60

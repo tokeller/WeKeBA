@@ -36,7 +36,7 @@ Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys}
 \end{figure}
 
 \subsection{Sensoreinheit}
-Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (ADC) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das \gls{bussys} an den \gls{logger} übertragen. Abbildung \ref{fig.hwkonzept_sensor} zeigt das \gls{hardware}-Konzept der \gls{sensoreinh}.
+Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (\gls{adwandler}, Englisch \gls{adc}) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das \gls{bussys} an den \gls{logger} übertragen. Abbildung \ref{fig.hwkonzept_sensor} zeigt das \gls{hardware}-Konzept der \gls{sensoreinh}.
 
 \begin{figure}[H]
 	\centering
@@ -55,15 +55,89 @@ Das \gls{bussys} muss die Daten und Befehle zwischen \gls{logger} und \glspl{sen
 Bei der Auswahl des Mikroprozessors werden folgende Kriterien berücksichtigt:
 
 \begin{itemize}
-\item Rechenleistung genügend für allfällige zusätzliche Anforderungen.
-\item Analog-Digital-Wandler mit genügender Abtastrate und Auflösung.
-\item Digitaler Signal Prozessor integriert für die Verarbeitung der Messdaten.
+\item Genügend Rechenleistung für allfällige zusätzliche Anforderungen.
+\item \gls{adwandler} mit genügender Abtastrate und Auflösung (\gls{bitbreite}).
+\item \gls{dspgloss} integriert für die schnelle Verarbeitung der Messdaten.
+\item \gls{nvic}.
 \item Ein-/Ausgänge für das \gls{bussys}.
 \item Ein-/Ausgänge für den externen Speicher.
 \item möglichst geringer Stromverbrauch.
 \end{itemize}
 
+Für die vorliegende Anwendung eignen sich Mobile-Prozessoren sehr gut. Sie sind für den Einsatz in mobilen Geräten konzipiert, d.h. für den Batteriebetrieb, sind aber trotzdem sehr leistungsfähig. Die \emph{ARM Cortex}-Reihe bietet ein breites Spektrum an Prozessoren an. Im Mobile-Segment der \emph{ARM Cortex}-Reihe sind vier Prozessoren erhältlich. Da nur ein Modell einen \gls{dsp} aufweist, ist die Entscheidung einfach. Der \emph{ARM Cortex-M4} ist auch der neueste Prozessor aus dem Mobile-Segment. Mit dem Ausblick, das Messsystem in einem zukünftigen Projekt zur Serienreife zu bringen, macht es nur Sinn, den neuesten Prozessor zu verwenden. Ein Auszug aus dem Datenblatt des \emph{ARM Cortex-M4} befindet sich im Anhang \ref{ds.lpc4088}. Abbildung \ref{fig.M4diagramm} zeigt die Fähigkeiten des \emph{ARM Cortex-M4}.
 
+\paragraph{\gls{nvicgloss}} Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird. Für das Messsystem wird ein \gls{nvic} benötigt, da mehrere zeitkritische Prozesse parallel ablaufen sollen. Einerseits muss die Abtastrate der Messwerterfassung genau eingehalten werden. Andererseits darf die Verarbeitung der Messwerte nicht zu lange unterbrochen werden, um einen Überlauf der Queue zu vermeiden. Die Daten der \glspl{ereignis} müssen parallel dazu an den \gls{logger} übermittelt werden. Die Prioritäten dieser Prozesse müssen richtig gewählt werden. Im Abschnitt \ref{sec.parallel} wird näher darauf eingegangen.
+
+\paragraph{\gls{dsp}} Der \emph{ARM Cortex-M4} verfügt über \gls{dsp}-Funktionen, eine sog. single-cycle \gls{mac}. In einer single-cycle \gls{macgloss} können Multiplikationen in einem einzigen Prozessorzyklus ausgeführt werden. Normalerweise benötigt ein Prozessor für eine Multiplikation bis zu mehreren zehn Zyklen, bis das Resultat vorliegt. Mit einem \gls{dspgloss} ist es daher möglich, z.B. eine Filterfunktion viel effizienter zu berechnen als mit einem normalen Prozessor, da für diese viele Multiplikationen und Additionen ausgeführt werden müssen.
+
+\paragraph{\gls{fpu}} Eine \gls{fpugloss} führt Berechnungen mit Dezimalbrüchen sehr rasch aus. Für unsere Anwendung ist eine \gls{fpu} keine Voraussetzung. Falls in einem späteren Projekt komplexere Filter oder andere Anwendungen berechnet werden müssen, könnte die \gls{fpu} aber ein Vorteil sein.
+
+\paragraph{Wake Up Interrupt Controller Interface} Ein Wake Up Interrupt Controller Interface ermöglicht es, einen Prozessor in einen Stromsparmodus zu versetzen und ihn durch ein definiertes Signal wieder zu wecken. Damit ist es möglich, eine \gls{sensoreinh} praktisch ganz abzuschalten, wenn sie keine Messungen durchführt. Durch eine Nachricht über das Bussystem kann die \gls{sensoreinh} wieder eingeschaltet werden. Der Cortex-M4 verfügt über 240 mögliche Wake Up Interrupts, kann also für 240 Ereignisse programmiert werden, die ihn aufwecken oder in einen Stromsparmodus senden können \cite{armcortex}.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/datasheets/Cortex-M4-chip-diagram-LG.png}
+	\caption{Chipdiagramm der \emph{ARM Cortex-M4} Architektur \cite{armcortex}.}
+	\label{fig.M4diagramm}
+\end{figure}
+
+\paragraph{Rechenleistung} Die Rechenleistung des \emph{ARM Cortex-M4} hängt von der Implementation ab. Die Firma ARM produziert den \emph{ARM Cortex-M4} nicht selbst, sondern lizenziert Chip-Hersteller für die Verwendung der Architektur in ihren Prozessoren. Vom \emph{ARM Coretx-M4} sind mehrere Ausführungen erhältlich. Verschiedene Chip-Hersteller implementieren eine Architektur des \emph{ARM Cortex-M4} in ihren Prozessoren.
+
+\paragraph{\gls{adwandler}} Bei den bestehenden Messstationen wird die Datenmenge stark reduziert, indem über eine Minute ein Histogramm mit den Peakintensitäten als Klassen berechnet wird. Die Intensitäten werden in 18 Klassen logarithmischer Abstufung eingeteilt. Das entspricht einer \gls{bitbreite} von etwas mehr als vier Bit (4 Bit ermöglichen 16 Werte). Da für die Klasseneinteilung eine logarithmische Abstufung gewählt wurde, muss ein linearer \gls{adwandler} trotzdem eine höhere \gls{bitbreite} als vier aufweisen, um die gleiche Auflösung wie in den unteren logarithmischen Klassen zu erreichen. Mit 12 Bit Auflösung sind 4096 Stufen unterscheidbar, was für diese Anwendung genügt.
+
+\paragraph{Peripherie} Damit der Prozessor über das Bussystem kommunizieren und auf ein externes Speichermedium schreiben kann, sind genügend Ein- und Ausgabe-\glspl{pin} nötig.
+
+\paragraph{Wahl eines Prozessors} Da der Entscheid für eine Hardware schon zu Beginn des Projekts gefällt werden musste, wurde auf eine grosszügige Sicherheitsmarge in Sachen Rechenleistung und \gls{bitbreite} geachtet.  Um Kosten und Baugrösse der \gls{sensoreinh} klein zu halten, suchten wir nach einem Evaluationsboard mit \emph{ARM Cortex-M4} Prozessor. Das \emph{LPC4088 QuickStart Board} von \emph{NXP Semiconductors} hat genügend Arbeitsspeicher für den Prozessor, verfügt über die benötigten \glspl{pin} für die Peripherie und hat bei weitem genügend Rechenleistung. Die Fähigkeiten des NXP LPC4088FET208 Prozessors sind in Tabelle \ref{table.lpc4088} dargestellt. 
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Taktfrequenz & bis 120 MHz \\
+\hline
+NVIC & vorhanden \\
+\hline
+FPU & vorhanden \\
+\hline
+Programmspeicher & 512 kByte \\
+\hline
+Arbeitsspeicher (intern) & 96 kByte \\
+\hline
+CAN-Bus & 2 \\
+\hline
+USB & 2 \\
+\hline
+SD-Card & Anschlüsse vorhanden \\
+\hline
+\gls{adwandler} & 8 Eingänge, 12 Bit \\
+\hline
+\end{tabular}
+\caption{Fähigkeiten des NXP LPC4088 Prozessors \cite{nxplpc4088}.}
+\label{table.lpc4088}
+\end{center}
+\end{table}
+
+Auf dem \emph{NXP LPC4088 QuickStart Board} sind zusätzliche Bauteile verbaut, z.B. Speicher (SDRAM und Flash) und \gls{pin}-Steckleisten, um CAN-Bus-\glspl{pin} oder A/D-Eingänge anzuschliessen. Tabelle \ref{table.nxplpc4088qsb} listet die für dieses Projekt relevanten, zusätzlichen Eigenschaften auf.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Prozessor & NXP LPC4088FET208\\
+\hline
+Taktfrequenz & bis 120 MHz \\
+\hline
+Flash-Speicher & 8 MByte \\
+\hline
+SDRAM & 32 MByte \\
+\hline
+\gls{adwandler} & 6 Eingänge nutzbar, 12 Bit \\
+\hline
+\end{tabular}
+\caption{Zusätzliche Fähigkeiten des NXP LPC4088 QuickStart Boards von \emph{Embedded Artists}  \cite{nxplpc4088qsb}.}
+\label{table.lpc4088qsb}
+\end{center}
+\end{table}
 
 \subsection{Bus-System}
 Anhand folgender Kriterien wurde ein \gls{bussys} ausgewählt:

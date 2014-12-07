@@ -35,6 +35,13 @@
 
 \newacronym{fsm}{FSM}{Finite State Machine}
 
+\newacronym{dsp}{DSP}{Digitaler Signal-Prozessor}
+
+\newacronym{nvic}{NVIC}{Nested Vectored Interrupt Controller}
+
+\newacronym{mac}{MAC}{multiply-accumulate unit}
+
+\newacronym{fpu}{FPU}{Floating Point Unit}
 
 
 
@@ -93,7 +100,7 @@
 
 \newglossaryentry{adwandler}{name={A/D-Wandler},plural={A/D-Wandler},description={Analog/Digital-Wandler, (Englisch: \gls{adc}). Ein A/D-Wandler misst die Spannung, die an einem Pin anliegt und gibt einen digitalen Wert aus, der die Höhe der Spannung angibt. Bei der Umwandlung in einen digitalen Wert erfolgt eine Quantisierung. Je grösser die Bit-Breite des A/D-Wandlers ist, umso kleiner wird die Schrittgrösse von einem digitalen Wert zum nächst-höheren Wert.},see={quantis,bitbreite}}
 
-\newglossaryentry{Quants}{name={Quantisierung},plural={Quantisierung},description={Einteilung eines Werts aus einer kontinuierlichen Skala in eine abgestufte Skala. Bei der Quantisierung wird der nächstgelegene Wert auf der abgestuften Skala ausgewählt. Je nach Anwendung wird die abgestufte Skala mit konstanter Stufengrösse (linear) gewählt, oder mit unterschiedlichen Stufengrössen je nach absolutem Wert (z.B. exponentiell). Der Quantisierungsfehler entspricht der Differenz zwischen dem analogen und dem quantisierten, digitalen Wert. Je grösser die Bit-Breite der Quantisierung ist, desto kleiner wird der Quantisierungsfehler.},see={bitbreite}}
+\newglossaryentry{quantis}{name={Quantisierung},plural={Quantisierung},description={Einteilung eines Werts aus einer kontinuierlichen Skala in eine abgestufte Skala. Bei der Quantisierung wird der nächstgelegene Wert auf der abgestuften Skala ausgewählt. Je nach Anwendung wird die abgestufte Skala mit konstanter Stufengrösse (linear) gewählt, oder mit unterschiedlichen Stufengrössen je nach absolutem Wert (z.B. exponentiell). Der Quantisierungsfehler entspricht der Differenz zwischen dem analogen und dem quantisierten, digitalen Wert. Je grösser die Bit-Breite der Quantisierung ist, desto kleiner wird der Quantisierungsfehler.},see={bitbreite}}
 
 \newglossaryentry{bitbreite}{name={Bit-Breite},plural={Bit-Breiten},description={Die Bit-Breite gibt an, wie viele Bit für die Darstellung eines Wertes verwendet werden. Je grösser die Bit-Breite, desto mehr unterschiedliche Werte können dargestellt werden. Mit einer Bit-Breite von \ensuremath{n} können \ensuremath{2^n} Werte dargestellt werden.}}
 
@@ -108,3 +115,17 @@
 \newglossaryentry{nullpegel}{name={Nullpegel},description={Signalpegel, wenn keine Beschleunigung gemessen wird.}}
 
 \newglossaryentry{queue}{name={Queue},plural={Queues},description={Englisch für Warteschlange. In der Informationstechnologie wird eine Queue verwendet, um mehrere Werte zwischenzuspeichern, bis sie verarbeitet werden können. Eine Queue hat meistens eine vordefinierte Grösse und kann deshalb nur eine bestimmte Anzahl Werte aufnehmen. Ein Überlaufen der Queue hat einen Datenverlust zur Folge, wenn der Werte einfüllende Prozess nicht angehalten werden kann/darf, bis Platz in der Queue vorhanden ist.}}
+
+\newglossaryentry{dspgloss}{name={DSP},plural={DSP},description={Digitaler Signal-Prozessor. Ein Mikroprozessor oder ein Bestandteil eines solchen, der dank spezieller Hardware fähig ist, Multiplikationen und Additionen extrem schnell auszuführen. Ausserdem verfügt ein \gls{dsp} über Schieberegister, um Rechenoperationen über eine Serie der aktuellsten Messwerte auszuführen. Da bei der digitalen Signalverarbeitung oft für jeden Messwert viele Multiplikations- und Additions-Schritte ausgeführt werden müssen, ist es wichtig, dass Multiplikations-Operationen in einem Taktzyklus ausgeführt werden können. In einem normalen Prozessor werden für eine Multiplikation mehrere Taktzyklen benötigt.},see={mc}}
+
+\newglossaryentry{nvicgloss}{name={Nested Vectored Interrupt Controller},description={Wird benötigt, um möglichst rasch auf mehrere asynchron eintreffende Ereignisse reagieren zu können. Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird.}}
+
+\newglossaryentry{macgloss}{name={MAC},description={Multiply-ACcumulate unit: Ein Rechenwerk in der CPU, wo Multiplikationen und Additionen ausgeführt werden.}}
+
+\newglossaryentry{fpugloss}{name={FPU},description={Floating Point Unit, ein Rechenwerk in der CPU, die Berechnungen mit Dezimalbrüchen sehr schnell ausführen kann.}}
+
+\newglossaryentry{sdram}{name={SDRAM},description={Synchronous Dynamic RAM. Flüchtiger Arbeitsspeicher. Der Inhalt des Arbeitsspeichers muss regelmässig aufgefrischt werden, sonst geht die Information verloren.},see={RAM}}
+
+\newglossaryentry{flash}{name={Flash-Speicher},description={Nicht-flüchtiger Speicher. Der Inhalt des Speichers bleibt auch bestehen, wenn keine Versorgungsspannung anliegt.}}
+
+\newglossaryentry{ram}{name={RAM},description={Random Access Memory. Arbeitsspeicher mit Zugriff auf beliebige Adressen. Benötigt keine Positionierung eines Lese-/Schreib-Kopfs oder eines Magnetbands vor einem Zugriff.}}
