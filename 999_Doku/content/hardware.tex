@@ -26,9 +26,9 @@ Anhand der funktionalen Vorgaben für die Messstation werden der \gls{logger}, d
 
 \subsection{Datenlogger}
 Das \gls{hardware}-Konzept des \gls{logger}s ist in Abbildung \ref{fig.hwkonzept_logger} dargestellt.
-Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys} ein und speichert sie ab. Dafür benötigt er das \gls{bussys}, einen Mikroprozessor, internen Speicher und ein leicht auswechselbares \gls{speichermedium}. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der \gls{logger} wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des \gls{speichermedium}s wäre eine verschraubbare Öffnung denkbar.
+Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys} ein und speichert sie ab. Dafür benötigt er das \gls{bussys}, einen \gls{mc}, internen Speicher und ein leicht auswechselbares \gls{speichermedium}. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der \gls{logger} wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des \gls{speichermedium}s wäre eine verschraubbare Öffnung denkbar.
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_logger.pdf}
 	\caption{Hardwarekonzept des \gls{logger}s.}
@@ -36,9 +36,9 @@ Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys}
 \end{figure}
 
 \subsection{Sensoreinheit}
-Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (\gls{adwandler}, Englisch \gls{adc}) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem Mikroprozessor verarbeitet, im internen Speicher zwischengespeichert und über das \gls{bussys} an den \gls{logger} übertragen. Abbildung \ref{fig.hwkonzept_sensor} zeigt das \gls{hardware}-Konzept der \gls{sensoreinh}.
+Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge von Geschiebe zu messen. Über einen Analog-Digital-Wandler (\gls{adwandler}, Englisch \gls{adc}) werden die Messsignale digitalisiert. Die gemessenen Signale werden von einem \gls{mc} verarbeitet, im internen Speicher zwischengespeichert und über das \gls{bussys} an den \gls{logger} übertragen. Abbildung \ref{fig.hwkonzept_sensor} zeigt das \gls{hardware}-Konzept der \gls{sensoreinh}.
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_sensor.pdf}
 	\caption{Hardwarekonzept der \gls{sensoreinh}.}
@@ -52,7 +52,7 @@ Das \gls{bussys} muss die Daten und Befehle zwischen \gls{logger} und \glspl{sen
 \section{Komponentenauswahl}
 
 \subsection{Mikroprozessor}
-Bei der Auswahl des Mikroprozessors werden folgende Kriterien berücksichtigt:
+Bei der Auswahl des \gls{mc}s werden folgende Kriterien berücksichtigt:
 
 \begin{itemize}
 \item Genügend Rechenleistung für allfällige zusätzliche Anforderungen.
@@ -163,8 +163,8 @@ Anhand folgender Kriterien wurde ein \gls{bussys} ausgewählt:
 slave select
 \end{minipage} & \begin{minipage}{6cm}
 \mbox{ }\\- Pro Client eine Slave Select Leitung\\
-- Daisy Chain $\Rightarrow $alle MC beschäftigt.\\
-- Bei Ausfall eines MC ganzer Bus unterbrochen.\\
+- alternativ: \gls{daisy} $\Rightarrow $alle \gls{mcacr} beschäftigt.\\
+- Bei Ausfall eines \gls{mcacr} ganzer Bus unterbrochen.\\
 \end{minipage} \\ 
 \hline \textbf{RS485} & \begin{minipage}{2cm}
 35 MBit/s\\100 kBit/s
@@ -177,14 +177,14 @@ slave select
 \end{minipage} \\ 
 \hline \textbf{Ethernet} & 100 MBit/s & 100 m & > 20 & \begin{minipage}{6cm}
 \mbox{ }\\+ Stromversorgung bei Power over Ethernet (PoE) integriert.\\
-- kein Bus sondern allenfalls Daisychain.\\
-- bei Daisychain kein PoE möglich.\\
+- kein Bus sondern allenfalls \gls{daisy}.\\
+- bei \gls{daisy} kein PoE möglich.\\
 \end{minipage} \\ 
 \hline \textbf{Feldbus} &  &  &  & \begin{minipage}{6cm}
 \mbox{ }\\ist eine Familie von Bussen, z.B. CAN-Bus\\
 \end{minipage} \\ 
 \hline \textbf{I2C} & 0.4..5 Mbit/s & wenige Meter & < 20 & \begin{minipage}{6cm}
-\mbox{ }\\nur für kurze Distanzen, Bitrate nimmt rasch ab.\\
+\mbox{ }\\nur für kurze Distanzen, Bitrate nimmt mit zunehmender Distanz rasch ab.\\
 \end{minipage}\\
 \hline 
 \end{tabular}
@@ -196,27 +196,44 @@ In Tabelle \ref{table.bussystem} sind die Eigenschaften diverser \glspl{bussys} 
 
 \paragraph{Kommentare}
 SPI und I2C sind nur für kurze Distanzen geeignet und sind deshalb keine Option.
-Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf jeder \gls{sensoreinh} voraussetzen, um die \glspl{sensor} hintereinander zusammenzuhängen (Daisychain). Jedes Paket müsste vom Microcontroller weitergeleitet werden, wenn es für einen anderen Empfänger bestimmt ist. Dies führte zu einer zusätzlichen Belastung der Microcontroller. Stromversorgung über Ethernet ist mit PowerOverEthernet (PoE) zwar möglich, erfordert aber spezielle Geräte zur Speisung über den Stecker des Datenkabels. Dies verunmöglicht eine Daisychain mit PoE, neben dem Datenkabel wäre noch ein Kabel für die Stromversorgung notwendig.
+Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf jeder \gls{sensoreinh} voraussetzen, um die \glspl{sensor} hintereinander zusammenzuhängen (\gls{daisy}). Jedes Paket müsste vom \gls{mc} weitergeleitet werden, wenn es für einen anderen Empfänger bestimmt ist. Dies führte zu einer zusätzlichen Belastung der Microcontroller. Stromversorgung über Ethernet ist mit PowerOverEthernet (PoE) zwar möglich, erfordert aber spezielle Geräte zur Speisung über den Stecker des Datenkabels. Dies verunmöglicht eine \gls{daisy} mit PoE, neben dem Datenkabel wäre noch ein Kabel für die Stromversorgung notwendig.
 
-\paragraph{Vergleich CAN-Bus und RS485}
-\todo{Kriterienliste RS485/CAN einfügen, Lit-Referenz auf White Paper von IXXAT}
-CAN und RS: Stecker nicht definiert => wasserdichte Stecker einfach zu finden.
+\paragraph{Vergleich CAN-Bus und RS485} \cite{ixxatcan}: Die beiden Bussysteme CAN und RS485 sind nicht einfach zu vergleichen, da der RS485-Standard nur die elektrischen Eigenschaften des Systems beschreibt (OSI Layer 1). Der CAN-Standard beschreibt auch den Data Link Layer (OSI Layer 2). Der Data Link Layer beschreibt Methoden, die die Übertragung zuverlässig machen. Ein Beispiel dafür ist eine Prüfsumme, die es ermöglicht, eine fehlerhafte Übertragung im Empfänger festzustellen. Der Empfänger bestätigt bei korrekter Prüfsumme den Empfang. Stellt einer der Empfänger einen Fehler fest, sendet er eine Fehlermeldung über den Bus und stört damit die Übertragung. So ist es nicht möglich, dass einige Empfänger die Nachricht lesen konnten und andere nicht. Der Sender ist bei erfolgter Bestätigung sicher, dass seine Nachricht erfolgreich an alle Empfänger übertragen wurde. 
+
+CAN-Bus definiert auch eine Adressierung, Kollisions-Erkennung und -Auflösung, Prioritäten der Busteilnehmer und ein Nachrichtenformat. Bei RS485 besteht eine Nachricht aus einem einzelnen Zeichen. Der Data Link Layer muss gänzlich in Software gelöst werden. Dafür ist es möglich, das Protokoll komplett selbst zu definieren. Dies erlaubt beliebig lange Übertragungen von einem Busteilnehmer. CAN-Bus limitiert die Nachrichtenlänge auf 8 Bytes. Die Übertragung längerer Nachrichten muss über Software geregelt werden \cite{ixxatcan}.
+
+Bei beiden Standards ist der Stecker nicht definiert. Das lässt die komplette Freiheit für die Wahl eines wasserdichten Steckverbinders.
+
+Da der CAN-Bus bereits mit dem Standard viele benötigte Merkmale mitbringt, fällt die Entscheidung nicht schwer.
 
 \paragraph{Entscheidung}
-CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits \gls{cdetgloss} und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (\gls{transceiver}) erhältlich, die mit hohen Spannungen umgehen können, was das \gls{bussys} robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was einen Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 
+CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein weiterer Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits \gls{cdetgloss} und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (\gls{transceiver}) erhältlich, die mit hohen Spannungen umgehen können, was das \gls{bussys} robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was einen Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 
 
-\paragraph{CAN-Bus} \todo{CAN-Bus beschreiben: Priorität, differenziell, Prüfsumme}
+\paragraph{CAN-Bus} CAN-Bus ist ein Bussystem über eine differentielle Leitung. Auf zwei Drähten liegt eine bestimmte Spannung an. Der Empfänger misst den Spannungsdifferenz zwischen den beiden Drähten. Die Differenz wird vom Sender entweder klein oder gross gehalten, um ein 'dominantes' oder ein 'rezessives' Bit zu senden. 'Rezessiv' bedeutet dabei, dass ein anderer Busteilnehmer durch anlegen eines 'dominanten' Bits das 'rezessive' Bit überschreiben kann. Welche Spannungsdifferenzen 'dominant' und 'rezessiv' darstellen, ist vom Standard nicht definiert und lässt dem Entwickler damit freie Hand, die elektrischen Eigenschaften seiner CAN-Implementation seinen Bedürfnissen entsprechend zu definieren. Um Signalreflexionen am Ende der Leitungen zu vermeiden, wird ein Terminierungswiderstand an beiden Enden benötigt, der die beiden Leitungen abschliesst \cite{boschcanspec2}.
+
+Die beiden Drähte der differentiellen Leitung sind verdrillt. Dadurch wird das Signal der Leitung besser vor äusseren Einflüssen geschützt. Elektrische und magnetische Felder induzieren in einem Draht einen Strom. Da das äussere Feld aber in beiden Drähten praktisch den gleichen Strom induziert, ändert sich an der Spannungsdifferenz in den Drähten kaum etwas (siehe Abbildung \ref{fig.diff}). Die beiden Drähte stellen auch eine Spule dar. Durch das verdrillen der Drähte ändert sich die Ausrichtung der Spule im äusseren Feld auf kurzen Abständen, induzierte Störungen heben sich so gegenseitig auf \cite[Kap. 2, S. 14]{muellerkt1}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/differential.pdf}
+	\caption{Differentielle Leitung \cite{{muellerkt1}}.}
+	\label{fig.diff}
+\end{figure}
+
+Die Kollisions-Erkennung und -Auflösung wird über ID-Nummern der Teilnehmer gelöst. Vor dem Start einer Übertragung prüft der Teilnehmer, dass der Bus zur Zeit frei ist. Dann sendet der Teilnehmer seine ID-Nummer. Falls zwei Teilnehmer gleichzeitig zu senden beginnen, werden sie irgendwann unterschiedliche Bits senden. Der Teilnehmer, der dann das 'dominante' Bit sendet, liest vom Bus den gleichen Wert, den er gerade sendet. Für ihn ist die Übertragung nicht gestört. Der Teilnehmer mit dem 'rezessiven' Bit liest aber das 'dominante' Bit des anderen Senders und muss seine Übertragung sofort abbrechen. Diese Art der Kollisionsauflösung hat den Vorteil, dass keine Übertragungszeit verloren geht, da einer der Teilnehmer seine Nachricht senden darf. Der Verlierer wartet, bis der Bus wieder frei ist und probiert dann erneut, die Nachricht zu senden \cite{boschcanspec2}.
+
+Die korrekte Übertragung wird mittels eines \gls{crc}-Codes überprüft. Der Empfänger berechnet bereits während dem Empfang der Nachricht die \gls{crcgloss}-Prüfsumme. Sobald die vom Sender mitgeschickte CRC-Prüfsumme übertragen ist, kann der Empfänger diese mit der berechneten \gls{crc} vergleichen. Stimmen die Prüfsummen überein, bestätigt der Empfänger die korrekte Übertragung \cite{boschcanspec2}.
 
 \subsection{Speichermedium}
 \paragraph{Kriterien} Das externe Speichermedium soll möglichst klein sein, wenig Stromverbrauch haben und einfach auswechselbar sein. Bei Inaktivität sollte das Medium wenn möglich keinen Strom verbrauchen. Für einen mehrwöchigen unabhängigen Betrieb einer Messstation muss genügend Speicherkapazität bereitgestellt werden.
 
-\paragraph{Datenmenge} Pro \gls{sensor} werden bei hohem Geschiebeaufkommen maximal hundert \glspl{ereignis} pro Sekunde erwartet. Ein solches Geschiebeaufkommen stellt jedoch die Ausnahme dar. Ein \gls{ereignis} benötigt je nach verlangtem Detailgrad und Dauer des \gls{ereignis}ses 10..90 Byte Speicherplatz. Für den normalen Betriebsmodus werden 50 Byte/\gls{ereignis} gerechnet, bei 5 \glspl{ereignis}n pro Sekunde. Damit ergibt sich eine Datenrate von 250 Byte/s, die es pro \gls{sensor} abzuspeichern gilt. Mit zehn \glspl{sensor} im Einsatz müssen 2.5 kByte/s gespeichert werden. 
+\paragraph{Datenmenge} Pro \gls{sensor} werden bei hohem Geschiebeaufkommen maximal hundert \glspl{ereignis} pro Sekunde erwartet. Ein solches Geschiebeaufkommen stellt jedoch die Ausnahme dar. Ein \gls{ereignis} benötigt je nach verlangtem Detailgrad und Dauer des \gls{ereignis}ses 10--200 Byte Speicherplatz. Für den normalen Betriebsmodus werden 50 Byte/\gls{ereignis} gerechnet, bei 5 \glspl{ereignis}n pro Sekunde. Damit ergibt sich eine Datenrate von 250 Byte/s, die es pro \gls{sensor} abzuspeichern gilt. Mit zehn \glspl{sensor} im Einsatz müssen 2.5 kByte/s gespeichert werden. 
 
-\paragraph{Unabhängige Betriebsdauer} Pro Gigabyte Speicherplatz können 111 Stunden Daten für zehn \glspl{sensor} gespeichert werden. Bei hohem Geschiebeaufkommen mit zwanzig mal mehr \glspl{ereignis}n bleiben immer noch 5 Stunden Aufzeichnungszeit pro Gigabyte. Begnügt man sich mit weniger Details, reichen fallen pro \gls{sensor} in zehn Sekunden rund 400 Byte Daten an. Bei dieser Datenrate reicht ein Gigabyte für rund 700 Stunden. Auch bei hohem Geschiebeaufkommen kann die Anlage mehrere Tage an Daten speichern. 
+\paragraph{Unabhängige Betriebsdauer} Pro Gigabyte Speicherplatz können 111 Stunden Daten für zehn \glspl{sensor} gespeichert werden. Bei hohem Geschiebeaufkommen mit zwanzig mal mehr \glspl{ereignis}n bleiben immer noch 5 Stunden Aufzeichnungszeit pro Gigabyte. Begnügt man sich mit weniger Details, fallen pro \gls{sensor} in zehn Sekunden rund 400 Byte Daten an. Bei dieser Datenrate reicht ein Gigabyte für rund 700 Stunden. Auch bei hohem Geschiebeaufkommen kann die Anlage mehrere Tage an Daten speichern. 
 
 \paragraph{Kapazität} Heute sind Speichermedien mit Kapazitäten bis über 128 GB erhältlich, so dass die Detailrate kein entscheidendes Kriterium mehr darstellt.
 
-\paragraph{Datentransfer} Für den Transfer der Daten aus dem \gls{logger} auf einen Computer gibt es grundsätzlich zwei Varianten. Entweder man liest die Daten über eine Schnittstelle auf den Computer aus, oder man tauscht das Speichermedium aus. Das Auslesen via Schnittstelle benötigt zusätzlich Strom, das Wechseln des Speichermediums setzt einen mehr oder weniger komfortablen und trotzdem wasserdichten Zugang zum Medium voraus. Da heute Speichermedien mit kleinem Platzbedarf erhältlich sind, könnte ein solcher Zugang recht einfach mit einem Schraubverschluss realisiert werden.
+\paragraph{Datentransfer} Für den Transfer der Daten aus dem \gls{logger} auf einen Computer gibt es grundsätzlich zwei Varianten. Entweder man liest die Daten über eine Schnittstelle auf den Computer aus, oder man tauscht das Speichermedium aus. Das Auslesen via Schnittstelle benötigt zusätzlich Strom, das Wechseln des Speichermediums setzt einen mehr oder weniger komfortablen und trotzdem wasserdichten Zugang zum Medium voraus. Da heute Speichermedien mit kleinem Platzbedarf erhältlich sind, kann ein solcher Zugang recht einfach mit einem Schraubverschluss realisiert werden.
 
 \paragraph{Vergleich} In Tabelle \ref{table.speichermedium} werden verschiedene Speichermedien miteinander verglichen. In der Spalte 'Breite' ist aufgelistet, wie gross eine Öffnung mindestens sein muss, um das Speichermedium wechseln zu können. 'Pins' gibt an, wie viele Leitungen für den Anschluss des Mediums am Microcontroller nötig sind. Der Stromverbrauch in Klammern ist für den Standby-Modus des Speichermediums.
 
@@ -228,12 +245,9 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 	\textbf{CompactFlash} & 43 mm           & 50            & max. 70 mA (k.A.)       & paralleler Bus              \\ \hline
 	\textbf{USB-Stick}    & min. 12 mm      & 4             & typ. 70 mA (k.A.) &  \\ \hline
 \end{tabular} 
-\caption{Entscheidungsmatrix zur Auswahl des Speichermediums.}
+\caption{Entscheidungsmatrix zur Auswahl des Speichermediums \cite{sdstd,cfstd,usbwiki}.}
 \label{table.speichermedium}
 \end{table} 
-
-\todo{Literatur-Referenzen in Tabelle \ref{table.speichermedium}}
-
 
 \paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross werden. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der \gls{logger} mit einem SD-Kartenleser ausgestattet.
 
@@ -264,7 +278,6 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 
 \todo{CAN Bus beschreiben}
 \subsubsection{CAN Transceiver}
-
 \todo{CAN Transceiver beschreiben}
 
 \subsection{SD Karte}
@@ -279,7 +292,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 \section{Datenlogger}
 
 \todo{Datenlogger übersicht}
-\begin{figure}[H]
+\begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_logger.pdf}
 	\caption{Schematischer Hardware-Aufbau des \gls{logger}s.}
@@ -291,7 +304,7 @@ CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu
 \section{Sensoreinheit}
 
 \todo{Sensoreinheit übersicht}
-\begin{figure}[H]
+\begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_sensor.pdf}
 	\caption{Schematischer Hardware-Aufbau der \gls{sensoreinh}.}

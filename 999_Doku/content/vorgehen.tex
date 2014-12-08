@@ -26,7 +26,7 @@ Das zu entwickelnde Messsystem kann grob in drei Komponenten aufgeteilt werden.
 \end{enumerate}
 Der \gls{logger} hat die Aufgabe, von mehreren \glspl{sensoreinh} registrierte \glspl{ereignis} zu empfangen und zu speichern. Die \glspl{sensoreinh} messen kontinuierlich die Beschleunigung, werten die Signale aus und erkennen \glspl{ereignis}, die einer vordefinierten Signalform entsprechen. Alle \glspl{sensoreinh} sind über ein \gls{bussys} mit dem \gls{logger} verbunden, um miteinander kommunizieren zu können. Der prinzipielle Aufbau ist in Abbildung \ref{fig.situationskroki} ersichtlich. Die Stromversorgung der Anlage wird am \gls{logger} angeschlossen. Parallel zum Kabel des Datenbusses wird die Stromversorgung der \glspl{sensoreinh} geführt.
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/Situationskroki.pdf}
 	\caption{Eine Messstation mit einem \gls{logger}, der mehrere \glspl{sensoreinh} im Bach steuert.}

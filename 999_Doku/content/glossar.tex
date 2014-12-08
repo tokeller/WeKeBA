@@ -47,6 +47,9 @@
 
 \newacronym{cdet}{CD}{Collision Detection}
 
+\newacronym{mcacr}{MC}{Microkontroller}
+
+\newacronym{crc}{CRC}{Cyclic Redundancy Check}
 
 % Glossareinträge
 \newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Messgerät für Vibrationen des Bodens. Ein Geophon misst Bewegungen mittels einer magnetischen Masse, die beweglich in einer Spule aufgehängt ist. Wird das Geophon in Bewegung versetzt, schwingt die magnetische Masse aufgrund ihrer Trägheit und induziert dadurch einen Strom in der Spule. Durch Messung dieses Stroms kann die Bewegung registriert weden.}}
@@ -141,3 +144,7 @@
 \newglossaryentry{transceiver}{name={Transceiver},plural={Transceiver},description={Ein Gerät das gleichzeitig Transmitter und Receiver, also Sender und Empfänger ist. Der Prozessor sendet die zu übertragenden Daten über eine \gls{serial} an den Transceiver. Der Transceiver erzeugt dann die notwendigen elektrischen Signale auf dem Bus, um die Daten zu übertragen. Beim Empfangen einer Meldung liest der Transceiver die Signale vom Bus und übersetzt sie für die serielle Übertragung zum Prozessor. Ein Transceiver ist notwendig, wenn der Prozessor die vom Bus erwarteten elektrischen Signale nicht selbst erzeugen kann.},see={serial}}
 
 \newglossaryentry{serial}{name={serielle Schnittstelle},plural={serielle Schnittstellen},description={Eine Schnittstelle, über die Daten bitweise übertragen werden, im Gegensatz zu paralleler Übertragung, wo auf mehreren Leitungen mehrere Bits gleichzeitig übertragen werden.}}
+
+\newglossaryentry{daisy}{name={Daisy Chain},description={Englisch für Gänseblümchenkette. Gemeint ist das aneinanderreihen mehrerer Geräte. Im Unterschied zu einem Bussystem müssen die Geräte alle Nachrichten, die für andere Empfänger bestimmt sind, aktiv weiterleiten. Dies braucht Rechenleistung in den Geräten. Wenn ein Gerät ausfällt, gehen alle Nachrichten in diesem Gerät verloren.}}
+
+\newglossaryentry{crcgloss}{name={CRC},description={Cyclic Redundancy Check. Ein Codeverfahren, das eine Prüfsumme über eine Nachricht berechnet. Durch Nachrechnen der Prüfsumme im Empfänger kann die Nachricht auf Fehlerfreiheit überprüft werden.}}
