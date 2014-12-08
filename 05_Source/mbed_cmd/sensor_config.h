@@ -1,6 +1,9 @@
 #ifndef SENSOR_CONFIG_H
 #define SENSOR_CONFIG_H
 
+#ifndef MBED_H
+#include "mbed.h"
+#endif
 #include "stdint.h"
 
 
@@ -14,29 +17,46 @@
  * -- Type definitions
  * --------------------------------------------------------------- */
  
+	typedef enum detail_mode{
+		M_OFF = 0,
+		M_SPARSE,
+		M_PEAKS,
+		M_DETAILED,
+		M_RAW
+	} detail_mode_t;
+	
+	
 	typedef struct sensor_config{
 	  // identification
-		uint32_t serialID      // received from sensor
-		uint8_t sensor_ID      // ID number for this sensor in logger
+		uint32_t serialID;      // received from sensor
+		uint8_t sensor_ID;      // ID number for this sensor in logger
 		
 		// operating parameters
-		uint8_t fs;            // sampling frequency in 100 Hz 
+		uint16_t fs;            // sampling frequency in 100 Hz 
 		uint16_t threshold;    // input level above or below baseline
 		uint16_t baseline;     // baseline level to compensate for 
 		                       // orientational deviations
 		uint16_t timeout;      // how many samples below threshold will
 		                       // terminate an impact
-		uint8_t detail_level;  // operation mode: 'raw','detailed'..'off'
+		detail_mode_t detail_level;  // operation mode: 'raw','detailed'..'off'
 		
 		// file pointer
 		FILE *pf_sensor_data;  // data file pointer
 		
 	} SensorConfig;
-
 /* ------------------------------------------------------------------
  * -- Prototypes
  * --------------------------------------------------------------- */
- 
+
+ /**
+ * initialize new sensor_config
+ *   @param   SensorConfig *sc : pointer to the SensorConfig to init
+ *   @param   uint8_t id       : id of that sensor.
+ *   @retval  none
+ */
+void sensor_config_init(SensorConfig *sc, uint8_t id);
+
+	
  /**
  * Write sensor config to string for saving config file.
  *   @param   SensorConfig *sc : pointer to the sensorConfig to be saved
