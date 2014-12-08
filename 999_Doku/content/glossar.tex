@@ -43,7 +43,9 @@
 
 \newacronym{fpu}{FPU}{Floating Point Unit}
 
+\newacronym{isr}{ISR}{Interrupt Service Routine}
 
+\newacronym{cdet}{CD}{Collision Detection}
 
 
 % Glossareinträge
@@ -118,7 +120,7 @@
 
 \newglossaryentry{dspgloss}{name={DSP},plural={DSP},description={Digitaler Signal-Prozessor. Ein Mikroprozessor oder ein Bestandteil eines solchen, der dank spezieller Hardware fähig ist, Multiplikationen und Additionen extrem schnell auszuführen. Ausserdem verfügt ein \gls{dsp} über Schieberegister, um Rechenoperationen über eine Serie der aktuellsten Messwerte auszuführen. Da bei der digitalen Signalverarbeitung oft für jeden Messwert viele Multiplikations- und Additions-Schritte ausgeführt werden müssen, ist es wichtig, dass Multiplikations-Operationen in einem Taktzyklus ausgeführt werden können. In einem normalen Prozessor werden für eine Multiplikation mehrere Taktzyklen benötigt.},see={mc}}
 
-\newglossaryentry{nvicgloss}{name={Nested Vectored Interrupt Controller},description={Wird benötigt, um möglichst rasch auf mehrere asynchron eintreffende Ereignisse reagieren zu können. Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird.}}
+\newglossaryentry{nvicgloss}{name={Nested Vectored Interrupt Controller},description={Wird benötigt, um möglichst rasch auf mehrere asynchron eintreffende Ereignisse reagieren zu können. Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird.},see={interrupt}}
 
 \newglossaryentry{macgloss}{name={MAC},description={Multiply-ACcumulate unit: Ein Rechenwerk in der CPU, wo Multiplikationen und Additionen ausgeführt werden.}}
 
@@ -129,3 +131,13 @@
 \newglossaryentry{flash}{name={Flash-Speicher},description={Nicht-flüchtiger Speicher. Der Inhalt des Speichers bleibt auch bestehen, wenn keine Versorgungsspannung anliegt.}}
 
 \newglossaryentry{ram}{name={RAM},description={Random Access Memory. Arbeitsspeicher mit Zugriff auf beliebige Adressen. Benötigt keine Positionierung eines Lese-/Schreib-Kopfs oder eines Magnetbands vor einem Zugriff.}}
+
+\newglossaryentry{polling}{name={Polling},description={Englisch für Abfragen. Bezeichnet das wiederholte Abfragen einer Funktion oder eines Wertes, bis ein bestimmtes Ereignis auftritt. Der Prozessor ist mit der Abfrage beschäftigt und verliert dadurch Rechenzeit.}}
+
+\newglossaryentry{interrupt}{name={Interrupt},plural={Interrupts},description={Englisch für Unterbrechen. Durch ein spezielles Signal wird dem Prozessor mitgeteilt, dass ein Ereignis eingetreten ist. Der Prozessor unterbricht die laufende Funktion und ruft eine spezielle Routine, die \gls{isr} auf. Die \gls{isr} verarbeitet das Ereignis und gibt danach die Kontrolle an die vorher unterbrochene Funktion zurück. Mit einem Interrupt wird zwar die Abarbeitung einer Funktion kurzzeitig unterbrochen, dafür verliert der Prozessor keine Rechenzeit mit Polling.},see={polling}}
+
+\newglossaryentry{cdetgloss}{name={Collision Detection},description={Kollisionserkennung. Als Kollision bezeichnet man den gleichzeitigen Versuch mehrerer Busteilnehmer, eine Nachricht zu übermitteln. Dies führt zu einer Überlagerung der Nachrichten und macht diese unlesbar. Gleichzeitig mit dem Schreiben liest der Transceiver die Signale vom Bus. Stimmen die gelesenen Signale nicht mit den Geschriebenen überein, bedeutet dies, dass ein anderer Teilnehmer ebenfalls auf den Bus schreibt und eine Kollision vorliegt. Das Verhalten bei einer Kollision ist vom Bussystem abhängig.},see={transceiver}}
+
+\newglossaryentry{transceiver}{name={Transceiver},plural={Transceiver},description={Ein Gerät das gleichzeitig Transmitter und Receiver, also Sender und Empfänger ist. Der Prozessor sendet die zu übertragenden Daten über eine \gls{serial} an den Transceiver. Der Transceiver erzeugt dann die notwendigen elektrischen Signale auf dem Bus, um die Daten zu übertragen. Beim Empfangen einer Meldung liest der Transceiver die Signale vom Bus und übersetzt sie für die serielle Übertragung zum Prozessor. Ein Transceiver ist notwendig, wenn der Prozessor die vom Bus erwarteten elektrischen Signale nicht selbst erzeugen kann.},see={serial}}
+
+\newglossaryentry{serial}{name={serielle Schnittstelle},plural={serielle Schnittstellen},description={Eine Schnittstelle, über die Daten bitweise übertragen werden, im Gegensatz zu paralleler Übertragung, wo auf mehreren Leitungen mehrere Bits gleichzeitig übertragen werden.}}

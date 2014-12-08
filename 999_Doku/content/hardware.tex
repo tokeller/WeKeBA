@@ -155,8 +155,8 @@ Anhand folgender Kriterien wurde ein \gls{bussys} ausgewählt:
 \hline \textbf{CAN} & \begin{minipage}{2cm}
 1 MBit/s\\ 125 kBit/s
 \end{minipage} & \begin{minipage}{1.5cm}40 m\\500 m\end{minipage} & > 20 & \begin{minipage}{6cm}
-\mbox{ }\\+ Collision Detection (CD) umgehen mit Polling durch Master.\\
-+ Bei synchronem CAN wird CD durch ID gelöst.\\
+\mbox{ }\\+ \gls{cdet} umgehen mit \gls{polling} durch Master.\\
++ Bei synchronem CAN wird \gls{cdet} durch ID gelöst.\\
 + CAN Controller sendet Interrupt Request bei erhaltener Nachricht.\\
 \end{minipage} \\ 
 \hline \textbf{SPI} & ..100 MBit/s & < 1 m & \begin{minipage}{1cm}
@@ -203,9 +203,9 @@ Die Verwendung von Ethernet zur Datenübertragung würde zwei Schnittstellen auf
 CAN und RS: Stecker nicht definiert => wasserdichte Stecker einfach zu finden.
 
 \paragraph{Entscheidung}
-CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits Kollisionserkennung und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (Transceiver) erhältlich, die mit hohen Spannungen umgehen können, was das \gls{bussys} robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was ein klarer Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 
+CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits \gls{cdetgloss} und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (\gls{transceiver}) erhältlich, die mit hohen Spannungen umgehen können, was das \gls{bussys} robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was einen Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 
 
-
+\paragraph{CAN-Bus} \todo{CAN-Bus beschreiben: Priorität, differenziell, Prüfsumme}
 
 \subsection{Speichermedium}
 \paragraph{Kriterien} Das externe Speichermedium soll möglichst klein sein, wenig Stromverbrauch haben und einfach auswechselbar sein. Bei Inaktivität sollte das Medium wenn möglich keinen Strom verbrauchen. Für einen mehrwöchigen unabhängigen Betrieb einer Messstation muss genügend Speicherkapazität bereitgestellt werden.
