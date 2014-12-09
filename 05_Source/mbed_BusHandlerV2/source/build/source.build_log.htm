@@ -8,12 +8,68 @@ Project File Date:  12/02/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
+compiling main.cpp...
+compiling BusProtocol.cpp...
+BusProtocol.cpp(31): warning:  #174-D: expression has no effect
+    __disable_irq;
+BusProtocol.cpp(35): warning:  #174-D: expression has no effect
+        __enable_irq;
+BusProtocol.cpp: 2 warnings, 0 errors
+compiling BusHandler.cpp...
+BusHandler.cpp(106): warning:  #550-D: variable "stat" was set but never used
+        osStatus stat;
+BusHandler.cpp: 1 warning, 0 errors
 linking...
 mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=41796 RO-data=2072 RW-data=496 ZI-data=14288  
+Program Size: Code=41588 RO-data=2056 RW-data=504 ZI-data=15504  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 1 Warning(s).
-</pre>
-</body>
-</html>
+".\build\source.axf" - 0 Error(s), 4 Warning(s).
+BA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+ld\source_LPC4088.bin build\source.axf
+".\build\source.axf" - 0 Error(s), 6 Warning(s).
+056 RW-data=496 ZI-data=15528  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
+".\build\source.axf" - 0 Error(s), 8 Warning(s).
+INGLE       :                       // 00001
+BusHandler.cpp(101): error:  #20: identifier "TIME_SYNC_BC" is undefined
+                case TIME_SYNC_BC                                       :                       // 00010
+BusHandler.cpp(102): error:  #20: identifier "START_REC_BC" is undefined
+                case START_REC_BC                                       :                       // 00011
+BusHandler.cpp(103): error:  #20: identifier "SEND_TOKEN_SINGLE" is undefined
+                case SEND_TOKEN_SINGLE          :                       // 00100
+BusHandler.cpp(104): error:  #20: identifier "SENSOR_CONFIG_SINGLE" is undefined
+                case SENSOR_CONFIG_SINGLE       :                       // 00101
+BusHandler.cpp(105): error:  #20: identifier "SENSOR_OFF_SINGLE" is undefined
+                case SENSOR_OFF_SINGLE          :                       // 00110
+BusHandler.cpp(106): error:  #20: identifier "SENSOR_OFF_BC" is undefined
+                case SENSOR_OFF_BC                              :                       // 00111
+BusHandler.cpp(107): error:  #20: identifier "OP_MODE_SINGLE" is undefined
+                case OP_MODE_SINGLE                             :                       // 01000
+BusHandler.cpp(108): error:  #20: identifier "OP_MODE_BC" is undefined
+                case OP_MODE_BC                                         :                       // 01001
+BusHandler.cpp(109): error:  #20: identifier "SERIAL_SINGLE" is undefined
+                case SERIAL_SINGLE                              :                       // 11000
+BusHandler.cpp(110): error:  #20: identifier "RAW_DATA_SINGLE" is undefined
+                case RAW_DATA_SINGLE                    :                       // 11010
+BusHandler.cpp(111): error:  #20: identifier "ACK_TOKEN_SINGLE" is undefined
+                case ACK_TOKEN_SINGLE                   :                       // 11001
+BusHandler.cpp(112): error:  #20: identifier "IMPACT_EXT_SINGLE" is undefined
+                case IMPACT_EXT_SINGLE          :                       // 11011
+BusHandler.cpp(113): error:  #20: identifier "IMPACT_STD_SINGLE" is undefined
+                case IMPACT_STD_SINGLE          :                       // 11100
+BusHandler.cpp(114): error:  #20: identifier "DATA_OVERFLOW_SINGLE" is undefined
+                case DATA_OVERFLOW_SINGLE       :                       // 11101
+BusHandler.cpp(121): warning:  #1-D: last line of file ends without a newline
+  }
+BusHandler.cpp(121): warning:  #940-D: missing return statement at end of non-void function "prepareMsgId"
+  }
+BusHandler.cpp(91): warning:  #177-D: variable "msgId" was declared but never referenced
+        uint32_t msgId = 0;
+BusHandler.cpp: 6 warnings, 16 errors
+".\build\source.axf" - 18 Error(s), 10 Warning(s).
+Target not created

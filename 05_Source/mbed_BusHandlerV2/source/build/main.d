@@ -92,3 +92,4 @@
 .\build\main.o: mbed-rtos/rtos/Queue.h
 .\build\main.o: BusHandler.h
 .\build\main.o: BusProtocol.h
+.\build\main.o: SerialID.h

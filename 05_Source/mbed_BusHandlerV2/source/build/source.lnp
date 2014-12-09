@@ -79,6 +79,7 @@
 ".\build\semaphore.o"
 ".\build\busprotocol.o"
 ".\build\bushandler.o"
+".\build\serialid.o"
 --strict --scatter "mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct"
 
 
