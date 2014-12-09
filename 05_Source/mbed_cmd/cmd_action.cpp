@@ -3,13 +3,15 @@
 #endif
 
 #include "Serial.h"
+#include "MCIFileSystem.h"
 #include "sensor_config.h"
+#include "file_ops.h"
 #include "cmd_action.h"
 
-extern SensorConfig sensors[MAX_SENSORS];
+extern SensorConfig sensor[MAX_SENSORS];
 extern uint8_t menu_fsm_current_sensor;
-
-static char detail_str[6][11] = 
+extern MCIFileSystem mcifs;
+static uint8_t detail_str[6][11] = 
 {
 	// strings to describe the detail levels
 	"raw",
@@ -20,7 +22,7 @@ static char detail_str[6][11] =
 	""
 };
 
-static char cmd_config_modified = 0;
+static uint8_t cmd_config_modified = 0;
 
 /*
  * See header file
@@ -29,9 +31,9 @@ void cmd_enter_basemenu(void)
 {
 	printf("entering basemenu\n");
 	printf(" 1) list files\n");
-	printf(" 2) format sd card\n");
-	printf(" 3) mount sd card\n");
-	printf(" 4) unmount sd card\n");
+	printf(" 2) format SD card\n");
+	printf(" 3) mount SD card\n");
+	printf(" 4) unmount SD card\n");
 	printf(" 5) logger status\n");
 	printf(" 6) start/stop logging\n");
 	printf(" 7) sensor parameters\n");
@@ -50,7 +52,9 @@ void cmd_enter_list_files(void)
 {
 	
 	printf("entering list files\n");
-	printf(" #) select any file to be deleted.\n");
+	// list files here:
+	recursiveList("/mci/");
+	// printf(" #) select any file to be deleted.\n");
 	printf(" 0) exit\n");
 }
 
@@ -60,7 +64,8 @@ void cmd_enter_list_files(void)
 void cmd_enter_delete_file(void)
 {
 	printf("entering delete_file\n");
-	printf(" 1) confirm deletion of file %s\n", "TODO");
+	// LATER, won't be in first final version
+	printf(" 1) confirm deletion of file %s\n", "none");
 	printf(" 0) cancel\n");
 }
 
@@ -70,8 +75,23 @@ void cmd_enter_delete_file(void)
 void cmd_enter_format_sd(void)
 {
 	printf("entering format sd\n");
-	printf(" 1) confirm formatting of SD card. \n    All data will be erased\n"); // TODO
+	printf(" 1) confirm formatting of SD card. \n    All data will be erased\n");
 	printf(" 0) cancel\n");
+}
+
+/*
+ * See header file
+ */
+void cmd_format_sd(void)
+{
+	printf("formatting SD Card\n");
+	mcifs.format();
+	if(mcifs.disk_initialize() == 1){
+		printf("Formatting SD card FAILED. Please use a Computer to format the card.\n");
+	} else {
+		printf("formatting done\n");
+	}
+	printf("Returning to base menu.\n");
 }
 
 /*
@@ -79,7 +99,7 @@ void cmd_enter_format_sd(void)
  */
 void cmd_mount_sd(void)
 {
-	printf("entering mount sd\n");
+	printf("entering mount SD card\n");
 	printf(" 1) \n"); // TODO open file system
 	printf(" 0) cancel\n");
 }
@@ -87,11 +107,24 @@ void cmd_mount_sd(void)
 /*
  * See header file
  */
-void cmd_unmount_sd(void)
+void cmd_enter_unmount_sd(void)
 {
 	printf("entering unmount sd\n");
-	printf(" 1) \n"); // TODO check for open files, close them, close file system
+	printf(" 1) unmount SD card\n    This will stop logging and close all data files."); // TODO check for open files, close them, close file system
 	printf(" 0) cancel\n");
+}
+
+void cmd_unmount_sd(void)
+{
+	printf("Unmounting SD card: stop logging and close all data files.\n");
+	// TODO stop logging
+	
+	printf("Logging has been stopped.\n");
+	// TODO close all data files
+	
+	printf("All files have been closed.\n");
+	
+	printf("You may now remove the SD card.\n");
 }
 
 /*
@@ -107,8 +140,10 @@ void cmd_print_logger_status(void)
  */
 void cmd_enter_logger_start(void)
 {
-	printf("entering logger start / stop\n");
-	printf(" 1) start or stop the logging.\n"); // TODO
+	printf("entering logger start/stop\n");
+	// TODO: ist logger am laufen oder nicht?
+	printf("Logger is running/stopped");
+	printf(" 1) stop/start the logging.\n"); // TODO
 	printf(" 0) cancel\n");
 }
 
@@ -119,15 +154,17 @@ void cmd_enter_sensor_params(void)
 {
 	printf("entering sensor params\n");
 	printf(" 1) set sampling rate (current: %3.0d00 Hz)\n", 
-		sensors[menu_fsm_current_sensor].fs); // TODO retrieve current value
+		sensor[menu_fsm_current_sensor].fs); // TODO retrieve current value
 	printf(" 2) set threshold value (current: %d5.0)\n", 
-		sensors[menu_fsm_current_sensor].threshold); // TODO
+		sensor[menu_fsm_current_sensor].threshold); // TODO
 	printf(" 3) set baseline value (current: %d5.0)\n", 
-		sensors[menu_fsm_current_sensor].baseline); // TODO
+		sensor[menu_fsm_current_sensor].baseline); // TODO
 	printf(" 4) set timeout (current: %5.0d)\n", 
-		sensors[menu_fsm_current_sensor].timeout); // TODO
+		sensor[menu_fsm_current_sensor].timeout); // TODO
 	printf(" 5) set detail level (current: %s)\n", 
-		detail_str[sensors[menu_fsm_current_sensor].detail_level]); // TODO
+		detail_str[sensor[menu_fsm_current_sensor].detail_level]); // TODO
+	printf(" 6) start or stop recording (current: %s)\n",
+	(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
 	printf(" 0) exit\n");
 }
 
@@ -137,14 +174,17 @@ void cmd_enter_sensor_params(void)
 void cmd_enter_sensor_params_get_nr(void)
 {
 	printf("entering sensor params get nr\n");
+	// TODO list sensor states
 	printf(" #) Select a sensor from the list.\n");
+	// TODO handle all
+	printf("99) Select all sensors.\n");
 	printf(" 0) cancel\n");
 }
 
 /*
  * See header file
  */
-char cmd_sensor_id_is_valid(char sensor_id)
+uint8_t cmd_sensor_id_is_valid(uint8_t sensor_id)
 {
 	return 0; // TODO
 }
@@ -172,10 +212,10 @@ void cmd_enter_sensor_params_thres(void)
 /*
  * See header file
  */
-void cmd_set_sampling_freq(char sensor_id, uint32_t fs)
+void cmd_set_sampling_freq(uint8_t sensor_id, uint32_t fs)
 {
 	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
-	
+	// TODO
 	
 }
 
@@ -216,14 +256,62 @@ void cmd_enter_sensor_params_detail(void)
 /*
  * See header file
  */
+void cmd_enter_sensor_start_stop(void)
+{
+	printf("entering sensor params start/stop \n");
+	printf("selected sensor is currently %s.\n",
+		(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	printf(" 1) start\n");
+	printf(" 2) stop\n");
+	printf(" 0) cancel\n");
+}
+
+/*
+ * See header file
+ */
+void cmd_sensor_start(uint8_t id)
+{
+	// TODO
+	
+}
+
+/*
+ * See header file
+ */
+void cmd_sensor_stop(uint8_t id)
+{
+	// TODO
+}
+
+/*
+ * See header file
+ */
 void cmd_enter_sensor_state(void)
 {
-	printf("entering sensor state\n");
-	// TODO list the sensors
-	printf("SID  serial      fs threshold baseline timeout detail\n");
-	// TODO printf("%2d) %08x %5d      %4d     %4d    %4d %s\n", 
-	//	id, serial, fs, threshold, baseline, timeout, detail_level);
-	printf(" 0) exit\n");
+	printf("Listing sensor config\n");
+	cmd_list_sensor_states();
+	printf("\n 0) continue\n");
+}
+
+/*
+ * See header file
+ */
+void cmd_list_sensor_states(void)
+{
+	uint8_t i;
+	SensorConfig *s = sensor;
+	printf("Listing sensor config\n");
+	// print the list of sensor configurations, but only if there 
+	printf("Nr  SID  serial      fs threshold baseline timeout detail\n");
+	for(i = 0; i < MAX_SENSORS; i++){
+		if(s->serialID != 0){
+			printf("%2d) %2d  %08x %5d      %4d     %4d    %4d %s\n", 
+				i, s->sensor_ID, s->serialID, s->fs, s->threshold, 
+				s->baseline, s->timeout, 
+				detail_str[(uint8_t)s->detail_level]);
+		}
+		s++;
+	} 
 }
 
 /*
@@ -232,6 +320,7 @@ void cmd_enter_sensor_state(void)
 void cmd_enter_reset_timestamp(void)
 {
 	printf("entering timestamp reset\n");
+	// TODO print current timestamp
 	printf(" 1) re-synchronize timestamp\n");
 	printf(" 0) cancel\n");
 }
@@ -239,6 +328,7 @@ void cmd_enter_reset_timestamp(void)
 void cmd_reset_timestamp(void)
 {
 	// TODO call function to resync timestamp!
+	// TODO reset timestamp in impact_fsm
 	printf("timestamp has been reset.\n");
 }
 
@@ -454,7 +544,7 @@ void cmd_enter_config_file(void)
 void cmd_store_config_file(void)
 {
 	// TODO store configuration in file (overwrite)
-	char buffer[80];
+	uint8_t buffer[80];
 	SensorConfig sc;
 	int result;
 	

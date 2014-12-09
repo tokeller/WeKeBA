@@ -141,8 +141,8 @@ void menu_fsm(uint32_t input)
 				case(4):
 					// unmount sd
 					printf("sd unmount\n");
-					cmd_unmount_sd();
-					cmd_enter_basemenu();
+					menu_fsm_state = S_UNMOUNT_SD;
+					cmd_enter_unmount_sd();
 				break;
 				
 				case(5):
@@ -195,7 +195,7 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
 					printf("invalid input. Enter choice (0 to print menu): \n");
 				break;
 			}
@@ -210,8 +210,9 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO user wants to delete a file, check file exists, print the name and ask for confirmation
-					menu_fsm_state = S_DELETE_FILE;
+					// invalid input, return to base menu anyway
+					menu_fsm_state = S_BASEMENU;
+					cmd_enter_basemenu();
 				break;
 			}
 			break;
@@ -221,17 +222,17 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-                    cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				case(1):
-					// TODO delete confirmed, execute
+					// LATER delete confirmed, execute
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
 					printf("invalid input. Enter choice (0 to exit):\n");
 				break;
 			}
@@ -246,13 +247,36 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				case(1):
-					// TODO execute format sd
+					// TODO confirm format sd
+					cmd_format_sd();
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
+				break;
+			}
+			break;
+			
+		case(S_UNMOUNT_SD):
+			switch(input){
+				case(0):
+					// exit
+					menu_fsm_state = S_BASEMENU;
+					cmd_enter_basemenu();
+				break;
+				
+				case(1):
+					// confirm unmount SD
+					cmd_unmount_sd();
+					menu_fsm_state = S_BASEMENU;
+					cmd_enter_basemenu();
+				break;
+				
+				default:
+					// invalid input
 					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
@@ -268,6 +292,7 @@ void menu_fsm(uint32_t input)
 				
 				case(1):
 					// TODO start/stop the logger
+					
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
 				break;
@@ -338,6 +363,12 @@ void menu_fsm(uint32_t input)
 					// detail level
 					menu_fsm_state = S_SENSOR_PARAMS_DETAIL;
 					cmd_enter_sensor_params_detail();
+				break;
+				
+				case(6):
+					// start or stop
+					menu_fsm_state = S_SENSOR_PARAMS_STARTSTOP;
+					cmd_enter_sensor_start_stop();
 				break;
 				
 				default:
@@ -415,10 +446,42 @@ void menu_fsm(uint32_t input)
 				default:
 					if(input <= 5){
 						// TODO guter input, modus setzen
+						
 					} else {
 						cmd_enter_sensor_params_detail();
 						printf("invalid input. Enter choice (0 to exit): \n");
 					}
+				break;
+			}
+			break;
+			
+		case(S_SENSOR_PARAMS_STARTSTOP):
+			switch(input){
+				case(0):
+					// exit
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
+				break;
+				
+				case(1):
+					// start
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_sensor_start(menu_fsm_current_sensor);
+					cmd_enter_sensor_params();
+				break;
+				
+				case(2):
+					// stop
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_sensor_stop(menu_fsm_current_sensor);
+					cmd_enter_sensor_params();
+				break;
+				
+				
+				
+				default:
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
