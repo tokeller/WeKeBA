@@ -1,5 +1,5 @@
-.\build\mcifilesystem.o: MCIFileSystem.cpp
-.\build\mcifilesystem.o: MCIFileSystem.h
+.\build\mcifilesystem.o: EALib\MCIFileSystem.cpp
+.\build\mcifilesystem.o: EALib\MCIFileSystem.h
 .\build\mcifilesystem.o: mbed\mbed.h
 .\build\mcifilesystem.o: mbed\platform.h
 .\build\mcifilesystem.o: mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X/device.h
@@ -80,13 +80,13 @@
 .\build\mcifilesystem.o: mbed\wait_api.h
 .\build\mcifilesystem.o: mbed\sleep_api.h
 .\build\mcifilesystem.o: mbed\rtc_time.h
-.\build\mcifilesystem.o: .\FATFileSystem\FATFileSystem.h
+.\build\mcifilesystem.o: .\EALib\FATFileSystem\FATFileSystem.h
 .\build\mcifilesystem.o: mbed\FileSystemLike.h
 .\build\mcifilesystem.o: mbed\DirHandle.h
-.\build\mcifilesystem.o: .\FATFileSystem\ChaN\ff.h
-.\build\mcifilesystem.o: .\FATFileSystem\ChaN\integer.h
-.\build\mcifilesystem.o: .\FATFileSystem\ChaN\ffconf.h
+.\build\mcifilesystem.o: .\EALib\FATFileSystem\ChaN\ff.h
+.\build\mcifilesystem.o: .\EALib\FATFileSystem\ChaN\integer.h
+.\build\mcifilesystem.o: .\EALib\FATFileSystem\ChaN\ffconf.h
 .\build\mcifilesystem.o: mbed\mbed_debug.h
 .\build\mcifilesystem.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdarg.h
-.\build\mcifilesystem.o: .\FATFileSystem\ChaN\diskio.h
-.\build\mcifilesystem.o: gpdma.h
+.\build\mcifilesystem.o: .\EALib\FATFileSystem\ChaN\diskio.h
+.\build\mcifilesystem.o: EALib\gpdma.h

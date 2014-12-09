@@ -3,7 +3,6 @@
 #endif
 
 #include "Serial.h"
-#include "main.h"
 #include "sensor_config.h"
 #include "cmd_action.h"
 
@@ -120,15 +119,15 @@ void cmd_enter_sensor_params(void)
 {
 	printf("entering sensor params\n");
 	printf(" 1) set sampling rate (current: %3.0d00 Hz)\n", 
-		sensors[uint8_t menu_fsm_current_sensor].fs); // TODO retrieve current value
+		sensors[menu_fsm_current_sensor].fs); // TODO retrieve current value
 	printf(" 2) set threshold value (current: %d5.0)\n", 
-		sensors[uint8_t menu_fsm_current_sensor].threshold); // TODO
+		sensors[menu_fsm_current_sensor].threshold); // TODO
 	printf(" 3) set baseline value (current: %d5.0)\n", 
-		sensors[uint8_t menu_fsm_current_sensor].baseline); // TODO
+		sensors[menu_fsm_current_sensor].baseline); // TODO
 	printf(" 4) set timeout (current: %5.0d)\n", 
-		sensors[uint8_t menu_fsm_current_sensor].timeout); // TODO
+		sensors[menu_fsm_current_sensor].timeout); // TODO
 	printf(" 5) set detail level (current: %s)\n", 
-		detail_str[sensors[uint8_t menu_fsm_current_sensor].detail_level]); // TODO
+		detail_str[sensors[menu_fsm_current_sensor].detail_level]); // TODO
 	printf(" 0) exit\n");
 }
 
@@ -222,8 +221,8 @@ void cmd_enter_sensor_state(void)
 	printf("entering sensor state\n");
 	// TODO list the sensors
 	printf("SID  serial      fs threshold baseline timeout detail\n");
-	printf("%2d) %08x %5d      %4d     %4d    %4d %s\n", 
-		id, serial, fs, threshold, baseline, timeout, detail_level);
+	// TODO printf("%2d) %08x %5d      %4d     %4d    %4d %s\n", 
+	//	id, serial, fs, threshold, baseline, timeout, detail_level);
 	printf(" 0) exit\n");
 }
 
@@ -455,7 +454,21 @@ void cmd_enter_config_file(void)
 void cmd_store_config_file(void)
 {
 	// TODO store configuration in file (overwrite)
+	char buffer[80];
+	SensorConfig sc;
+	int result;
 	
+	sensor_config_init(&sc, 1);
+	
+	result = sensor_config_to_str(&sc, buffer);
+	
+	FILE *fp = fopen("/mci/config.txt", "w+");
+	if (fp != NULL) {
+		fprintf(fp, "%s", buffer);
+		fclose(fp);
+	} else {
+		printf("file could not be openend\n");
+	}
 }
 
 /*

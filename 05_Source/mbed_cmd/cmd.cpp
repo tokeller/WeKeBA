@@ -5,6 +5,7 @@
 #include "mbed.h"
 #endif
 
+#include "sensor_config.h"
 #include "cmd_action.h"
 #include "cmd.h"
 
@@ -91,23 +92,6 @@ Cmd_nix(int argc, char *argv[])
 
 	return(0);
 }
-
-
-
-/*
- * See header file
- */
-
-//*****************************************************************************
-//
-// This function implements the "dummy" command.  It does nothing.
-//
-//*****************************************************************************
-uint32_t Cmd_dummy(int argc, char *argv[])
-{
-    return(0);
-}
-
 
 
 void init_menu_fsm(void)
@@ -429,7 +413,12 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO user gave a number, check if valid, set mode
+					if(input <= 5){
+						// TODO guter input, modus setzen
+					} else {
+						cmd_enter_sensor_params_detail();
+						printf("invalid input. Enter choice (0 to exit): \n");
+					}
 				break;
 			}
 			break;

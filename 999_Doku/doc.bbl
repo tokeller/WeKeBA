@@ -1,16 +1,64 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{sdstd}
+{SD Specifications, Physical Layer Simplified Specification, Version 4.10}.
+
+\bibitem{boschcanspec2}
+{CAN Specification 2.0}, 09 1991.
+
+\bibitem{armcortex}
+{ARM Ltd.}
+\newblock {Cortex-M4 Processor}.
+\newblock
+  http://www.arm.com/products/processors/cortex-m/cortex-m4-processor.php,
+  Stand: 7.12.2014.
+
+\bibitem{cfstd}
+k.A.
+\newblock {Wikipedia: CompactFlash}, 12 2014.
+\newblock http://en.wikipedia.org/wiki/CompactFlash, Stand: 8.12.2014.
 
 \bibitem{wiki_hilbert}
-Autor unbekannt.
+k.A.
 \newblock {Wikipedia: Hilbert-Transformation}, 11 2014.
-\newblock Stand: 6.12.2014.
+\newblock https://de.wikipedia.org/wiki/Hilbert-Transformation, Stand:
+  6.12.2014.
+
+\bibitem{usbwiki}
+k.A.
+\newblock {Wikipedia: USB}, 12 2014.
+\newblock http://en.wikipedia.org/wiki/USB, Stand: 8.12.2014.
+
+\bibitem{ixxatcan}
+k.A.
+\newblock {CAN vs. RS485}.
+\newblock White paper, IXXAT Automation GmbH, k.J.
+
+\bibitem{muellerkt1}
+Thomas M\"uller.
+\newblock {Vorlesung Kommunikationstechnik 1}.
+\newblock Kap. 2, S. 14.
+
+\bibitem{nxplpc4088}
+{NXP Semiconductors}.
+\newblock {LPC4088FBD208 Processor Datasheet}.
+\newblock
+  http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html,
+  Stand: 7.12.2014.
+
+\bibitem{nxplpc4088qsb}
+{NXP Semiconductors}.
+\newblock {NXP LPC4088 QuickStart Board}.
+\newblock http://www.nxp.com/demoboard/OM13063.html, Stand: 7.12.2014.
 
 \bibitem{wiki_hilbertFIR}
-wdwd.
+{'wdwd'}.
 \newblock {FIR Hilbert Transform Filter}.
 \newblock Licensed under the Creative Commons Attribution-Share Alike 3.0
   Unported., 3 2013.
-\newblock License: https://creativecommons.org/licenses/by-sa/3.0/deed.en.
+\newblock URL:
+  https://commons.wikimedia.org/wiki/File:FIR\_Hilbert\_Transform\_Filter.svg
+  License: https://creativecommons.org/licenses/by-sa/3.0/deed.en.
 
 \bibitem{dsv1_hilbert}
 Sigisbert Wyrsch.

@@ -79,9 +79,6 @@
 .\build\main.o: mbed\wait_api.h
 .\build\main.o: mbed\sleep_api.h
 .\build\main.o: mbed\rtc_time.h
-.\build\main.o: mbed-rtos/rtx/cmsis_os.h
-.\build\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
-.\build\main.o: mbed-rtos/rtx/os_tcb.h
 .\build\main.o: .\EALib\MCIFileSystem.h
 .\build\main.o: .\EALib\FATFileSystem\FATFileSystem.h
 .\build\main.o: mbed\FileSystemLike.h
@@ -89,4 +86,17 @@
 .\build\main.o: .\EALib\FATFileSystem\ChaN\ff.h
 .\build\main.o: .\EALib\FATFileSystem\ChaN\integer.h
 .\build\main.o: .\EALib\FATFileSystem\ChaN\ffconf.h
+.\build\main.o: mbed-rtos/rtos/rtos.h
+.\build\main.o: mbed-rtos/rtos/Thread.h
+.\build\main.o: mbed-rtos/rtx/cmsis_os.h
+.\build\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stddef.h
+.\build\main.o: mbed-rtos/rtx/os_tcb.h
+.\build\main.o: mbed-rtos/rtos/Mutex.h
+.\build\main.o: mbed-rtos/rtos/RtosTimer.h
+.\build\main.o: mbed-rtos/rtos/Semaphore.h
+.\build\main.o: mbed-rtos/rtos/Mail.h
+.\build\main.o: mbed-rtos/rtos/MemoryPool.h
+.\build\main.o: mbed-rtos/rtos/Queue.h
+.\build\main.o: sensor_config.h
 .\build\main.o: cmd.h
+.\build\main.o: file_ops.h

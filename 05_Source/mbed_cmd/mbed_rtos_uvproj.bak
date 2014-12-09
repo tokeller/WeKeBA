@@ -1133,6 +1133,11 @@
               <FileType>8</FileType>
               <FilePath>.\cmd.cpp</FilePath>
             </File>
+            <File>
+              <FileName>cmd_action.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\cmd_action.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

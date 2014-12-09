@@ -80,5 +80,6 @@
 .\build\cmd.o: mbed\wait_api.h
 .\build\cmd.o: mbed\sleep_api.h
 .\build\cmd.o: mbed\rtc_time.h
+.\build\cmd.o: sensor_config.h
 .\build\cmd.o: cmd_action.h
 .\build\cmd.o: cmd.h

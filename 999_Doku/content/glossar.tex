@@ -35,9 +35,21 @@
 
 \newacronym{fsm}{FSM}{Finite State Machine}
 
+\newacronym{dsp}{DSP}{Digitaler Signal-Prozessor}
 
+\newacronym{nvic}{NVIC}{Nested Vectored Interrupt Controller}
 
+\newacronym{mac}{MAC}{multiply-accumulate unit}
 
+\newacronym{fpu}{FPU}{Floating Point Unit}
+
+\newacronym{isr}{ISR}{Interrupt Service Routine}
+
+\newacronym{cdet}{CD}{Collision Detection}
+
+\newacronym{mcacr}{MC}{Microkontroller}
+
+\newacronym{crc}{CRC}{Cyclic Redundancy Check}
 
 % Glossareinträge
 \newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Messgerät für Vibrationen des Bodens. Ein Geophon misst Bewegungen mittels einer magnetischen Masse, die beweglich in einer Spule aufgehängt ist. Wird das Geophon in Bewegung versetzt, schwingt die magnetische Masse aufgrund ihrer Trägheit und induziert dadurch einen Strom in der Spule. Durch Messung dieses Stroms kann die Bewegung registriert weden.}}
@@ -93,7 +105,7 @@
 
 \newglossaryentry{adwandler}{name={A/D-Wandler},plural={A/D-Wandler},description={Analog/Digital-Wandler, (Englisch: \gls{adc}). Ein A/D-Wandler misst die Spannung, die an einem Pin anliegt und gibt einen digitalen Wert aus, der die Höhe der Spannung angibt. Bei der Umwandlung in einen digitalen Wert erfolgt eine Quantisierung. Je grösser die Bit-Breite des A/D-Wandlers ist, umso kleiner wird die Schrittgrösse von einem digitalen Wert zum nächst-höheren Wert.},see={quantis,bitbreite}}
 
-\newglossaryentry{Quants}{name={Quantisierung},plural={Quantisierung},description={Einteilung eines Werts aus einer kontinuierlichen Skala in eine abgestufte Skala. Bei der Quantisierung wird der nächstgelegene Wert auf der abgestuften Skala ausgewählt. Je nach Anwendung wird die abgestufte Skala mit konstanter Stufengrösse (linear) gewählt, oder mit unterschiedlichen Stufengrössen je nach absolutem Wert (z.B. exponentiell). Der Quantisierungsfehler entspricht der Differenz zwischen dem analogen und dem quantisierten, digitalen Wert. Je grösser die Bit-Breite der Quantisierung ist, desto kleiner wird der Quantisierungsfehler.},see={bitbreite}}
+\newglossaryentry{quantis}{name={Quantisierung},plural={Quantisierung},description={Einteilung eines Werts aus einer kontinuierlichen Skala in eine abgestufte Skala. Bei der Quantisierung wird der nächstgelegene Wert auf der abgestuften Skala ausgewählt. Je nach Anwendung wird die abgestufte Skala mit konstanter Stufengrösse (linear) gewählt, oder mit unterschiedlichen Stufengrössen je nach absolutem Wert (z.B. exponentiell). Der Quantisierungsfehler entspricht der Differenz zwischen dem analogen und dem quantisierten, digitalen Wert. Je grösser die Bit-Breite der Quantisierung ist, desto kleiner wird der Quantisierungsfehler.},see={bitbreite}}
 
 \newglossaryentry{bitbreite}{name={Bit-Breite},plural={Bit-Breiten},description={Die Bit-Breite gibt an, wie viele Bit für die Darstellung eines Wertes verwendet werden. Je grösser die Bit-Breite, desto mehr unterschiedliche Werte können dargestellt werden. Mit einer Bit-Breite von \ensuremath{n} können \ensuremath{2^n} Werte dargestellt werden.}}
 
@@ -108,3 +120,31 @@
 \newglossaryentry{nullpegel}{name={Nullpegel},description={Signalpegel, wenn keine Beschleunigung gemessen wird.}}
 
 \newglossaryentry{queue}{name={Queue},plural={Queues},description={Englisch für Warteschlange. In der Informationstechnologie wird eine Queue verwendet, um mehrere Werte zwischenzuspeichern, bis sie verarbeitet werden können. Eine Queue hat meistens eine vordefinierte Grösse und kann deshalb nur eine bestimmte Anzahl Werte aufnehmen. Ein Überlaufen der Queue hat einen Datenverlust zur Folge, wenn der Werte einfüllende Prozess nicht angehalten werden kann/darf, bis Platz in der Queue vorhanden ist.}}
+
+\newglossaryentry{dspgloss}{name={DSP},plural={DSP},description={Digitaler Signal-Prozessor. Ein Mikroprozessor oder ein Bestandteil eines solchen, der dank spezieller Hardware fähig ist, Multiplikationen und Additionen extrem schnell auszuführen. Ausserdem verfügt ein \gls{dsp} über Schieberegister, um Rechenoperationen über eine Serie der aktuellsten Messwerte auszuführen. Da bei der digitalen Signalverarbeitung oft für jeden Messwert viele Multiplikations- und Additions-Schritte ausgeführt werden müssen, ist es wichtig, dass Multiplikations-Operationen in einem Taktzyklus ausgeführt werden können. In einem normalen Prozessor werden für eine Multiplikation mehrere Taktzyklen benötigt.},see={mc}}
+
+\newglossaryentry{nvicgloss}{name={Nested Vectored Interrupt Controller},description={Wird benötigt, um möglichst rasch auf mehrere asynchron eintreffende Ereignisse reagieren zu können. Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird.},see={interrupt}}
+
+\newglossaryentry{macgloss}{name={MAC},description={Multiply-ACcumulate unit: Ein Rechenwerk in der CPU, wo Multiplikationen und Additionen ausgeführt werden.}}
+
+\newglossaryentry{fpugloss}{name={FPU},description={Floating Point Unit, ein Rechenwerk in der CPU, die Berechnungen mit Dezimalbrüchen sehr schnell ausführen kann.}}
+
+\newglossaryentry{sdram}{name={SDRAM},description={Synchronous Dynamic RAM. Flüchtiger Arbeitsspeicher. Der Inhalt des Arbeitsspeichers muss regelmässig aufgefrischt werden, sonst geht die Information verloren.},see={RAM}}
+
+\newglossaryentry{flash}{name={Flash-Speicher},description={Nicht-flüchtiger Speicher. Der Inhalt des Speichers bleibt auch bestehen, wenn keine Versorgungsspannung anliegt.}}
+
+\newglossaryentry{ram}{name={RAM},description={Random Access Memory. Arbeitsspeicher mit Zugriff auf beliebige Adressen. Benötigt keine Positionierung eines Lese-/Schreib-Kopfs oder eines Magnetbands vor einem Zugriff.}}
+
+\newglossaryentry{polling}{name={Polling},description={Englisch für Abfragen. Bezeichnet das wiederholte Abfragen einer Funktion oder eines Wertes, bis ein bestimmtes Ereignis auftritt. Der Prozessor ist mit der Abfrage beschäftigt und verliert dadurch Rechenzeit.}}
+
+\newglossaryentry{interrupt}{name={Interrupt},plural={Interrupts},description={Englisch für Unterbrechen. Durch ein spezielles Signal wird dem Prozessor mitgeteilt, dass ein Ereignis eingetreten ist. Der Prozessor unterbricht die laufende Funktion und ruft eine spezielle Routine, die \gls{isr} auf. Die \gls{isr} verarbeitet das Ereignis und gibt danach die Kontrolle an die vorher unterbrochene Funktion zurück. Mit einem Interrupt wird zwar die Abarbeitung einer Funktion kurzzeitig unterbrochen, dafür verliert der Prozessor keine Rechenzeit mit Polling.},see={polling}}
+
+\newglossaryentry{cdetgloss}{name={Collision Detection},description={Kollisionserkennung. Als Kollision bezeichnet man den gleichzeitigen Versuch mehrerer Busteilnehmer, eine Nachricht zu übermitteln. Dies führt zu einer Überlagerung der Nachrichten und macht diese unlesbar. Gleichzeitig mit dem Schreiben liest der Transceiver die Signale vom Bus. Stimmen die gelesenen Signale nicht mit den Geschriebenen überein, bedeutet dies, dass ein anderer Teilnehmer ebenfalls auf den Bus schreibt und eine Kollision vorliegt. Das Verhalten bei einer Kollision ist vom Bussystem abhängig.},see={transceiver}}
+
+\newglossaryentry{transceiver}{name={Transceiver},plural={Transceiver},description={Ein Gerät das gleichzeitig Transmitter und Receiver, also Sender und Empfänger ist. Der Prozessor sendet die zu übertragenden Daten über eine \gls{serial} an den Transceiver. Der Transceiver erzeugt dann die notwendigen elektrischen Signale auf dem Bus, um die Daten zu übertragen. Beim Empfangen einer Meldung liest der Transceiver die Signale vom Bus und übersetzt sie für die serielle Übertragung zum Prozessor. Ein Transceiver ist notwendig, wenn der Prozessor die vom Bus erwarteten elektrischen Signale nicht selbst erzeugen kann.},see={serial}}
+
+\newglossaryentry{serial}{name={serielle Schnittstelle},plural={serielle Schnittstellen},description={Eine Schnittstelle, über die Daten bitweise übertragen werden, im Gegensatz zu paralleler Übertragung, wo auf mehreren Leitungen mehrere Bits gleichzeitig übertragen werden.}}
+
+\newglossaryentry{daisy}{name={Daisy Chain},description={Englisch für Gänseblümchenkette. Gemeint ist das aneinanderreihen mehrerer Geräte. Im Unterschied zu einem Bussystem müssen die Geräte alle Nachrichten, die für andere Empfänger bestimmt sind, aktiv weiterleiten. Dies braucht Rechenleistung in den Geräten. Wenn ein Gerät ausfällt, gehen alle Nachrichten in diesem Gerät verloren.}}
+
+\newglossaryentry{crcgloss}{name={CRC},description={Cyclic Redundancy Check. Ein Codeverfahren, das eine Prüfsumme über eine Nachricht berechnet. Durch Nachrechnen der Prüfsumme im Empfänger kann die Nachricht auf Fehlerfreiheit überprüft werden.}}

@@ -1,7 +1,9 @@
 #include "mbed.h"
-#include "cmsis_os.h"
 #include "MCIFileSystem.h"
+#include "rtos.h"
+#include "sensor_config.h"
 #include "cmd.h"
+#include "file_ops.h"
 
 MCIFileSystem mcifs("mci");
  
@@ -35,6 +37,7 @@ void get_cmd_event_thread(void const *args)
 		event = atoi(input);
 		pcSerial.printf("%d\n", event);
 		menu_fsm(event);
+		osDelay(100);
 	}
 }
 
@@ -48,9 +51,21 @@ int main() {
 	osThreadCreate(osThread(led2_thread), NULL);
 	osThreadCreate(osThread(get_cmd_event_thread),NULL);
 
+	if (!mcifs.cardInserted()) {
+    printf("Please insert a SD/MMC card...\n");
+    while (!mcifs.cardInserted()) {
+      wait(0.5);
+    }
+    printf("Card detected!\n");
+  }
+	
+	recursiveList("/mci/");
 	while (true) {
-			led1 = !led1;
-			osDelay(500);
+	
+	
+	
+	led1 = !led1;
+	osDelay(500);
 	}
 }
 
