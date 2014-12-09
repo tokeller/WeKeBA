@@ -3,6 +3,66 @@
 
 #include "BusProtocol.h"
 
+/*									P	Type	Target Addr	Source Addr	Mess-ID							
+ *Logger Filter			1	1xxx	xxxx	xxxx	xxxx	xxxx	xxxx	xxxx
+ * 									18			00					00					00							
+ */
+#define CAN_FILTER_LOGGER_LOW  					0x18000000
+/*									P	Type	Target Addr	Source Addr	Mess-ID							
+ *Logger Filter			1	1101	1111	1111	1111	1111	1111	1111
+ * 									1D			ff					ff					ff							
+ */
+#define CAN_FILTER_LOGGER_UPPER 				0x1dffffff
+
+
+
+
+/*
+ *Sensor BC-Filter	0	0000	1111	1111	0000	0001	0000	0001
+ *									00			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_ID_REQ_BC			0x00ff0101
+/*
+ *Sensor BC-Filter	0	0001	1111	1111	0000	0001	0000	0001
+ *									01			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_ID_GET_BC			0x01ff0101
+/*
+ *Sensor BC-Filter	0	0010	1111	1111	0000	0001	0000	0001
+ *									02			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_TIME_SYNC_BC	0x02ff0101
+/*
+ *Sensor BC-Filter	0	0011	1111	1111	0000	0001	0000	0001
+ *									03			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_START_REC_BC	0x03ff0101
+/*
+ *Sensor BC-Filter	0	0111	1111	1111	0000	0001	0000	0001
+ *									07			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_OFF_BC				0x07ff0101
+/*
+ *Sensor Filter			0	1001	1111	1111	0000	0001	0000	0001
+ *									09			ff					01					01							
+ */
+#define CAN_FILTER_SENSOR_OP_MD_BC  		0x09ff0101
+
+
+//Sensor Filter			0	0100	____	____	0000	0001	0000	0001
+//									04			<SensorID>	01					01							
+#define CAN_FILTER_SENSOR_TOKEN_SNGL		0x04000101
+//Sensor Filter			0	0101	____	____	0000	0001	0000	0001
+//									05			<SensorID>	01					01							
+#define CAN_FILTER_SENSOR_CONF_SNGL		  0x05000101
+//Sensor Filter			0	0110	____	____	0000	0001	0000	0001
+//									06			<SensorID>	01					01							
+#define CAN_FILTER_SENSOR_OFF_SNGL		  0x06000101
+//Sensor Filter			0	1000	____	____	0000	0001	0000	0001
+//									08			<SensorID>	01					01							
+#define CAN_FILTER_SENSOR_OP_MD_SNGL		0x08000101
+
+
 
 
 
@@ -80,5 +140,9 @@ void CAN_COM_thread(void const *args);
 void CAN_PRINT_thread(void const *args);
 
 uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint32_t inMsgId);
+
+void sendSerialResponse(uint32_t serialNr);
+
+void enableBroadCastFilter();
 
 #endif

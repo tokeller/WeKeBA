@@ -1,53 +1,5 @@
 #include "BusHandler.h"
 
-
-//									P	Type	Target Addr	Source Addr	Mess-ID							
-//Logger Filter			1	1xxx	xxxx	xxxx	xxxx	xxxx	xxxx	xxxx
-//									18			00					00					00							
-#define CAN_FILTER_LOGGER								0x18000000
-
-//Sensor BC-Filter	0	0000	1111	1111	0000	0001	0000	0001
-//									00			ff					01					01							
-#define CAN_FILTER_SENSOR_ID_REQ_BC			0x00ff0101
-//Sensor BC-Filter	0	0001	1111	1111	0000	0001	0000	0001
-//									01			ff					01					01							
-#define CAN_FILTER_SENSOR_ID_GET_BC			0x01ff0101
-//Sensor BC-Filter	0	0010	1111	1111	0000	0001	0000	0001
-//									02			ff					01					01							
-#define CAN_FILTER_SENSOR_TIME_SYNC_BC	0x02ff0101
-//Sensor BC-Filter	0	0011	1111	1111	0000	0001	0000	0001
-//									03			ff					01					01							
-#define CAN_FILTER_SENSOR_START_REC_BC	0x03ff0101
-//Sensor BC-Filter	0	0011	1111	1111	0000	0001	0000	0001
-//									03			ff					01					01							
-#define CAN_FILTER_SENSOR_START_REC_BC	0x03ff0101
-
-
-//Sensor Filter			0	0100	____	____	0000	0001	0000	0001
-//									04			<SensorID>	01					01							
-#define CAN_FILTER_SENSOR_TOKEN_SNGL		0x04000101
-//Sensor Filter			0	0101	____	____	0000	0001	0000	0001
-//									05			<SensorID>	01					01							
-#define CAN_FILTER_SENSOR_CONF_SNGL		  0x05000101
-//Sensor Filter			0	0110	____	____	0000	0001	0000	0001
-//									06			<SensorID>	01					01							
-#define CAN_FILTER_SENSOR_OFF_SNGL		  0x06000101
-
-
-//Sensor BC-Filter	0	0111	1111	1111	0000	0001	0000	0001
-//									07			ff					01					01							
-#define CAN_FILTER_SENSOR_OFF_BC				0x07ff0101
-
-//Sensor Filter			0	1000	____	____	0000	0001	0000	0001
-//									08			<SensorID>	01					01							
-#define CAN_FILTER_SENSOR_OP_MD_SNGL		0x08000101
-
-
-//Sensor Filter			0	1001	1111	1111	0000	0001	0000	0001
-//									08			ff					01					01							
-#define CAN_FILTER_SENSOR_OP_MD_BC  		0x08ff0101
-
-
 extern Serial pcSerial;
 
 extern Queue <CANmessage_t, 50> outQueue;
@@ -60,7 +12,10 @@ MemoryPool<CANmessage_t, 50> mpoolInQueue;
 int start_CAN_Bus(deviceType_t device){
 	CAN_init();	
 	if (device == LOGGER){
-		setExtGrpCANFilter(CAN_FILTER_LOGGER);
+		setExtGrpCANFilter(CAN_FILTER_LOGGER_LOW, CAN_FILTER_LOGGER_UPPER);
+	} else {
+		// set the filter to only allow the ID request from the logger to pass
+		setExtGrpCANFilter(CAN_FILTER_SENSOR_ID_REQ_BC,CAN_FILTER_SENSOR_ID_REQ_BC);
 	}
 	return 0;
 }
@@ -151,10 +106,29 @@ uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint3
 	// id format (bits):
 	//	29			:	Priority bit, 0 for logger, 1 for sensors		
 	//	28 - 25	: Message type
-	//	24 - 17	: Msg id, number of package in descending order (1 as lowest value)
+	//	24 - 17	: Target address 
 	//	16 - 9	: Source address
-	//	8	 - 0	: Target address
-	msgId = ((pMsgType <<24) | (pMsgId<<16) |	(pSender << 8) | pReceiver) & 0x1fffffff;
+	//	8	 - 0	: Msg id, number of package in descending order (1 as lowest value)
+	msgId = ((pMsgType <<24) | (pReceiver <<16) |	(pSender << 8) | pMsgId) & 0x1fffffff;
 	pcSerial.printf("message id: %0x\n",msgId);
 	return msgId;
+}
+
+void sendSerialResponse(uint32_t serialNr){
+	uint32_t outMsgId = 0;
+	char data[4];
+	data[0] = (serialNr>> 24) & 0xff;
+	data[1] = (serialNr>> 16) & 0xff;
+	data[2] = (serialNr>> 8) & 0xff;
+	data[3] = serialNr & 0xff;
+	enqueueMessage(4, data, 0x01, 0x00, SERIAL_SINGLE);
+	
+}
+
+void enableBroadCastFilter(){
+	setExtGrpCANFilter(CAN_FILTER_SENSOR_ID_GET_BC,CAN_FILTER_SENSOR_ID_GET_BC);
+	setExtGrpCANFilter(CAN_FILTER_SENSOR_TIME_SYNC_BC,CAN_FILTER_SENSOR_TIME_SYNC_BC);
+	setExtGrpCANFilter(CAN_FILTER_SENSOR_START_REC_BC,CAN_FILTER_SENSOR_START_REC_BC);
+	setExtGrpCANFilter(CAN_FILTER_SENSOR_OFF_BC,CAN_FILTER_SENSOR_OFF_BC);
+	setExtGrpCANFilter(CAN_FILTER_SENSOR_OP_MD_BC,CAN_FILTER_SENSOR_OP_MD_BC);
 }

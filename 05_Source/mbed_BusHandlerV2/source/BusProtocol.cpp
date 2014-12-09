@@ -84,7 +84,7 @@ int sendMessage(CANMessage msg){
 /**
   * Setup acceptance filter on CAN
   */
-void setExtGrpCANFilter (uint32_t id)  {
+void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high)  {
   static int CAN_std_cnt = 0;
   static int CAN_ext_cnt = 0;
          uint32_t buf0, buf1;
@@ -99,22 +99,23 @@ void setExtGrpCANFilter (uint32_t id)  {
   LPC_CANAF->AFMR = 0x00000001;
 	
                                    /* Add mask for extended identifiers */
-  id |= (0 << 29);                        /* Add controller number */
+  id_low  |= (0 << 29);                        /* Add controller number, 0 for CAN1, 1 for CAN2 */
+  id_high |= (0 << 29);                        /* Add controller number, 0 for CAN1, 1 for CAN2 */
 
   cnt1 = ((CAN_std_cnt + 1) >> 1);
   cnt2 = 0;
   while (cnt2 < CAN_ext_cnt)  {                /* Loop through extended existing masks */
-    if (LPC_CANAF_RAM->mask[cnt1] > id)
+    if (LPC_CANAF_RAM->mask[cnt1] > id_low)
       break;
     cnt1++;                                    /* cnt1 = U32 where to insert new mask */
     cnt2++;
   }
 
-  buf0 = LPC_CANAF_RAM->mask[cnt1];            /* Remember current entry */
-  LPC_CANAF_RAM->mask[cnt1] = id;              /* Insert mask */
-	LPC_CANAF_RAM->mask[cnt1 + 1] = 0x1cffffff;
-	printf("lower bound %x\n",LPC_CANAF_RAM->mask[cnt1]);
-	printf("upper bound %x\n",LPC_CANAF_RAM->mask[cnt1 + 1]);
+  buf0 = LPC_CANAF_RAM->mask[cnt1];            		 /* Remember current entry */
+  LPC_CANAF_RAM->mask[cnt1] = id_low;              /* Insert lower bound */
+	LPC_CANAF_RAM->mask[cnt1 + 1] = id_high;				 /* Insert upper bound */
+	printf("lower bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
+	printf("upper bound %d %x\n",cnt1 + 1,LPC_CANAF_RAM->mask[cnt1 + 1]);
   CAN_ext_cnt++;
 
   bound1 = CAN_ext_cnt - 1;

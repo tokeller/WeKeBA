@@ -72,6 +72,6 @@ int sendMessage(CANMessage msg);
 
 void CANIRQHandler(void);
 
-void setExtGrpCANFilter (uint32_t id);
+void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high);
 
 #endif
