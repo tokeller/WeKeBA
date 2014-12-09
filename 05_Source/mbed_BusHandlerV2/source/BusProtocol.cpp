@@ -1,5 +1,6 @@
 #include "BusProtocol.h"
 
+
 CAN can1(p9, p10);
 CANMessage msgIn;	
 
@@ -56,8 +57,8 @@ uint32_t storeRecMessages(CANMessage sentMsg){
 
 CANMessage dequeueOutput (void){
 	CANMessage msg;
-	__disable_irq();
 	if (recMsgs.count > 0){
+		__disable_irq();
 		msg.format = recMsgs.queue[recMsgs.read_pos].format;
 		msg.id = recMsgs.queue[recMsgs.read_pos].id;
 		msg.len = recMsgs.queue[recMsgs.read_pos].len;
@@ -69,13 +70,73 @@ CANMessage dequeueOutput (void){
 		} else {
 			recMsgs.read_pos = 0;
 		}
+		__enable_irq();
 	} else {
 		msg.id = 0;
 	}
-	__enable_irq();
 	return msg;
 }
 
 int sendMessage(CANMessage msg){
 	return (can1.write(msg));
+}
+
+/**
+  * Setup acceptance filter on CAN
+  */
+void setExtGrpCANFilter (uint32_t id)  {
+  static int CAN_std_cnt = 0;
+  static int CAN_ext_cnt = 0;
+         uint32_t buf0, buf1;
+         int cnt1, cnt2, bound1;
+
+  /* Acceptance Filter Memory full */
+  if ((((CAN_std_cnt + 1) >> 1) + CAN_ext_cnt) >= 512)
+    return;                                       /* error: objects full */
+
+  /* Setup Acceptance Filter Configuration 
+    Acceptance Filter Mode Register = Off  */                                 
+  LPC_CANAF->AFMR = 0x00000001;
+	
+                                   /* Add mask for extended identifiers */
+  id |= (0 << 29);                        /* Add controller number */
+
+  cnt1 = ((CAN_std_cnt + 1) >> 1);
+  cnt2 = 0;
+  while (cnt2 < CAN_ext_cnt)  {                /* Loop through extended existing masks */
+    if (LPC_CANAF_RAM->mask[cnt1] > id)
+      break;
+    cnt1++;                                    /* cnt1 = U32 where to insert new mask */
+    cnt2++;
+  }
+
+  buf0 = LPC_CANAF_RAM->mask[cnt1];            /* Remember current entry */
+  LPC_CANAF_RAM->mask[cnt1] = id;              /* Insert mask */
+	LPC_CANAF_RAM->mask[cnt1 + 1] = 0x1cffffff;
+	printf("lower bound %x\n",LPC_CANAF_RAM->mask[cnt1]);
+	printf("upper bound %x\n",LPC_CANAF_RAM->mask[cnt1 + 1]);
+  CAN_ext_cnt++;
+
+  bound1 = CAN_ext_cnt - 1;
+  /* Move all remaining extended mask entries one place up */
+  while (cnt2 < bound1)  {
+    cnt1++;
+    cnt2++;
+    buf1 = LPC_CANAF_RAM->mask[cnt1];
+    LPC_CANAF_RAM->mask[cnt1] = buf0;
+    buf0 = buf1;
+  }        
+   
+  /* Calculate std ID start address (buf0) and ext ID start address (buf1) */
+  buf0 = ((CAN_std_cnt + 1) >> 1) << 2;
+  buf1 = buf0 + (CAN_ext_cnt << 3);
+
+  /* Setup acceptance filter pointers */
+  LPC_CANAF->SFF_sa     = 0;
+  LPC_CANAF->SFF_GRP_sa = buf0;
+  LPC_CANAF->EFF_sa     = buf0;
+  LPC_CANAF->EFF_GRP_sa = buf0;
+  LPC_CANAF->ENDofTable = buf1;
+
+  LPC_CANAF->AFMR = 0x00000000;                  /* Use acceptance filter */
 }
