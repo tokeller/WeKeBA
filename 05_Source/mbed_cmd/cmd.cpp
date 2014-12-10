@@ -307,19 +307,19 @@ void menu_fsm(uint32_t input)
 		case(S_SENSOR_PARAMS_GET_SENSOR_NR):
 			switch(input){
 				case(0):
-					// TODO exit
+					// exit
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
 				break;
                     
 				default:
-					// TODO user gave a number, check if valid, select that sensor
-					if(cmd_sensor_id_is_valid(input)){ // TODO check if valid
+					// user gave a number, check if valid, select that sensor
+					if(cmd_sensor_id_is_valid(input)){ // check if valid
 						menu_fsm_current_sensor = input;
 						menu_fsm_state = S_SENSOR_PARAMETERS;
 						cmd_enter_sensor_params();
 					} else {
-						printf("%d is not a valid sensor id.\n", input);
+						printf("%d is not a valid sensor id or sensor is not registered.\n", input);
 						menu_fsm_state = S_BASEMENU;
 						cmd_enter_basemenu();
 					}
@@ -387,8 +387,10 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO user gave a number, check if valid and set f_s
-					
+					// user gave a number, check if valid and set f_s
+					cmd_set_sampling_freq(menu_fsm_current_sensor, input);
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 			}
 			break;
@@ -402,7 +404,10 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// user gave a number, check if valid and set threshold
+					cmd_set_threshold(menu_fsm_current_sensor, input);
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 			}
 			break;
@@ -416,7 +421,10 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO user gave a number, check if valid, set baseline
+					// user gave a number, check if valid and set baseline
+					cmd_set_baseline(menu_fsm_current_sensor, input);
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 			}
 			break;
@@ -430,7 +438,10 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO user gave a number, check if valid, set timeout
+					// user gave a number, check if valid and set timeout
+					cmd_set_timeout(menu_fsm_current_sensor, input);
+					menu_fsm_state = S_SENSOR_PARAMETERS;
+					cmd_enter_sensor_params();
 				break;
 			}
 			break;
@@ -445,8 +456,8 @@ void menu_fsm(uint32_t input)
 				
 				default:
 					if(input <= 5){
-						// TODO guter input, modus setzen
-						
+						// input valid, set mode of selected sensor.
+						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input);
 					} else {
 						cmd_enter_sensor_params_detail();
 						printf("invalid input. Enter choice (0 to exit): \n");

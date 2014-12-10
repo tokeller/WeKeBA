@@ -85,7 +85,7 @@ void cmd_enter_sensor_params(void);
 void cmd_enter_sensor_params_get_nr(void);
 
 /**
- * Print message for setting timeout
+ * Check if the selection is valid. Must be within sensor array range and a registered sensor or == 99 for ALL_SENSORS
  *   @param   sensor_index: the index in the sensor array to be configured
  *   @retval  none
  */
@@ -99,9 +99,9 @@ uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index);
 void cmd_enter_sensor_params_fs(void);
 
 /**
- * Print message for setting timeout
- *   @param   sensor_index: the index in the sensor array to be configured
- *   @param   fs: sampling rate in Hz, will be cutoff to next lower 100 Hz
+ * check fs input and set sampling rate for selected sensor(s)
+ * sampling rate must be 
+ *   @param   uint8_t sensor_index
  *   @retval  none
  */
 void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs);
@@ -114,24 +114,28 @@ void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs);
 void cmd_enter_sensor_params_thres(void);
 
 /**
- * Print message for setting timeout
+ * check threshold input and set threshold for selected sensor(s)
+ * threshold must be smaller than baseline
+ * threshold must be smaller than 4096-baseline
  *   @param   sensor_index: the index in the sensor array to be configured
  *   @param   threshold: how strong must signal be to be a peak
  *   @retval  none
  */
-void cmd_set_threshold(uint8_t sensor_index, uint32_t baseline);
+void cmd_set_threshold(uint8_t sensor_index, uint32_t threshold);
 
 /**
  * Print message for setting baseline value
+ * threshold must be smaller than baseline
+ * threshold must be smaller than 4096-baseline
  *   @param   none
  *   @retval  none
  */
 void cmd_enter_sensor_params_baseline(void);
 
 /**
- * Print message for setting timeout
+ * check baseline input and set baseline for selected sensors
  *   @param   sensor_index: the index in the sensor array to be configured
- *   @param   baseline: the center value for the g sensor
+ *   @param   baseline: the baseline value for the g sensor
  *   @retval  none
  */
 void cmd_set_baseline(uint8_t sensor_index, uint32_t baseline);

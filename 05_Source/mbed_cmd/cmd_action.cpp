@@ -54,6 +54,7 @@ void cmd_enter_list_files(void)
 	printf("entering list files\n");
 	// list files here:
 	recursiveList("/mci/");
+	// LATER, won't be in first final version
 	// printf(" #) select any file to be deleted.\n");
 	printf(" 0) exit\n");
 }
@@ -116,12 +117,19 @@ void cmd_enter_unmount_sd(void)
 
 void cmd_unmount_sd(void)
 {
+	int i;
 	printf("Unmounting SD card: stop logging and close all data files.\n");
 	// TODO stop logging
+	// TODO send BC to all sensors to go 'offline' but do not set
+	// the started flag to 0 in the config. This way, we will restart only
+	// those sensors that were running before the stop.
 	
 	printf("Logging has been stopped.\n");
-	// TODO close all data files
 	
+	// TODO close all data files
+	for(i = 0; i < MAX_SENSORS; i++){
+		// TODO close file, set file pointer to zero
+	}
 	printf("All files have been closed.\n");
 	
 	printf("You may now remove the SD card.\n");
@@ -174,9 +182,9 @@ void cmd_enter_sensor_params(void)
 void cmd_enter_sensor_params_get_nr(void)
 {
 	printf("entering sensor params get nr\n");
-	// TODO list sensor states
+	menu_fsm_current_sensor = 0;
+	cmd_list_sensor_states();
 	printf(" #) Select a sensor from the list.\n");
-	// TODO handle all
 	printf("99) Select all sensors.\n");
 	printf(" 0) cancel\n");
 }
@@ -184,9 +192,13 @@ void cmd_enter_sensor_params_get_nr(void)
 /*
  * See header file
  */
-uint8_t cmd_sensor_id_is_valid(uint8_t sensor_id)
+uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index)
 {
-	return 0; // TODO
+	// sensor_index must be within sensor array and a registered sensor or 99 for ALL_SENSORS
+	if(sensor_index == 99 || (sensor_index < MAX_SENSORS && sensor[sensor_index].serialID != 0) ){
+		return 1;
+	}
+	return 0;
 }
 
 /*
@@ -202,6 +214,33 @@ void cmd_enter_sensor_params_fs(void)
 /*
  * See header file
  */
+void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs)
+{
+	int i;
+	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
+	if(fs > 2000){
+		printf("Sampling rate %d00 Hz not supported, too high.\n", fs);
+	} else if (fs == 0){
+		printf("Sampling rate 0 Hz not supported.\n");
+		printf("To turn off sensor, set the detail level to 'off'\n");
+		printf("or use start/stop menu\n");
+	} else if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				sensor[i].fs = fs;
+				cmd_send_config_to_sensor(i);
+			} // fi
+		} // rof
+	} else {
+		sensor[sensor_index].fs = fs;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
+}
+
+/*
+ * See header file
+ */
 void cmd_enter_sensor_params_thres(void)
 {
 	printf("entering sensor params thres \n");
@@ -212,11 +251,35 @@ void cmd_enter_sensor_params_thres(void)
 /*
  * See header file
  */
-void cmd_set_sampling_freq(uint8_t sensor_id, uint32_t fs)
+void cmd_set_threshold(uint8_t sensor_index, uint32_t threshold)
 {
-	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
-	// TODO
-	
+	int i;
+	// threshold must be smaller than baseline
+	// threshold must be smaller than 4096-baseline
+	if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				if((threshold + sensor[i].baseline) > 4096 
+						&& sensor[i].baseline < threshold){
+					printf("Invalid threshold value:\n");
+					printf("threshold + baseline must not exceed 4096\nand\n");
+					printf("threshold must be smaller than baseline value.\n");
+				} else {
+					sensor[i].threshold	= threshold;
+					cmd_send_config_to_sensor(i);
+				} // fi
+			} // fi
+		} // rof
+	} else if((threshold + sensor[sensor_index].baseline) > 4096 
+							&& sensor[sensor_index].baseline < threshold){
+		printf("Invalid threshold value:\n");
+		printf("threshold + baseline must not exceed 4096\nand\n");
+		printf("threshold must be smaller than baseline value.\n");
+	} else {
+		sensor[sensor_index].threshold = threshold;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
 }
 
 /*
@@ -232,11 +295,71 @@ void cmd_enter_sensor_params_baseline(void)
 /*
  * See header file
  */
+void cmd_set_baseline(uint8_t sensor_index, uint32_t baseline)
+{
+		int i;
+	// baseline must be larger than threshold
+	// baseline + threshold must be smaller than 4096
+	if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				if((baseline + sensor[i].threshold) > 4096 
+						&& sensor[i].threshold < baseline){
+					printf("Invalid baseline value:\n");
+					printf("threshold + baseline must not exceed 4096\nand\n");
+					printf("threshold must be smaller than baseline value.\n");
+				} else {
+					sensor[i].baseline	= baseline;
+					cmd_send_config_to_sensor(i);
+				} // fi
+			} // fi
+		} // rof
+	} else if((baseline + sensor[sensor_index].threshold) > 4096 
+							&& sensor[sensor_index].threshold < baseline){
+		printf("Invalid baseline value:\n");
+		printf("threshold + baseline must not exceed 4096\nand\n");
+		printf("threshold must be smaller than baseline value.\n");
+	} else {
+		sensor[sensor_index].baseline = baseline;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
+}
+
+/*
+ * See header file
+ */
 void cmd_enter_sensor_params_timeout(void)
 {
 	printf("entering sensor params timeout \n");
 	printf(" #) Enter timeout in samples.\n");
 	printf(" 0) cancel\n");
+}
+
+/*
+ * See header file
+ */
+void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
+{
+	int i;
+	// timeout must be shorter than input_queue_length.
+	if(timeout > MAX_INPUT_LENGTH){
+		printf("Timeout too long, can not exceed %d\n", MAX_INPUT_LENGTH);
+	} else if (timeout == 0){
+		printf("Timeout 0 will end impact after each peak.\n");
+		printf("If you really want this, enter timeout of 1.\n");
+	} else if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				sensor[i].timeout = timeout;
+				cmd_send_config_to_sensor(i);
+			} // fi
+		} // rof
+	} else {
+		sensor[sensor_index].timeout = timeout;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
 }
 
 /*
@@ -256,6 +379,26 @@ void cmd_enter_sensor_params_detail(void)
 /*
  * See header file
  */
+void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode)
+{
+	int i;
+	if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				sensor[i].detail_level = (detail_mode_t) mode;
+				cmd_send_config_to_sensor(i);
+			} // fi
+		} // rof
+	} else {
+		sensor[sensor_index].detail_level = (detail_mode_t) mode;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
+}
+
+/*
+ * See header file
+ */
 void cmd_enter_sensor_start_stop(void)
 {
 	printf("entering sensor params start/stop \n");
@@ -269,18 +412,55 @@ void cmd_enter_sensor_start_stop(void)
 /*
  * See header file
  */
-void cmd_sensor_start(uint8_t id)
+void cmd_sensor_start(uint8_t sensor_index)
 {
-	// TODO
-	
+	int i;
+	if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				// TODO open file,set filepointer
+				sensor[i].started = 1;
+				cmd_send_config_to_sensor(i);
+			} // fi
+		} // rof
+	} else {
+		// TODO open file, set file pointer
+		sensor[sensor_index].started = 1;
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
 }
 
 /*
  * See header file
  */
-void cmd_sensor_stop(uint8_t id)
+void cmd_sensor_stop(uint8_t sensor_index)
 {
-	// TODO
+	int i;
+	if(sensor_index == 99) {
+		// set all sensors
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].serialID != 0){
+				sensor[i].started = 0;
+				// TODO flush all DATA of this sensor to file
+				// TODO close file, set file pointer to NULL
+				cmd_send_config_to_sensor(i);
+			} // fi
+		} // rof
+	} else {
+		sensor[sensor_index].started = 0;
+		// TODO flush all DATA of this sensor to file
+		// TODO close file, set file pointer to NULL
+		cmd_send_config_to_sensor(sensor_index);
+	} // fi
+}
+
+/*
+ * See header file
+ */
+void cmd_send_config_to_sensor(uint8_t sensor_index)
+{
+	// TODO send config of sensor[sensor_index] to sensor
 }
 
 /*
