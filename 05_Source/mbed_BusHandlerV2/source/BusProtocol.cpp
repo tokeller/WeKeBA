@@ -50,7 +50,7 @@ uint32_t storeRecMessages(CANMessage sentMsg){
 		
 		
 	} else {
-		//pcSerial.printf("Sent messages buffer overflow\n");
+
 	}	
 	return 1;
 }
@@ -87,7 +87,7 @@ int sendMessage(CANMessage msg){
 void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high)  {
   static int CAN_std_cnt = 0;
   static int CAN_ext_cnt = 0;
-         uint32_t buf0, buf1;
+         uint32_t buf0, buf1, buflow, bufhigh;
          int cnt1, cnt2, bound1;
 
   /* Acceptance Filter Memory full */
@@ -111,26 +111,36 @@ void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high)  {
     cnt2++;
   }
 
-  buf0 = LPC_CANAF_RAM->mask[cnt1];            		 /* Remember current entry */
+  buflow = LPC_CANAF_RAM->mask[cnt1];            		 /* Remember current entry */
   LPC_CANAF_RAM->mask[cnt1] = id_low;              /* Insert lower bound */
-	LPC_CANAF_RAM->mask[cnt1 + 1] = id_high;				 /* Insert upper bound */
-	printf("lower bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
-	printf("upper bound %d %x\n",cnt1 + 1,LPC_CANAF_RAM->mask[cnt1 + 1]);
+	pcSerial.printf("lower bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
+	cnt1++;
+	cnt2++;
+	bufhigh = LPC_CANAF_RAM->mask[cnt1];
+	LPC_CANAF_RAM->mask[cnt1] = id_high;				 		 /* Insert upper bound */
+	pcSerial.printf("upper bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
   CAN_ext_cnt++;
-
-  bound1 = CAN_ext_cnt - 1;
-  /* Move all remaining extended mask entries one place up */
+	CAN_ext_cnt++;
+	
+  bound1 = CAN_ext_cnt - 2;
+  /* Move all remaining extended mask entries two places up */
   while (cnt2 < bound1)  {
     cnt1++;
     cnt2++;
     buf1 = LPC_CANAF_RAM->mask[cnt1];
-    LPC_CANAF_RAM->mask[cnt1] = buf0;
-    buf0 = buf1;
+    LPC_CANAF_RAM->mask[cnt1] = buflow;
+    buflow = buf1;
+    cnt1++;
+    cnt2++;
+    buf1 = LPC_CANAF_RAM->mask[cnt1];
+    LPC_CANAF_RAM->mask[cnt1] = bufhigh;
+    bufhigh = buf1;
+		
   }        
    
   /* Calculate std ID start address (buf0) and ext ID start address (buf1) */
   buf0 = ((CAN_std_cnt + 1) >> 1) << 2;
-  buf1 = buf0 + (CAN_ext_cnt << 3);
+  buf1 = buf0 + (CAN_ext_cnt << 2);
 
   /* Setup acceptance filter pointers */
   LPC_CANAF->SFF_sa     = 0;

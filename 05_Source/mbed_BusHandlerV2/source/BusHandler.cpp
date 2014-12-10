@@ -110,7 +110,7 @@ uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint3
 	//	16 - 9	: Source address
 	//	8	 - 0	: Msg id, number of package in descending order (1 as lowest value)
 	msgId = ((pMsgType <<24) | (pReceiver <<16) |	(pSender << 8) | pMsgId) & 0x1fffffff;
-	pcSerial.printf("message id: %0x\n",msgId);
+	pcSerial.printf("prepare message id: %0x\n",msgId);
 	return msgId;
 }
 
@@ -120,9 +120,8 @@ void sendSerialResponse(uint32_t serialNr){
 	data[0] = (serialNr>> 24) & 0xff;
 	data[1] = (serialNr>> 16) & 0xff;
 	data[2] = (serialNr>> 8) & 0xff;
-	data[3] = serialNr & 0xff;
+	data[3] = serialNr & 0xff;	
 	enqueueMessage(4, data, 0x01, 0x00, SERIAL_SINGLE);
-	
 }
 
 void enableBroadCastFilter(){
@@ -132,3 +131,23 @@ void enableBroadCastFilter(){
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_OFF_BC,CAN_FILTER_SENSOR_OFF_BC);
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_OP_MD_BC,CAN_FILTER_SENSOR_OP_MD_BC);
 }
+
+void enableSensorFilter(uint8_t canId){
+	uint32_t tempfilter = 0;
+	uint32_t tempCanId = canId << 16;
+	tempfilter = CAN_FILTER_SENSOR_TOKEN_SNGL | tempCanId;
+	setExtGrpCANFilter(tempfilter,tempfilter);;
+	
+	tempfilter = CAN_FILTER_SENSOR_CONF_SNGL | tempCanId;
+	setExtGrpCANFilter(tempfilter,tempfilter);;
+	
+	
+	tempfilter = CAN_FILTER_SENSOR_OFF_SNGL | tempCanId;
+	setExtGrpCANFilter(tempfilter,tempfilter);;
+	
+	
+	tempfilter = CAN_FILTER_SENSOR_OP_MD_SNGL | tempCanId;
+	setExtGrpCANFilter(tempfilter,tempfilter);;
+	
+	
+};

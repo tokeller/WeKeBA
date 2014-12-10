@@ -2616,6 +2616,11 @@
               <FileType>8</FileType>
               <FilePath>.\BusHandler.cpp</FilePath>
             </File>
+            <File>
+              <FileName>SerialID.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\SerialID.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

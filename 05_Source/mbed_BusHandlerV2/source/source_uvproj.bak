@@ -2606,6 +2606,16 @@
               <FileType>8</FileType>
               <FilePath>mbed-rtos/rtos/Semaphore.cpp</FilePath>
             </File>
+            <File>
+              <FileName>BusProtocol.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\BusProtocol.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>BusHandler.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\BusHandler.cpp</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

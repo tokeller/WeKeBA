@@ -18,7 +18,7 @@ uint8_t  canId = 0;
 // Logger: 150576ea
 #define LOG
 
-// Sensor: 061bfdf6
+// Sensor: 61bfdf6
 //#define SEN
 
 
@@ -46,7 +46,11 @@ void sensor_loop(void const *args){
 		mpoolOutQueue.free(message);
 		// enable all broadcast filters
 		enableBroadCastFilter();
-		// send the serial number as response to the request
+	/*	for (int i = 0;i < 12;i++){
+			pcSerial.printf("mask %d : %x\n",i,LPC_CANAF_RAM->mask[i]);
+		}
+		*/// send the serial number as response to the request
+		pcSerial.printf("pre-send serial %x\n",serialNr);
 		sendSerialResponse(serialNr);
 	}
 	char canIdReceived = 0;
@@ -77,9 +81,15 @@ void sensor_loop(void const *args){
 		}
 	};
 	
-
+	enableSensorFilter(canId);
+	for (int i = 0;i < 20;i++){
+		pcSerial.printf("mask %d : %x\n",i,LPC_CANAF_RAM->mask[i]);
+	}
 	while(1){
-	
+		led2 = 1;
+		osDelay(500);
+		led2 = 0;
+		osDelay(500);
 	};
 }
 
@@ -165,6 +175,12 @@ int main() {
 			}
 			mpoolOutQueue.free(message);
 		}		
+		while (1){
+			led2 = 1;
+			osDelay(500);
+			led2 = 0;
+			osDelay(500);
+		}
 	#endif
 	while (1){
 		#ifdef SEN/*

@@ -143,6 +143,7 @@ uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint3
 
 void sendSerialResponse(uint32_t serialNr);
 
-void enableBroadCastFilter();
+void enableBroadCastFilter(void);
 
+void enableSensorFilter(uint8_t canId);
 #endif
