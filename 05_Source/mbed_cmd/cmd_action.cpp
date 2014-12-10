@@ -544,7 +544,7 @@ void cmd_enter_config_file(void)
 void cmd_store_config_file(void)
 {
 	// TODO store configuration in file (overwrite)
-	uint8_t buffer[80];
+	char buffer[80];
 	SensorConfig sc;
 	int result;
 	

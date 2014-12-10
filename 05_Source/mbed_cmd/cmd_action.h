@@ -167,6 +167,13 @@ void cmd_enter_sensor_params_detail(void);
 void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode);
 
 /**
+ * Print message for starting/stopping the sensor
+ *   @param   none
+ *   @retval  none
+ */
+void cmd_enter_sensor_start_stop(void);
+
+/**
  * Set the started flag of the sensor to 1 and start the sensor
  *   @param   sensor_index: the index in the sensor array to be configured
  *   @retval  none
