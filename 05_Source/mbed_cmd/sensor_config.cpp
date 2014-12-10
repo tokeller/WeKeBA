@@ -8,11 +8,21 @@
  * -- Constants
  * --------------------------------------------------------------- */
 
-
-
 /* ------------------------------------------------------------------
  * -- Functions
  * --------------------------------------------------------------- */
+ 
+/*
+* See header file
+*/
+void init_sensor_config_array(SensorConfig *sc)
+{
+	uint8_t i;
+	for (i = 0; i < MAX_SENSORS; i++){
+		// sensor_IDs start at 2, because ID 0 or 1 is reserved for logger.
+		sensor_config_init(sc++, i+2);
+	}
+}
  
 /*
 * See header file
@@ -30,11 +40,20 @@ void sensor_config_init(SensorConfig *sc, uint8_t id)
 	sc->timeout = 30;      // how many samples below threshold will
 												 // terminate an impact
 	sc->detail_level = M_PEAKS;  // operation mode: 'raw','detailed'..'off'
+	sc->started = 0;			 // is the sensor recording? 1 = yes, 0 = no
 	
 	// file pointer
 	sc->pf_sensor_data = NULL;  // data file pointer
 }
 
+/*
+* See header file
+*/
+void sensor_config_default(SensorConfig *sc, uint8_t id)
+{
+	sensor_config_init(sc, id);
+	sc->started = 1;
+}
  
 /*
  * See header file
@@ -42,17 +61,11 @@ void sensor_config_init(SensorConfig *sc, uint8_t id)
 uint8_t sensor_config_to_str(SensorConfig *sc, char *string)
 {
 	int result;
-  // nicht printf sondern halt in den string...
-  result = sprintf(string, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu}\n", 
+  // Schreib den string
+  result = sprintf(string, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}\n", 
 			sc->sensor_ID, sc->serialID, sc->fs, sc->threshold, sc->baseline,
-			sc->timeout, (uint16_t)sc->detail_level);
+			sc->timeout, (uint16_t)sc->detail_level, sc->started);
 	
-  if (result == 0){
-		//alles ok
-	}
-  if (result < 0){
-		//nicht ok
-	}
 	return result;
 }
 
@@ -62,24 +75,25 @@ uint8_t sensor_config_to_str(SensorConfig *sc, char *string)
 uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 {
 	int result;
-	uint32_t serialID; 
-	uint8_t sensor_ID;
-	uint16_t fs;
-	uint16_t threshold;
-	uint16_t baseline;
-	uint16_t timeout;
-	uint8_t detail_level;
+	uint32_t serialID = 0; 
+	uint8_t sensor_ID = 255;
+	uint16_t fs = 2001;
+	uint16_t threshold = 4097;
+	uint16_t baseline = 4097;
+	uint16_t timeout = 50000;
+	uint16_t detail_level = 20;
 	uint8_t success = 1;
+	uint8_t started = 2;
 	
-  result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hhu}", 
+  result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}", 
 			&(sc->sensor_ID), &(sc->serialID), &(sc->fs), 
 			&(sc->threshold), &(sc->baseline), &(sc->timeout), 
-			&detail_level);
+			&detail_level, &started);
   // prüfen...
   if (result == EOF){
 		//war das file zu früh fertig => failed, Fehlermeldung raus und defaults einlesen
 	}
-  if (result == 7){
+  if (result == 8){
     //validiere die Werte, speichere sie im sensors array
 		if(sensor_ID < MAX_SENSORS){
 			sc->sensor_ID = sensor_ID;
@@ -113,8 +127,13 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 		} else{
 			success = 0;
 		}
+		if(started < 2){
+			sc->started = started;
+		} else{
+			success = 0;
+		}
 	} 
-	if (success == 0 || result != 7){
+	if (success == 0 || result != 8){
 		
 		printf("error reading config file");
 		return 1;

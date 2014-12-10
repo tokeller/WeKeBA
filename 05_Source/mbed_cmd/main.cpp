@@ -13,7 +13,7 @@ DigitalOut led2(LED2);
 Serial pcSerial(USBTX, USBRX);
 
 // storage for the sensor configs and defaults
-SensorConfig sensors[MAX_SENSORS];
+SensorConfig sensor[MAX_SENSORS];
 SensorConfig sensor_defaults;
 
 
@@ -47,6 +47,9 @@ osThreadDef(get_cmd_event_thread, osPriorityNormal, DEFAULT_STACK_SIZE);
 int main() {
 	printf("start\n");
 	set_time(1417860000); // initially set time to 06.12.2014
+	
+	// initialize 
+	init_sensor_config_array(sensor);
 	
 	osThreadCreate(osThread(led2_thread), NULL);
 	osThreadCreate(osThread(get_cmd_event_thread),NULL);

@@ -28,17 +28,18 @@
 	
 	typedef struct sensor_config{
 	  // identification
-		uint32_t serialID;      // received from sensor
-		uint8_t sensor_ID;      // ID number for this sensor in logger
+		uint32_t serialID;     // received from sensor
+		uint8_t sensor_ID;     // ID number for this sensor in logger
 		
 		// operating parameters
-		uint16_t fs;            // sampling frequency in 100 Hz 
+		uint16_t fs;           // sampling frequency in 100 Hz 
 		uint16_t threshold;    // input level above or below baseline
 		uint16_t baseline;     // baseline level to compensate for 
 		                       // orientational deviations
 		uint16_t timeout;      // how many samples below threshold will
 		                       // terminate an impact
 		detail_mode_t detail_level;  // operation mode: 'raw','detailed'..'off'
+		uint8_t started;			 // is the sensor recording? 1 = yes, 0 = no
 		
 		// file pointer
 		FILE *pf_sensor_data;  // data file pointer
@@ -48,6 +49,13 @@
  * -- Prototypes
  * --------------------------------------------------------------- */
 
+	/**
+ * initialize sensor_config array
+ *   @param   SensorConfig *sc : pointer to the SensorConfig array to init
+ *   @retval  none
+ */
+void init_sensor_config_array(SensorConfig *sc);
+
  /**
  * initialize new sensor_config
  *   @param   SensorConfig *sc : pointer to the SensorConfig to init
@@ -56,6 +64,13 @@
  */
 void sensor_config_init(SensorConfig *sc, uint8_t id);
 
+	/**
+ * set new sensor_config to default, in case there is no valid config file.
+ *   @param   SensorConfig *sc : pointer to the SensorConfig to init
+ *   @param   uint8_t id       : id of that sensor.
+ *   @retval  none
+ */
+void sensor_config_default(SensorConfig *sc, uint8_t id);
 	
  /**
  * Write sensor config to string for saving config file.
