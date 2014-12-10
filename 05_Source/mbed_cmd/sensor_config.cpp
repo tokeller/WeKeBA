@@ -117,7 +117,7 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 			success = 0;
 		}
 		// TODO maximum impact length muss > timeout sein
-		if(timeout < 512){
+		if(timeout < MAX_INPUT_LENGTH){
 			sc->timeout = timeout;
 		} else {
 			success = 0;
