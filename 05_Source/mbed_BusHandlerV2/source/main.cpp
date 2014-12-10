@@ -1,9 +1,14 @@
 #include "mbed.h"
 #include "rtos.h"
-
 #include "BusHandler.h"
-
 #include "SerialID.h"
+
+
+// Logger: 150576ea
+#define LOG
+
+// Sensor: 61bfdf6
+//#define SEN
 
 Queue <CANmessage_t, 50> outQueue;
 MemoryPool<CANmessage_t, 50> mpoolOutQueue;
@@ -13,21 +18,37 @@ DigitalOut led2(LED2);
 
 uint32_t serialNr = 0;
 
-uint8_t  canId = 0;
-
-// Logger: 150576ea
-#define LOG
-
-// Sensor: 61bfdf6
-//#define SEN
+uint32_t  canId = 0;
 
 
+volatile uint64_t timeStamp = 0;
 
+char settingsReceived = 0;
+
+char timeSet = 0;
 
 Serial pcSerial(USBTX, USBRX);
 
+void time(void const *n) {
+    timeStamp++;
+}
+
+/*
+ *	Sensor thread
+ *		- Initialize CAN bus (set the filter so only the SerialRequest will be received)
+ *		- get the serial number
+ *		- start the communication thread
+ *		- process the SerialRequest from the logger by sending the read serial number
+ *			and enable all broadcast filters (since no ID was yet received, the sensor can only process
+ *			broadcast messages)
+ *		- wait till the IDBroadcast with the sensors serial number has arrived and store the
+ *			corresponding CAN-ID
+ *		- store the CAN-ID and set the filter for the directed messages
+ *		- enter a 5s wait loop to receive the settings, if they don't arrive, use the default settings
+ */
 
 void sensor_loop(void const *args){
+	// Initialize CAN bus
 	start_CAN_Bus(SENSOR);
 	serialNr = getSerialNumber();
 	Thread thread(CAN_COM_thread);
@@ -40,17 +61,10 @@ void sensor_loop(void const *args){
 	// received a serial request, send the id out
 	if (evt.status == osEventMessage) {
 		CANmessage_t *message = (CANmessage_t*)evt.value.p;
-		printf("Serial request passed filter\n");
-		printf("Serial request id  : %0x \n\r", message->msgId);
-		printf("Serial request len : %d \n\r", message->dataLength);
 		mpoolOutQueue.free(message);
 		// enable all broadcast filters
 		enableBroadCastFilter();
-	/*	for (int i = 0;i < 12;i++){
-			pcSerial.printf("mask %d : %x\n",i,LPC_CANAF_RAM->mask[i]);
-		}
-		*/// send the serial number as response to the request
-		pcSerial.printf("pre-send serial %x\n",serialNr);
+		// send the serial number as response to the request
 		sendSerialResponse(serialNr);
 	}
 	char canIdReceived = 0;
@@ -82,10 +96,82 @@ void sensor_loop(void const *args){
 	};
 	
 	enableSensorFilter(canId);
-	for (int i = 0;i < 20;i++){
-		pcSerial.printf("mask %d : %x\n",i,LPC_CANAF_RAM->mask[i]);
+	
+	
+	timeStamp = 0;
+	RtosTimer timeMs (time,osTimerPeriodic);
+	// set the timer to an interval of 100 ms
+	timeMs.start(100);
+	// try for 5 s to get a settings message
+	while((timeStamp < 50) & (settingsReceived == 0)) {
+		osEvent evt = outQueue.get(0);
+		if (evt.status == osEventMessage) {
+			CANmessage_t *message = (CANmessage_t*)evt.value.p;
+			// check, if the settings message arrived
+			if (message->msgId == (0x05000101 | (canId << 16))){
+				// set the settings flag to 1
+				settingsReceived = 1;
+				/*
+				 * TODO set the settings
+				 *
+				 */
+				
+				printf("Time data: ");
+				for (int i = 0; i< message->dataLength; i++){
+					printf("%c", message->payload[i]);
+				}
+				printf("\nTime id  : %0x \n\r", message->msgId);
+				printf("Time len : %d \n\r", message->dataLength);
+			}
+			mpoolOutQueue.free(message);
+		}
 	}
+	timeMs.stop();
+	//no settings received, use the default ones
+	if (settingsReceived == 0){
+		/*
+		 * TODO set default settings
+		 *
+		 */
+	}
+	
+	while (timeSet == 0){
+		osEvent evt = outQueue.get(0);
+		if (evt.status == osEventMessage) {
+			CANmessage_t *message = (CANmessage_t*)evt.value.p;
+			// check, if the timebroadcast arrived
+			if (message->msgId == 0x02ff0101){
+				// reset the timer
+				timeStamp = 0;
+				
+				timeMs.start(1);
+				
+				timeSet = 1;
+				printf("Timestamp data: ");
+				for (int i = 0; i< message->dataLength; i++){
+					printf("%c", message->payload[i]);
+				}
+				printf("\nTimestamp id  : %0x \n\r", message->msgId);
+				printf("Timestamp len : %d \n\r", message->dataLength);
+			}
+			mpoolOutQueue.free(message);
+		}
+	}
+	
 	while(1){
+		
+		
+		osEvent evt = outQueue.get(0);
+		if (evt.status == osEventMessage) {
+			CANmessage_t *message = (CANmessage_t*)evt.value.p;
+			printf("Out data: ");
+			for (int i = 0; i< message->dataLength; i++){
+				printf("%c", message->payload[i]);
+			}
+			printf("\nOut id  : %0x \n\r", message->msgId);
+			printf("Out len : %d \n\r", message->dataLength);
+			mpoolOutQueue.free(message);
+		}
 		led2 = 1;
 		osDelay(500);
 		led2 = 0;
@@ -175,6 +261,40 @@ int main() {
 			}
 			mpoolOutQueue.free(message);
 		}		
+		
+		osDelay(1000);
+		/*char data[5] = {'h','a','l','l','o'};
+		enqueueMessage(5,data,0x04,0x01,SEND_TOKEN_SINGLE);
+		*/osDelay(1000);
+		char data1[5] = {'h','u','h','u','u'};
+		enqueueMessage(5,data1,0x04,0x01,SENSOR_CONFIG_SINGLE);
+		/*osDelay(1000);
+		char data2[5] = {'h','a','h','a','h'};
+		enqueueMessage(5,data2,0x04,0x01,SENSOR_OFF_SINGLE);
+		osDelay(1000);
+		char data3[5] = {'h','i','h','i','i'};
+		enqueueMessage(5,data3,0x04,0x01,OP_MODE_SINGLE);
+		osDelay(1000);
+		
+		char data8[5] = {'f','a','a','i','l'};
+		enqueueMessage(5,data8,0x05,0x01,OP_MODE_SINGLE);
+		osDelay(1000);
+		*/
+		char data4[5] = {'t','r','o','o','o'};
+		enqueueMessage(5,data4,0xff,0x01,TIME_SYNC_BC);
+		osDelay(1000);
+		/*
+		char data5[5] = {'t','r','a','a','a'};
+		enqueueMessage(5,data5,0xff,0x01,START_REC_BC);
+		osDelay(1000);
+		
+		char data6[5] = {'b','l','u','b','b'};
+		enqueueMessage(5,data6,0xff,0x01,SENSOR_OFF_BC);
+		osDelay(1000);
+		
+		char data7[5] = {'b','l','a','a','h'};
+		enqueueMessage(5,data7,0xff,0x01,OP_MODE_BC);
+		osDelay(1000);*/
 		while (1){
 			led2 = 1;
 			osDelay(500);
@@ -183,50 +303,6 @@ int main() {
 		}
 	#endif
 	while (1){
-		#ifdef SEN/*
-		char data[32];
-		for (int i = 0; i <10; i++){
-			led2 = !led2;
-			data[0] = 0xff;
-			data[1] = 0;
-			data[2] = 0xff;
-			data[3] = 0;
-			data[4] = 0xff;
-			data[5] = 0;
-			data[6] = 0xff;
-			data[7] = 0;
-			data[8] = 0xff;
-			data[9] = 0;
-			data[10] = 0xff;
-			data[11] = 0;
-			data[12] = 0xff;
-			data[13] = 0;
-			data[14] = 0xff;
-			data[15] = 0;
-			data[16] = 0xff;
-			data[17] = 0;
-			data[18] = 0xff;
-			data[19] = 0;
-			data[20] = 0xff;
-			data[21] = 0;
-			data[22] = 0xff;
-			data[23] = 0;
-			data[24] = 0xff;
-			data[25] = 0;
-			data[26] = 0xff;
-			data[27] = 0;
-			data[28] = 0xff;
-			data[29] = 0;
-			data[30] = 0xff;
-			data[31] = i&0x7ff;
-			if(enqueueMessage(32,data,0x01,0x02,IMPACT_STD_SINGLE) == 0){
-				printf("package\n\n\n\n");
-			} else {
-				pcSerial.printf("not enqueued\n");
-			}
-			osDelay(2000);
-		}*/
-		#endif
 	}
 }
 

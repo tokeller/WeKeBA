@@ -95,8 +95,8 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\bui
 ld\svc_table.d -o.\build\svc_table.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM
 \PACK\ARM\CMSIS\4.1.1\CMSIS\Include -IC:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x
- --list=.\build\svc_table.lst mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN
-_ARM/SVC_Table.s
+ --predefine="__RTX SETA 1" --list=.\build\svc_table.lst mbed-rtos/rtx/TARGET_C
+ORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s
 
 
 
@@ -162,4 +162,4 @@ SVC_Table.s
 SVC_Table.s
 Comment: SVC_Cnt used once
 1 symbol
-335 symbols in table
+336 symbols in table

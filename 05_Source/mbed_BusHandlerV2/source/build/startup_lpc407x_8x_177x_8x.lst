@@ -405,9 +405,9 @@ ARM Macro Assembler    Page 7
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\bui
 ld\startup_lpc407x_8x_177x_8x.d -o.\build\startup_lpc407x_8x_177x_8x.o -IC:\Kei
 l_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include -IC:\Keil
-_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x --list=.\build\startup_lpc407x_8x_177x_8x.ls
-t mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/startup_LP
-C407x_8x_177x_8x.s
+_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x --predefine="__RTX SETA 1" --list=.\build\st
+artup_lpc407x_8x_177x_8x.lst mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 
 
@@ -1188,4 +1188,4 @@ CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 Comment: __main used once
 2 symbols
-394 symbols in table
+395 symbols in table
