@@ -71,6 +71,20 @@ void cmd_print_logger_status(void);
 void cmd_enter_logger_start(void);
 
 /**
+ * Start the logger: tell all sensors that have the started flag to go on measuring
+ *   @param   none
+ *   @retval  none
+ */
+void cmd_start_logger(void);
+
+/**
+ * Stop the logger: tell all sensors to stop measuring without setting the started flag to zero
+ *   @param   none
+ *   @retval  none
+ */
+void cmd_stop_logger(void);
+
+/**
  * Print menu for setting sensor parameters
  *   @param   none
  *   @retval  none
@@ -379,3 +393,17 @@ void cmd_store_config_file(void);
  *   @retval  none
  */
 void cmd_read_config_file(void);
+
+/**
+ * open sensor data file and store the file pointer in its config
+ *   @param   none
+ *   @retval  none
+ */
+uint8_t cmd_open_sensor_file(uint8_t sensor_index);
+
+/**
+ * close sensor data file and set the file pointer in its config to NULL
+ *   @param   none
+ *   @retval  none
+ */
+void cmd_close_sensor_file(uint8_t sensor_index);

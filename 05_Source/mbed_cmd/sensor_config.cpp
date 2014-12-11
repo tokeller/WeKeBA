@@ -42,7 +42,8 @@ void sensor_config_init(SensorConfig *sc, uint8_t id)
 	sc->detail_level = M_PEAKS;  // operation mode: 'raw','detailed'..'off'
 	sc->started = 0;			 // is the sensor recording? 1 = yes, 0 = no
 	
-	// file pointer
+	// file name and pointer
+	sc->filename = "";
 	sc->pf_sensor_data = NULL;  // data file pointer
 }
 
@@ -58,11 +59,11 @@ void sensor_config_default(SensorConfig *sc, uint8_t id)
 /*
  * See header file
  */
-uint8_t sensor_config_to_str(SensorConfig *sc, char *string)
+uint8_t sensor_config_to_str(SensorConfig *sc, char *buffer)
 {
 	int result;
   // Schreib den string
-  result = sprintf(string, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}\n", 
+  result = sprintf(buffer, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}\n", 
 			sc->sensor_ID, sc->serialID, sc->fs, sc->threshold, sc->baseline,
 			sc->timeout, (uint16_t)sc->detail_level, sc->started);
 	
@@ -132,6 +133,8 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 		} else{
 			success = 0;
 		}
+		
+		sc->pf_sensor_data = NULL;
 	} 
 	if (success == 0 || result != 8){
 		
@@ -140,4 +143,39 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 	}
 	// all went fine
 	return 0;
+}
+
+/*
+ * See header file
+ */
+uint8_t sensor_config_to_file(FILE *fp, SensorConfig *sc)
+{
+	uint8_t error = 0;
+	int i = 0;
+	char buffer[80];
+	// TODO write to file the header of config file: {nr of sensors to be stored,
+	
+	for(i = 0; i < MAX_SENSORS; i++){
+		/* TODO: check if sensor[i] is registered (serialID valid)
+		write config of that sensor to buffer
+		store the buffer to the file.
+		after all sensors config have been written, return the error value.
+		result = sensor_config_to_str(&sc, buffer);
+		if(result == 8){}
+	
+
+		fprintf(fp, "%s", buffer);*/
+	}
+	
+	
+}
+
+/*
+ * See header file
+ */
+void init_logger_config(LoggerConfig logger)
+{
+	logger.sd_present = 0;
+	logger.config_modified = 0;
+	logger.started = 0;
 }

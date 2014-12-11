@@ -247,7 +247,7 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				case(1):
-					// TODO confirm format sd
+					// confirm format sd
 					cmd_format_sd();
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
@@ -291,14 +291,18 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				case(1):
-					// TODO start/stop the logger
-					
+					// start/stop the logger
+					if(logger.started){
+						cmd_stop_logger();
+					} else {
+						cmd_start_logger()
+					}
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
 					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
@@ -372,7 +376,7 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
 					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
@@ -526,7 +530,8 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -552,7 +557,8 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -614,7 +620,8 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO check valid input, store, proceed
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -676,7 +683,8 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO check valid input, store, proceed
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;
@@ -702,7 +710,8 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					// TODO invalid input
+					// invalid input
+					printf("invalid input. Enter choice (0 to exit): \n");
 				break;
 			}
 			break;

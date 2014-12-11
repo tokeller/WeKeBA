@@ -15,6 +15,7 @@ Serial pcSerial(USBTX, USBRX);
 // storage for the sensor configs and defaults
 SensorConfig sensor[MAX_SENSORS];
 SensorConfig sensor_defaults;
+LoggerConfig logger;
 
 
 // just some thread
@@ -50,6 +51,7 @@ int main() {
 	
 	// initialize 
 	init_sensor_config_array(sensor);
+	init_logger_config(logger);
 	
 	osThreadCreate(osThread(led2_thread), NULL);
 	osThreadCreate(osThread(get_cmd_event_thread),NULL);
@@ -59,6 +61,7 @@ int main() {
     while (!mcifs.cardInserted()) {
       wait(0.5);
     }
+		logger.sd_present = 1;
     printf("Card detected!\n");
   }
 	
