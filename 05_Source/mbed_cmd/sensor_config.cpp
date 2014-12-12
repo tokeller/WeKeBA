@@ -1,6 +1,7 @@
 #include "stdint.h"
 #include "MCIFileSystem.h"
 #include <cstdio>
+#include <string.h>
 #include <stdio.h>
 #include "sensor_config.h"
 
@@ -79,12 +80,20 @@ uint8_t sensor_config_read_file(FILE *input, SensorConfig *sc)
 	int i;
 	uint8_t result;
 	uint8_t entries = 0;
+	SensorConfig temp_config;
+	
 	
 	result = fscanf(input, "{%hhu\n", &entries);
 	// read the number of config entries
-	if(result == 1 && entries > 0 && entries < MAX_SENSORS){
+	if(result == 1 && entries > 0 && entries <= MAX_SENSORS){
 		// read the configs and store them in the sensor config array
 		for(i = 0; i < entries; i++){
+			result = sensor_config_from_file(input, &temp_config);
+			if(result == 0){
+				sc[temp_config.sensor_ID] = temp_config;
+				// copy from temp into sensor array at id-2 because sensor[0] has id 2
+				memcpy((void*)(& sc[temp_config.sensor_ID - 2]), &temp_config, sizeof(SensorConfig));
+			}
 			
 		}
 	}
@@ -177,8 +186,8 @@ uint8_t sensor_config_to_file(FILE *fp, SensorConfig *sc, LoggerConfig logger)
 	uint8_t result = 0;
 	int i = 0;
 	char buffer[80];
-	// TODO write to file the header of config file: {nr of sensors to be stored,
-	fprintf(fp, "{ %d,\n", logger.nr_of_registered_sensors);
+	// write to file the header of config file: {nr of sensors to be stored,
+	fprintf(fp, "{ %d,\n", MAX_SENSORS);
 	
 	for(i = 0; i < MAX_SENSORS; i++){
 		result = sensor_config_to_str(sc, buffer);
@@ -187,8 +196,8 @@ uint8_t sensor_config_to_file(FILE *fp, SensorConfig *sc, LoggerConfig logger)
 			// all parameters written to string
 		} else {
 			error = 1;
+			return error;
 		}
-		
 		fprintf(fp, "%s", buffer);
 	}
 	fprintf(fp, "}");
@@ -204,4 +213,5 @@ void init_logger_config(LoggerConfig logger)
 	logger.config_modified = 0;
 	logger.started = 0;
 	logger.nr_of_registered_sensors = 0;
+	logger.seconds_at_timestamp_reset = 0;
 }

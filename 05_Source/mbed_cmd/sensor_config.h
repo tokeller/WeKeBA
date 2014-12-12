@@ -96,8 +96,8 @@ void sensor_config_default(SensorConfig *sc, uint8_t id);
 uint8_t sensor_config_to_str(SensorConfig *sc, char *result);
 
  /**
- * Write sensor config to string for saving config file.
- *   @param   char *result     : pointer to input string
+ * Read one sensor config from config file.
+ *   @param   FILE *input      : pointer to input file
  *   @param   SensorConfig *sc : pointer to the sensorConfig for storing
  *   @retval  uint8_t          : 0 when successful, 1 otherwise
  * 
@@ -106,7 +106,7 @@ uint8_t sensor_config_to_str(SensorConfig *sc, char *result);
  * The sensor_data file pointer will be set to NULL because it is not stored in
  * the config file.
  */
-uint8_t sensor_config_from_str(char *input, SensorConfig *sc);
+uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc);
 
  /**
  * Write sensor config array to config file.
