@@ -3,10 +3,70 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Temp\weltitob\GitHub\WeKeBA\05_Source\mbed_cmd\mbed_rtos.uvproj
-Project File Date:  12/08/2014
+C:\Temp\welo\github\WeKeBA\05_Source\mbed_cmd\mbed_rtos.uvproj
+Project File Date:  12/12/2014
 
 <h2>Output:</h2>
+Build target 'NXP LPC4088'
+compiling cmd.cpp...
+cmd.cpp(1): error:  #5: cannot open source input file "RTL.h": No such file or directory
+  #include <RTL.h>
+cmd.cpp: 0 warnings, 1 error
+compiling cmd_action.cpp...
+cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+cmd_action.cpp(138): warning:  #177-D: variable "i" was declared but never referenced
+        int i;
+cmd_action.cpp(184): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+cmd_action.cpp(400): error:  #20: identifier "MAX_INPUT_LENGTH" is undefined
+        if(timeout > MAX_INPUT_LENGTH){
+cmd_action.cpp(487): warning:  #550-D: variable "fname" was set but never used
+        char fname[25];
+cmd_action.cpp(804): warning:  #177-D: variable "error" was declared but never referenced
+        uint8_t error = 0;
+cmd_action.cpp(26): warning:  #177-D: variable "cmd_config_modified" was declared but never referenced
+  static uint8_t cmd_config_modified = 0;
+cmd_action.cpp: 6 warnings, 1 error
+compiling sensor_config.cpp...
+sensor_config.cpp(122): error:  #20: identifier "MAX_INPUT_LENGTH" is undefined
+                if(timeout < MAX_INPUT_LENGTH){
+sensor_config.cpp(174): warning:  #940-D: missing return statement at end of non-void function "sensor_config_to_file(std::FILE *, SensorConfig *, LoggerConfig)"
+  }
+sensor_config.cpp(155): warning:  #177-D: variable "error" was declared but never referenced
+        uint8_t error = 0;
+sensor_config.cpp(157): warning:  #177-D: variable "buffer" was declared but never referenced
+        char buffer[80];
+sensor_config.cpp(179): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp: 4 warnings, 1 error
+".\build\mbed_rtos.axf" - 3 Error(s), 10 Warning(s).
+Target not created
 </pre>
 </body>
 </html>
+"MAX_INPUT_LENGTH" is undefined
+                if(timeout < MAX_INPUT_LENGTH){
+sensor_config.cpp(174): warning:  #940-D: missing return statement at end of non-void function "sensor_config_to_file(std::FILE *, SensorConfig *, LoggerConfig)"
+  }
+sensor_config.cpp(155): warning:  #177-D: variable "error" was declared but never referenced
+        uint8_t error = 0;
+sensor_config.cpp(157): warning:  #177-D: variable "buffer" was declared but never referenced
+        char buffer[80];
+sensor_config.cpp(179): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp: 4 warnings, 1 error
+compiling MCIFileSystem.cpp...
+compiling FATFileSystem.cpp...
+compiling FATFileHandle.cpp...
+compiling FATDirHandle.cpp...
+compiling gpdma.cpp...
+compiling ff.cpp...
+EALib\FATFileSystem\ChaN\ff.cpp(1689): warning:  #111-D: statement is unreachable
+              w = (w << 8) + b;           /* Create a DBC */
+EALib\FATFileSystem\ChaN\ff.cpp: 1 warning, 0 errors
+compiling diskio.cpp...
+compiling ccsbcs.cpp...
+compiling file_ops.cpp...
+".\build\mbed_rtos.axf" - 4 Error(s), 12 Warning(s).
+Target not created

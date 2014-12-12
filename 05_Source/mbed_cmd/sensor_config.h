@@ -26,15 +26,19 @@
 	} detail_mode_t;
 		
 	typedef struct logger_config{
-		uint8_t sd_present;
-		uint8_t config_modified;
+		// Flags
+		uint8_t sd_present;		// is logger aware of SD card?
+		uint8_t config_modified;// has config modified without being saved to file?
 		uint8_t started;		// is logging started or stopped at the moment?
+		
+		uint8_t nr_of_registered_sensors;
 	} LoggerConfig;
 	
 	typedef struct sensor_config{
 	  // identification
 		uint32_t serialID;     // received from sensor
 		uint8_t sensor_ID;     // ID number for this sensor in logger
+		uint8_t is_registered; // do we know the sensor is online?
 		
 		// operating parameters
 		uint16_t fs;           // sampling frequency in 100 Hz 
