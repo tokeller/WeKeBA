@@ -202,12 +202,9 @@ void cmd_start_logger(void)
 void cmd_stop_logger(void)
 {
 	uint8_t i;
-	uint8_t success = 1;
 	// close all data files
 	for(i = 0; i < MAX_SENSORS; i++){
-		if(!cmd_close_sensor_file(i)){
-			success = 0;
-		}
+		cmd_close_sensor_file(i);
 	}
 	// TODO was muss man alles noch tun, um den logger zu stoppen?
 	logger.started = 0;
@@ -218,19 +215,51 @@ void cmd_stop_logger(void)
  */
 void cmd_enter_sensor_params(void)
 {
+	// TODO: stop acquisition before changing fs, then reset timestamp and start again.
 	printf("entering sensor params\n");
-	printf(" 1) set sampling rate (current: %3.0d00 Hz)\n", 
-		sensor[menu_fsm_current_sensor].fs); // TODO retrieve current value
-	printf(" 2) set threshold value (current: %d5.0)\n", 
-		sensor[menu_fsm_current_sensor].threshold); // TODO
-	printf(" 3) set baseline value (current: %d5.0)\n", 
-		sensor[menu_fsm_current_sensor].baseline); // TODO
-	printf(" 4) set timeout (current: %5.0d)\n", 
-		sensor[menu_fsm_current_sensor].timeout); // TODO
-	printf(" 5) set detail level (current: %s)\n", 
-		detail_str[sensor[menu_fsm_current_sensor].detail_level]); // TODO
-	printf(" 6) start or stop recording (current: %s)\n",
-	(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	
+	printf(" 1) set sampling rate ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf((current: %3.0d00 Hz)", 
+		sensor[menu_fsm_current_sensor].fs);
+	}
+	printf("\n");
+	
+	printf(" 2) set threshold value ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %d5.0)", 
+			sensor[menu_fsm_current_sensor].threshold);
+	}
+	printf("\n");
+	
+	printf(" 3) set baseline value ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %d5.0)", 
+			sensor[menu_fsm_current_sensor].baseline);
+	}
+	printf("\n");
+	
+	printf(" 4) set timeout ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %5.0d)", 
+			sensor[menu_fsm_current_sensor].timeout);
+	}
+	printf("\n");
+	
+	printf(" 5) set detail level ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %s)", 
+			detail_str[sensor[menu_fsm_current_sensor].detail_level]);
+	}
+	printf("\n");
+	
+	printf(" 6) start or stop recording ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %s)",
+			(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	}
+	printf("\n");
+	
 	printf(" 0) exit\n");
 }
 
@@ -253,7 +282,7 @@ void cmd_enter_sensor_params_get_nr(void)
 uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index)
 {
 	// sensor_index must be within sensor array and a registered sensor or 99 for ALL_SENSORS
-	if(sensor_index == 99 || (sensor_index < MAX_SENSORS && sensor[sensor_index].serialID != 0) ){
+	if(sensor_index == 99 || (sensor_index < MAX_SENSORS && sensor[sensor_index].is_registered != 0) ){
 		return 1;
 	}
 	return 0;
@@ -265,7 +294,7 @@ uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index)
 void cmd_enter_sensor_params_fs(void)
 {
 	printf("entering sensor params fs \n");
-	printf(" #) Enter sampling rate in Hz. (multiple of 100 Hz)\n");
+	printf(" #) Enter sampling rate in Hz. (multiple of 100 Hz in range 100..200'000 Hz)\n");
 	printf(" 0) cancel\n");
 }
 
@@ -276,6 +305,9 @@ void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs)
 {
 	int i;
 	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
+	
+	fs = fs/100; // user enters desired sampling in Hz, we need to divide by 100.
+	
 	if(fs > 2000){
 		printf("Sampling rate %d00 Hz not supported, too high.\n", fs);
 	} else if (fs == 0){
@@ -582,17 +614,15 @@ void cmd_list_sensor_states(void)
 void cmd_enter_reset_timestamp(void)
 {
 	printf("entering timestamp reset\n");
-	// TODO print current timestamp
-	printf("timestamp currently at %10d",0); // add timestamp);
-	printf("                    of 4294967296");
 	printf(" 1) re-synchronize timestamp\n");
 	printf(" 0) cancel\n");
 }
 
-void cmd_reset_timestamp(void)
+void cmd_reset_timestamp_(void)
 {
 	// TODO call function to resync timestamp!
 	// TODO reset timestamp in impact_fsm
+	// 
 	printf("timestamp has been reset.\n");
 }
 
@@ -824,11 +854,20 @@ void cmd_enter_config_file(void)
 void cmd_store_config_file(void)
 {
 	uint8_t error = 0;
-	// TODO store configuration in file (overwrite)
-	// open config file, give fp to 
-	// error = sensor_config_to_file(fp, sensor);
-
-	// TODO if successful, set logger.config_modified = 0;
+	FILE *fp = NULL;
+	
+	// open config file (overwrite)
+	fp = fopen("/mci/config.txt", "w");
+	if(fp != NULL){
+		// store configuration in file
+		error = sensor_config_to_file(fp, sensor);
+	}
+	if(!error){
+		logger.config_modified = 0;
+	} else {
+		printf("The config file could not be written. Please check the SD card in a computer.\n");
+		printf("The configuration data will remain stored in the logger unless you turn off power.\n");
+	}
 }
 
 /*
