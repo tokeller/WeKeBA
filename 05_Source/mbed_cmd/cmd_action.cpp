@@ -97,7 +97,7 @@ void cmd_format_sd(void)
 	if(mcifs.disk_initialize() == 1){
 		printf("Formatting SD card FAILED. Please use a Computer to format the card.\n");
 	} else {
-		printf("formatting done\n");
+		printf(ÒFormatting done\n");
 	}
 	printf("Returning to base menu.\n");
 }
@@ -335,6 +335,8 @@ void cmd_enter_sensor_params_thres(void)
 {
 	printf("entering sensor params thres \n");
 	printf(" #) Enter threshold value.\n");
+	printf("baseline + threshold must not exceed 4096\nand\n");
+	printf("baseline - threshold must not be below 0\n");
 	printf(" 0) cancel\n");
 }
 
@@ -434,10 +436,10 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 	int i;
 	// timeout must be shorter than input_queue_length.
 	if(timeout > MAX_INPUT_LENGTH){
-		printf("Timeout too long, can not exceed %d\n", MAX_INPUT_LENGTH);
+		printf("Timeout too long, can not exceed %d.\n", MAX_INPUT_LENGTH);
 	} else if (timeout == 0){
 		printf("Timeout 0 will end impact after each peak.\n");
-		printf("If you really want this, enter timeout of 1.\n");
+		printf("Timeout 0 in effect.\n");
 	} else if(sensor_index == 99) {
 		// set all sensors
 		for(i = 0; i < MAX_SENSORS; i++){
@@ -506,7 +508,7 @@ void cmd_enter_sensor_start_stop(void)
 			printf("No sensors are active.\n");
 		} // active?
 	} else {
-		printf("selected sensor is currently %s.\n",
+		printf("Selected sensor is currently %s.\n",
 		(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
 	} // fi
 	printf(" 1) start\n");
@@ -636,7 +638,7 @@ void cmd_enter_internal_clock(void)
 	printf(" 1) adjust date\n");
 	printf(" 2) adjust time\n");
 	printf(" 0) exit\n");
-	printf("\n\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*
@@ -655,7 +657,7 @@ void cmd_enter_internal_clock_set_date(void)
 	printf(" 7) adjust date +  1 day\n");
 	printf(" 8) adjust date -  1 day\n");
 	printf(" 0) exit\n");
-	printf("\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*
@@ -674,7 +676,7 @@ void cmd_enter_internal_clock_set_time(void)
 	printf(" 7) adjust time +1 second\n");
 	printf(" 8) adjust time -1 second\n");
 	printf(" 0) exit\n");
-	printf("\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*

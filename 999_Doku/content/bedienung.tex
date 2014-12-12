@@ -1,0 +1,291 @@
+% !TeX spellcheck = de_CH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  _____   ____  _____                                          %
+% |_   _| /  __||  __ \    Institute of Computitional Physics   %
+%   | |  |  /   | |__) |   Zuercher Hochschule Winterthur       %
+%   | |  | (    |  ___/    (University of Applied Sciences)     %
+%  _| |_ |  \__ | |        8401 Winterthur, Switzerland         %
+% |_____| \____||_|                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Project     : BA Welti Keller
+% Title       : 
+% File        : bedienung.tex Rev. 00
+% Date        : 15.09.2014
+% Author      : Tobias Welti
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Bedienungsanleitung}\label{chap.bedienung}
+
+\section{Produktbeschrieb}
+
+
+\section{Aufbau der Messstation}
+Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
+
+\section{Datenlogger}
+
+
+\section{Sensor}
+
+
+\section{Konfiguration}
+
+
+\subsection{Menü}
+\begin{lstlisting}[caption=, label=list.] 1) list files
+ 2) format SD card
+
+ 3) mount SD card
+ 4) unmount SD card
+ 5) logger status\n");
+ 6) start/stop logging
+
+ 7) sensor parameters
+ 8) sensor state
+ 9) reset timestamp
+10) internal clock
+
+11) config file
+\end{lstlisting}
+
+
+\subsubsection{Dateiliste}
+\begin{lstlisting}[caption=, label=list.]HIER LISTE DER FILES EINFüGEN
+ 0) exit
+\end{lstlisting}
+
+
+\subsubsection{SD-Karte formatieren}
+\begin{lstlisting}[caption=Untermenü SD-Karte formatieren, label=list.sdformat]
+ 1) confirm formatting of SD card.
+    All data will be erased
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Statusmeldung SD formatieren, label=list.sdformatting]
+formatting SD Card
+
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung SD formatieren, label=list.sdformatfail]
+Formatting SD card FAILED. Please use a Computer to format the card.
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Erfolgsmeldung SD formatieren, label=list.sdformatsuccess]
+Formatting done
+Returning to base menu.
+\end{lstlisting}
+
+
+\subsubsection{SD-Karte anmelden}
+\begin{lstlisting}[caption=Untermenü SD-Karte anmelden, label=list.sdmount]
+
+\end{lstlisting}
+
+
+\subsubsection{SD-Karte abmelden}
+\begin{lstlisting}[caption=Untermenü SD-Karte abmelden, label=list.sdunmount]
+
+\end{lstlisting}
+
+
+\subsubsection{Logger-Status}
+\begin{lstlisting}[caption=Untermenü Logger-Status, label=list.loggerstatus]
+
+\end{lstlisting}
+
+
+\subsubsection{Starten und stoppen der Aufzeichnung}
+\begin{lstlisting}[caption=Untermenü Starten und Stoppen der Aufzeichnung, label=list.startstop]
+\end{lstlisting}
+
+
+\subsubsection{Sensor-Parameter}
+\begin{lstlisting}[caption=Untermenü Sensor-Auswahl, label=list.sensorsel]
+ #) Select a sensor from the list.
+99) Select all sensors.
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Sensor-Parameter, label=list.sensorparam]
+ 1) set sampling rate (current: 10000 Hz)
+ 2) set threshold value (current: 200)
+ 3) set baseline value (current: 2047)
+ 4) set timeout (current: 30)
+ 5) set detail level (current: peaks only)
+ 6) start or stop recording (current: started)
+ 0) exit
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Abtastrate, label=list.paramfs]
+ #) Enter sampling rate in Hz. (multiple of 100 Hz in range 100..200'000 Hz)
+ 0) cancel
+\end{lstlisting}
+
+Sampling rate 220000 Hz not supported, too high.
+
+Sampling rate 0 Hz not supported.
+To turn off sensor, set the detail level to 'off'
+or use start/stop menu
+
+
+
+
+\begin{lstlisting}[caption=Untermenü Threshold, label=list.paramthres]
+ #) Enter threshold value.
+    baseline + threshold must not exceed 4096
+    and
+    baseline - threshold must not be below 0
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung ungültiger Threshold, label=list.paramthres]
+		Invalid threshold value:
+		threshold + baseline must not exceed 4096
+		and
+		threshold must be smaller than baseline value.
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Null-Level, label=list.parambase]
+ #) Enter baseline value (default: 2047).
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung ungültiger Null-Level, label=list.parambaseerror]
+Invalid baseline value:\n");
+threshold + baseline must not exceed 4096.
+and
+threshold - baseline must not be below 0 value
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Timeout, label=list.paramtimeout]
+ #) Enter timeout in samples.
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung zu langer Timeout, label=list.paramtimeoutlong]
+Timeout too long, can not exceed 512.
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Warnung kurzer Timeout, label=list.paramtimeoutshort]
+Timeout 0 will end impact after each peak.
+Timeout 0 in effect.
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Detail-Level, label=list.detail]
+ 1) raw (continuous data)
+ 2) detailed (start time, all samples of impact)
+ 3) peaks only (start time, nr of peaks, peaks
+ 4) sparse (only start time, duration, nr of peaks, max peak)
+ 5) off
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Start/Stop einzeln, label=list.started_one]
+Selected sensor is currently stopped.
+ 1) start
+ 2) stop
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Start/Stop alle Sensoren, label=list.started_all]
+At least one sensor is active.
+ 1) start
+ 2) stop
+ 0) cancel
+ 
+-- oder --
+
+No sensors are active.
+ 1) start
+ 2) stop
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung beim Starten eines Sensors, label=list.sensorerror]
+Could not create or open file. Please check SD card for free space.
+\end{lstlisting}
+
+\subsubsection{Sensor-Status}
+\todo{Liste von Sensor-Stati ins Listing einfügen}
+\begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
+Listing sensor config:
+HIER EINFüGEN
+ 0) continue
+\end{lstlisting}
+
+
+\subsubsection{Timestamp zurücksetzen}
+\begin{lstlisting}[caption=Untermenü Timestamp zurücksetzen, label=list.timestamp]
+ 1) re-synchronize timestamp
+ 0) cancel
+\end{lstlisting}
+
+
+\subsubsection{Interne Uhr}
+\todo{Beispiel einer Uhrzeit einfügen}
+\begin{lstlisting}[caption=Untermenü interne Uhr, label=list.intclock]
+ 1) adjust date
+ 2) adjust time
+ 0) exit
+
+ current time: HIER EINFüGEN
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Datum einstellen, label=list.setdate]
+adjust internal date
+ 1) adjust date +365 days
+ 2) adjust date -365 days
+ 3) adjust date + 30 days
+ 4) adjust date - 30 days
+ 5) adjust date + 10 days
+ 6) adjust date - 10 days
+ 7) adjust date +  1 day
+ 8) adjust date -  1 day
+ 0) exit
+
+ current time: HIER EINFüGEN
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Untermenü Uhrzeit einstellen, label=list.settime]
+adjust internal time
+ 1) adjust time +1 hour
+ 2) adjust time -1 hour
+ 3) adjust time +10 minute
+ 4) adjust time -10 minute
+ 5) adjust time +1 minute
+ 6) adjust time -1 minute
+ 7) adjust time +1 second
+ 8) adjust time -1 second
+ 0) exit
+
+ current time: HIER EINFüGEN
+\end{lstlisting}
+
+\subsubsection{Konfigurations-Datei}
+\begin{lstlisting}[caption=Untermenü Konfigurationsdatei, label=list.config]
+ 1) read configuration from file and set up all sensors accordingly.
+ 2) store current configuration in file. Old config file will be overwritten.
+ 0) cancel
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Fehlermeldung beim Speichern der Konfigurationsdatei, label=list.configerror]
+The config file could not be written. Please check the SD card in a computer.
+The configuration data will remain stored in the logger unless you turn off power.
+\end{lstlisting}
+
+\subsection{Konfigurationsdatei}
+\begin{lstlisting}[caption=Beispiel einer Konfigurationsdatei, label=list.configfile]
+{7,
+{BLABLABLA}
+{BLABLABLA}
+{BLABLABLA}
+}
+\end{lstlisting}
+
+\section{Betrieb}
+
+
+\section{Technische Daten}
