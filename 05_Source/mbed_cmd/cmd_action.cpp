@@ -10,6 +10,7 @@
 
 extern SensorConfig sensor[MAX_SENSORS];
 extern LoggerConfig logger;
+extern uint8_t time_updated;
 extern uint8_t menu_fsm_current_sensor;
 extern MCIFileSystem mcifs;
 static uint8_t detail_str[6][11] = 
@@ -653,6 +654,7 @@ void cmd_internal_clock_inc_yr(void)
 {
 	time_t seconds = time(NULL) + 365*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -662,6 +664,7 @@ void cmd_internal_clock_dec_yr(void)
 {
 	time_t seconds = time(NULL) + 365*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -671,6 +674,7 @@ void cmd_internal_clock_inc_mnt(void)
 {
 	time_t seconds = time(NULL) + 30*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -680,6 +684,7 @@ void cmd_internal_clock_dec_mnt(void)
 {
 	time_t seconds = time(NULL) - 30*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -689,6 +694,7 @@ void cmd_internal_clock_inc_10day(void)
 {
 	time_t seconds = time(NULL) + 240*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -698,6 +704,7 @@ void cmd_internal_clock_dec_10day(void)
 {
 	time_t seconds = time(NULL) - 240*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -707,6 +714,7 @@ void cmd_internal_clock_inc_day(void)
 {
 	time_t seconds = time(NULL) + 24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -716,6 +724,7 @@ void cmd_internal_clock_dec_day(void)
 {
 	time_t seconds = time(NULL) - 24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -725,6 +734,7 @@ void cmd_internal_clock_inc_hr(void)
 {
 	time_t seconds = time(NULL) + 3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -734,6 +744,7 @@ void cmd_internal_clock_dec_hr(void)
 {
 	time_t seconds = time(NULL) - 3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -743,6 +754,7 @@ void cmd_internal_clock_inc_10min(void)
 {
 	time_t seconds = time(NULL) + 600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -752,6 +764,7 @@ void cmd_internal_clock_dec_10min(void)
 {
 	time_t seconds = time(NULL) - 600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -761,6 +774,7 @@ void cmd_internal_clock_inc_min(void)
 {
 	time_t seconds = time(NULL) + 60;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -770,6 +784,7 @@ void cmd_internal_clock_dec_min(void)
 {
 	time_t seconds = time(NULL) - 60;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -779,6 +794,7 @@ void cmd_internal_clock_inc_sec(void)
 {
 	time_t seconds = time(NULL) + 1;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -788,6 +804,7 @@ void cmd_internal_clock_dec_sec(void)
 {
 	time_t seconds = time(NULL) - 1;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*

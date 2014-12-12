@@ -26,9 +26,11 @@
 	} detail_mode_t;
 		
 	typedef struct logger_config{
-		uint8_t sd_present;
-		uint8_t config_modified;
+		uint8_t sd_present;		// is logger aware of sd card?
+		uint8_t config_modified;// has configuration been modified without being written to config file?
 		uint8_t started;		// is logging started or stopped at the moment?
+		
+		uint32_t seconds_at_timestamp_reset; // when was timestamp reset?
 	} LoggerConfig;
 	
 	typedef struct sensor_config{

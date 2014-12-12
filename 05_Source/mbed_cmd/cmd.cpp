@@ -44,6 +44,7 @@ static MenuState menu_fsm_state;
 uint8_t menu_fsm_current_sensor;
 
 extern Serial pcSerial;
+uint8_t time_updated = 0;
 
 
 /* ------------------------------------------------------------------------------------ */
@@ -540,6 +541,10 @@ void menu_fsm(uint32_t input)
 			switch(input){
 				case(0):
 					// exit
+					if(logger.time_updated == 1){
+						cmd_reset_timestamp();
+						time_updated = 0;
+					}
 					menu_fsm_state = S_BASEMENU;
           cmd_enter_basemenu();
 				break;
