@@ -39,7 +39,7 @@ void cmd_enter_basemenu(void)
 	printf(" 5) logger status\n");
 	printf(" 6) start/stop logging\n");
 	printf(" 7) sensor parameters\n");
-	printf(" 8) sensor state\n");
+	printf(" 8) sensor states\n");
 	printf(" 9) reset timestamp\n");
 	printf("10) internal clock\n");
 	printf("11) config file\n");
@@ -335,7 +335,9 @@ void cmd_enter_sensor_params_thres(void)
 {
 	printf("entering sensor params thres \n");
 	printf(" #) Enter threshold value.\n");
+
 	printf("baseline + threshold must not exceed 4096\nand\n");
+
 	printf("baseline - threshold must not be below 0\n");
 	printf(" 0) cancel\n");
 }
@@ -381,6 +383,9 @@ void cmd_enter_sensor_params_baseline(void)
 {
 	printf("entering sensor params baseline \n");
 	printf(" #) Enter baseline value (default: 2047).\n");
+	printf("baseline + threshold must not exceed 4096\nand\n");
+
+	printf("baseline - threshold must not be below 0\n");
 	printf(" 0) cancel\n");
 }
 
@@ -437,20 +442,24 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 	// timeout must be shorter than input_queue_length.
 	if(timeout > MAX_INPUT_LENGTH){
 		printf("Timeout too long, can not exceed %d.\n", MAX_INPUT_LENGTH);
-	} else if (timeout == 0){
-		printf("Timeout 0 will end impact after each peak.\n");
-		printf("Timeout 0 in effect.\n");
-	} else if(sensor_index == 99) {
-		// set all sensors
-		for(i = 0; i < MAX_SENSORS; i++){
-			if(sensor[i].serialID != 0){
-				sensor[i].timeout = timeout;
-				cmd_send_config_to_sensor(i);
-			} // fi
-		} // rof
 	} else {
-		sensor[sensor_index].timeout = timeout;
-		cmd_send_config_to_sensor(sensor_index);
+		// warning for short timeout
+		if (timeout == 0){
+			printf("Timeout 0 will end impact after each peak.\n");
+			printf("Timeout 0 in effect.\n");
+		} 
+		if(sensor_index == 99) {
+			// set all sensors
+			for(i = 0; i < MAX_SENSORS; i++){
+				if(sensor[i].serialID != 0){
+					sensor[i].timeout = timeout;
+					cmd_send_config_to_sensor(i);
+				} // fi
+			} // rof
+		} else {
+			sensor[sensor_index].timeout = timeout;
+			cmd_send_config_to_sensor(sensor_index);
+		} // fi
 	} // fi
 }
 
@@ -495,18 +504,18 @@ void cmd_enter_sensor_start_stop(void)
 {
 	int i;
 	int active = 0;
+	int inactive = 0;
 	printf("entering sensor params start/stop \n");
 	if(menu_fsm_current_sensor == 99){
 		for(i = 0; i < MAX_SENSORS; i++){
 			if(sensor[i].started){
-				active = 1;
-			} //fi
+				active++;
+			} else {
+				inactive++;
+			}//fi
 		} // rof
-		if(active){
-			printf("At least one sensor is active.\n");
-		} else {
-			printf("No sensors are active.\n");
-		} // active?
+		printf("Started sensors: %d\n", active);
+		printf("Stopped sensors: %d\n", inactive);
 	} else {
 		printf("Selected sensor is currently %s.\n",
 		(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));

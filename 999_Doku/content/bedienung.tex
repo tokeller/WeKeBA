@@ -18,60 +18,109 @@
 
 \chapter{Bedienungsanleitung}\label{chap.bedienung}
 
-\section{Produktbeschrieb}
+\section{Produktbeschrieb}\label{sec.manualproduct}
 
 
-\section{Aufbau der Messstation}
+\section{Aufbau der Messstation}\label{sec.manualoverview}
 Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
 
-\section{Datenlogger}
+\section{Datenlogger}\label{sec.manuallogger}
 
 
-\section{Sensor}
+\section{Sensor}\label{sec.manualsensor}
 
 
-\section{Konfiguration}
+\section{Ereignis}\label{sec.manualimpact}
+\todo{Beschreibe hier die Ereignisse, die Detaillevel inklusive den tollen grafiken}
 
 
-\subsection{Menü}
-\begin{lstlisting}[caption=, label=list.] 1) list files
+\section{Konfiguration}\label{sec.manualkonfig}
+
+
+\subsection{Anschluss eines Computers}
+Am USB-Anschluss des \gls{logger}s kann ein \gls{compi} angeschlossen werden, um auf die serielle Schnittstelle des \gls{logger}s zuzugreifen. Um die serielle Schnittstelle zu verwenden, wird ein \gls{terminalemu} wie \emph{PuTTY} oder \emph{minicom} benötigt. um mit \emph{PuTTY} eine Verbindung aufzubauen, muss die Schnittstelle und die Übertragungsrate (Baud) angegeben werden. Die Übertragungsrate ist 9600 baud, die Schnittstelle kann variieren. 
+
+\paragraph{Windows} Unter \emph{Windows} erfolgt die Verbindung auf eine der COMx-Schnittstellen. Die Nummer der COM-Schnittstelle kann im Geräte-Manager herausgesucht werden, die Bezeichnung lautet 'mbed Serial Port (COMx)', wobei 'x' eine Nummer ist. In PuTTY muss nur 'COMx' angegeben werden.
+
+\paragraph{Linux} Unter \emph{Linux} findet man die Schnittstellenbezeichnung mit dem Befehl 'ls /dev/ttyACM*' heraus, in \emph{PuTTY} wird dann '/dev/ttyACMx' angegeben. 
+
+\paragraph{Mac OS X} Unter \emph{Mac OS X} lautet der Befehl 'ls /dev/tty.usbmodem*', der in einem Terminal eingegeben werden muss. Als \gls{terminalemu} kann 'screen' verwendet werden. Auf Apple Mac Computern mit USB 3.0 kann es zu Schwierigkeiten mit der Verbindung kommen. Den Herstellern des Prozessorboards ist dies bekannt, sie arbeiten an einer Lösung.
+
+Die Einstellungen für die serielle Schnittstelle sind normalerweise bereits korrekt gesetzt. Es werden 8 Datenbits verwendet, 1 Stopbit und keine Parität (parity).
+
+Weitere Hilfe für die Verwendung eines \gls{terminalemu}s findet man unter \url{http://developer.mbed.org/handbook/Terminals}.
+
+
+\subsection{Menü}\label{ssec.menu}
+Beim Herstellen der Verbindung über einen \gls{terminalemu} wird das Basis-Menü angezeigt. Durch Eingabe der Zahl wird der entsprechende Menü-Eintrag gewählt. Im Folgenden wird das gesamte Menü im Detail beschrieben.
+
+Das Basis-Menü (siehe Listing \ref{list.basemenu}) listet alle Überwachungs- und Konfigurations-Möglichkeiten auf. 
+
+\begin{lstlisting}[caption=, label=list.basemenu]
+ 1) list files
  2) format SD card
-
  3) mount SD card
  4) unmount SD card
- 5) logger status\n");
+ 5) logger status
  6) start/stop logging
-
  7) sensor parameters
- 8) sensor state
+ 8) sensor states
  9) reset timestamp
 10) internal clock
-
 11) config file
 \end{lstlisting}
 
+\paragraph{Dateien auflisten} Mit dem Befehl 'list files' wird eine Liste aller Dateien auf der SD-Karte angezeigt. Die Liste enthält die Dateigrösse sowie den Dateinamen, siehe Abschnitt \ref{sssec.listfiles}.
 
-\subsubsection{Dateiliste}
-\begin{lstlisting}[caption=, label=list.]HIER LISTE DER FILES EINFüGEN
+\paragraph{SD-Karte formatieren} Um die SD-Karte für den ersten Gebrauch vorzubereiten, sollte sie formatiert werden. Dies erfolgt von Vorteil auf einem \gls{compi}, kann aber auch im \gls{logger} mit dem Befehl 'format SD card' gemacht werden, siehe Abschnitt \ref{sssec.sdformat}.
+
+\paragraph{SD-Karte anmelden} Nach dem Einsetzen einer SD-Karte erkennt der \gls{logger} dies normalerweise automatisch. Es kann jedoch vorkommen, dass der \gls{logger} auf die neue Karte aufmerksam gemacht werden muss. Dies erfolgt mit dem Befehl 'mount SD card', siehe Abschnitt \ref{sssec.sdmount}.
+
+\paragraph{SD-Karte abmelden} Vor dem Entfernen der SD-Karte müssen alle Dateien geschlossen werden. Dies erfolgt mit dem Befehl 'unmount SD card', siehe Abschnitt \ref{sssec.sdunmount}.
+
+\paragraph{Status des Datenloggers} Mit dem Befehl 'logger status' werden einige Betriebszustandsdaten des Datenloggers angezeigt, siehe Abschnitt \ref{sssec.loggerstate}.
+
+\paragraph{Aufzeichnung starten/stoppen} Um die Aufzeichnung im ganzen System zu starten oder zu stoppen wird der Befehl 'start/stop logging' verwendet, siehe Abschnitt \ref{sssec.startstop}.
+
+\paragraph{Sensor-Einstellungen} Mit dem Befehl 'sensor parameters' kann eine einzelne \gls{sensoreinh} oder alle \glspl{sensoreinh} zusammen konfiguriert werden. Siehe Abschnitt \ref{sssec.sensorparam}.
+
+\paragraph{Status der Sensoreinheiten} Der Betriebszustand aller angeschlossenen \glspl{sensoreinh} kann mit dem Befehl 'sensor state' (siehe \ref{sssec.sensorstate}) aufgelistet werden.
+
+\paragraph{Timestamp zurücksetzen} Um den Timestamp in allen \glspl{sensoreinh} auf Null zurückzustellen, wird der Befehl 'reset timestamp' verwendet. Siehe Abschnitt \ref{sssec.timestamp}.
+
+\paragraph{Interne Uhr} Die interne Uhr wird mit den Befehl 'internal clock' eingestellt, Abschnitt \ref{sssec.intclock} beschreibt dies im Detail.
+
+\paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oderr aus einer Datei eingelesen, siehe Abschnitt \ref{sssec.configfile}.
+
+\subsection{Befehle}\label{ssec.befehle}
+
+\subsubsection{Dateiliste}\label{ssec.listfiles}
+\begin{lstlisting}[caption=, label=list.]
+HIER LISTE DER FILES EINFueGEN
  0) exit
 \end{lstlisting}
 
 
-\subsubsection{SD-Karte formatieren}
+\subsubsection{SD-Karte formatieren}\label{sssec.sdformat}
 \begin{lstlisting}[caption=Untermenü SD-Karte formatieren, label=list.sdformat]
  1) confirm formatting of SD card.
-    All data will be erased
+    All data will be erased.
  0) cancel
 \end{lstlisting}
 
+Beim Formattieren werden alle Dateien auf der SD-Karte gelöscht, inklusive der Konfigurationsdatei mit allen Sensor-Einstellungen. Der Befehl 'format SD card' holt vor der Ausführung nochmals eine Bestätigung ein, ob sich der Benutzer wirklich sicher ist, dass er alle Dateien löschen will (Listing \ref{list.sdformat}). Während dem Formatieren wird die Meldung \ref{list.sdformatting} angezeigt.
+
 \begin{lstlisting}[caption=Statusmeldung SD formatieren, label=list.sdformatting]
 formatting SD Card
-
 \end{lstlisting}
+
+Sind beim Formatieren Fehler aufgetreten, erhält man die Fehlermeldung \ref{list.sdformatfail}. In diesem Fall sollte die Karte in einem \gls{compi} geprüft und formatiert werden.
 
 \begin{lstlisting}[caption=Fehlermeldung SD formatieren, label=list.sdformatfail]
 Formatting SD card FAILED. Please use a Computer to format the card.
 \end{lstlisting}
+
+Bei erfolgreicher Formatierung wird die Meldung \ref{list.sdformatsuccess} ausgegeben. 
 
 \begin{lstlisting}[caption=Erfolgsmeldung SD formatieren, label=list.sdformatsuccess]
 Formatting done
@@ -79,35 +128,76 @@ Returning to base menu.
 \end{lstlisting}
 
 
-\subsubsection{SD-Karte anmelden}
-\begin{lstlisting}[caption=Untermenü SD-Karte anmelden, label=list.sdmount]
+\subsubsection{SD-Karte anmelden}\label{sssec.sdmount}
+Damit Dateien auf die SD-Karte geschrieben werden können, muss sie vorher erkannt werden. Normalerweise geschieht dies, sobald die Karte eingesetzt wird. Wenn keine SD-Karte erkannt wird, wird dies im Basismenü angezeigt wie im Listing \ref{list.sdmissing}. Durch den Aufruf des Befehls 'mount SD card' im Basismenü (Listing \ref{list.basemenu}) kann die eingesetzte SD-Karte angemeldet werden.
 
+Nach erfolgreicher Anmeldung der SD-Karte wird das Basismenü angezeigt. 
+
+Wenn keine SD-Karte erkannt werden kann, wird eine Fehlermeldung \ref{list.sdmountfail} ausgegeben.
+
+\begin{lstlisting}[caption=Fehlermeldung SD-Karte anmelden, label=list.sdmountfail]
+No SD card detected! Please insert card and try again!
 \end{lstlisting}
 
 
-\subsubsection{SD-Karte abmelden}
+\subsubsection{SD-Karte abmelden}\label{sssec.sdunmount}
+Bevor die SD-Karte aus dem \gls{logger} entfernt wird, sollte sie abgemeldet werden. Der \gls{logger} schliesst bei diesem Vorgang alle geöffneten Dateien, um Datenverlust zu vermeiden. Da beim Abmelden der Karte die Aufzeichnung der Daten gestoppt wird, wird vorher eine Bestätigung verlangt (Listing \ref{list.sdunmount}).
+
 \begin{lstlisting}[caption=Untermenü SD-Karte abmelden, label=list.sdunmount]
-
+ 1) unmount SD card
+    This will stop logging and close all data files.
+ 0) cancel
 \end{lstlisting}
 
+Falls die Konfiguration der Sensoren verändert, aber noch nicht in die Konfigurationsdatei geschrieben wurde, wird eine Warnung angezeigt (Listing \ref{list.sdunmountwarn}). Die Konfiguration bleibt im Speicher des \gls{logger}s erhalten, so lange die Spannungsversorgung angeschlossen ist und kann auch auf der neuen SD-Karte gespeichert werden.
 
-\subsubsection{Logger-Status}
+\begin{lstlisting}[caption=Warnung vor SD-Karte abmelden bei ungespeicherter Konfiguration, label=list.sdunmountwarn]
+******************************************************************
+* WARNING: sensor configuration data has not been saved to file! *
+* If you want to save config to file, cancel now.                *
+******************************************************************
+\end{lstlisting}
+
+\subsubsection{Logger-Status}\label{sssec.loggerstate}
+Mit dem Befehl 'logger status' können einige Information über den \gls{logger} angezeigt werden.
+
+\todo{logger status listing}
 \begin{lstlisting}[caption=Untermenü Logger-Status, label=list.loggerstatus]
 
 \end{lstlisting}
 
 
-\subsubsection{Starten und stoppen der Aufzeichnung}
-\begin{lstlisting}[caption=Untermenü Starten und Stoppen der Aufzeichnung, label=list.startstop]
+\subsubsection{Starten und stoppen der Aufzeichnung}\label{sssec.startstop}
+Um die Datenspeicherung im \gls{logger} zu unterbrechen oder wieder zu starten wird der Befehl 'start/stop logger' verwendet. Beim Aufruf des Befehls wird ein Untermenü gemäss Listing \ref{list.startstop} angezeigt.
+
+\begin{lstlisting}[caption=Untermenü Stoppen der Aufzeichnung, label=list.startstop1]
+ Logger is running.
+ 1) stop the logging.
+ 0) cancel
 \end{lstlisting}
 
+Da sich das Menü dem gegenwärtigen Zustand anpasst, sieht es bei gestoppter Aufzeichnung aus wie in Listing \ref{list.startstop2}.
 
-\subsubsection{Sensor-Parameter}
+\begin{lstlisting}[caption=Untermenü Starten der Aufzeichnung, label=list.startstop2]
+ Logger is stopped.
+ 1) start the logging.
+ 0) cancel
+\end{lstlisting}
+
+Wenn die Aufzeichnung am Logger gestoppt wird, wird an alle \glspl{sensoreinh} der Befehl zum Aufzeichnungsstopp gesendet. Die Einstellungen zum Detailmodus bleiben in der \gls{sensoreinh} aber erhalten. Beim erneuten Starten der Aufzeichnung im Logger werden auch die \glspl{sensoreinh} wieder gestartet. Es besteht auch die Möglichkeit, einzelne \glspl{sensoreinh} zu stoppen (siehe Abschnitt \ref{sssec.sensorparam}). Eine gestoppte \gls{sensoreinh} bleibt auch beim Starten der Aufzeichnung am \gls{logger} gestoppt, da sie schon vor dem Stopp in diesem Zustand war.
+
+\subsubsection{Sensor-Parameter}\label{sssec.sensorparam}
+Die Parameter der Datenerfassung und Ereigniserkennung können für alle \glspl{sensoreinh} gemeinsam oder für jede \gls{sensoreinh} individuell eingestellt werden. Die Auswahl einer einzelnen oder aller \glspl{sensoreinh} erfolgt beim Einstieg in das Untermenü der Sensor-Parameter. Listing \ref{list.sensorsel} zeigt die Auswahl der Sensoren. Die Auswahlliste enthält gleich die aktuellen Werte der Parameter, damit man eine Übersicht hat.
+
+\todo{sensorauswahl listet die sensoren auf, das noch einfügen}
+
 \begin{lstlisting}[caption=Untermenü Sensor-Auswahl, label=list.sensorsel]
  #) Select a sensor from the list.
 99) Select all sensors.
  0) cancel
 \end{lstlisting}
+
+Nach der Auswahl einer \gls{sensoreinh} gelangt man zur Auswahl des anzupassenden Parameters, Listing \ref{list.sensorparam}. Ist ein einzelner Sensor ausgewählt, werden hier noch einmal die aktuellen Werte der Parameter angezeigt.
 
 \begin{lstlisting}[caption=Untermenü Sensor-Parameter, label=list.sensorparam]
  1) set sampling rate (current: 10000 Hz)
@@ -119,19 +209,31 @@ Returning to base menu.
  0) exit
 \end{lstlisting}
 
+\paragraph{Abtastrate} Die Abtastrate legt fest, wie oft pro Sekunde ein Messwert vom Beschleunigungssensor eingelesen werden soll. Die \glspl{sensoreinh} können in einem Bereich zwischen \ensuremath{100 Hz} und \ensuremath{200000 Hz} messen. Die Abtastrate kann in Schritten von \ensuremath{100 Hz} eingestellt werden, Listing \ref{list.paramfs}.
+
+Die Abtastrate hat einen wesentlichen Einfluss auf die zu übertragende und zu speichernde Datenmenge, die benötigte Rechenleistung. Davon wiederum hängt die Zeitspanne ab, wie lange die Messstation ohne Wartung betrieben werden kann. Es wird deshalb empfohlen, die Abtastrate nur so hoch einzustellen, wie es wirklich benötigt wird. Wie hoch dieser Wert ist, hängt stark von den geplanten Auswertungen ab.
+
 \begin{lstlisting}[caption=Untermenü Abtastrate, label=list.paramfs]
  #) Enter sampling rate in Hz. (multiple of 100 Hz in range 100..200'000 Hz)
  0) cancel
 \end{lstlisting}
 
+Bei Eingabe einer ungültigen oder nicht unterstützten Abtastrate wird eine Fehlermeldung ähnlich Listing \ref{list.paramfserror} angezeigt.
+
+\begin{lstlisting}[caption=Fehlermeldung bei ungültiger Abtastrate, label=list.paramfserror]
 Sampling rate 220000 Hz not supported, too high.
+\end{lstlisting}
 
-Sampling rate 0 Hz not supported.
-To turn off sensor, set the detail level to 'off'
-or use start/stop menu
+\paragraph{Ereigniserkennung} Die \gls{ereignisdet} hat drei Parameter, die die Form der gesuchten \glspl{ereignis} bestimmen.  Abbildung \ref{fig.params} illustriert die Zusammenhänge zwischen \gls{threshold} und \gls{nullpegel} sowie die Funktionsweise des \gls{timeout}s.
 
+\paragraph{Threshold} Der \gls{threshold} (Schwellenwert) ist ein Parameter der Ereigniserkennung. Er bestimmt, ab welcher Abweichung vom Nullwert ein Signal als Peak betrachtet werden soll. Bei der Wahl des \gls{threshold}s ist zu beachten, dass der \gls{threshold} auf beide Seiten des Nullwerts gilt. Daher darf die Summe des \gls{nullpegel}s und des \gls{threshold}s nicht den maximalen Wert (4096) des \gls{adwandler}s überschreiten. Ebenso muss der Wert des \gls{threshold}s kleiner sein als der \gls{nullpegel}, damit kein negativer Messwert anliegen müsste, um einen Peak zu erzeugen. Diese Einschränkungen werden bei der Eingabe noch einmal angezeigt, Listing \ref{list.paramthres}.
 
-
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/impact_params.png}
+	\caption{Zusammenhänge der Parameter der \gls{ereignisdet}.}
+	\label{fig.params}
+\end{figure}
 
 \begin{lstlisting}[caption=Untermenü Threshold, label=list.paramthres]
  #) Enter threshold value.
@@ -141,29 +243,40 @@ or use start/stop menu
  0) cancel
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Fehlermeldung ungültiger Threshold, label=list.paramthres]
-		Invalid threshold value:
-		threshold + baseline must not exceed 4096
-		and
-		threshold must be smaller than baseline value.
+Bei Verletzung der Kriterien für den \gls{threshold} wird eine entsprechende Fehlermeldung angezeigt, Listing \ref{list.paramthresfail}. Da die gleichen Kriterien auch bei der Einstellung des \gls{nullpegel}s gelten, empfiehlt es sich, zuerst einen kleinen Wert für den \gls{threshold} zu wählen. Dann kann der \gls{nullpegel} ohne grosse Einschränkung eingestellt werden. Danach setzt man den passenden \gls{threshold}.
+
+\begin{lstlisting}[caption=Fehlermeldung ungültiger Threshold, label=list.paramthresfail]
+ Invalid threshold value:
+ threshold + baseline must not exceed 4096
+ and
+ threshold must be smaller than baseline value.
 \end{lstlisting}
+
+\paragraph{Nullpegel} Der \gls{nullpegel} wird mit einer ähnlichen Maske (Listing \ref{list.parambase}) wie der \gls{threshold} eingestellt, auch die Einschränkungen für den Wertebereich sind die Gleichen.
 
 \begin{lstlisting}[caption=Untermenü Null-Level, label=list.parambase]
  #) Enter baseline value (default: 2047).
  0) cancel
 \end{lstlisting}
 
-\begin{lstlisting}[caption=Fehlermeldung ungültiger Null-Level, label=list.parambaseerror]
-Invalid baseline value:\n");
+Die Fehlermeldung bei ungültigen Werten für den \gls{nullpegel} ist in Listing \ref{list.parambaseerror} aufgeführt.
+
+\begin{lstlisting}[caption=Fehlermeldung ungültiger Nullpegel, label=list.parambaseerror]
+Invalid baseline value:
 threshold + baseline must not exceed 4096.
 and
 threshold - baseline must not be below 0 value
 \end{lstlisting}
 
+\paragraph{Timeout} Der \gls{timeout} definiert, wie viele Samples der Signalwert unterhalb des \gls{threshold}s liegen kann, bevor das \gls{ereignis} als beendet betrachtet wird (Listing \ref{list.paramtimeout}). Die einzige Einschränkung an den \gls{timeout} ist, dass er die Länge des Ereignispuffers nicht überschreiten darf.
+\todo{Länge des Ereignispuffers}
+
 \begin{lstlisting}[caption=Untermenü Timeout, label=list.paramtimeout]
  #) Enter timeout in samples.
  0) cancel
 \end{lstlisting}
+
+Bei zu langem (Listing \ref{list.paramtimeoutlong}) oder sehr kurzem (Listing \ref{list.paramtimeoutshort}) \gls{timeout} wird eine Fehlermeldung resp. Warnung angezeigt.
 
 \begin{lstlisting}[caption=Fehlermeldung zu langer Timeout, label=list.paramtimeoutlong]
 Timeout too long, can not exceed 512.
@@ -174,6 +287,8 @@ Timeout 0 will end impact after each peak.
 Timeout 0 in effect.
 \end{lstlisting}
 
+\paragraph{Detaillevel} Über die Wahl des Detaillevels wird bestimmt, wie viele und welche Daten von jedem \gls{ereignis} übertragen und gespeichert werden sollen (Listing \ref{list.detail}). Die Detaillevel sind geordnet nach anfallender Datenmenge, beginnend mit dem grössten Aufwand. Die Detaillevel sind in Abschnitt \ref{sec.manualimpact}, Seite \pageref{sec.manualimpact} beschrieben.
+
 \begin{lstlisting}[caption=Untermenü Detail-Level, label=list.detail]
  1) raw (continuous data)
  2) detailed (start time, all samples of impact)
@@ -183,6 +298,8 @@ Timeout 0 in effect.
  0) cancel
 \end{lstlisting}
 
+\paragraph{Start/Stop Sensor} Jede \gls{sensoreinh} kann einzeln gestartet oder gestoppt werden, vorausgesetzt der \gls{logger} ist gestartet. Im Untermenü ist ersichtlich, in welchem Zustand die ausgewählte \gls{sensoreinh} gerade ist (listing \ref{list.started_one}). Falls die Konfigurationsänderung alle \glspl{sensoreinh} betreffen soll, wird die Anzahl gestarteter und gestoppter Sensoren angezeigt (listing \ref{list.started_all}).
+
 \begin{lstlisting}[caption=Untermenü Start/Stop einzeln, label=list.started_one]
 Selected sensor is currently stopped.
  1) start
@@ -191,47 +308,43 @@ Selected sensor is currently stopped.
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Untermenü Start/Stop alle Sensoren, label=list.started_all]
-At least one sensor is active.
- 1) start
- 2) stop
- 0) cancel
- 
--- oder --
-
-No sensors are active.
+Started sensors: 3
+Stopped sensors: 0
  1) start
  2) stop
  0) cancel
 \end{lstlisting}
+
+Wenn ein Sensor gestartet wird, muss für die anfallenden Daten eine Datei erzeugt werden. Schlägt dies fehl, wird dies mit der Fehlermeldung \ref{list.sensorerror} angezeigt. Der Sensor wird dann nicht gestartet. Es wird empfohlen, in diesem Fall die SD-Karte zu überprüfen. Möglicherweise verfügt die SD-Karte nicht mehr über genügend Speicherplatz.
 
 \begin{lstlisting}[caption=Fehlermeldung beim Starten eines Sensors, label=list.sensorerror]
 Could not create or open file. Please check SD card for free space.
 \end{lstlisting}
 
-\subsubsection{Sensor-Status}
+\subsubsection{Sensor-Status}\label{sssec.sensorstate}
 \todo{Liste von Sensor-Stati ins Listing einfügen}
 \begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
 Listing sensor config:
-HIER EINFüGEN
+HIER EINFueGEN
  0) continue
 \end{lstlisting}
 
 
-\subsubsection{Timestamp zurücksetzen}
+\subsubsection{Timestamp zurücksetzen}\label{sssec.timestamp}
 \begin{lstlisting}[caption=Untermenü Timestamp zurücksetzen, label=list.timestamp]
  1) re-synchronize timestamp
  0) cancel
 \end{lstlisting}
 
 
-\subsubsection{Interne Uhr}
+\subsubsection{Interne Uhr}\label{sssec.intclock}
 \todo{Beispiel einer Uhrzeit einfügen}
 \begin{lstlisting}[caption=Untermenü interne Uhr, label=list.intclock]
  1) adjust date
  2) adjust time
  0) exit
 
- current time: HIER EINFüGEN
+ current time: HIER EINFueGEN
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Untermenü Datum einstellen, label=list.setdate]
@@ -246,7 +359,7 @@ adjust internal date
  8) adjust date -  1 day
  0) exit
 
- current time: HIER EINFüGEN
+ current time: HIER EINFueGEN
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Untermenü Uhrzeit einstellen, label=list.settime]
@@ -261,7 +374,7 @@ adjust internal time
  8) adjust time -1 second
  0) exit
 
- current time: HIER EINFüGEN
+ current time: HIER EINFueGEN
 \end{lstlisting}
 
 \subsubsection{Konfigurations-Datei}
@@ -284,6 +397,8 @@ The configuration data will remain stored in the logger unless you turn off powe
 {BLABLABLA}
 }
 \end{lstlisting}
+
+Config has been modified but not saved to SD card.
 
 \section{Betrieb}
 
