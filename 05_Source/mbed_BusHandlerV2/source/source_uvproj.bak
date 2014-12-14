@@ -212,7 +212,7 @@
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
-            <mOS>0</mOS>
+            <mOS>1</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
             <hadIROM>1</hadIROM>
@@ -2615,6 +2615,11 @@
               <FileName>BusHandler.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\BusHandler.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>SerialID.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\SerialID.cpp</FilePath>
             </File>
           </Files>
         </Group>

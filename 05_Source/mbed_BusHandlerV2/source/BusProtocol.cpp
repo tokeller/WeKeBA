@@ -113,12 +113,12 @@ void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high)  {
 
   buflow = LPC_CANAF_RAM->mask[cnt1];            		 /* Remember current entry */
   LPC_CANAF_RAM->mask[cnt1] = id_low;              /* Insert lower bound */
-	pcSerial.printf("lower bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
+	//pcSerial.printf("lower bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
 	cnt1++;
 	cnt2++;
 	bufhigh = LPC_CANAF_RAM->mask[cnt1];
 	LPC_CANAF_RAM->mask[cnt1] = id_high;				 		 /* Insert upper bound */
-	pcSerial.printf("upper bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
+	//pcSerial.printf("upper bound %d %x\n",cnt1,LPC_CANAF_RAM->mask[cnt1]);
   CAN_ext_cnt++;
 	CAN_ext_cnt++;
 	

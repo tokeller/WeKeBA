@@ -63,7 +63,7 @@
 #define CAN_FILTER_SENSOR_OP_MD_SNGL		0x08000101
 
 
-
+#define MAX_NR_OF_MESSAGES							0xff
 
 
 typedef struct {
@@ -76,9 +76,9 @@ typedef struct {
 } CANmessage_t;
 
 typedef struct {
-	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
 	uint16_t threshold;			// 10 bit threshold
 	uint16_t baseline; 			// 10 bit zero level
+	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
 	uint16_t timeoutRange;	// 16 bit timeout range
 } SensorConfigMsg_t;
 
@@ -133,6 +133,8 @@ typedef struct{
 
 int start_CAN_Bus(deviceType_t device);
 
+int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType);
+
 int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sender, msgType_t msgType);
 
 void CAN_COM_thread(void const *args);
@@ -146,4 +148,7 @@ void sendSerialResponse(uint32_t serialNr);
 void enableBroadCastFilter(void);
 
 void enableSensorFilter(uint8_t canId);
+
+void sendSettings(char receiver, SensorConfigMsg_t settings);
+
 #endif

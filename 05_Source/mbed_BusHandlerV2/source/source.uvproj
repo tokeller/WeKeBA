@@ -212,7 +212,7 @@
             <GenPPlst>0</GenPPlst>
             <AdsCpuType>"Cortex-M4"</AdsCpuType>
             <RvctDeviceName></RvctDeviceName>
-            <mOS>0</mOS>
+            <mOS>1</mOS>
             <uocRom>0</uocRom>
             <uocRam>0</uocRam>
             <hadIROM>1</hadIROM>
@@ -2620,6 +2620,26 @@
               <FileName>SerialID.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\SerialID.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ADC_4088.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ADC_4088.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>impact_action.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\impact_action.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>impact_event.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\impact_event.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>impact_fsm.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\impact_fsm.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -8,6 +8,7 @@ extern MemoryPool<CANmessage_t, 50> mpoolOutQueue;
 Queue <CANmessage_t, 50> inQueue;
 MemoryPool<CANmessage_t, 50> mpoolInQueue;
 
+char sentData = 0;
 
 int start_CAN_Bus(deviceType_t device){
 	CAN_init();	
@@ -54,6 +55,27 @@ void CAN_COM_thread(void const *args) {
   }
 }
 
+int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType){
+	char data[7];
+	//printf("\n\ntimestamp %x\n",payload.timestamp);
+	data[0] = ((payload.timestamp) >> 24) & 0xff;
+	data[1] = ((payload.timestamp) >> 16) & 0xff;;
+	data[2] = ((payload.timestamp) >> 8) & 0xff;;
+	data[3] = (payload.timestamp) & 0xff;;
+	//printf("packed timestamp %x%x%x%x\n",data[0],data[2],data[2],data[3]);
+	data[4] = payload.maxPeaks;
+	//printf("maxPeak %x\n",payload.maxPeaks);
+	//printf("packed maxPeak %x\n",data[4]);
+	data[5] = payload.nrOfPeaks;
+	//printf("nrOfPeaks %x\n",payload.nrOfPeaks);
+	//printf("packed nrPeak %x\n",data[5]);
+	data[6] = payload.duration;
+	//printf("duration %x\n",payload.duration);
+	//printf("packed duration %x\n",data[6]);
+	sentData = 1;
+	return enqueueMessage(7,data,receiver,sender,msgType);
+}
+
 
 	//enqueueMessage(8,										data,					0x01,					0x02,  				IMPACT_STD_SINGLE)
 int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sender, msgType_t msgType){
@@ -68,6 +90,16 @@ int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sende
 		inOnQueue->msgId = 1;
 		inOnQueue->dataLength = dataLength;
 		memcpy(inOnQueue->payload,payload,dataLength);
+		if(sentData == 1){
+			printf("sent payload %x%x%x%x%x%x%x\n",inOnQueue->payload[0],
+																						 inOnQueue->payload[1],
+																						 inOnQueue->payload[2],
+																						 inOnQueue->payload[3],
+																						 inOnQueue->payload[4],
+																						 inOnQueue->payload[5],
+																						 inOnQueue->payload[6]);
+			sentData = 0;
+		}
 		stat = inQueue.put(inOnQueue);
 	} else {
 		uint8_t numberOfMessages = dataLength/ 8;
@@ -115,7 +147,6 @@ uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint3
 }
 
 void sendSerialResponse(uint32_t serialNr){
-	uint32_t outMsgId = 0;
 	char data[4];
 	data[0] = (serialNr>> 24) & 0xff;
 	data[1] = (serialNr>> 16) & 0xff;
@@ -149,5 +180,34 @@ void enableSensorFilter(uint8_t canId){
 	tempfilter = CAN_FILTER_SENSOR_OP_MD_SNGL | tempCanId;
 	setExtGrpCANFilter(tempfilter,tempfilter);;
 	
-	
 };
+
+void sendSettings(char receiver, SensorConfigMsg_t settings){
+	/* contains:	
+	uint16_t threshold;			// 10 bit threshold
+	uint16_t baseline; 			// 10 bit zero level
+	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
+	uint16_t timeoutRange;	// 16 bit timeout range
+
+  	cfg.threshold = 1023;
+		cfg.baseline = 4095;
+		cfg.fs = 1023;
+		cfg.timeoutRange = 4095 * 2;
+  */
+	uint64_t data = settings.threshold;
+	data = data<<10;
+	data |= settings.baseline;
+	data = data<<12;
+	data |= settings.fs;
+	data = data<<16;
+	data |= settings.timeoutRange;
+	char part[6];	
+	part[0] = (data >> 40) & 0xff;
+	part[1] = (data >> 32) & 0xff;
+	part[2] = (data >> 24) & 0xff;
+	part[3] = (data >> 16) & 0xff;
+	part[4] = (data >> 8)  & 0xff;
+	part[5] =  data 			 & 0xff;
+	enqueueMessage(6,part,receiver,0x01,SENSOR_CONFIG_SINGLE);
+}
+
