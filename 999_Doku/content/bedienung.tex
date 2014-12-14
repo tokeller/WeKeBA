@@ -23,6 +23,14 @@ Die Messstation wurde entwickelt, um Geschiebemessungen in einem Bach oder Fluss
 
 Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit angeschlossen werden, die alle Messdaten aufzeichnet. Diese Anzahl kann nach eingehenden Tests wahrscheinlich noch erhöht werden. Die Obergrenze wird auch von der gewünschten Messdatenqualität abhängen, da das Bussystem eine begrenzte Übertragungskapazität hat.
 
+
+
+
+
+
+
+
+
 \section{Aufbau der Messstation}\label{sec.manualoverview}
 Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh}.
 
@@ -32,31 +40,164 @@ Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
 
 Die \glspl{sensoreinh} sind in einem wasserdichten Gehäuse verbaut und über wasserdichte Steckverbinder (IP68) untereinander verbunden. 
 
-\section{Datenlogger}\label{sec.manuallogger}
-Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Kommunikation hat, die Messdaten speichert und den Anschluss eines \gls{compi}s für die Konfiguration der Anlage ermöglicht. Im Datenlogger arbeitet ein \emph{ARM Cortex M4} Prozessor mit 120~MHz Taktgeschwindigkeit. Dieser Prozessor steuert die Kommunikation und wandelt die Messdaten für die Speicherung in lesbare Information um.
 
+
+
+
+
+
+
+
+
+\section{Datenlogger}\label{sec.manuallogger}
+Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Kommunikation hat, die Messdaten speichert und den Anschluss eines \gls{compi}s für die Konfiguration der Anlage ermöglicht. Im Datenlogger arbeitet ein \emph{ARM Cortex-M4} Prozessor mit 120~MHz Taktgeschwindigkeit. Dieser Prozessor steuert die Kommunikation und wandelt die Messdaten für die Speicherung in lesbare Information um.
+
+\subsection{Anschlüsse}
 Der \gls{logger} verfügt über vier Anschlüsse. 
 
 \todo{figur über den logger}
-\paragraph{Stromversorgung} Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
+\subsubsection{Stromversorgung}
+Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
 \todo{Stromverbrauch logger und pro sensor nennen}
 
-\paragraph{Bussystem} Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
+\subsubsection{Busanschluss}
+Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
 
-\paragraph{Schnittstelle zum Computer} Ein wasserdichter Steckverbinder für ein \gls{USB}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
+\subsubsection{Schnittstelle zum Computer}
+Ein wasserdichter Steckverbinder für ein \gls{USB}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
 
-\paragraph{Speicherkarte} Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist in den Abschnitt \ref{sssec.sdformat} bis \ref{sssec.sdunmount} ab Seite \pageref{sssec.sdformat} erklärt.
+\subsubsection{Speicherkarte}
+Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist in den Abschnitt \ref{sssec.sdformat} bis \ref{sssec.sdunmount} ab Seite \pageref{sssec.sdformat} erklärt.
+
+
+
+
+
+
+
+
+
+
 
 \section{Sensor}\label{sec.manualsensor}
-Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und einen Mikroprozessor. Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das Bussystem an den \gls{logger} übertragen.
+Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und einen Mikroprozessor. Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
 
-\paragraph{Beschleunigungssensor} Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr \ensuremath{10 m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm250 g} und \ensuremath{\pm500 g} erhältlich.
+\subsection{Beschleunigungssensor}
+Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr \ensuremath{10 m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+
+\subsection{Mikroprozessor}
+Der \emph{ARM Cortex-M4} mit 120~MHz Taktfrequenz hat weit mehr Rechenleistung, als für die vorliegende Anwendung benötigt wird. Sollten komplexere Algorithmen für die Erkennung von Ereignissen, für die Filterung der Messdaten oder für die Verarbeitung der Signale benötigt werden, wäre dies dank der bereits vorhandenen Rechenleistung möglich.
+
+\subsection{Anschlüsse}
+Die \gls{sensoreinh} hat zwei Anschlüsse für das Bussystem. Mit dieser Bauweise ist es möglich, die \gls{stichleitung} zum \gls{transceiver} möglichst kurz zu halten, um die Signalqualität möglichst wenig negativ zu beeinflussen. Die Anschlüsse sind wasserdicht (IP68).
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Bussystem}\label{sec.manualbus}
+Als Bussystem wird CAN-Bus verwendet. Mit einer Datenübertragungsrate von 1~MBit/s bis zu einer Kabelgesamtlänge von 40~m, resp 125~kBit/s bis zu 500~m eignet sich CAN-Bus für diese Messstation sehr gut. Es sind keine Kabellängen zu erwarten, die weit über 40~m hinausgehen. CAN-Bus ist des Weiteren sehr robust gegenüber Umwelteinflüssen, die die Übertragung stören könnten.
+
+\subsection{Kabel}
+Die Kabel der Messstation verfügen über 4 Leitungen, die jeweils paarweise verdrillt sind. Zusätzlich zu den Leitungen ist eine Zugentlastung zum Schutz vor mechanischer Beschädigung im Kabel enthalten. Um die zwei Aderpaare und die Zugentlastung ist ein metallisches Geflecht als Schild angebracht, das sowohl gegen mechanische Beschädigung als auch gegen elektrische Störeinflüsse schützt. Die PVC-Hülle des Kabels ist noch ein zusätzlicher mechanischer Schutz. 
+
+Ein Aderpaar wird für die Spannungsversorgung verwendet, das zweite Aderpaar für die Kommunikation auf dem Bussystem.
+
+\subsection{Abschlusswiderstände}
+Damit die Bus-Signale an den Enden der Leitung nicht reflektiert werden und die Übertragung stören, müssen an beiden Enden des Bussystems Abschlusswiderstände eingesetzt werden.  Die Abschlusswiderstände (120 \ensuremath{\ohm}) verbinden die Anschlüsse CANH und CANL auf der Leiterplatte und werden wie in Abbildung \ref{fig.terminator} angebracht.
+\todo{Föteli/Schema Abschlusswiderstand}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/fotos/terminator.png}
+	\caption{Anbringung des \gls{terminator}s.}
+	\label{fig.terminator}
+\end{figure}
+
+\subsection{Steckverbinder}
+Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss Tabelle \ref{table.stecker} bestückt. Auf der Leiterplatte der \gls{sensoreinh} ist eine Schraubklemmenleiste mit 8 Anschlüssen angebracht. Jeweils zwei benachbarte Anschlüsse sind zusammengeschaltet, damit jede Leitung einzeln fest verschraubt werden kann. Es wird nicht empfohlen, zwei gleiche Leitungen in einer einzelnen Schraubklemme zusammen zu verschrauben.
+
+\begin{table}
+\begin{tabular}{|l|l|l|}
+\hline \textbf{Pol Nr.}      & \textbf{Leitung} & Anschluss Schraubklemme\\ 
+\hline 1 & Spannungsversorgung +12~V & +12V\\
+\hline 2 & Spannungsversorgung 0~V & GND\\
+\hline 3 & unbenutzt & \\
+\hline 4 & CAN-Bus High & CANH \\
+\hline 5 & CAN-Bus Low & CANL \\
+\hline 
+\end{tabular}
+\caption{Steckerbestückung des \gls{bussys}s.}
+\label{table.stecker}
+\end{table}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Ereignis}\label{sec.manualimpact}
 \todo{Beschreibe hier die Ereignisse, die Detaillevel inklusive den tollen grafiken}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/raw.png}
+	\caption{Beispiel von Rohdaten.}
+	\label{fig.impactraw}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/rawshort.png}
+	\caption{Detail-Level 'raw'.}
+	\label{fig.detailRaw}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/detailed.png}
+	\caption{Detail-Level 'detailed'.}
+	\label{fig.detaildetailed}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/peaks.png}
+	\caption{Detail-Level 'peaks'.}
+	\label{fig.detailpeaks}
+\end{figure}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/sparse.png}
+	\caption{Detail-Level 'sparse'.}
+	\label{fig.detailsparse}
+\end{figure}
+
+
+
 
 
 \section{Konfiguration}\label{sec.manualkonfig}
@@ -74,6 +215,7 @@ Am USB-Anschluss des \gls{logger}s kann ein \gls{compi} angeschlossen werden, um
 Die Einstellungen für die serielle Schnittstelle sind normalerweise bereits korrekt gesetzt. Es werden 8 Datenbits verwendet, 1 Stopbit und keine Parität (parity).
 
 Weitere Hilfe für die Verwendung eines \gls{terminalemu}s findet man unter \url{http://developer.mbed.org/handbook/Terminals}.
+
 
 
 \subsection{Menü}\label{ssec.menu}
@@ -458,7 +600,42 @@ Config has been modified but not saved to SD card.
 \end{lstlisting}
 
 
+
+
+
+
+
+
+
+
+
+
 \section{Betrieb}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Technische Daten}
+Cortex-M4
+CAN-Bus/Transceiver
+Spannungen
+Stromverbrauch
+Kabel
+Stecker
+Sensoren
+SD-Karte
+g-Bereiche
+Messzeiten
+Puffergrössen logger und sensor
+anzahl sensoren (bandbreite/signalstärke/rechenleistungLogger)
