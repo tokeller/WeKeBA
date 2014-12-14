@@ -9,6 +9,8 @@
 #include "cmd_action.h"
 
 extern SensorConfig sensor[MAX_SENSORS];
+extern LoggerConfig logger;
+extern uint8_t time_updated;
 extern uint8_t menu_fsm_current_sensor;
 extern MCIFileSystem mcifs;
 static uint8_t detail_str[6][11] = 
@@ -37,12 +39,17 @@ void cmd_enter_basemenu(void)
 	printf(" 5) logger status\n");
 	printf(" 6) start/stop logging\n");
 	printf(" 7) sensor parameters\n");
-	printf(" 8) sensor state\n");
+	printf(" 8) sensor states\n");
 	printf(" 9) reset timestamp\n");
 	printf("10) internal clock\n");
 	printf("11) config file\n");
 	printf("\n");
-	printf("TODO hier noch Meldung einbauen, dass man das config-file speichern sollte\n");
+	if(logger.config_modified){
+		printf("Config has been modified but not saved to SD card.\n");
+	}
+	if(!logger.sd_present){
+		printf("No SD card found, please insert card and mount it.\n");
+	}
 }
 
 /*
@@ -90,7 +97,7 @@ void cmd_format_sd(void)
 	if(mcifs.disk_initialize() == 1){
 		printf("Formatting SD card FAILED. Please use a Computer to format the card.\n");
 	} else {
-		printf("formatting done\n");
+		printf(ÒFormatting done\n");
 	}
 	printf("Returning to base menu.\n");
 }
@@ -101,8 +108,12 @@ void cmd_format_sd(void)
 void cmd_mount_sd(void)
 {
 	printf("entering mount SD card\n");
-	printf(" 1) \n"); // TODO open file system
-	printf(" 0) cancel\n");
+	// TODO open file system
+	if(!mcifs.cardInserted()){
+		printf("No SD card detected! Please insert card and try again!\n");
+	} else {
+		logger.sd_present = 1;
+	}
 }
 
 /*
@@ -111,26 +122,36 @@ void cmd_mount_sd(void)
 void cmd_enter_unmount_sd(void)
 {
 	printf("entering unmount sd\n");
-	printf(" 1) unmount SD card\n    This will stop logging and close all data files."); // TODO check for open files, close them, close file system
+	if(logger.config_modified){
+		printf("****************************************************************** \n");
+		printf("* WARNING: sensor configuration data has not been saved to file! * \n");
+		printf("* If you want to save config to file, cancel now.                * \n");
+		printf("****************************************************************** \n");
+	}
+	printf(" 1) unmount SD card\n    This will stop logging and close all data files.");
 	printf(" 0) cancel\n");
 }
-
+/*
+ * See header file
+ */
 void cmd_unmount_sd(void)
 {
 	int i;
 	printf("Unmounting SD card: stop logging and close all data files.\n");
-	// TODO stop logging
+	// stop logging. This will also close the files.
+	cmd_stop_logger();
 	// TODO send BC to all sensors to go 'offline' but do not set
 	// the started flag to 0 in the config. This way, we will restart only
 	// those sensors that were running before the stop.
 	
+	
 	printf("Logging has been stopped.\n");
 	
-	// TODO close all data files
-	for(i = 0; i < MAX_SENSORS; i++){
-		// TODO close file, set file pointer to zero
-	}
+	// TODO: if config has been changed but not stored, display a warning.
+	
 	printf("All files have been closed.\n");
+	// set flag so we can display a reminder in the base menu.
+	logger.sd_present = 0;
 	
 	printf("You may now remove the SD card.\n");
 }
@@ -149,10 +170,44 @@ void cmd_print_logger_status(void)
 void cmd_enter_logger_start(void)
 {
 	printf("entering logger start/stop\n");
-	// TODO: ist logger am laufen oder nicht?
-	printf("Logger is running/stopped");
-	printf(" 1) stop/start the logging.\n"); // TODO
+	printf("Logger is %s\n", logger.started ? "running" : "stopped");
+	printf(" 1) %s the logging.\n", logger.started ? "stop": "start");
 	printf(" 0) cancel\n");
+}
+
+/*
+ * See header file
+ */
+void cmd_start_logger(void)
+{
+	// TODO was braucht es alles, um den logger zu starten?
+	uint8_t i;
+	uint8_t success = 1;
+	// open all data files
+	for(i = 0; i < MAX_SENSORS; i++){
+		if(sensor[i].pf_sensor_data != NULL){
+			if(!cmd_open_sensor_file(i)){
+				success = 0;
+			}
+		}
+	}
+	// TODO was, wenn nicht alle files geöffnet werden konnten?
+	// TODO was muss man alles noch tun, um den logger zu starten?
+	logger.started = 1;
+}
+
+/*
+ * See header file
+ */
+void cmd_stop_logger(void)
+{
+	uint8_t i;
+	// close all data files
+	for(i = 0; i < MAX_SENSORS; i++){
+		cmd_close_sensor_file(i);
+	}
+	// TODO was muss man alles noch tun, um den logger zu stoppen?
+	logger.started = 0;
 }
 
 /*
@@ -160,19 +215,51 @@ void cmd_enter_logger_start(void)
  */
 void cmd_enter_sensor_params(void)
 {
+	// TODO: stop acquisition before changing fs, then reset timestamp and start again.
 	printf("entering sensor params\n");
-	printf(" 1) set sampling rate (current: %3.0d00 Hz)\n", 
-		sensor[menu_fsm_current_sensor].fs); // TODO retrieve current value
-	printf(" 2) set threshold value (current: %d5.0)\n", 
-		sensor[menu_fsm_current_sensor].threshold); // TODO
-	printf(" 3) set baseline value (current: %d5.0)\n", 
-		sensor[menu_fsm_current_sensor].baseline); // TODO
-	printf(" 4) set timeout (current: %5.0d)\n", 
-		sensor[menu_fsm_current_sensor].timeout); // TODO
-	printf(" 5) set detail level (current: %s)\n", 
-		detail_str[sensor[menu_fsm_current_sensor].detail_level]); // TODO
-	printf(" 6) start or stop recording (current: %s)\n",
-	(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	
+	printf(" 1) set sampling rate ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf((current: %3.0d00 Hz)", 
+		sensor[menu_fsm_current_sensor].fs);
+	}
+	printf("\n");
+	
+	printf(" 2) set threshold value ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %d5.0)", 
+			sensor[menu_fsm_current_sensor].threshold);
+	}
+	printf("\n");
+	
+	printf(" 3) set baseline value ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %d5.0)", 
+			sensor[menu_fsm_current_sensor].baseline);
+	}
+	printf("\n");
+	
+	printf(" 4) set timeout ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %5.0d)", 
+			sensor[menu_fsm_current_sensor].timeout);
+	}
+	printf("\n");
+	
+	printf(" 5) set detail level ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %s)", 
+			detail_str[sensor[menu_fsm_current_sensor].detail_level]);
+	}
+	printf("\n");
+	
+	printf(" 6) start or stop recording ");
+	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
+		printf("(current: %s)",
+			(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	}
+	printf("\n");
+	
 	printf(" 0) exit\n");
 }
 
@@ -195,7 +282,7 @@ void cmd_enter_sensor_params_get_nr(void)
 uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index)
 {
 	// sensor_index must be within sensor array and a registered sensor or 99 for ALL_SENSORS
-	if(sensor_index == 99 || (sensor_index < MAX_SENSORS && sensor[sensor_index].serialID != 0) ){
+	if(sensor_index == 99 || (sensor_index < MAX_SENSORS && sensor[sensor_index].is_registered != 0) ){
 		return 1;
 	}
 	return 0;
@@ -207,7 +294,7 @@ uint8_t cmd_sensor_id_is_valid(uint8_t sensor_index)
 void cmd_enter_sensor_params_fs(void)
 {
 	printf("entering sensor params fs \n");
-	printf(" #) Enter sampling rate in Hz. (multiple of 100 Hz)\n");
+	printf(" #) Enter sampling rate in Hz. (multiple of 100 Hz in range 100..200'000 Hz)\n");
 	printf(" 0) cancel\n");
 }
 
@@ -218,6 +305,9 @@ void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs)
 {
 	int i;
 	// fs must be between 1 and 2000 (100..200'000 Hz). The CPU can't handle faster sampling.
+	
+	fs = fs/100; // user enters desired sampling in Hz, we need to divide by 100.
+	
 	if(fs > 2000){
 		printf("Sampling rate %d00 Hz not supported, too high.\n", fs);
 	} else if (fs == 0){
@@ -245,6 +335,10 @@ void cmd_enter_sensor_params_thres(void)
 {
 	printf("entering sensor params thres \n");
 	printf(" #) Enter threshold value.\n");
+
+	printf("baseline + threshold must not exceed 4096\nand\n");
+
+	printf("baseline - threshold must not be below 0\n");
 	printf(" 0) cancel\n");
 }
 
@@ -289,6 +383,9 @@ void cmd_enter_sensor_params_baseline(void)
 {
 	printf("entering sensor params baseline \n");
 	printf(" #) Enter baseline value (default: 2047).\n");
+	printf("baseline + threshold must not exceed 4096\nand\n");
+
+	printf("baseline - threshold must not be below 0\n");
 	printf(" 0) cancel\n");
 }
 
@@ -344,21 +441,25 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 	int i;
 	// timeout must be shorter than input_queue_length.
 	if(timeout > MAX_INPUT_LENGTH){
-		printf("Timeout too long, can not exceed %d\n", MAX_INPUT_LENGTH);
-	} else if (timeout == 0){
-		printf("Timeout 0 will end impact after each peak.\n");
-		printf("If you really want this, enter timeout of 1.\n");
-	} else if(sensor_index == 99) {
-		// set all sensors
-		for(i = 0; i < MAX_SENSORS; i++){
-			if(sensor[i].serialID != 0){
-				sensor[i].timeout = timeout;
-				cmd_send_config_to_sensor(i);
-			} // fi
-		} // rof
+		printf("Timeout too long, can not exceed %d.\n", MAX_INPUT_LENGTH);
 	} else {
-		sensor[sensor_index].timeout = timeout;
-		cmd_send_config_to_sensor(sensor_index);
+		// warning for short timeout
+		if (timeout == 0){
+			printf("Timeout 0 will end impact after each peak.\n");
+			printf("Timeout 0 in effect.\n");
+		} 
+		if(sensor_index == 99) {
+			// set all sensors
+			for(i = 0; i < MAX_SENSORS; i++){
+				if(sensor[i].serialID != 0){
+					sensor[i].timeout = timeout;
+					cmd_send_config_to_sensor(i);
+				} // fi
+			} // rof
+		} else {
+			sensor[sensor_index].timeout = timeout;
+			cmd_send_config_to_sensor(sensor_index);
+		} // fi
 	} // fi
 }
 
@@ -401,9 +502,24 @@ void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode)
  */
 void cmd_enter_sensor_start_stop(void)
 {
+	int i;
+	int active = 0;
+	int inactive = 0;
 	printf("entering sensor params start/stop \n");
-	printf("selected sensor is currently %s.\n",
+	if(menu_fsm_current_sensor == 99){
+		for(i = 0; i < MAX_SENSORS; i++){
+			if(sensor[i].started){
+				active++;
+			} else {
+				inactive++;
+			}//fi
+		} // rof
+		printf("Started sensors: %d\n", active);
+		printf("Stopped sensors: %d\n", inactive);
+	} else {
+		printf("Selected sensor is currently %s.\n",
 		(sensor[menu_fsm_current_sensor].started ? "started" : "stopped"));
+	} // fi
 	printf(" 1) start\n");
 	printf(" 2) stop\n");
 	printf(" 0) cancel\n");
@@ -415,19 +531,28 @@ void cmd_enter_sensor_start_stop(void)
 void cmd_sensor_start(uint8_t sensor_index)
 {
 	int i;
+	char fname[25];
+	fname[0] = 0;
 	if(sensor_index == 99) {
 		// set all sensors
 		for(i = 0; i < MAX_SENSORS; i++){
 			if(sensor[i].serialID != 0){
-				// TODO open file,set filepointer
-				sensor[i].started = 1;
-				cmd_send_config_to_sensor(i);
+				if(cmd_open_sensor_file(i)){
+					sensor[i].started = 1;
+					cmd_send_config_to_sensor(i);
+				} else {
+					printf("Could not create or open file. Please check SD card for free space.\n");
+				}
 			} // fi
 		} // rof
 	} else {
-		// TODO open file, set file pointer
-		sensor[sensor_index].started = 1;
-		cmd_send_config_to_sensor(sensor_index);
+		// open file, store filepointer
+			if(cmd_open_sensor_file(sensor_index)){
+			sensor[sensor_index].started = 1;
+			cmd_send_config_to_sensor(sensor_index);
+		} else {
+			printf("Could not create or open file. Please check SD card for free space.\n");
+		}
 	} // fi
 }
 
@@ -442,15 +567,15 @@ void cmd_sensor_stop(uint8_t sensor_index)
 		for(i = 0; i < MAX_SENSORS; i++){
 			if(sensor[i].serialID != 0){
 				sensor[i].started = 0;
-				// TODO flush all DATA of this sensor to file
-				// TODO close file, set file pointer to NULL
+				cmd_close_sensor_file(i);
 				cmd_send_config_to_sensor(i);
 			} // fi
 		} // rof
 	} else {
 		sensor[sensor_index].started = 0;
-		// TODO flush all DATA of this sensor to file
-		// TODO close file, set file pointer to NULL
+		if(sensor[sensor_index].pf_sensor_data != NULL){
+			cmd_close_sensor_file(sensor_index);
+		}
 		cmd_send_config_to_sensor(sensor_index);
 	} // fi
 }
@@ -500,15 +625,15 @@ void cmd_list_sensor_states(void)
 void cmd_enter_reset_timestamp(void)
 {
 	printf("entering timestamp reset\n");
-	// TODO print current timestamp
 	printf(" 1) re-synchronize timestamp\n");
 	printf(" 0) cancel\n");
 }
 
-void cmd_reset_timestamp(void)
+void cmd_reset_timestamp_(void)
 {
 	// TODO call function to resync timestamp!
 	// TODO reset timestamp in impact_fsm
+	// 
 	printf("timestamp has been reset.\n");
 }
 
@@ -522,7 +647,7 @@ void cmd_enter_internal_clock(void)
 	printf(" 1) adjust date\n");
 	printf(" 2) adjust time\n");
 	printf(" 0) exit\n");
-	printf("\n\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*
@@ -541,7 +666,7 @@ void cmd_enter_internal_clock_set_date(void)
 	printf(" 7) adjust date +  1 day\n");
 	printf(" 8) adjust date -  1 day\n");
 	printf(" 0) exit\n");
-	printf("\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*
@@ -560,7 +685,7 @@ void cmd_enter_internal_clock_set_time(void)
 	printf(" 7) adjust time +1 second\n");
 	printf(" 8) adjust time -1 second\n");
 	printf(" 0) exit\n");
-	printf("\ncurrent time: %s\n", ctime(&seconds));
+	printf("\n current time: %s\n", ctime(&seconds));
 }
 
 /*
@@ -570,6 +695,7 @@ void cmd_internal_clock_inc_yr(void)
 {
 	time_t seconds = time(NULL) + 365*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -579,6 +705,7 @@ void cmd_internal_clock_dec_yr(void)
 {
 	time_t seconds = time(NULL) + 365*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -588,6 +715,7 @@ void cmd_internal_clock_inc_mnt(void)
 {
 	time_t seconds = time(NULL) + 30*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -597,6 +725,7 @@ void cmd_internal_clock_dec_mnt(void)
 {
 	time_t seconds = time(NULL) - 30*24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -606,6 +735,7 @@ void cmd_internal_clock_inc_10day(void)
 {
 	time_t seconds = time(NULL) + 240*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -615,6 +745,7 @@ void cmd_internal_clock_dec_10day(void)
 {
 	time_t seconds = time(NULL) - 240*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -624,6 +755,7 @@ void cmd_internal_clock_inc_day(void)
 {
 	time_t seconds = time(NULL) + 24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -633,6 +765,7 @@ void cmd_internal_clock_dec_day(void)
 {
 	time_t seconds = time(NULL) - 24*3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -642,6 +775,7 @@ void cmd_internal_clock_inc_hr(void)
 {
 	time_t seconds = time(NULL) + 3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -651,6 +785,7 @@ void cmd_internal_clock_dec_hr(void)
 {
 	time_t seconds = time(NULL) - 3600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -660,6 +795,7 @@ void cmd_internal_clock_inc_10min(void)
 {
 	time_t seconds = time(NULL) + 600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -669,6 +805,7 @@ void cmd_internal_clock_dec_10min(void)
 {
 	time_t seconds = time(NULL) - 600;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -678,6 +815,7 @@ void cmd_internal_clock_inc_min(void)
 {
 	time_t seconds = time(NULL) + 60;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -687,6 +825,7 @@ void cmd_internal_clock_dec_min(void)
 {
 	time_t seconds = time(NULL) - 60;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -696,6 +835,7 @@ void cmd_internal_clock_inc_sec(void)
 {
 	time_t seconds = time(NULL) + 1;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -705,6 +845,7 @@ void cmd_internal_clock_dec_sec(void)
 {
 	time_t seconds = time(NULL) - 1;
 	set_time(seconds);
+	time_updated = 1;
 }
 
 /*
@@ -723,21 +864,20 @@ void cmd_enter_config_file(void)
  */
 void cmd_store_config_file(void)
 {
-	// TODO store configuration in file (overwrite)
-	char buffer[80];
-	SensorConfig sc;
-	int result;
+	uint8_t error = 0;
+	FILE *fp = NULL;
 	
-	sensor_config_init(&sc, 1);
-	
-	result = sensor_config_to_str(&sc, buffer);
-	
-	FILE *fp = fopen("/mci/config.txt", "w+");
-	if (fp != NULL) {
-		fprintf(fp, "%s", buffer);
-		fclose(fp);
+	// open config file (overwrite)
+	fp = fopen("/mci/config.txt", "w");
+	if(fp != NULL){
+		// store configuration in file
+		error = sensor_config_to_file(fp, sensor);
+	}
+	if(!error){
+		logger.config_modified = 0;
 	} else {
-		printf("file could not be openend\n");
+		printf("The config file could not be written. Please check the SD card in a computer.\n");
+		printf("The configuration data will remain stored in the logger unless you turn off power.\n");
 	}
 }
 
@@ -748,5 +888,41 @@ void cmd_read_config_file(void)
 {
 	// TODO read configuration from file
 	// TODO set all sensors according config file
+	// for every entry in config file, look for the corresponding sensor in array 'foundsensors'
+	
+	// if there remain sensors in foundsensors, look for free slots in config array and put them there
+	// with default configs
 	
 }
+
+/*
+ * See header file
+ */
+uint8_t cmd_open_sensor_file(uint8_t sensor_index)
+{
+	char fname[25];
+	// open file, store filepointer, store filename
+	sprintf(fname, "s%02d_%s.dat", sensor[sensor_index].sensor_ID, "time");
+	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
+	if(sensor[sensor_index].pf_sensor_data != NULL){
+		strncpy(sensor[sensor_index].filename, fname, 25);
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+
+/*
+ * See header file
+ */
+void cmd_close_sensor_file(uint8_t sensor_index)
+{
+	// close file, set filepointer to NULL, set filename to ""
+	if(sensor[sensor_index].pf_sensor_data != NULL){
+		fclose(sensor[sensor_index].pf_sensor_data);
+		sensor[sensor_index].pf_sensor_data = NULL;
+		strncpy(sensor[sensor_index].filename, "", 1);
+	}
+}
+
