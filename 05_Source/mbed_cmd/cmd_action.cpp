@@ -610,10 +610,10 @@ void cmd_list_sensor_states(void)
 	printf("Nr  SID  serial      fs threshold baseline timeout detail\n");
 	for(i = 0; i < MAX_SENSORS; i++){
 		if(s->serialID != 0){
-			printf("%2d) %2d  %08x %5d      %4d     %4d    %4d %s\n", 
+			printf("%2d) %2d  %08x %5d      %4d     %4d    %4d %s\t%s\n", 
 				i, s->sensor_ID, s->serialID, s->fs, s->threshold, 
 				s->baseline, s->timeout, 
-				detail_str[(uint8_t)s->detail_level]);
+				detail_str[(uint8_t)s->detail_level], s->started ? "started" : "stopped");
 		}
 		s++;
 	} 
