@@ -39,7 +39,7 @@ ylabel('Beschleunigung [g]')
 #title('Einschlag eines Golfballs auf einer Aluplatte\nRohdaten')
 
 hl=[-200/16,200/16]
-vl=[1.835,3.665]
+vl=[1.835,3.675]
 hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
 vlines(vl,-80,80,linewidth=0.7,color='red')
 grid(True)
@@ -93,4 +93,38 @@ vlines(vl,-80,80,linewidth=0.7,color='red')
 
 grid(True)
 savefig("../../../../999_Doku/images/peaks.png")
-show()
+#show()
+
+# Sparse
+figure(num=4)
+xlim(xax)
+plot(tr,vr,'--b',linewidth=0.7)
+
+
+xlabel('Zeit [ms]')
+ylabel('Beschleunigung [g]')
+#title('Einschlag eines Golfballs auf einer Aluplatte\nDetailmodus')
+hlsparse = [0,-1255/16]
+vlsparse = vl
+hlines(hl,0,10,linestyles=['dashed','dashed'],linewidth=0.7)
+hlines(hlsparse,0,10,linestyles=['solid','solid'],linewidth=1, color='green')
+vlines(vlsparse,-100,100,linewidth=1,color='red')
+
+
+annotate('Dauer = 1.84 ms', xy=(2.6,90), xytext=(2.6, 90))
+arrow(1.835, 85, 1.8, 0,fc="k", ec="k",
+      head_width=5, head_length=0.035 )
+arrow(3.675, 85, -1.8, 0,fc="k", ec="k",
+      head_width=5, head_length=0.035 )
+
+annotate('max. Peak = -78.4 g', xy=(2.8,-70), xytext=(2.8, -70))
+arrow(2.78, 0, 0, -1255/16+5,fc="k", ec="k",
+      head_width=0.05, head_length=5 )
+arrow(2.78, -1255/16, 0, 1255/16-5,fc="k", ec="k",
+      head_width=0.05, head_length=5 )
+
+annotate('Anz. Peaks = 22', xy=(3.75,60), xytext=(3.75, 60))
+
+grid(True)
+savefig("../../../../999_Doku/images/sparse.png")
+show

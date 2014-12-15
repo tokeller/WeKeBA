@@ -65,7 +65,7 @@ uint8_t sensor_config_to_str(SensorConfig *sc, char *buffer)
 {
 	int result;
   // Schreib den string
-  result = sprintf(buffer, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}\n", 
+  result = sprintf(buffer, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n",
 			sc->sensor_ID, sc->serialID, sc->fs, sc->threshold, sc->baseline,
 			sc->timeout, (uint16_t)sc->detail_level, sc->started);
 	
@@ -116,7 +116,7 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 	uint8_t success = 1;
 	uint8_t started = 2;
 	
-  result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu}\n", 
+  result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
 			&(sc->sensor_ID), &(sc->serialID), &(sc->fs), 
 			&(sc->threshold), &(sc->baseline), &(sc->timeout), 
 			&detail_level, &started);
