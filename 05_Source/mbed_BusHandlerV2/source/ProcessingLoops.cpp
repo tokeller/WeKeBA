@@ -118,15 +118,38 @@ void sensor_loop(void const *args){
 			if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 				// set the settings flag to 1
 				settingsReceived = 1;
-				/*
-				 * TODO set the settings
-				 *
-				 */
-				/*set_baseline(0x00);
-				set_threshold(0x00);
-				set_max_impact_length(0x00);
-				set_samples_until_timeout(0x00);
-				*/
+				// 200
+				uint16_t threshold = message->payload[0];
+				threshold = threshold << 2;
+				threshold |= message->payload[1] >> 6;
+				printf("Threshold %x\n",threshold);
+				set_threshold(threshold);
+				
+				// 2047
+				/*uint16_t baseline = message->payload[1] & 0x3f;
+				baseline = baseline << 2;
+				baseline |= (message->payload[2] >> 4) & 0x0f;
+				baseline = baseline<<1;
+				printf("baseline %x\n",baseline);
+				set_baseline(baseline);*/
+				set_baseline(2047);
+				// 10000 Khz: (sampling rate (in 100 Hz steps) * 100) / 100 = micro sec
+				/*uint16_t fsampling = message->payload[2] & 0x0f;
+				fsampling = fsampling<<8;
+				fsampling |= message->payload[3];
+				printf("fsampling %x\n",fsampling);
+				set_ADC_frequency(fsampling);*/
+				set_ADC_frequency(100);
+				
+				// 30
+				uint16_t timeout = message->payload[4];
+				timeout = timeout<<8;
+				timeout |= message->payload[5];
+				printf("timeout %x\n",timeout);
+				set_samples_until_timeout(timeout);
+				
+				setTokenStatus(message->payload[6]&0xff,0);
+				
 				printf("settings data: ");
 				for (int i = 0; i< message->dataLength; i++){
 					printf("%x", message->payload[i]);
@@ -150,8 +173,6 @@ void sensor_loop(void const *args){
 				
 				timeSet = 1;
 				printf("\nTimestamp id  : %0x \n\r", message->msgId);
-				// after getting the timestamp, reovke the received token since the configuration is complete
-				setTokenStatus(0,0);
 			}
 			mpoolOutQueue.free(message);
 		}
@@ -303,14 +324,15 @@ void logger_loop (void const *args){
 	for(int i = 2; i < canIdentifier;i++){
 	// loop sending the configs to all sensors
 		SensorConfigMsg_t cfg;
-		cfg.threshold = 1023;
-		cfg.baseline = 4095;
-		cfg.fs = 1023;
-		cfg.timeoutRange = 4095 * 2;
+		cfg.threshold = 200;
+		cfg.baseline = 1023;
+		cfg.fs = 100;
+		cfg.timeoutRange = 30;
 		cfg.started = 0;
 		sendSettings(i,cfg);
 	//end: loop sending the configs to all sensors
 	}
+	osDelay(1000);
 	// send time sync BC
 	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
 	osDelay(1000);

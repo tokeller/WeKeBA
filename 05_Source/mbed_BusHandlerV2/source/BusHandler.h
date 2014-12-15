@@ -122,6 +122,7 @@ typedef struct{
 } TokenAck_t;
 
 typedef struct{
+	uint8_t	 numberOfPkgs;	// 8 bit, number of packages (including the starter one)
 	uint32_t timestamp;			// 32 bit, timestamp of first package. one tick = 100us
 	uint8_t  value[4];			// 32 bit, first 4 values of raw data
 } ImpRawDataStart_t;
@@ -131,6 +132,7 @@ typedef struct{
 } ImpRawData_t;
 
 typedef struct{
+	uint8_t  numberOfPkgs;  // 8 bit, number of packages (1 for std, < 255 for extended)
 	uint32_t timestamp;			// 32 bit, timestamp of impact. one tick = 100us
 	uint8_t	 maxPeaks;			// 8 bit, value of highest peak
 	uint8_t  nrOfPeaks;			// 8 bit, number of peaks in impact

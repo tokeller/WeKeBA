@@ -209,17 +209,6 @@ void enableSensorFilter(uint8_t canId){
 };
 
 void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
-	/* contains:	
-	uint16_t threshold;			// 10 bit threshold
-	uint16_t baseline; 			// 10 bit zero level
-	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
-	uint16_t timeoutRange;	// 16 bit timeout range
-
-  	cfg.threshold = 1023;
-		cfg.baseline = 4095;
-		cfg.fs = 1023;
-		cfg.timeoutRange = 4095 * 2;
-  */
 	uint64_t data = settings.threshold;
 	data = data<<10;
 	data |= settings.baseline;
