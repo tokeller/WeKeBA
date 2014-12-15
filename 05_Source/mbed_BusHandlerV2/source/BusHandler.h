@@ -62,6 +62,12 @@
 //									08			<SensorID>	01					01							
 #define CAN_FILTER_SENSOR_OP_MD_SNGL		0x08000101
 
+#define CAN_ID_MSG 			0x01ff0101
+#define TIME_SYNC_MSG 	0x02ff0101
+#define START_REC_MSG		0x03ff0101
+#define SETTINGS_MSG  	0x05000101
+
+#define SERIAL_MSG			0x18010001
 
 #define MAX_NR_OF_MESSAGES							0xff
 

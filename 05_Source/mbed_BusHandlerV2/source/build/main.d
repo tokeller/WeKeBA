@@ -98,3 +98,4 @@
 .\build\main.o: impact_fsm.h
 .\build\main.o: impact_event.h
 .\build\main.o: impact_action.h
+.\build\main.o: golfb10k.h

@@ -7,12 +7,12 @@
 #include "ADC_4088.h"
 #include "impact_fsm.h"
 // Logger: 150576ea
-#define LOG
+//#define LOG
 
 // Sensor: 61bfdf6
-//#define SEN
+#define SEN
 
-//#define DEBUG_IMPACT
+#define DEBUG_IMPACT
 
 #ifdef DEBUG_IMPACT
 Input_t deb_data[1000] = 
@@ -114,7 +114,6 @@ void sensor_loop(void const *args){
 	
 	// read the messages till the proper CAN-ID arrives
 	while (canIdReceived == 0){
-		uint32_t comparer = 0x01ff0101;	
 		evt = outQueue.get(0);
 		if (evt.status == osEventMessage) {
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
@@ -124,7 +123,7 @@ void sensor_loop(void const *args){
 			}
 			printf("\nreceived id  : %0x \n\r", message->msgId);
 			printf("received len : %d \n\r", message->dataLength);
-			if (message->msgId == comparer){
+			if (message->msgId == CAN_ID_MSG){
 				printf("\ngot CAN-ID: %x\n",message->payload[0]);
 				if ((message->payload[1] == ((serialNr >> 24) & 0xff)) &&
 					  (message->payload[2] == ((serialNr >> 16) & 0xff)) &&
@@ -151,7 +150,7 @@ void sensor_loop(void const *args){
 		if (evt.status == osEventMessage) {
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
 			// check, if the settings message arrived
-			if (message->msgId == (0x05000101 | (canId << 16))){
+			if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 				// set the settings flag to 1
 				settingsReceived = 1;
 				/*
@@ -167,8 +166,8 @@ void sensor_loop(void const *args){
 				for (int i = 0; i< message->dataLength; i++){
 					printf("%x", message->payload[i]);
 				}
-				printf("\nTime id  : %0x \n\r", message->msgId);
-				printf("Time len : %d \n\r", message->dataLength);
+				printf("\nsettings id  : %0x \n\r", message->msgId);
+				printf("settings len : %d \n\r", message->dataLength);
 			}
 			mpoolOutQueue.free(message);
 		}
@@ -188,19 +187,12 @@ void sensor_loop(void const *args){
 		if (evt.status == osEventMessage) {
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
 			// check, if the timebroadcast arrived
-			if (message->msgId == 0x02ff0101){
+			if (message->msgId == TIME_SYNC_MSG){
 				// reset the timer
-				timeStamp = 0;
-				
-				timeMs.start(1);
+				reset_timestamp();
 				
 				timeSet = 1;
-				printf("Timestamp data: ");
-				for (int i = 0; i< message->dataLength; i++){
-					printf("%c", message->payload[i]);
-				}
 				printf("\nTimestamp id  : %0x \n\r", message->msgId);
-				printf("Timestamp len : %d \n\r", message->dataLength);
 			}
 			mpoolOutQueue.free(message);
 		}
@@ -214,7 +206,7 @@ void sensor_loop(void const *args){
 			osEvent evt = outQueue.get(0);
 			if (evt.status == osEventMessage) {
 				CANmessage_t *message = (CANmessage_t*)evt.value.p;
-					if (message->msgId == 0x03ff0101){
+					if (message->msgId == START_REC_MSG){
 						startRecording = 1;
 						//Thread impThread(impact_thread,NULL,osPriorityNormal);
 					}
@@ -271,12 +263,13 @@ void sensor_loop(void const *args){
  *		- start the communication thread
  *		- TODO: get Config from SD card or wait for console input
  *		- send serialID request broadcast
- *		- store the CAN-ID and set the filter for the directed messages
- *		- enter a 5s wait loop to receive the settings, if they don't arrive, use the default settings
- *		- await the timesync from the logger
- *    - enter the operation loop:
- *			- wait for the start recording message
- * 			- start the event detection
+ *		- process received serial-IDs and send the corresponding CAN-Ids as broadcast
+ *		- send the configs of all registered sensors
+ *	  - send the timesync to all sensors
+ *		- start the sensors recording mode
+ *		- enter the processing loop:
+ *			- commence sending the token to the sensor
+ *			- receive and store the messages
  */
 
 
@@ -293,7 +286,7 @@ void logger_loop (void const *args){
 			evt = outQueue.get(0);
 		}
 		printf("\n\ngot response\n\n");
-		// received a response, check if it was the serial one
+		// received a response, check if it was a serial one
 		
 		uint32_t sensor1 = 0x61bfdf6;
 		if (evt.status == osEventMessage) {
@@ -304,7 +297,7 @@ void logger_loop (void const *args){
 			}
 			printf("\nResponse id  : %0x \n\r", message->msgId);
 			printf("Response len : %d \n\r", message->dataLength);
-			if (message->msgId == 0x18010001){
+			if (message->msgId == SERIAL_MSG){
 				if ((message->payload[0] == ((sensor1 >> 24) & 0xff)) &&
 						(message->payload[1] == ((sensor1 >> 16) & 0xff)) &&
 						(message->payload[2] == ((sensor1 >> 8) & 0xff)) &&
@@ -350,6 +343,8 @@ void logger_loop (void const *args){
 	char data = MAX_NR_OF_MESSAGES;
 	enqueueMessage(1,&data,0x04,0x01,SEND_TOKEN_SINGLE);
 	while (1){
+		
+		// receive the data from the sensors
 		osEvent evt = outQueue.get(0);
 		if (evt.status == osEventMessage) {
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
