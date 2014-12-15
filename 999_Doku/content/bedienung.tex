@@ -17,6 +17,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Bedienungsanleitung}\label{chap.bedienung}
+\todo{Bedienungsanleitung}
 
 \section{Produktbeschrieb}\label{sec.manualproduct}
 Die Messstation wurde entwickelt, um Geschiebemessungen in einem Bach oder Fluss zu machen. Als Vorbild hat eine Messstation mit \glspl{geophon} als \glspl{sensor} gedient, die einen Embedded-PC als Auswertungsrechner einsetzt. Der bauliche Aufwand für eine solche Messstation ist ziemlich gross, da viele Kabel verlegt und vor dem Geschiebe geschützt werden müssen. Mit dem Ziel, den Aufwand für die Konstruktion und die Verkabelung zu reduzieren, wurde eine neue Messstation entwickelt, die über ein Bussystem kommuniziert und die Messdaten gleich am Sensor auswertet. Auf diese Weise müssen nur noch die gewünschten, vorher spezifizierten Messdaten übertragen und gespeichert werden.
@@ -67,7 +68,7 @@ Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleich
 Ein wasserdichter Steckverbinder für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
 
 \subsubsection{Speicherkarte}
-Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist in den Abschnitt \ref{sssec.sdformat} bis \ref{sssec.sdunmount} ab Seite \pageref{sssec.sdformat} erklärt.
+Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
 
 
 
@@ -83,7 +84,7 @@ Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt wer
 Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und einen Mikroprozessor. Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
 
 \subsection{Beschleunigungssensor}
-Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr \ensuremath{10 m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
 
 \subsection{Mikroprozessor}
 Der \emph{ARM Cortex-M4} mit 120~MHz Taktfrequenz hat weit mehr Rechenleistung, als für die vorliegende Anwendung benötigt wird. Sollten komplexere Algorithmen für die Erkennung von Ereignissen, für die Filterung der Messdaten oder für die Verarbeitung der Signale benötigt werden, wäre dies dank der bereits vorhandenen Rechenleistung möglich.
@@ -114,7 +115,6 @@ Ein Aderpaar wird für die Spannungsversorgung verwendet, das zweite Aderpaar f�
 
 \subsection{Abschlusswiderstände}
 Damit die Bus-Signale an den Enden der Leitung nicht reflektiert werden und die Übertragung stören, müssen an beiden Enden des Bussystems Abschlusswiderstände eingesetzt werden.  Die Abschlusswiderstände (120 \ensuremath{\ohm}) verbinden die Anschlüsse CANH und CANL auf der Leiterplatte und werden wie in Abbildung \ref{fig.terminator} angebracht.
-\todo{Föteli/Schema Abschlusswiderstand}
 
 \begin{figure}
 	\centering
@@ -124,29 +124,46 @@ Damit die Bus-Signale an den Enden der Leitung nicht reflektiert werden und die 
 \end{figure}
 
 \subsection{Steckverbinder}
-Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss Tabelle \ref{table.stecker} bestückt. Auf der Leiterplatte der \gls{sensoreinh} ist eine Schraubklemmenleiste mit 8 Anschlüssen angebracht. Jeweils zwei benachbarte Anschlüsse sind zusammengeschaltet, damit jede Leitung einzeln fest verschraubt werden kann. Es wird nicht empfohlen, zwei gleiche Leitungen in einer einzelnen Schraubklemme zusammen zu verschrauben.
+Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss Tabelle \ref{table.stecker} bestückt, die Polnummerierung in Stecker und Buchse sind in den Abbildungen \ref{fig.polbuchse} und \ref{pol.stecker} dargestellt.
 
 \begin{table}
-\begin{tabular}{|l|l|l|}
-\hline \textbf{Pol Nr.}      & \textbf{Leitung} & Anschluss Schraubklemme\\ 
-\hline 1 & Spannungsversorgung +12~V & +12V\\
-\hline 2 & Spannungsversorgung 0~V & GND\\
-\hline 3 & unbenutzt & \\
-\hline 4 & CAN-Bus High & CANH \\
-\hline 5 & CAN-Bus Low & CANL \\
+\begin{tabular}{|l|l|l|l|}
+\hline \textbf{Pol Nr.}      & \textbf{Leitung} & Anschluss Schraubklemme & Aderfarbe\\ 
+\hline 1 & Spannungsversorgung +12~V & +12V & weiss \\
+\hline 2 & Spannungsversorgung 0~V & GND & braun \\
+\hline 3 & unbenutzt &  &  \\
+\hline 4 & CAN-Bus High & CANH & gelb \\
+\hline 5 & CAN-Bus Low & CANL & grün \\
 \hline 
 \end{tabular}
 \caption{Steckerbestückung des \gls{bussys}s.}
 \label{table.stecker}
 \end{table}  
 
+\begin{figure}
+\centering
+\begin{minipage}{0.5\textwidth}
+\centering
+		\includegraphics[width=0.8\textwidth]{images/Polbelegung_Buchse.pdf}
+	\captionof{figure}{Polnummerierung in der Buchse.}
+	\label{fig.polbuchse}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\centering
+		\includegraphics[width=0.8\textwidth]{images/Polbelegung_Stecker.pdf}
+	\captionof{figure}{Polnummerierung im Stecker.}
+	\label{fig.polstecker}
+\end{minipage}
+\end{figure}
 
+Auf der Leiterplatte der \gls{sensoreinh} ist eine Schraubklemmenleiste mit 8 Anschlüssen angebracht. Hier werden die von den Buchsen kommenden Leitungen angeschlossen. Jeweils zwei benachbarte Anschlüsse sind zusammengeschaltet, damit jede Leitung einzeln fest verschraubt werden kann (Abbildung \ref{fig.kabel}). Es wird nicht empfohlen, zwei gleiche Leitungen in einer einzelnen Schraubklemme zusammen zu verschrauben.
 
-
-
-
-
-
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/AnschlussKabel.png}
+	\caption{Anschluss der Leitungen an den Schraubklemmen.}
+	\label{fig.kabel}
+\end{figure}
 
 
 
@@ -157,7 +174,9 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 
 
 \section{Ereignis}\label{sec.manualimpact}
-\todo{Beschreibe hier die Ereignisse, die Detaillevel inklusive den tollen grafiken}
+Als Ereignis wird eine Signalform bezeichnet, die einem Einschlag eines Steins auf dem Sensor entspricht. Um Ereignisse zu erkennen, wird ein \gls{threshold} für den Signalpegel definiert. Wird dieser Wert überschritten, beginnt ein Ereignis. Sobald der Signalpegel für eine gewisse Zeit unterhalb des \gls{threshold}s geblieben ist, ist das Ereignis beendet. Das Verfahren der Ereigniserkennung wird im Abschnitt \ref{subsec.sw_ereignis} ab Seite \pageref{subsec.sw_ereignis} im Detail erklärt.
+
+Ein Beispiel eines Ereignisses ist in Abbildung \ref{fig.impactraw} gegeben. Es handelt sich um den Einschlag eines Golfballs auf einer Aluminiumplatte, unter der der Beschleunigungssensor montiert ist. Die schwarz gestrichelten Geraden zeigen den \gls{threshold}, die roten Geraden zeigen den erkannten Anfang und Ende des \gls{ereignis}ses. Das Ende des \gls{ereignis}ses wird von der \gls{ereignisdet} auf jenen Messpunkt gelegt, an dem der Signalpegel den \gls{threshold} vor dem \gls{timeout} das letzte Mal unterschritten hat. Die Messwerte vor der dem \gls{timeout} werden je nach Detail-Level abgeschnitten. Die folgende Beschreibung der Detail-Level bezieht sich auf dieses Beispiel-Ereignis.
 
 \begin{figure}
 	\centering
@@ -166,6 +185,22 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 	\label{fig.impactraw}
 \end{figure}
 
+\subsection{Detail-Level}
+Die Messstation kann Daten mit unterschiedlichen Detailgraden speichern. Jede \gls{sensoreinh} kann individuell auf einen Detail-Level konfiguriert werden.
+
+\begin{itemize}
+\item raw
+\item detailed
+\item peaks only
+\item sparse
+\item off
+\end{itemize}
+
+
+\subsubsection{Rohdaten (raw)}
+Im Modus 'raw' werden Rohdaten ohne Ereigniserkennung übertragen und gespeichert. Es resultiert eine lückenlose Erfassung aller Messpunkte. Abbildung \ref{fig.detailraw} zeigt in Grün, welche Daten des Beispielereignisses im Modus 'raw' übertragen werden.
+
+
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/rawshort.png}
@@ -173,6 +208,12 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 	\label{fig.detailRaw}
 \end{figure}
 
+\paragraph{Datenaufkommen} Das Datenaufkommen ist in diesem Modus am grössten. Für jedes \gls{sample} wird ein 8-bit Wert abgespeichert. Bei einer \gls{fs} von 10000~Hz fallen also 10000~Byte Daten pro Sensor und Sekunde an.
+
+\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+
+\subsubsection{Detaillierte Ereignisdaten (detailed)}
+Die \gls{ereignisdet} sucht den Beginn und das Ende des Ereignisses. Es werden sämtliche \glspl{sample} des Ereignisses übertragen. Im Konfigurationsmenü (Listing \ref{}) wird dieser Modus als 'detailed' bezeichnet. In Abbildung \ref{fig.detaildetailed} entspricht die grüne Kurve den gespeicherten Daten.
 
 \begin{figure}
 	\centering
@@ -181,13 +222,25 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 	\label{fig.detaildetailed}
 \end{figure}
 
+\paragraph{Datenaufkommen} Pro \gls{sample} wird ein Byte abgespeichert, der Startzeitpunkt und die Dauer belegen zusammen sechs Byte pro Ereignis. Die Datenmenge variiert mit der Dauer der Ereignisse. Es wird geschätzt, dass bei hohem Ereignisaufkommen während etwa 10~\% der Messzeit ein Ereignis vorliegt. Somit wird die Datenrate ungefähr ein Zehntel der \gls{fs} in Byte/Sekunde sein.
 
+\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+
+\subsubsection{Peaks (peaks only)}
+Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und somit die Dauer des Ereignisses. Ausserdem wird der maximale Ausschlag und alle Peakspitzen mit dem \gls{timestamp} und Höhe des Ausschlags gespeichert.
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/peaks.png}
 	\caption{Detail-Level 'peaks'.}
 	\label{fig.detailpeaks}
 \end{figure}
+
+\paragraph{Datenaufkommen} Für die Eckdaten (Beginn, Dauer, Anzahl Peaks, maximaler Ausschlag) fallen 8 Byte Daten an. Jeder Peak benötigt zwei Byte: ein Byte für die Anzahl Samples seit dem letzten Peak und ein Byte für die Höhe des Ausschlags. In der Abbildung \ref{fig.detailsparse} zeigt die blau gestrichelte Linie den Verlauf der Messkurve, die roten Geraden markieren Beginn und Ende des \gls{ereignis}ses. Die grünen 'X' markieren die Peakspitzen, die übertragen werden.
+
+\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+
+\subsubsection{Minimale Daten (sparse)}
+Im Modus 'sparse' werden nur Eckdaten des \gls{ereignis}ses gespeichert: Beginn und Dauer, Anzahl Peaks und maximaler Ausschlag. Dafür genügen acht Byte pro Ereignis. Die Eckdaten sind in Abbildung \ref{fig.detailsparse} dargestellt.
 
 \begin{figure}
 	\centering
@@ -196,21 +249,27 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 	\label{fig.detailsparse}
 \end{figure}
 
+\paragraph{Datenaufkommen} Der \gls{timestamp} für den Beginn des \gls{ereignis}ses benötigt vier Byte, die Dauer (Anzahl Samples) zwei Byte. Die Anzahl Peaks und der maximale Ausschlag belegen je ein Byte.
 
+\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
 
+\subsubsection{Inaktiv (off)}
+Die \gls{sensoreinh} kann in den Detail-Level 'off' gesetzt werden. In diesem Fall startet sie auch keine Messung, wenn der \gls{logger} alle \glspl{sensoreinh} startet.
+
+In diesem Detail-Level fallen keine Daten an.
 
 
 \section{Konfiguration}\label{sec.manualkonfig}
 
 
 \subsection{Anschluss eines Computers}\label{ssec.manualserial}
-Am USB-Anschluss des \gls{logger}s kann ein \gls{compi} angeschlossen werden, um auf die serielle Schnittstelle des \gls{logger}s zuzugreifen. Um die serielle Schnittstelle zu verwenden, wird ein \gls{terminalemu} wie \emph{PuTTY} oder \emph{minicom} benötigt. um mit \emph{PuTTY} eine Verbindung aufzubauen, muss die Schnittstelle und die Übertragungsrate (Baud) angegeben werden. Die Übertragungsrate ist 9600 baud, die Schnittstelle kann variieren. 
+Am \gls{usb}-Anschluss des \gls{logger}s kann ein \gls{compi} angeschlossen werden, um auf die serielle Schnittstelle des \gls{logger}s zuzugreifen. Um die serielle Schnittstelle zu verwenden, wird ein \gls{terminalemu} wie \emph{PuTTY} oder \emph{minicom} benötigt. um mit \emph{PuTTY} eine Verbindung aufzubauen, muss die Schnittstelle und die Übertragungsrate (Baud) angegeben werden. Die Übertragungsrate ist 9600 baud, die Schnittstelle kann variieren. 
 
 \paragraph{Windows} Unter \emph{Windows} erfolgt die Verbindung auf eine der COMx-Schnittstellen. Die Nummer der COM-Schnittstelle kann im Geräte-Manager herausgesucht werden, die Bezeichnung lautet 'mbed Serial Port (COMx)', wobei 'x' eine Nummer ist. In PuTTY muss nur 'COMx' angegeben werden.
 
 \paragraph{Linux} Unter \emph{Linux} findet man die Schnittstellenbezeichnung mit dem Befehl 'ls /dev/ttyACM*' heraus, in \emph{PuTTY} wird dann '/dev/ttyACMx' angegeben. 
 
-\paragraph{Mac OS X} Unter \emph{Mac OS X} lautet der Befehl 'ls /dev/tty.usbmodem*', der in einem Terminal eingegeben werden muss. Als \gls{terminalemu} kann 'screen' verwendet werden. Auf Apple Mac Computern mit USB 3.0 kann es zu Schwierigkeiten mit der Verbindung kommen. Den Herstellern des Prozessorboards ist dies bekannt, sie arbeiten an einer Lösung.
+\paragraph{Mac OS X} Unter \emph{Mac OS X} lautet der Befehl 'ls /dev/tty.usbmodem*', der in einem Terminal eingegeben werden muss. Als \gls{terminalemu} kann 'screen' verwendet werden. Auf Apple Mac Computern mit \gls{usb} 3.0 kann es zu Schwierigkeiten mit der Verbindung kommen. Den Herstellern des Prozessorboards ist dies bekannt, sie arbeiten an einer Lösung.
 
 Die Einstellungen für die serielle Schnittstelle sind normalerweise bereits korrekt gesetzt. Es werden 8 Datenbits verwendet, 1 Stopbit und keine Parität (parity).
 

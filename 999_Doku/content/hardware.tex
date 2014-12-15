@@ -18,7 +18,7 @@
 
 \chapter{Hardware-Konzept}\label{chap.hardware}
 
-
+\todo{Hardware}
 
 \section{Hardware-Architektur}\label{sec.hw_arch}
 
@@ -117,7 +117,7 @@ SD-Card & Anschlüsse vorhanden \\
 \end{center}
 \end{table}
 
-Auf dem \emph{NXP LPC4088 QuickStart Board} sind zusätzliche Bauteile verbaut, z.B. Speicher (SDRAM und Flash) und \gls{pin}-Steckleisten, um CAN-Bus-\glspl{pin} oder A/D-Eingänge anzuschliessen. Tabelle \ref{table.nxplpc4088qsb} listet die für dieses Projekt relevanten, zusätzlichen Eigenschaften auf.
+Auf dem \emph{NXP LPC4088 QuickStart Board} sind zusätzliche Bauteile verbaut, z.B. Speicher (\gls{sdram} und \gls{flash} und \gls{pin}-Steckleisten, um CAN-Bus-\glspl{pin} oder A/D-Eingänge anzuschliessen. Tabelle \ref{table.nxplpc4088qsb} listet die für dieses Projekt relevanten, zusätzlichen Eigenschaften auf.
 
 \begin{table}
 \begin{center}
@@ -255,40 +255,19 @@ Die korrekte Übertragung wird mittels eines \gls{crc}-Codes überprüft. Der Em
 \todo{Sensorauswahl beschreiben}
 
 \subsection{Schnittstelle}
-\todo{Schnittstellenauswahl beschreiben}
+Das gewählte \emph{NXP LPC4088 QuickStart Board} verfügt über einen \gls{usb}-Anschluss, über den eine serielle Schnittstelle angesprochen werden kann. Für eine einfache Kommandozeile oder ein Konfigurationsmenü ist diese Schnittstelle ausreichend. Die Schnittstelle kann mit einer Übertragunsrate von 9600 bis 115200 Baud betrieben werden. 
 
-
-
-\section{Komponenten}
-\todo{Texten}
-\subsection{Cortex M4 Mikroprozessor}
-
-\todo{Cortex M4 beschreiben}
-\subsubsection{Flash Speicher}
-
-\todo{Flash Speicher beschreiben}
-\subsubsection{SDRAM}
-
-\todo{SDRAM beschreiben}
-
-\subsection{Beschleunigungs-Sensor}
-
-\todo{Sensor beschreiben}
-\subsection{CAN Bus}
-
-\todo{CAN Bus beschreiben}
-\subsubsection{CAN Transceiver}
-\todo{CAN Transceiver beschreiben}
-
-\subsection{SD Karte}
-
-\todo{SD-Karte/MCI beschreiben}
-\subsection{UART Schnittstelle}
-
-\todo{UART beschreiben}
 
 \subsection{Gehäuse}
-\todo{Gehäuse beschreiben}
+Um den \gls{logger} und die \glspl{sensoreinh} wasserdicht zu verpacken, wurden Gehäuse und Komponenten mit der Schutzklasse IP68 gesucht. Die wasserdichten Gehäuse der Firma \emph{FIBOX} sind in verschiedenen Ausführungen erhältlich. Da diese Arbeit kein serienreifes Produkt zum Ziel hatte, wurden Gehäuse aus ABS-Kunststoff mit transparenten Deckeln gewählt. 
+
+Die Stecker wurden ebenfalls mit Schutzklasse IP68 gewählt. Als zusätzliches Kriterium galt der Durchmesser des Kabelmantels. Die Stecker \emph{Lumberg 0332 05-1} verfügen über fünf Pole, die vierpolige Variante war zur Zeit nicht lieferbar.
+
+Für den \gls{usb}-Anschluss gibt es wasserdichte Durchführungen, an denen sowohl innen als auch aussen Standard-USB-Kabel angeschlossen werden können. Die \emph{Buccaneer PCXP6043/B}-Gerätebuchse von \emph{Bulgin} erfüllt die Anforderungen. Für diese Buchse ist auch eine wasserdichte Kappe erhältlich.
+
+Die verschraubbare Öffnung für die SD-Karte besteht aus einer M36/M32-Gewindebuchse, in die ein M32-Schraubdeckel eingeschraubt wird.
+
+
 \section{Datenlogger}
 
 \todo{Datenlogger übersicht}
