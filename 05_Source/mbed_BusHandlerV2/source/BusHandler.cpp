@@ -2,13 +2,29 @@
 
 extern Serial pcSerial;
 
-extern Queue <CANmessage_t, 50> outQueue;
-extern MemoryPool<CANmessage_t, 50> mpoolOutQueue;
-
+#ifdef LOG
+// the logger requires a large receiving buffer, but just only a small transmitting buffer
+extern Queue <CANmessage_t, 800> outQueue;
+extern MemoryPool<CANmessage_t, 800> mpoolOutQueue;
 Queue <CANmessage_t, 50> inQueue;
 MemoryPool<CANmessage_t, 50> mpoolInQueue;
+#endif
+
+#ifdef SEN
+// the sensors will require a larger transmitting buffer, but they'll only receive few and small messages
+extern Queue <CANmessage_t, 50> outQueue;
+extern MemoryPool<CANmessage_t, 50> mpoolOutQueue;
+Queue <CANmessage_t, 800> inQueue;
+MemoryPool<CANmessage_t, 800> mpoolInQueue;
+#endif
+
 
 char sentData = 0;
+// the token must be initialized with 1 for all sensors during the configuration phase. After the timesync,
+// each sensor will revoke its token and wait till it gets one from the logger
+char tokenReceived = 1;
+// the messageCounter indicates, how many messages the logger will expect
+char messageCounter = 0;
 
 int start_CAN_Bus(deviceType_t device){
 	CAN_init();	
@@ -26,24 +42,32 @@ void CAN_COM_thread(void const *args) {
 	CANMessage sending;
 	
 	while (1) {
-		osEvent evt = inQueue.get(0);
-		if (evt.status == osEventMessage) {
-			pcSerial.printf("inbound\n");
-			CANmessage_t *message = (CANmessage_t*)evt.value.p;
-			memcpy(sending.data,message->payload,message->dataLength);
-			sending.format = CANExtended;
-			
-			// prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint32_t inMsgId)
-			sending.id = prepareMsgId(message->msgType,message->receiver,message->sender,message->msgId);
-			sending.len = message->dataLength;
-			sending.type = CANData;
-			if(sendMessage(sending)){
-				pcSerial.printf("OK\n");
-			} else{
-				pcSerial.printf("NOK\n");
+		if (tokenReceived == 1){
+			osEvent evt = inQueue.get(0);
+			if (evt.status == osEventMessage) {
+				pcSerial.printf("inbound\n");
+				CANmessage_t *message = (CANmessage_t*)evt.value.p;
+				memcpy(sending.data,message->payload,message->dataLength);
+				sending.format = CANExtended;
+				
+				// prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint32_t inMsgId)
+				sending.id = prepareMsgId(message->msgType,message->receiver,message->sender,message->msgId);
+				sending.len = message->dataLength;
+				sending.type = CANData;
+				if(sendMessage(sending)){
+					pcSerial.printf("OK\n");
+				} else{
+					pcSerial.printf("NOK\n");
+				}
+				messageCounter--;
+				// if all messages were sent, revoke the token
+				if (messageCounter <= 0){
+					setTokenStatus(0,0);
+					pcSerial.printf("Token revoked\n");
+				}
+				mpoolInQueue.free(message);
 			}
-			mpoolInQueue.free(message);
-		}		
+		}
 		CANMessage data = dequeueOutput();
 		if(data.id != 0){
 			outOnQueue = mpoolOutQueue.alloc();
@@ -182,7 +206,7 @@ void enableSensorFilter(uint8_t canId){
 	
 };
 
-void sendSettings(char receiver, SensorConfigMsg_t settings){
+void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
 	/* contains:	
 	uint16_t threshold;			// 10 bit threshold
 	uint16_t baseline; 			// 10 bit zero level
@@ -201,13 +225,20 @@ void sendSettings(char receiver, SensorConfigMsg_t settings){
 	data |= settings.fs;
 	data = data<<16;
 	data |= settings.timeoutRange;
-	char part[6];	
-	part[0] = (data >> 40) & 0xff;
-	part[1] = (data >> 32) & 0xff;
-	part[2] = (data >> 24) & 0xff;
-	part[3] = (data >> 16) & 0xff;
-	part[4] = (data >> 8)  & 0xff;
-	part[5] =  data 			 & 0xff;
-	enqueueMessage(6,part,receiver,0x01,SENSOR_CONFIG_SINGLE);
+	data = data<<8;
+	data |= settings.started;
+	char part[7];	
+	part[0] = (data >> 48) & 0xff;
+	part[1] = (data >> 40) & 0xff;
+	part[2] = (data >> 32) & 0xff;
+	part[3] = (data >> 24) & 0xff;
+	part[4] = (data >> 16) & 0xff;
+	part[5] = (data >> 8)  & 0xff;
+	part[6] =  data 			 & 0xff;
+	enqueueMessage(7,part,receiver & 0xff,0x01,SENSOR_CONFIG_SINGLE);
 }
 
+int setTokenStatus(char status, char counter){
+	messageCounter = counter;
+	tokenReceived = status;
+}

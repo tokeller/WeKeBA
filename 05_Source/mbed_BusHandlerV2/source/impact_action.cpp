@@ -18,6 +18,7 @@ extern uint8_t timeout_active;
 extern uint32_t samples_timeout;
 extern uint32_t baseline;
 extern uint16_t maximum_impact_length;
+extern uint32_t canId;
 
 /* ------------------------------------------------------------------
  * -- Global variables
@@ -225,6 +226,6 @@ static Impact_t *impact = NULL;
 		//printf("peak_count %x\n",impact->peak_count);
 		std.duration = impact->sample_count;
 		//printf("sample_count %x\n",impact->sample_count);
-		enqueueMessage(7,std,0x01,0x04,IMPACT_STD_SINGLE);
+		enqueueMessage(7,std,0x01,canId,IMPACT_STD_SINGLE);
 	}
 	
