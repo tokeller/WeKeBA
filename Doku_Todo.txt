@@ -1,0 +1,38 @@
+1. Einleitung
+ist noch etwas mager, Literatur fehlt noch.
+
+
+2. Aufgabenstellung
+
+3. Vorgehen
+
+4. Funktionale Anforderungen
+
+5. Nichtfunktionale Anforderungen
+
+6. Grundlagen
+
+7. Hardware-Konzept
+
+8. Software-Konzept
+
+9. Resultate
+
+10. Diskussion
+
+11. Bedienungsanleitung
+
+12. Verzeichnisse
+Literatur
+Abbildungen
+Tabelle
+Glossar
+Abkürzungen
+
+A. Anhang
+Offiz. Aufgabenstellung
+Projektmanagement
+Weiteres
+Schaltpläne
+Datenblätter
+CD

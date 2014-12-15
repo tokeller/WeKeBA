@@ -29,7 +29,7 @@ Dank der Bustopologie kommt das Messsystem mit weniger Leitungen aus und kann ei
 
 Ziel der Arbeit ist die Entwicklung der Auswertungshardware und des \gls{bussys}s. Die Qualität der gemessenen Signale soll mindestens erhalten werden. Die Auswertungsalgorithmen sind nicht Bestandteil der Arbeit und werden vom WSL zur Verfügung gestellt.
 
-Die von der bisherigen Anlage gemachten Messdaten enthalten die Dauer und Intensität jedes Aufschlags (\gls{ereignis}) auf der Sensorplatte, sowie die Anzahl Ausschläge (Peaks) pro Aufschlag. Pro Minute wird ein Histogramm über die Intesitäten der Peaks gebildet und abgespeichert.
+Die von der bisherigen Anlage gemachten Messdaten enthalten die Dauer und Intensität jedes Aufschlags (\gls{ereignis}) auf der Sensorplatte, sowie die Anzahl Ausschläge (Peaks) pro Aufschlag. Pro Minute wird ein Histogramm über die Intensitäten der Peaks gebildet und abgespeichert.
 
 Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, SZ) an einer bestehenden Schwelle zu implementieren.
 
@@ -37,7 +37,7 @@ Denkbar wäre es, einen Prototyp für Vergleichsmessungen im Erlenbach (Alptal, 
 \subsection{Musskriterien}
 \begin{itemize}
 \item Die Anlage zeichnet den Geschiebetransport im Bachbett auf. Die bisherige Aufzeichnungsrate von 10'000 Messpunkten pro Sekunde soll nicht unterschritten werden.
-\item Die Anlage liefert eine minütliche Zusammenfassung über die \glspl{ereignis} an jedem \gls{sensor}. Diese Zusammenfassung enthält die Anzahl, Dauer und Intensität der einzelnen \glspl{ereignis} sowie ein Histogramm über die Intensitätsverteilung.
+\item Die Anlage liefert eine minütliche Zusammenfassung über die \glspl{ereignis} an jedem \gls{sensor}. Diese Zusammenfassung enthält die Anzahl \glspl{ereignis}, Dauer und Intensität der einzelnen \glspl{ereignis} sowie ein Histogramm über die Intensitätsverteilung.
 \item Die Messstation ist fähig, mindestens zehn \glspl{sensor} zu betreiben und ihre Messignale aufzuzeichnen.
 \item Es ist möglich, die kompletten Rohdaten von einem \gls{sensor} über eine Dauer von 30 Minuten aufzuzeichnen. Während einer solchen Messung dürfen die anderen \glspl{sensor} ihre Messung einstellen.
 \item Die \glspl{sensor} können über bis zu fünfzehn Meter im Bachbett verteilt sein.
