@@ -147,8 +147,8 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 		} else {
 			success = 0;
 		}
-		// TODO maximum impact length muss > timeout sein
-		if(timeout < MAX_INPUT_LENGTH){
+		// timeout can be max 256. reason: only 8 bit for distance between peaks in can message
+		if(timeout < 256){
 			sc->timeout = timeout;
 		} else {
 			success = 0;

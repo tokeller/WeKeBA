@@ -138,12 +138,14 @@ extern "C" {
 	
 	/**
 	 * Set the maximum impact length. How many samples should an impact have at most.
+	 * This parameter currently can not be configured.
 	 * @param uint_16_t max_impact_len: number of samples an impact can have
 	 */
 	void set_max_impact_length(uint16_t max_impact_len);
 	
 	/**
 	 * Set the impact queue length. How many samples can be cached for evaluation.
+	 * This parameter currently can not be configured.
 	 * @param uint_16_t input_queue_len: number of samples an impact can have
 	 */
 	void set_input_queue_length(uint16_t queue_len);
@@ -155,7 +157,9 @@ extern "C" {
 	 */
 	void set_samples_until_timeout(uint16_t samples);
 	
+	// TODO: start/stop the recording
 	
+	// TODO: handle raw data
 	
 	
 	

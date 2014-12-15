@@ -44,6 +44,7 @@ static MenuState menu_fsm_state;
 uint8_t menu_fsm_current_sensor;
 
 extern Serial pcSerial;
+extern LoggerConfig logger;
 uint8_t time_updated = 0;
 
 
@@ -59,39 +60,6 @@ __task void init(void) {
 //  os_tsk_create( led_task_1, 7 );
 
   os_tsk_delete_self();
-}
-
-//*****************************************************************************
-//
-// This function implements the "ls" command.  It simply prints the
-// current working directory.
-//
-//*****************************************************************************
-int
-Cmd_nix(int argc, char *argv[])
-{
-	FILE *Fptr;						   			//Create File pointer
-	FINFO info;	
-	
-	/*
-	if(fcheck("R:") != 0)						//check for a formatted drive
-	{
-		if(fformat ("R:")!= 0)	  				//Format the drive
-		 {
-		 while(1);					  				//Handle errors here
-		 }
-	} */
-
-		// Fptr = fopen("DIRECTORY.LOG","w");												//Create a directory file and print a listing into it
-		// info.fileID = 0;
-		// while (ffind("*.*",&info) ==0)
-		// {
-		// //	pcSerial.printf(Fptr,"\n%s %5d bytes ID: %04d",info.name,info.size,info.fileID);	//write the info structure into Directory.log
-		// 	pcSerial.printf("\n%s %5d bytes ID: %04d",info.name,info.size,info.fileID);
-		// }
-		// fclose(Fptr);
-
-	return(0);
 }
 
 
@@ -296,7 +264,7 @@ void menu_fsm(uint32_t input)
 					if(logger.started){
 						cmd_stop_logger();
 					} else {
-						cmd_start_logger()
+						cmd_start_logger();
 					}
 					menu_fsm_state = S_BASEMENU;
 					cmd_enter_basemenu();
@@ -699,19 +667,21 @@ void menu_fsm(uint32_t input)
 				case(0):
 					// exit
 					menu_fsm_state = S_BASEMENU;
-          cmd_enter_basemenu();
+					cmd_enter_basemenu();
 				break;
 				
 				case(1):
 					// read config file
 					menu_fsm_state = S_BASEMENU;
 					cmd_read_config_file();
+					cmd_enter_basemenu();
 				break;
 				
 				case(2):
 					// store config file
 					menu_fsm_state = S_BASEMENU;
 					cmd_store_config_file();
+					cmd_enter_basemenu();
 				break;
 				
 				default:

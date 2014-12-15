@@ -302,6 +302,7 @@ static uint32_t value = 0;               // sampled value
 	 */
 	void set_input_queue_length(uint16_t queue_len)
 	{
+		// TODO: might crash when isr tries to write next value. disable interrupt during this
 		free_impact_input_queue();		
 		input_queue_length = queue_len;
 		init_impact_input_queue();
@@ -316,3 +317,8 @@ static uint32_t value = 0;               // sampled value
 	{
 		samples_timeout = samples;
 	}
+
+		// TODO: start/stop the recording
+	
+	// TODO: handle raw data
+	

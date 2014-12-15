@@ -4,6 +4,7 @@
 
 #include "Serial.h"
 #include "MCIFileSystem.h"
+#include "BusHandler.h"
 #include "sensor_config.h"
 #include "file_ops.h"
 #include "cmd_action.h"
@@ -23,8 +24,6 @@ static uint8_t detail_str[6][11] =
 	"off",
 	""
 };
-
-static uint8_t cmd_config_modified = 0;
 
 /*
  * See header file
@@ -97,7 +96,7 @@ void cmd_format_sd(void)
 	if(mcifs.disk_initialize() == 1){
 		printf("Formatting SD card FAILED. Please use a Computer to format the card.\n");
 	} else {
-		printf(ÒFormatting done\n");
+		printf("Formatting done\n");
 	}
 	printf("Returning to base menu.\n");
 }
@@ -108,12 +107,12 @@ void cmd_format_sd(void)
 void cmd_mount_sd(void)
 {
 	printf("entering mount SD card\n");
-	// TODO open file system
 	if(!mcifs.cardInserted()){
 		printf("No SD card detected! Please insert card and try again!\n");
 	} else {
 		logger.sd_present = 1;
 	}
+	
 }
 
 /*
@@ -136,9 +135,8 @@ void cmd_enter_unmount_sd(void)
  */
 void cmd_unmount_sd(void)
 {
-	int i;
 	printf("Unmounting SD card: stop logging and close all data files.\n");
-	// stop logging. This will also close the files.
+	// stop logging. This will also close all the files.
 	cmd_stop_logger();
 	// TODO send BC to all sensors to go 'offline' but do not set
 	// the started flag to 0 in the config. This way, we will restart only
@@ -220,7 +218,7 @@ void cmd_enter_sensor_params(void)
 	
 	printf(" 1) set sampling rate ");
 	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
-		printf((current: %3.0d00 Hz)", 
+		printf("(current: %3.0d00 Hz)", 
 		sensor[menu_fsm_current_sensor].fs);
 	}
 	printf("\n");
@@ -320,9 +318,13 @@ void cmd_set_sampling_freq(uint8_t sensor_index, uint32_t fs)
 			if(sensor[i].serialID != 0){
 				sensor[i].fs = fs;
 				cmd_send_config_to_sensor(i);
+				logger.config_modified = 1;
 			} // fi
 		} // rof
 	} else {
+		if(sensor[sensor_index].fs != fs){
+			logger.config_modified = 1;
+		}
 		sensor[sensor_index].fs = fs;
 		cmd_send_config_to_sensor(sensor_index);
 	} // fi
@@ -362,6 +364,7 @@ void cmd_set_threshold(uint8_t sensor_index, uint32_t threshold)
 				} else {
 					sensor[i].threshold	= threshold;
 					cmd_send_config_to_sensor(i);
+					logger.config_modified = 1; 
 				} // fi
 			} // fi
 		} // rof
@@ -371,6 +374,9 @@ void cmd_set_threshold(uint8_t sensor_index, uint32_t threshold)
 		printf("threshold + baseline must not exceed 4096\nand\n");
 		printf("threshold must be smaller than baseline value.\n");
 	} else {
+		if(sensor[sensor_index].threshold != threshold){
+			logger.config_modified = 1;
+		}
 		sensor[sensor_index].threshold = threshold;
 		cmd_send_config_to_sensor(sensor_index);
 	} // fi
@@ -409,6 +415,7 @@ void cmd_set_baseline(uint8_t sensor_index, uint32_t baseline)
 				} else {
 					sensor[i].baseline	= baseline;
 					cmd_send_config_to_sensor(i);
+					logger.config_modified = 1;
 				} // fi
 			} // fi
 		} // rof
@@ -418,6 +425,9 @@ void cmd_set_baseline(uint8_t sensor_index, uint32_t baseline)
 		printf("threshold + baseline must not exceed 4096\nand\n");
 		printf("threshold must be smaller than baseline value.\n");
 	} else {
+		if(sensor[sensor_index].baseline != baseline){
+			logger.config_modified = 1;
+		}
 		sensor[sensor_index].baseline = baseline;
 		cmd_send_config_to_sensor(sensor_index);
 	} // fi
@@ -439,9 +449,9 @@ void cmd_enter_sensor_params_timeout(void)
 void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 {
 	int i;
-	// timeout must be shorter than input_queue_length.
-	if(timeout > MAX_INPUT_LENGTH){
-		printf("Timeout too long, can not exceed %d.\n", MAX_INPUT_LENGTH);
+	// timeout must be less than 256.
+	if(timeout > 255){
+		printf("Timeout too long, can not exceed %d.\n", 255);
 	} else {
 		// warning for short timeout
 		if (timeout == 0){
@@ -454,9 +464,13 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 				if(sensor[i].serialID != 0){
 					sensor[i].timeout = timeout;
 					cmd_send_config_to_sensor(i);
+					logger.config_modified = 1;
 				} // fi
 			} // rof
 		} else {
+			if(sensor[sensor_index].timeout != timeout){
+				logger.config_modified = 1;
+			}
 			sensor[sensor_index].timeout = timeout;
 			cmd_send_config_to_sensor(sensor_index);
 		} // fi
@@ -489,9 +503,13 @@ void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode)
 			if(sensor[i].serialID != 0){
 				sensor[i].detail_level = (detail_mode_t) mode;
 				cmd_send_config_to_sensor(i);
+				logger.config_modified = 1;
 			} // fi
 		} // rof
 	} else {
+		if(sensor[sensor_index].detail_level != mode){
+			logger.config_modified = 1;
+		}
 		sensor[sensor_index].detail_level = (detail_mode_t) mode;
 		cmd_send_config_to_sensor(sensor_index);
 	} // fi
@@ -531,8 +549,6 @@ void cmd_enter_sensor_start_stop(void)
 void cmd_sensor_start(uint8_t sensor_index)
 {
 	int i;
-	char fname[25];
-	fname[0] = 0;
 	if(sensor_index == 99) {
 		// set all sensors
 		for(i = 0; i < MAX_SENSORS; i++){
@@ -540,6 +556,7 @@ void cmd_sensor_start(uint8_t sensor_index)
 				if(cmd_open_sensor_file(i)){
 					sensor[i].started = 1;
 					cmd_send_config_to_sensor(i);
+					logger.config_modified = 1;
 				} else {
 					printf("Could not create or open file. Please check SD card for free space.\n");
 				}
@@ -547,7 +564,10 @@ void cmd_sensor_start(uint8_t sensor_index)
 		} // rof
 	} else {
 		// open file, store filepointer
-			if(cmd_open_sensor_file(sensor_index)){
+		if(cmd_open_sensor_file(sensor_index)){
+			if(sensor[sensor_index].started == 0){
+				logger.config_modified = 1;
+			}
 			sensor[sensor_index].started = 1;
 			cmd_send_config_to_sensor(sensor_index);
 		} else {
@@ -569,9 +589,13 @@ void cmd_sensor_stop(uint8_t sensor_index)
 				sensor[i].started = 0;
 				cmd_close_sensor_file(i);
 				cmd_send_config_to_sensor(i);
+				logger.config_modified = 1;
 			} // fi
 		} // rof
 	} else {
+		if(sensor[sensor_index].started == 1){
+			logger.config_modified = 1;
+		}
 		sensor[sensor_index].started = 0;
 		if(sensor[sensor_index].pf_sensor_data != NULL){
 			cmd_close_sensor_file(sensor_index);
@@ -583,9 +607,17 @@ void cmd_sensor_stop(uint8_t sensor_index)
 /*
  * See header file
  */
-void cmd_send_config_to_sensor(uint8_t sensor_index)
+void cmd_send_config_to_sensor(uint8_t index)
 {
-	// TODO send config of sensor[sensor_index] to sensor
+	SensorConfigMsg_t cfg;
+	
+	cfg.threshold = sensor[index].threshold;
+	cfg.baseline = sensor[index].baseline;
+	cfg.fs = sensor[index].fs;
+	cfg.timeoutRange = sensor[index].timeout;
+	cfg.started = sensor[index].started;
+	
+	sendSettings(sensor[index].sensor_ID, cfg);
 }
 
 /*
