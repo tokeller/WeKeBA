@@ -3,6 +3,12 @@
 
 #include "BusProtocol.h"
 
+//#define SEN
+
+#define LOG
+
+
+
 /*									P	Type	Target Addr	Source Addr	Mess-ID							
  *Logger Filter			1	1xxx	xxxx	xxxx	xxxx	xxxx	xxxx	xxxx
  * 									18			00					00					00							
@@ -65,6 +71,10 @@
 #define CAN_ID_MSG 			0x01ff0101
 #define TIME_SYNC_MSG 	0x02ff0101
 #define START_REC_MSG		0x03ff0101
+#define ALL_OFF_MSG			0x07ff0101
+
+
+#define TOKEN_MSG				0x04000101
 #define SETTINGS_MSG  	0x05000101
 
 #define SERIAL_MSG			0x18010001
@@ -86,6 +96,7 @@ typedef struct {
 	uint16_t baseline; 			// 10 bit zero level
 	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
 	uint16_t timeoutRange;	// 16 bit timeout range
+	uint8_t  started;  			// 1 bit flag, indicating if started
 } SensorConfigMsg_t;
 
 typedef struct{
@@ -137,6 +148,7 @@ typedef struct{
 	uint8_t  valueP4;				// 8 bit, value of peak 4
 } ImpExtData_t;
 
+
 int start_CAN_Bus(deviceType_t device);
 
 int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType);
@@ -155,6 +167,8 @@ void enableBroadCastFilter(void);
 
 void enableSensorFilter(uint8_t canId);
 
-void sendSettings(char receiver, SensorConfigMsg_t settings);
+void sendSettings(uint16_t receiver, SensorConfigMsg_t settings);
+
+int setTokenStatus(char status, char counter);
 
 #endif

@@ -75,8 +75,8 @@ static uint32_t value = 0;               // sampled value
 		// DEBUG pcSerial.printf("f %d", input_queue.count);
 		// TODO add while(1) loop, os_delay etc so it can run as a task.
 
-		if(input_queue->count > 0){
-			
+		//if(input_queue->count > 0){
+		while(input_queue->count > 0){
 			new_event_id = E_NO_EVENT;
 			
 			/* if there is a measurement value waiting, we have to determine whether

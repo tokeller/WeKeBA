@@ -93,9 +93,9 @@
 .\build\main.o: BusHandler.h
 .\build\main.o: BusProtocol.h
 .\build\main.o: SerialID.h
+.\build\main.o: .\EALib\sdram.h
 .\build\main.o: ADC_4088.h
 .\build\main.o: mbed-src/hal/pinmap.h
 .\build\main.o: impact_fsm.h
 .\build\main.o: impact_event.h
 .\build\main.o: impact_action.h
-.\build\main.o: golfb10k.h

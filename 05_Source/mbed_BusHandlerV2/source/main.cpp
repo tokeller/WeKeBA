@@ -2,17 +2,16 @@
 #include "rtos.h"
 #include "BusHandler.h"
 #include "SerialID.h"
-
+#include "sdram.h"
 
 #include "ADC_4088.h"
 #include "impact_fsm.h"
+
 // Logger: 150576ea
-//#define LOG
-
 // Sensor: 61bfdf6
-#define SEN
 
-#define DEBUG_IMPACT
+
+//#define DEBUG_IMPACT
 
 #ifdef DEBUG_IMPACT
 Input_t deb_data[1000] = 
@@ -20,9 +19,15 @@ Input_t deb_data[1000] =
 ;
 #endif
 
+#ifdef LOG
+Queue <CANmessage_t, 800> outQueue;
+MemoryPool<CANmessage_t, 800> mpoolOutQueue;
+#endif
+
+#ifdef SEN
 Queue <CANmessage_t, 50> outQueue;
 MemoryPool<CANmessage_t, 50> mpoolOutQueue;
-
+#endif
 
 AnalogIn pinser2(p17);
 AnalogIn pinser3(p16);
@@ -141,11 +146,9 @@ void sensor_loop(void const *args){
 	enableSensorFilter(canId);
 	
 	
-	timeStamp = 0;
-	// set the timer to an interval of 100 ms
-	timeMs.start(100);
-	// try for 5 s to get a settings message
-	while((timeStamp < 50) & (settingsReceived == 0)) {
+
+	// wait for the settings message
+	while(settingsReceived == 0){
 		osEvent evt = outQueue.get(0);
 		if (evt.status == osEventMessage) {
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
@@ -172,14 +175,6 @@ void sensor_loop(void const *args){
 			mpoolOutQueue.free(message);
 		}
 	}
-	timeMs.stop();
-	//no settings received, use the default ones
-	if (settingsReceived == 0){
-		/*
-		 * TODO set default settings
-		 *
-		 */
-	}
 	
 	// wait for the timestamp reset message
 	while (timeSet == 0){
@@ -193,6 +188,8 @@ void sensor_loop(void const *args){
 				
 				timeSet = 1;
 				printf("\nTimestamp id  : %0x \n\r", message->msgId);
+				// after getting the timestamp, reovke the received token since the configuration is complete
+				setTokenStatus(0,0);
 			}
 			mpoolOutQueue.free(message);
 		}
@@ -232,27 +229,35 @@ void sensor_loop(void const *args){
 			}
 			pcSerial.printf("DEBUGGING MODE IMPACT RECOGNITION\n\ndebug data loaded, begin analysis\n");
 			#endif
+			//setTokenStatus(1,255);
 			while(1) {
+				// check the incoming messages
+				osEvent evt = outQueue.get(0);
+				if (evt.status == osEventMessage) {
+					CANmessage_t *message = (CANmessage_t*)evt.value.p;
+						switch (message->msgId){
+							case START_REC_MSG:
+								startRecording = 1;
+								break;
+							case ALL_OFF_MSG:
+								// set offline
+								break;
+							default:
+								if (message->msgId == (SETTINGS_MSG | (canId << 16))){
+									setTokenStatus(message->payload[6],0);
+								} else if (message->msgId == (TOKEN_MSG | (canId << 16))){
+									setTokenStatus(1,message->payload[0]);
+									pcSerial.printf("Token received, start sending %d msgs\n",message->payload[0]);
+								}
+								break;
+						}
+					mpoolOutQueue.free(message);
+				}
+				// process detected events
 				impact_event_detection();
-				wait_us(50);
+				osDelay(1);
 			}
 		}
-		/*osEvent evt = outQueue.get(0);
-		if (evt.status == osEventMessage) {
-			CANmessage_t *message = (CANmessage_t*)evt.value.p;
-			printf("Out data: ");
-			for (int i = 0; i< message->dataLength; i++){
-				printf("%c", message->payload[i]);
-			}
-			printf("\nOut id  : %0x \n\r", message->msgId);
-			printf("Out len : %d \n\r", message->dataLength);
-			mpoolOutQueue.free(message);
-		}*/
-		led2 = 1;
-		osDelay(500);
-		led2 = 0;
-		osDelay(500);
-		printf("the time is: %llu\n",timeStamp);
 	};
 }
 
@@ -274,22 +279,29 @@ void sensor_loop(void const *args){
 
 
 void logger_loop (void const *args){
+	char allSensorsReceived = 0;
 	start_CAN_Bus(LOGGER);
+	RtosTimer timeMs (time,osTimerPeriodic);
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
 	osDelay(1000);
 	// send serial request broadcast
 	enqueueMessage(0,0,0xff,0x01,GET_SENSOR_SERIAL_BC);
-	
+	char sensorCounter = 0;
+	// start a timer to count to 5s for the response timeout
+	timeStamp = 0;
+	timeMs.start(100);
+	osEvent evt = outQueue.get(0);
+	while(evt.status != osEventMessage){
+		evt = outQueue.get(0);
+	}
+			
+	uint32_t sensor1 = 0x61bfdf6;
+	uint16_t canIdentifier = 2;
 	// loop through all sensors or timeout
-		osEvent evt = outQueue.get(0);
-		while(evt.status != osEventMessage){
-			evt = outQueue.get(0);
-		}
-		printf("\n\ngot response\n\n");
+	while (timeStamp < 50){
 		// received a response, check if it was a serial one
-		
-		uint32_t sensor1 = 0x61bfdf6;
 		if (evt.status == osEventMessage) {
+			printf("\n\ngot response\n\n");
 			CANmessage_t *message = (CANmessage_t*)evt.value.p;
 			printf("Response data: ");
 			for (int i = 0; i< message->dataLength; i++){
@@ -298,40 +310,44 @@ void logger_loop (void const *args){
 			printf("\nResponse id  : %0x \n\r", message->msgId);
 			printf("Response len : %d \n\r", message->dataLength);
 			if (message->msgId == SERIAL_MSG){
-				if ((message->payload[0] == ((sensor1 >> 24) & 0xff)) &&
+				/*if ((message->payload[0] == ((sensor1 >> 24) & 0xff)) &&
 						(message->payload[1] == ((sensor1 >> 16) & 0xff)) &&
 						(message->payload[2] == ((sensor1 >> 8) & 0xff)) &&
 						(message->payload[3] == ((sensor1) & 0xff))){
-					printf("sensor 1 registered\n");
+					*/printf("sensor %d registered\n",canIdentifier);
 					char serial[5];
 					/*
 							* TODO: call register_sensor to get the CANIf	
 					 *
 					 */
-					serial[0] = 0x04;
+					serial[0] = canIdentifier;
+					canIdentifier++;
 					serial[1] = message->payload[0];
 					serial[2] = message->payload[1];
 					serial[3] = message->payload[2];
 					serial[4] = message->payload[3];
 					enqueueMessage(5,serial,0xff,0x01,SET_SENSOR_ID_SINGLE);				
-				}
+				//}
 				
 			}
 			mpoolOutQueue.free(message);
-		}		
+		}
+		evt = outQueue.get(0);		
 	// End: loop through all sensors or timeout	
-	
+	}
+	timeMs.stop();
 	osDelay(1000);
-	
+	for(int i = 2; i < canIdentifier;i++){
 	// loop sending the configs to all sensors
 		SensorConfigMsg_t cfg;
 		cfg.threshold = 1023;
 		cfg.baseline = 4095;
 		cfg.fs = 1023;
 		cfg.timeoutRange = 4095 * 2;
-		sendSettings(0x04,cfg);
+		cfg.started = 0;
+		sendSettings(i,cfg);
 	//end: loop sending the configs to all sensors
-	
+	}
 	// send time sync BC
 	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
 	osDelay(1000);
@@ -340,10 +356,14 @@ void logger_loop (void const *args){
 	enqueueMessage(0,0,0xff,0x01,START_REC_BC);
 		
 	// send the token out
-	char data = MAX_NR_OF_MESSAGES;
-	enqueueMessage(1,&data,0x04,0x01,SEND_TOKEN_SINGLE);
+	//char nrOfMsg = MAX_NR_OF_MESSAGES;
+	char nrOfMsg = 10;
+	char sensorId = 0x02;
+	enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
+	pcSerial.printf("nr of reg sensors: %d\n",canIdentifier - 2);
 	while (1){
-		
+		// the logger will always have the send token, must be reset for each cycle
+		setTokenStatus(1,255);
 		// receive the data from the sensors
 		osEvent evt = outQueue.get(0);
 		if (evt.status == osEventMessage) {
@@ -355,6 +375,17 @@ void logger_loop (void const *args){
 			printf("\nSensor id  : %0x \n\r", message->msgId);
 			printf("Sensor len : %d \n\r", message->dataLength);
 			mpoolOutQueue.free(message);
+			nrOfMsg--;
+		}
+		if (nrOfMsg <= 0){
+			nrOfMsg = 10;
+			if (sensorId < canIdentifier - 1){
+				sensorId++;
+			} else {
+				sensorId = 0x02;
+			}
+			pcSerial.printf("give token to Sensor %d of %d\n",sensorId,canIdentifier);
+			enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
 		}
 		led2 = 1;
 		osDelay(500);
@@ -365,6 +396,9 @@ void logger_loop (void const *args){
  
 int main() {
 	pcSerial.baud(115200);
+	if (sdram_init()) {
+		printf("Failed to initialized SDRAM\n");
+	}
 	#ifdef SEN
 		pcSerial.printf("start\n");
 		sensor_loop(0);
