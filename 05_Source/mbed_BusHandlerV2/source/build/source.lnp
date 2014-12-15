@@ -85,12 +85,25 @@
 ".\build\impact_event.o"
 ".\build\impact_fsm.o"
 ".\build\sdram.o"
+".\build\processingloops.o"
+".\build\cmd.o"
+".\build\cmd_action.o"
+".\build\file_ops.o"
+".\build\sensor_config.o"
+".\build\mcifilesystem.o"
+".\build\fatdirhandle.o"
+".\build\fatfilehandle.o"
+".\build\fatfilesystem.o"
+".\build\ccsbcs.o"
+".\build\diskio.o"
+".\build\ff.o"
+".\build\gpdma.o"
 C:\Keil_v5\ARM\RV31\LIB\RTX_CM4.LIB
 --strict --scatter "mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct"
 
 
             
                 --any_placement=first_fit
-            --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\build\source.map" -o .\build\source.axf
