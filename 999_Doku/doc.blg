@@ -19,9 +19,9 @@ The style file: plain.bst
 A level-1 auxiliary file: content/anhang.aux
 Database file #1: literatur.bib
 Warning--entry type for "sdstd" isn't style-file defined
---line 198 of file literatur.bib
+--line 211 of file literatur.bib
 Warning--entry type for "boschcanspec2" isn't style-file defined
---line 208 of file literatur.bib
+--line 221 of file literatur.bib
 Warning--to sort, need author or key in boschcanspec2
 Warning--to sort, need author or key in sdstd
 You've used 12 entries,

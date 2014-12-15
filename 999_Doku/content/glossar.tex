@@ -53,15 +53,19 @@
 
 \newacronym{usb}{USB}{Universal Serial Bus}
 
+\newacronym{mci}{MCI}{Memory Card Interface}
+
+\newacronym{irq}{IRQ}{Interrupt Request}
+
 % Glossareinträge
-\newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Messgerät für Vibrationen des Bodens. Ein Geophon misst Bewegungen mittels einer magnetischen Masse, die beweglich in einer Spule aufgehängt ist. Wird das Geophon in Bewegung versetzt, schwingt die magnetische Masse aufgrund ihrer Trägheit und induziert dadurch einen Strom in der Spule. Durch Messung dieses Stroms kann die Bewegung registriert weden.}}
+\newglossaryentry{geophon}{name={Geophon},plural={Geophone},description={Ein Messgerät für Vibrationen des Bodens. Ein Geophon misst Bewegungen mittels einer magnetischen Masse, die beweglich in einer Spule aufgehängt ist. Wird das Geophon in Bewegung versetzt, schwingt die magnetische Masse aufgrund ihrer Trägheit und induziert dadurch einen Strom in der Spule. Durch Messung dieses Stroms kann die Bewegung registriert werden.}}
 
 
 \newglossaryentry{logger}{name={Datenlogger},plural={Datenlogger},description={Ein Gerät zur Sammlung und Speicherung von Messdaten von mehreren Sensoreinheiten.}, see={sensoreinh}}
 
 \newglossaryentry{speichermedium}{name={Speichermedium},plural={Speichermedien},description={Ein Stück Hardware, auf dem Daten gespeichert werden können.}}
 
-\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={Mikroprozessor,sensor,logger}}
+\newglossaryentry{sensoreinh}{name={Sensoreinheit},plural={Sensoreinheiten},description={Ein kombiniertes elektronisches Gerät zur Messung von physikalischen Daten und der Verarbeitung dieser Daten. Das Gerät verfügt über einen Mikroprozessor und einen Sensor. Optional kann auch eine Schnittstelle für die Kommunikation mit einem Datenlogger vorhanden sein.},see={mc,sensor,logger}}
 
 \newglossaryentry{sensor}{name={Sensor},plural={Sensoren},description={Ein Messgerät für physikalische Grössen wie Temperatur, Feuchtigkeit, Luftdruck oder Beschleunigung.}}
 
@@ -160,3 +164,11 @@
 \newglossaryentry{terminator}{name={Abschlusswiderstand},plural={Abschlusswiderstände},description={Bei elektrischen Signalübertragungen treten am Ende der Leitung Signalreflexionen auf. Die Reflexionen pflanzen sich in der Leitung in entgegengesetzter Richtung fort und stören so die Übertragung. Um die Reflexionen zu verhindern, können Widerstände eingesetzt werden, die die elektrische Energie in Wärme umzuwandeln. Dadurch treten keine Reflexionen mehr auf.}}
 
 \newglossaryentry{sample}{name={Sample},plural={Samples},description={Englisch für Messwert, Messpunkt.}}
+
+\newglossaryentry{mems}{name={MEMS},description={Microelectromechanical System, Englisch für Mikroelektromechanisches System. Bezeichnung für Elektromechanische Systeme, die sehr stark miniaturisiert worden sind. MEMS-Geräte verwenden Bauteile, die nur wenige Mikrometer bis einen Millimeter gross \cite{wiki_mems}.}}
+
+\newglossaryentry{Hydrologie}{name={Hydrologie},description={Wissenschaft über das Wasser.}}
+
+\newglossaryentry{Hydrophon}{name={Hydrophon},plural={Hydrophone},description={}}
+
+\newglossaryentry{fifo}{name={FIFO-Queue},description={First In First Out Queue. Bezeichnung für eine Warteschlange, bei der zuerst Eintretende auch als erstes wieder herauskommt. Im Gegensatz zu LIFO (Last In First Out), wo jeweils der jüngste Eintrag zuerst ausgelesen wird.}}
