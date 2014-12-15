@@ -509,7 +509,7 @@ void menu_fsm(uint32_t input)
 			switch(input){
 				case(0):
 					// exit
-					if(logger.time_updated == 1){
+					if(time_updated == 1){
 						cmd_reset_timestamp();
 						time_updated = 0;
 					}

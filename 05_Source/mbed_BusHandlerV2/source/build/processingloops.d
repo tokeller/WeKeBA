@@ -99,3 +99,13 @@
 .\build\processingloops.o: impact_fsm.h
 .\build\processingloops.o: impact_event.h
 .\build\processingloops.o: impact_action.h
+.\build\processingloops.o: sensor_config.h
+.\build\processingloops.o: cmd.h
+.\build\processingloops.o: file_ops.h
+.\build\processingloops.o: .\EALib\MCIFileSystem.h
+.\build\processingloops.o: .\EALib\FATFileSystem\FATFileSystem.h
+.\build\processingloops.o: mbed-src/api/FileSystemLike.h
+.\build\processingloops.o: mbed-src/api/DirHandle.h
+.\build\processingloops.o: .\EALib\FATFileSystem\ChaN\ff.h
+.\build\processingloops.o: .\EALib\FATFileSystem\ChaN\integer.h
+.\build\processingloops.o: .\EALib\FATFileSystem\ChaN\ffconf.h

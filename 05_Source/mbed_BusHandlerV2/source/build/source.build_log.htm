@@ -9,15 +9,15 @@ Project File Date:  12/13/2014
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
 compiling main.cpp...
-ProcessingLoops.h(17): warning:  #1-D: last line of file ends without a newline
+ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
   #endif
 main.cpp: 1 warning, 0 errors
 compiling BusHandler.cpp...
-BusHandler.cpp(107): warning:  #550-D: variable "stat" was set but never used
+BusHandler.cpp(108): warning:  #550-D: variable "stat" was set but never used
         osStatus stat;
-BusHandler.cpp(244): warning:  #1-D: last line of file ends without a newline
+BusHandler.cpp(246): warning:  #1-D: last line of file ends without a newline
   }
-BusHandler.cpp(244): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
+BusHandler.cpp(246): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
   }
 BusHandler.cpp: 3 warnings, 0 errors
 compiling impact_action.cpp...
@@ -25,23 +25,29 @@ impact_action.cpp(204): warning:  #177-D: variable "i" was declared but never re
                 uint16_t i;
 impact_action.cpp: 1 warning, 0 errors
 compiling ProcessingLoops.cpp...
-ProcessingLoops.h(17): warning:  #1-D: last line of file ends without a newline
+ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
   #endif
-ProcessingLoops.cpp(352): warning:  #1-D: last line of file ends without a newline
-  }
-ProcessingLoops.cpp(243): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
+ProcessingLoops.cpp(244): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
         char allSensorsReceived = 0;
-ProcessingLoops.cpp(250): warning:  #177-D: variable "sensorCounter" was declared but never referenced
+ProcessingLoops.cpp(251): warning:  #177-D: variable "sensorCounter" was declared but never referenced
         char sensorCounter = 0;
-ProcessingLoops.cpp(259): warning:  #177-D: variable "sensor1" was declared but never referenced
+ProcessingLoops.cpp(260): warning:  #177-D: variable "sensor1" was declared but never referenced
         uint32_t sensor1 = 0x61bfdf6;
+ProcessingLoops.cpp(370): warning:  #1-D: last line of file ends without a newline
+  }
 ProcessingLoops.cpp: 5 warnings, 0 errors
+compiling cmd_action.cpp...
+cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+cmd_action.cpp: 2 warnings, 0 errors
 linking...
 mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=49340 RO-data=2324 RW-data=656 ZI-data=39572  
+Program Size: Code=81408 RO-data=5412 RW-data=760 ZI-data=42428  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 11 Warning(s).
+".\build\source.axf" - 0 Error(s), 13 Warning(s).
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
 Erase Done.
 Programming Done.
@@ -50,42 +56,65 @@ Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.
 Erase Done.
 Programming Done.
 Verify OK.
-   char sensorCounter = 0;
-ProcessingLoops.cpp(245): warning:  #177-D: variable "sensor1" was declared but never referenced
-        uint32_t sensor1 = 0x61bfdf6;
-ProcessingLoops.cpp: 5 warnings, 12 errors
-".\build\source.axf" - 12 Error(s), 5 Warning(s).
-Target not created
-.free(message);
-ProcessingLoops.cpp(334): error:  #153: expression must have class type
-                        pcSerial.printf("give token to Sensor %d of %d\n",sensorId,canIdentifier);
-ProcessingLoops.cpp(337): error:  #20: identifier "led2" is undefined
-                led2 = 1;
-ProcessingLoops.cpp(342): warning:  #1-D: last line of file ends without a newline
+usHandler.cpp...
+BusHandler.cpp(107): warning:  #550-D: variable "stat" was set but never used
+        osStatus stat;
+BusHandler.cpp(244): warning:  #1-D: last line of file ends without a newline
   }
-ProcessingLoops.cpp(229): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
+BusHandler.cpp(244): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
+  }
+BusHandler.cpp: 3 warnings, 0 errors
+compiling SerialID.cpp...
+compiling ADC_4088.cpp...
+compiling impact_action.cpp...
+impact_action.cpp(204): warning:  #177-D: variable "i" was declared but never referenced
+                uint16_t i;
+impact_action.cpp: 1 warning, 0 errors
+compiling impact_event.cpp...
+compiling impact_fsm.cpp...
+compiling sdram.cpp...
+compiling ProcessingLoops.cpp...
+ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
+  #endif
+ProcessingLoops.cpp(353): warning:  #1-D: last line of file ends without a newline
+  }
+ProcessingLoops.cpp(244): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
         char allSensorsReceived = 0;
-ProcessingLoops.cpp(236): warning:  #177-D: variable "sensorCounter" was declared but never referenced
+ProcessingLoops.cpp(251): warning:  #177-D: variable "sensorCounter" was declared but never referenced
         char sensorCounter = 0;
-ProcessingLoops.cpp(245): warning:  #177-D: variable "sensor1" was declared but never referenced
+ProcessingLoops.cpp(260): warning:  #177-D: variable "sensor1" was declared but never referenced
         uint32_t sensor1 = 0x61bfdf6;
-ProcessingLoops.cpp: 5 warnings, 17 errors
-".\build\source.axf" - 17 Error(s), 6 Warning(s).
-Target not created
-ed
-                        mpoolOutQueue.free(message);
-ProcessingLoops.cpp(92): error:  #20: identifier "enableSensorFilter" is undefined
-        enableSensorFilter(canId);
-ProcessingLoops.cpp(98): error:  #20: identifier "osEvent" is undefined
-                osEvent evt = outQueue.get(0);
-ProcessingLoops.cpp(100): error:  #20: identifier "CANmessage_t" is undefined
-                        CANmessage_t *message = (CANmessage_t*)evt.value.p;
-ProcessingLoops.cpp(100): error:  #20: identifier "message" is undefined
-                        CANmessage_t *message = (CANmessage_t*)evt.value.p;
-ProcessingLoops.cpp(100): error:  #29: expected an expression
-                        CANmessage_t *message = (CANmessage_t*)evt.value.p;
-ProcessingLoops.cpp(100): error:  #65: expected a ";"
-                        CANmessage_t *message = (CANmessage_t*)evt.value.p;
-ProcessingLoops.cpp: 1 warning, 30 errors
-".\build\source.axf" - 31 Error(s), 1 Warning(s).
+ProcessingLoops.cpp: 5 warnings, 0 errors
+compiling cmd.cpp...
+cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+cmd.cpp(35): warning:  #177-D: variable "g_cTmpBuf" was declared but never referenced
+  static char g_cTmpBuf[PATH_BUF_SIZE];
+cmd.cpp(42): warning:  #177-D: variable "g_cCmdBuf" was declared but never referenced
+  static char g_cCmdBuf[CMD_BUF_SIZE];
+cmd.cpp: 3 warnings, 0 errors
+compiling cmd_action.cpp...
+cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+cmd_action.cpp: 2 warnings, 0 errors
+compiling file_ops.cpp...
+compiling sensor_config.cpp...
+sensor_config.cpp(101): warning:  #940-D: missing return statement at end of non-void function "sensor_config_read_file"
+  }
+sensor_config.cpp(210): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp: 2 warnings, 0 errors
+linking...
+.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::MCIFileSystem(const char*, PinName) (referred from main.o).
+.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::~MCIFileSystem() (referred from main.o).
+.\build\source.axf: Error: L6218E: Undefined symbol cmd_reset_timestamp() (referred from cmd.o).
+.\build\source.axf: Error: L6218E: Undefined symbol sensor_config_to_file(std::__FILE*, sensor_config*) (referred from cmd_action.o).
+.\build\source.axf: Error: L6218E: Undefined symbol FATFileSystem::format() (referred from cmd_action.o).
+.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::disk_initialize() (referred from cmd_action.o).
+.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::cardInserted() const (referred from cmd_action.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 7 error messages.
+".\build\source.axf" - 7 Error(s), 19 Warning(s).
 Target not created

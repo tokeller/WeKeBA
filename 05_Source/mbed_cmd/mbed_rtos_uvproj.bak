@@ -364,7 +364,7 @@
               <MiscControls>--gnu </MiscControls>
               <Define>TARGET_LPC4088,  TARGET_M4,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1409668418.65,  __MBED__=1,  __ASSERT_MSG,</Define>
               <Undefine></Undefine>
-              <IncludePath>.;mbed-rtos;mbed-rtos/rtx;mbed-rtos/rtx/TARGET_M4;mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM;mbed-rtos/rtos;mbed;mbed/TARGET_LPC4088;mbed/TARGET_LPC4088/TARGET_NXP;mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;.\EALib;.\EALib\FATFileSystem;.\EALib\FATFileSystem\ChaN</IncludePath>
+              <IncludePath>.;.\EALib;.\EALib\FATFileSystem;.\EALib\FATFileSystem\ChaN;mbed;mbed/TARGET_LPC4088;mbed/TARGET_LPC4088/TARGET_NXP;mbed/TARGET_LPC4088/TARGET_NXP/TARGET_LPC408X;mbed/TARGET_LPC4088/TOOLCHAIN_ARM_STD;mbed-rtos;mbed-rtos/rtx;mbed-rtos/rtx/TARGET_M4;mbed-rtos/rtx/TARGET_M4/TOOLCHAIN_ARM;mbed-rtos/rtos</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1137,6 +1137,56 @@
               <FileName>cmd_action.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\cmd_action.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>sensor_config.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\sensor_config.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCIFileSystem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\MCIFileSystem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATFileSystem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATFileSystem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATFileHandle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATFileHandle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATDirHandle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATDirHandle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gpdma.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\gpdma.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ff.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\ff.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\diskio.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ccsbcs.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\ccsbcs.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>file_ops.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\file_ops.cpp</FilePath>
             </File>
           </Files>
         </Group>

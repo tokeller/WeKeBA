@@ -134,7 +134,7 @@ typedef struct{
 	uint32_t timestamp;			// 32 bit, timestamp of impact. one tick = 100us
 	uint8_t	 maxPeaks;			// 8 bit, value of highest peak
 	uint8_t  nrOfPeaks;			// 8 bit, number of peaks in impact
-	uint8_t	 duration;			// 8 bit, duration of impact (in 100us steps)
+	uint16_t duration;			// 16 bit, duration of impact (in 100us steps)
 } ImpStd_t;
 
 typedef struct{

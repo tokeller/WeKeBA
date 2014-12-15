@@ -1,5 +1,6 @@
 #include "ProcessingLoops.h"
 
+
 #ifdef LOG
 Queue <CANmessage_t, 800> outQueue;
 MemoryPool<CANmessage_t, 800> mpoolOutQueue;
@@ -275,7 +276,8 @@ void logger_loop (void const *args){
 						(message->payload[1] == ((sensor1 >> 16) & 0xff)) &&
 						(message->payload[2] == ((sensor1 >> 8) & 0xff)) &&
 						(message->payload[3] == ((sensor1) & 0xff))){
-					*/printf("sensor %d registered\n",canIdentifier);
+					*/
+					printf("sensor %d registered\n",canIdentifier);
 					char serial[5];
 					/*
 							* TODO: call register_sensor to get the CANIf	
@@ -288,7 +290,7 @@ void logger_loop (void const *args){
 					serial[3] = message->payload[2];
 					serial[4] = message->payload[3];
 					enqueueMessage(5,serial,0xff,0x01,SET_SENSOR_ID_SINGLE);				
-				//}
+				
 				
 			}
 			mpoolOutQueue.free(message);
@@ -349,4 +351,20 @@ void logger_loop (void const *args){
 			enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
 		}
 	}	
+}
+
+// command line input reader
+void get_cmd_event_thread(void const *args)
+{
+	uint32_t event;
+	char input[20];
+	init_menu_fsm();
+	while(1){
+		pcSerial.printf(" >");
+		pcSerial.scanf("%s", input);
+		event = atoi(input);
+		pcSerial.printf("%d\n", event);
+		menu_fsm(event);
+		osDelay(100);
+	}
 }

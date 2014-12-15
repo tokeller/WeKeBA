@@ -1,12 +1,17 @@
 #include "mbed.h"
 #include "sdram.h"
 #include "ProcessingLoops.h"
+#include "MCIFileSystem.h"
+#include "sensor_config.h"
+#include "cmd.h"
+#include "file_ops.h"
 
 // Logger: 150576ea
 // Sensor: 61bfdf6
 
 
 //#define DEBUG_IMPACT
+MCIFileSystem mcifs("mci");
 
 #ifdef DEBUG_IMPACT
 Input_t deb_data[1000] = 
@@ -21,10 +26,10 @@ AnalogIn pinser3(p16);
 
 DigitalOut led2(LED2);
 
-/*
- * ADC variables
- *
- */
+// storage for the sensor configs and defaults
+SensorConfig sensor[MAX_SENSORS];
+SensorConfig sensor_defaults;
+LoggerConfig logger;
 
 
 
@@ -40,11 +45,24 @@ int main() {
 		sensor_loop(0);
 	#endif
 	#ifdef LOG
+		set_time(1417860000); // initially set time to 06.12.2014
+		
+		// initialize 
+		/*init_sensor_config_array(sensor);
+		init_logger_config(logger);
+
+		if (!mcifs.cardInserted()) {
+			printf("Please insert a SD/MMC card...\n");
+			while (!mcifs.cardInserted()) {
+				wait(0.5);
+			}
+			logger.sd_present = 1;
+			printf("Card detected!\n");
+		}*/
 		pcSerial.printf("start\n");
+		//Thread threadConsole(get_cmd_event_thread,NULL,osPriorityNormal);
 		logger_loop(0);
 	#endif
-	while (1){
-	}
 }
 
 extern "C" void HardFault_Handler(){

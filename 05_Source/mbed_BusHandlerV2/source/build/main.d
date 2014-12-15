@@ -100,3 +100,14 @@
 .\build\main.o: impact_fsm.h
 .\build\main.o: impact_event.h
 .\build\main.o: impact_action.h
+.\build\main.o: sensor_config.h
+.\build\main.o: cmd.h
+.\build\main.o: file_ops.h
+.\build\main.o: .\EALib\MCIFileSystem.h
+.\build\main.o: .\EALib\FATFileSystem\FATFileSystem.h
+.\build\main.o: mbed-src/api/FileSystemLike.h
+.\build\main.o: mbed-src/api/DirHandle.h
+.\build\main.o: .\EALib\FATFileSystem\ChaN\ff.h
+.\build\main.o: .\EALib\FATFileSystem\ChaN\integer.h
+.\build\main.o: .\EALib\FATFileSystem\ChaN\ffconf.h
+.\build\main.o: file_ops.h

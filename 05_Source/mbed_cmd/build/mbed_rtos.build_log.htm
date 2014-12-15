@@ -3,10 +3,54 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Temp\weltitob\GitHub\WeKeBA\05_Source\mbed_cmd\mbed_rtos.uvproj
-Project File Date:  12/08/2014
+D:\ZHAW\BA\WeKeBA\05_Source\mbed_cmd\mbed_rtos.uvproj
+Project File Date:  12/09/2014
 
 <h2>Output:</h2>
+Build target 'NXP LPC4088'
+linking...
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol cmd_reset_timestamp() (referred from cmd.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol sendSettings(char, SensorConfigMsg_t) (referred from cmd_action.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol sensor_config_to_file(std::__FILE*, sensor_config*) (referred from cmd_action.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 3 error messages.
+".\build\mbed_rtos.axf" - 3 Error(s), 0 Warning(s).
+Target not created
 </pre>
 </body>
 </html>
+: L6218E: Undefined symbol sendSettings(char, SensorConfigMsg_t) (referred from cmd_action.o).
+.\build\mbed_rtos.axf: Error: L6218E: Undefined symbol sensor_config_to_file(std::__FILE*, sensor_config*) (referred from cmd_action.o).
+Not enough information to list image symbols.
+Finished: 1 information, 0 warning and 3 error messages.
+".\build\mbed_rtos.axf" - 3 Error(s), 3 Warning(s).
+Target not created
+ferenced
+  static char g_cCmdBuf[CMD_BUF_SIZE];
+cmd.cpp: 3 warnings, 1 error
+compiling cmd_action.cpp...
+cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+cmd_action.cpp: 2 warnings, 0 errors
+compiling sensor_config.cpp...
+sensor_config.cpp(101): warning:  #940-D: missing return statement at end of non-void function "sensor_config_read_file"
+  }
+sensor_config.cpp(210): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp: 2 warnings, 0 errors
+compiling MCIFileSystem.cpp...
+compiling FATFileSystem.cpp...
+compiling FATFileHandle.cpp...
+compiling FATDirHandle.cpp...
+compiling gpdma.cpp...
+compiling ff.cpp...
+EALib\FATFileSystem\ChaN\ff.cpp(1689): warning:  #111-D: statement is unreachable
+              w = (w << 8) + b;           /* Create a DBC */
+EALib\FATFileSystem\ChaN\ff.cpp: 1 warning, 0 errors
+compiling diskio.cpp...
+compiling ccsbcs.cpp...
+compiling file_ops.cpp...
+".\build\mbed_rtos.axf" - 1 Error(s), 8 Warning(s).
+Target not created

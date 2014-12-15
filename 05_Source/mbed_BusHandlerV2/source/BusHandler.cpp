@@ -45,7 +45,7 @@ void CAN_COM_thread(void const *args) {
 		if (tokenReceived == 1){
 			osEvent evt = inQueue.get(0);
 			if (evt.status == osEventMessage) {
-				pcSerial.printf("inbound\n");
+				//pcSerial.printf("inbound\n");
 				CANmessage_t *message = (CANmessage_t*)evt.value.p;
 				memcpy(sending.data,message->payload,message->dataLength);
 				sending.format = CANExtended;
@@ -80,7 +80,7 @@ void CAN_COM_thread(void const *args) {
 }
 
 int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType){
-	char data[7];
+	char data[8];
 	//printf("\n\ntimestamp %x\n",payload.timestamp);
 	data[0] = ((payload.timestamp) >> 24) & 0xff;
 	data[1] = ((payload.timestamp) >> 16) & 0xff;;
@@ -93,11 +93,12 @@ int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char se
 	data[5] = payload.nrOfPeaks;
 	//printf("nrOfPeaks %x\n",payload.nrOfPeaks);
 	//printf("packed nrPeak %x\n",data[5]);
-	data[6] = payload.duration;
+	data[6] = (payload.duration>>8) & 0xff;
+	data[7] =  payload.duration & 0xff;
 	//printf("duration %x\n",payload.duration);
 	//printf("packed duration %x\n",data[6]);
 	sentData = 1;
-	return enqueueMessage(7,data,receiver,sender,msgType);
+	return enqueueMessage(8,data,receiver,sender,msgType);
 }
 
 
@@ -115,13 +116,14 @@ int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sende
 		inOnQueue->dataLength = dataLength;
 		memcpy(inOnQueue->payload,payload,dataLength);
 		if(sentData == 1){
-			printf("sent payload %x%x%x%x%x%x%x\n",inOnQueue->payload[0],
+			printf("sent payload %x%x%x%x%x%x%x%x\n",inOnQueue->payload[0],
 																						 inOnQueue->payload[1],
 																						 inOnQueue->payload[2],
 																						 inOnQueue->payload[3],
 																						 inOnQueue->payload[4],
 																						 inOnQueue->payload[5],
-																						 inOnQueue->payload[6]);
+																						 inOnQueue->payload[6],
+																						 inOnQueue->payload[7]);
 			sentData = 0;
 		}
 		stat = inQueue.put(inOnQueue);

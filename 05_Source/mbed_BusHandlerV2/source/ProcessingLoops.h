@@ -6,6 +6,9 @@
 #include "ADC_4088.h"
 #include "impact_fsm.h"
 #include "rtos.h"
+#include "sensor_config.h"
+#include "cmd.h"
+#include "file_ops.h"
 
 
 void sensor_loop(void const *args);
@@ -13,5 +16,6 @@ void sensor_loop(void const *args);
 
 void logger_loop(void const *args);
 
+//void get_cmd_event_thread(void const *args);
 
 #endif
