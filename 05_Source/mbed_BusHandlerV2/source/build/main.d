@@ -79,6 +79,10 @@
 .\build\main.o: mbed-src/api/wait_api.h
 .\build\main.o: mbed-src/hal/sleep_api.h
 .\build\main.o: mbed-src/api/rtc_time.h
+.\build\main.o: .\EALib\sdram.h
+.\build\main.o: ProcessingLoops.h
+.\build\main.o: BusHandler.h
+.\build\main.o: BusProtocol.h
 .\build\main.o: mbed-rtos/rtos/rtos.h
 .\build\main.o: mbed-rtos/rtos/Thread.h
 .\build\main.o: mbed-rtos/rtx/TARGET_CORTEX_M/cmsis_os.h
@@ -90,10 +94,7 @@
 .\build\main.o: mbed-rtos/rtos/Mail.h
 .\build\main.o: mbed-rtos/rtos/MemoryPool.h
 .\build\main.o: mbed-rtos/rtos/Queue.h
-.\build\main.o: BusHandler.h
-.\build\main.o: BusProtocol.h
 .\build\main.o: SerialID.h
-.\build\main.o: .\EALib\sdram.h
 .\build\main.o: ADC_4088.h
 .\build\main.o: mbed-src/hal/pinmap.h
 .\build\main.o: impact_fsm.h

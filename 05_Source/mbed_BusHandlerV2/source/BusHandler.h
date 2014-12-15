@@ -3,9 +3,9 @@
 
 #include "BusProtocol.h"
 
-//#define SEN
+#define SEN
 
-#define LOG
+//#define LOG
 
 
 
