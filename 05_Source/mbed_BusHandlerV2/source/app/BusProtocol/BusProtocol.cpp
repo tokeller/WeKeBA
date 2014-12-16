@@ -13,7 +13,9 @@ extern MemoryPool<CANMessage, 50> mpoolInQueue;
 
 extern Serial pcSerial;
 
-
+/*
+ *	see header file
+ */
 int CAN_init(void){
 	can1.reset();
 	if(can1.frequency(1000000)){
@@ -27,6 +29,10 @@ int CAN_init(void){
 	return 1;	
 }
 
+/*
+ *	see header file
+ */
+ 
 void CANIRQHandler(void){
   __disable_irq;
 	if(can1.read(msgIn)){
@@ -34,6 +40,10 @@ void CANIRQHandler(void){
 	}
 	__enable_irq;
 }
+
+/*
+ *	see header file
+ */
 
 uint32_t storeRecMessages(CANMessage sentMsg){
 	if (recMsgs.count < BUFFER_SIZE){
@@ -54,6 +64,10 @@ uint32_t storeRecMessages(CANMessage sentMsg){
 	}	
 	return 1;
 }
+
+/*
+ *	see header file
+ */
 
 CANMessage dequeueOutput (void){
 	CANMessage msg;
@@ -77,13 +91,17 @@ CANMessage dequeueOutput (void){
 	return msg;
 }
 
+/*
+ *	see header file
+ */
+
 int sendMessage(CANMessage msg){
 	return (can1.write(msg));
 }
 
-/**
-  * Setup acceptance filter on CAN
-  */
+/*
+ *	see header file
+ */
 void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high)  {
   static int CAN_std_cnt = 0;
   static int CAN_ext_cnt = 0;

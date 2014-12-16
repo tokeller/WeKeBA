@@ -1,11 +1,13 @@
 #include "ProcessingLoops.h"
 
 #ifdef LOG
+// create a large output queue (messages from the communication thread) on the logger
 Queue <CANmessage_t, 800> outQueue;
 MemoryPool<CANmessage_t, 800> mpoolOutQueue;
 #endif
 
 #ifdef SEN
+// the output message queue on the sensor has to hold only a few messages
 Queue <CANmessage_t, 50> outQueue;
 MemoryPool<CANmessage_t, 50> mpoolOutQueue;
 #endif
@@ -92,6 +94,7 @@ void sensor_loop(void const *args){
 			printf("received len : %d \n\r", message->dataLength);
 			if (message->msgId == CAN_ID_MSG){
 				printf("\ngot CAN-ID: %x\n",message->payload[0]);
+				// check the received message for the matching serialNr
 				if ((message->payload[1] == ((serialNr >> 24) & 0xff)) &&
 					  (message->payload[2] == ((serialNr >> 16) & 0xff)) &&
 					  (message->payload[3] == ((serialNr >> 8) & 0xff)) &&
@@ -105,9 +108,8 @@ void sensor_loop(void const *args){
 		}
 	};
 	
-	enableSensorFilter(canId);
-	
-	
+	// enable the sensor specific filters
+	enableSensorFilter(canId);	
 
 	// wait for the settings message
 	while(settingsReceived == 0){
@@ -118,9 +120,8 @@ void sensor_loop(void const *args){
 			if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 				// set the settings flag to 1
 				settingsReceived = 1;
-				
+				// process the settings message
 				processSettings(message);
-				
 				
 				printf("settings data: ");
 				for (int i = 0; i< message->dataLength; i++){
@@ -251,7 +252,7 @@ void logger_loop (void const *args){
 	}
 			
 	uint16_t nrOfRegSensors = 0;
-	// loop through all sensors or timeout
+	// loop through all sensors or till the timeout occurs
 	while (timeStamp < 50){
 		// received a response, check if it was a serial one
 		if (evt.status == osEventMessage) {
@@ -274,6 +275,7 @@ void logger_loop (void const *args){
 					serialID |= message->payload[3];
 				
 					uint8_t canIdentifier = 0;
+					// register the sensor and get its CAN identifier
 					canIdentifier = register_sensor(serialID, sensor);
 					char serial[5];
 					serial[0] = canIdentifier;
@@ -282,6 +284,7 @@ void logger_loop (void const *args){
 					serial[2] = message->payload[1];
 					serial[3] = message->payload[2];
 					serial[4] = message->payload[3];
+					// send the sensors CAN identifier as broadcast
 					enqueueMessage(5,serial,0xff,0x01,SET_SENSOR_ID_SINGLE);				
 				
 				
@@ -372,6 +375,13 @@ void get_cmd_event_thread(void const *args)
 	}
 }
 
+
+/*
+ *	ProcessSettings
+ *	@params		CANmessage_t *message: incoming settings message
+ *
+ * 	This function processes the received settings and sets them accordingly
+ */
 
 void processSettings(CANmessage_t *message){
 	// 200

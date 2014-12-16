@@ -9,10 +9,9 @@ typedef void (*IAP)(unsigned long [], unsigned long[] );
 
 
 /**	Function returning the serial number of a device. 
-	* @return 	8 bytes of the full serial that are unique for each device
-	*
-	*/
+  * @return 	8 bytes of the full serial that are unique for each device
+  *
+  */
 uint32_t getSerialNumber(void);
-
 
 #endif

@@ -150,26 +150,80 @@ typedef struct{
 	uint8_t  valueP4;				// 8 bit, value of peak 4
 } ImpExtData_t;
 
-
+/*
+ * prepare the CAN bus for operation
+ * @params deviceType_t device: type of device initiating the communication
+ *
+ *	Logger: Set the group filters to allow all messages from the sensors
+ *	Sensor: Set the first filter to only allow a serial request from the logger to pass
+ */
 int start_CAN_Bus(deviceType_t device);
 
+
+/*
+ *	enqueue a standard impact message 
+ *	
+ *   pack a standard impact event together and put it on the in-queue
+ */
 int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType);
+
+/*
+ *	enqueue a data message
+ *
+ *	 take a undefined payload (may exceed the limit of 8 bytes, several messages will be prepared) and 
+ *	 prepare it for sending, before putting it on the in-queue
+ */
 
 int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sender, msgType_t msgType);
 
+/*
+ *	Communication thread
+ *
+ *	 Thread handling the communication by reading messages from the in-queue and send it to the bus or by
+ *	 processing received messages from the buffer and put them on the out-queue
+ */
+
 void CAN_COM_thread(void const *args);
 
-void CAN_PRINT_thread(void const *args);
+/*
+ *	Function to prepare the message ID
+ *
+ */
 
 uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint32_t inMsgId);
 
+/*
+ *	send the serial number of a sensor to the logger
+ *
+ */
+
 void sendSerialResponse(uint32_t serialNr);
+
+/*
+ *	set the broadcast filters on the sensor
+ *
+ */
 
 void enableBroadCastFilter(void);
 
+/*
+ *	set the specific filters for a can identifier
+ *
+ */
+
 void enableSensorFilter(uint8_t canId);
 
+/*
+ *	process a sensor config message and send it to the proper sensor
+ *
+ */
+
 void sendSettings(uint16_t receiver, SensorConfigMsg_t settings);
+
+/*
+ *	set if the sensor received a token and store the number of max. allowed messages to be sent
+ *
+ */
 
 int setTokenStatus(char status, char counter);
 

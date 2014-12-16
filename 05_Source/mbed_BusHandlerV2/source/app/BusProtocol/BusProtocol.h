@@ -61,17 +61,45 @@ typedef struct {
 		uint16_t count;
 } outputRingbuf;
 
-
+/*
+ *	initialize the CAN bus
+ *		- set the frequency to 1 Mhz
+ *		- attach the interrupt handler for received messages
+ *		- initialize the input ringbuffer
+ */
 int CAN_init(void);
 
+/*
+ *	ISR to process the received message
+ *
+ */
+void CANIRQHandler(void);
+
+/*
+ *	store the received CANMessage on a ringbuffer for further processing by the communication thread
+ *
+ */
 uint32_t storeRecMessages(CANMessage sentMsg);
 
+/*
+ *	dequeue the message stored from the ISR for processing	
+ *
+ */
+ 
 CANMessage dequeueOutput (void);
+
+/*
+ *	send the message from the in-queue to the CAN bus
+ *
+ */
 
 int sendMessage(CANMessage msg);
 
-void CANIRQHandler(void);
-
+/*
+ *	setup the CAN acceptance filter for the lower and upper message ID
+ *
+ */
+ 
 void setExtGrpCANFilter (uint32_t id_low, uint32_t id_high);
 
 #endif

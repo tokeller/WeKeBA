@@ -26,6 +26,10 @@ char tokenReceived = 1;
 // the messageCounter indicates, how many messages the logger will expect
 char messageCounter = 0;
 
+
+/*
+ *	see header
+ */
 int start_CAN_Bus(deviceType_t device){
 	CAN_init();	
 	if (device == LOGGER){
@@ -37,6 +41,9 @@ int start_CAN_Bus(deviceType_t device){
 	return 0;
 }
 
+/*
+ *	see header
+ */
 void CAN_COM_thread(void const *args) {
 	CANmessage_t *outOnQueue;
 	CANMessage sending;
@@ -79,6 +86,10 @@ void CAN_COM_thread(void const *args) {
   }
 }
 
+/*
+ *	see header
+ */
+
 int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char sender, msgType_t msgType){
 	char data[8];
 	//printf("\n\ntimestamp %x\n",payload.timestamp);
@@ -101,9 +112,11 @@ int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char se
 	return enqueueMessage(8,data,receiver,sender,msgType);
 }
 
+/*
+ *	see header
+ */
 
-	//enqueueMessage(8,										data,					0x01,					0x02,  				IMPACT_STD_SINGLE)
-int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sender, msgType_t msgType){
+ int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sender, msgType_t msgType){
 	CANmessage_t *inOnQueue;
 	osStatus stat;
 	// if more than 8 bytes should be sent, several messages must be prepared
@@ -155,6 +168,10 @@ int enqueueMessage(uint32_t dataLength, char *payload, char receiver, char sende
 	return 0;
 }
 
+/*
+ *	see header
+ */
+
 uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint32_t inMsgId){
 	uint32_t msgId = 0;
 	uint32_t pMsgType = inMsgType;
@@ -172,6 +189,10 @@ uint32_t prepareMsgId(msgType_t inMsgType, char inReceiver, char inSender, uint3
 	return msgId;
 }
 
+/*
+ *	see header
+ */
+
 void sendSerialResponse(uint32_t serialNr){
 	char data[4];
 	data[0] = (serialNr>> 24) & 0xff;
@@ -181,6 +202,10 @@ void sendSerialResponse(uint32_t serialNr){
 	enqueueMessage(4, data, 0x01, 0x00, SERIAL_SINGLE);
 }
 
+/*
+ *	see header
+ */
+
 void enableBroadCastFilter(){
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_ID_GET_BC,CAN_FILTER_SENSOR_ID_GET_BC);
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_TIME_SYNC_BC,CAN_FILTER_SENSOR_TIME_SYNC_BC);
@@ -188,6 +213,10 @@ void enableBroadCastFilter(){
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_OFF_BC,CAN_FILTER_SENSOR_OFF_BC);
 	setExtGrpCANFilter(CAN_FILTER_SENSOR_OP_MD_BC,CAN_FILTER_SENSOR_OP_MD_BC);
 }
+
+/*
+ *	see header
+ */
 
 void enableSensorFilter(uint8_t canId){
 	uint32_t tempfilter = 0;
@@ -207,6 +236,10 @@ void enableSensorFilter(uint8_t canId){
 	setExtGrpCANFilter(tempfilter,tempfilter);;
 	
 };
+
+/*
+ *	see header
+ */
 
 void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
 	uint64_t data = settings.threshold;
@@ -230,6 +263,10 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
 	part[7] =  data 			 & 0xff;
 	enqueueMessage(8,part,receiver & 0xff,0x01,SENSOR_CONFIG_SINGLE);
 }
+
+/*
+ *	see header
+ */
 
 int setTokenStatus(char status, char counter){
 	messageCounter = counter;
