@@ -9,7 +9,6 @@
 // Logger: 150576ea
 // Sensor: 61bfdf6
 
-
 //#define DEBUG_IMPACT
 MCIFileSystem mcifs("mci");
 

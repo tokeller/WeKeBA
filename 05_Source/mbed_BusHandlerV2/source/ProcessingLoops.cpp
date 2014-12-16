@@ -1,6 +1,5 @@
 #include "ProcessingLoops.h"
 
-
 #ifdef LOG
 Queue <CANmessage_t, 800> outQueue;
 MemoryPool<CANmessage_t, 800> mpoolOutQueue;
@@ -386,7 +385,35 @@ void get_cmd_event_thread(void const *args)
 		pcSerial.printf(" >");
 		input[0] = UART_RTOS_getc();
 		//pcSerial.scanf("%s", input);
-		event = atoi(input);
+		pcSerial.printf("input %c\n",input[0]);
+		switch(input[0]){
+			case 'a':
+				event = 10;
+				break;
+			case 'b':
+				event = 11;
+				break;
+			case 'c':
+				event = 12;
+				break;
+			case 'd':
+				event = 13;
+				break;
+			case 'e':
+				event = 14;
+				break;
+			case 'f':
+				event = 15;
+				break;
+			default:
+				if (input[0] < 10){
+					event = input[0];
+				}else{
+					event = 0;
+				}
+				break;
+		}
+		//event = atoi(input);
 		pcSerial.printf("%d\n", event);
 		menu_fsm(event);
 		osDelay(100);

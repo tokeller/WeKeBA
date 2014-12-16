@@ -1,7 +1,6 @@
 #include "mbed.h"
 #include "UART_RTOS_Interrupt.h"
 
-
 char UART_RTOS_Interrupt_buffer[UART_RTOS_Interrupt_buffer_SIZE] = "";
 int UART_RTOS_Interrupt_buffer_position = 0;
  
