@@ -109,3 +109,4 @@
 .\build\processingloops.o: .\EALib\FATFileSystem\ChaN\ff.h
 .\build\processingloops.o: .\EALib\FATFileSystem\ChaN\integer.h
 .\build\processingloops.o: .\EALib\FATFileSystem\ChaN\ffconf.h
+.\build\processingloops.o: UART_RTOS_Interrupt.h

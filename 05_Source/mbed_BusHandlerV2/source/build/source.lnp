@@ -98,6 +98,7 @@
 ".\build\diskio.o"
 ".\build\ff.o"
 ".\build\gpdma.o"
+".\build\uart_rtos_interrupt.o"
 C:\Keil_v5\ARM\RV31\LIB\RTX_CM4.LIB
 --strict --scatter "mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct"
 

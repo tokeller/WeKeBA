@@ -9,6 +9,7 @@
 #include "sensor_config.h"
 #include "cmd.h"
 #include "file_ops.h"
+#include "UART_RTOS_Interrupt.h"
 
 
 void sensor_loop(void const *args);

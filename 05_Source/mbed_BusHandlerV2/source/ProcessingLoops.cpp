@@ -378,12 +378,14 @@ void logger_loop (void const *args){
 // command line input reader
 void get_cmd_event_thread(void const *args)
 {
+	Setup_CHOSEN_UART(115200);
 	uint32_t event;
 	char input[20];
 	init_menu_fsm();
 	while(1){
 		pcSerial.printf(" >");
-		pcSerial.scanf("%s", input);
+		input[0] = UART_RTOS_getc();
+		//pcSerial.scanf("%s", input);
 		event = atoi(input);
 		pcSerial.printf("%d\n", event);
 		menu_fsm(event);

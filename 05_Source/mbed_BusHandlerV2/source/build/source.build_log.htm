@@ -8,8 +8,12 @@ Project File Date:  12/15/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
+compiling main.cpp...
+ProcessingLoops.h(22): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.cpp: 1 warning, 0 errors
 compiling ProcessingLoops.cpp...
-ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
+ProcessingLoops.h(22): warning:  #1-D: last line of file ends without a newline
   #endif
 ProcessingLoops.cpp(265): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
         char allSensorsReceived = 0;
@@ -17,40 +21,31 @@ ProcessingLoops.cpp(272): warning:  #177-D: variable "sensorCounter" was declare
         char sensorCounter = 0;
 ProcessingLoops.cpp(281): warning:  #177-D: variable "sensor1" was declared but never referenced
         uint32_t sensor1 = 0x61bfdf6;
-ProcessingLoops.cpp(392): warning:  #1-D: last line of file ends without a newline
+ProcessingLoops.cpp(394): warning:  #1-D: last line of file ends without a newline
   }
 ProcessingLoops.cpp: 5 warnings, 0 errors
+compiling UART_RTOS_Interrupt.cpp...
 linking...
 mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=81600 RO-data=5412 RW-data=760 ZI-data=42428  
+Program Size: Code=81944 RO-data=5416 RW-data=764 ZI-data=42560  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 6 Warning(s).
+".\build\source.axf" - 0 Error(s), 7 Warning(s).
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-nings, 0 errors
-compiling cmd_action.cpp...
-cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+tion.h(409): warning:  #1-D: last line of file ends without a newline
   void cmd_close_sensor_file(uint8_t sensor_index);
 cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
         uint8_t success = 1;
 cmd_action.cpp: 2 warnings, 0 errors
 linking...
 mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=81624 RO-data=5412 RW-data=760 ZI-data=42428  
+Program Size: Code=81616 RO-data=5412 RW-data=760 ZI-data=42428  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
 ".\build\source.axf" - 0 Error(s), 13 Warning(s).
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
 Erase Done.
 Programming Done.
