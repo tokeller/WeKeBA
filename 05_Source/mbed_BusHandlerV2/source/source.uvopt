@@ -226,7 +226,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s</PathWithFileName>
       <FilenameWithoutPath>startup_LPC407x_8x_177x_8x.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -239,7 +239,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s</PathWithFileName>
       <FilenameWithoutPath>SVC_Table.s</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -252,7 +252,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.c</PathWithFileName>
       <FilenameWithoutPath>cmsis_nvic.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -265,7 +265,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/system_LPC407x_8x_177x_8x.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/system_LPC407x_8x_177x_8x.c</PathWithFileName>
       <FilenameWithoutPath>system_LPC407x_8x_177x_8x.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -278,7 +278,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogin_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogin_api.c</PathWithFileName>
       <FilenameWithoutPath>analogin_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -291,7 +291,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/spi_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/spi_api.c</PathWithFileName>
       <FilenameWithoutPath>spi_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -304,7 +304,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_api.c</PathWithFileName>
       <FilenameWithoutPath>gpio_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -317,7 +317,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/i2c_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/i2c_api.c</PathWithFileName>
       <FilenameWithoutPath>i2c_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -330,7 +330,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogout_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogout_api.c</PathWithFileName>
       <FilenameWithoutPath>analogout_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -343,7 +343,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/rtc_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/rtc_api.c</PathWithFileName>
       <FilenameWithoutPath>rtc_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -356,7 +356,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/can_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/can_api.c</PathWithFileName>
       <FilenameWithoutPath>can_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -369,7 +369,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/port_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/port_api.c</PathWithFileName>
       <FilenameWithoutPath>port_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -382,7 +382,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pwmout_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pwmout_api.c</PathWithFileName>
       <FilenameWithoutPath>pwmout_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -395,7 +395,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/serial_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/serial_api.c</PathWithFileName>
       <FilenameWithoutPath>serial_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -408,7 +408,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/sleep.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/sleep.c</PathWithFileName>
       <FilenameWithoutPath>sleep.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -421,7 +421,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_irq_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_irq_api.c</PathWithFileName>
       <FilenameWithoutPath>gpio_irq_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -434,7 +434,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pinmap.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pinmap.c</PathWithFileName>
       <FilenameWithoutPath>pinmap.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -447,7 +447,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/ethernet_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/ethernet_api.c</PathWithFileName>
       <FilenameWithoutPath>ethernet_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -460,7 +460,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/us_ticker.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/us_ticker.c</PathWithFileName>
       <FilenameWithoutPath>us_ticker.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -473,7 +473,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/exit.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/exit.c</PathWithFileName>
       <FilenameWithoutPath>exit.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -486,7 +486,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/wait_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/wait_api.c</PathWithFileName>
       <FilenameWithoutPath>wait_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -499,7 +499,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/board.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/board.c</PathWithFileName>
       <FilenameWithoutPath>board.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -512,7 +512,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/semihost_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/semihost_api.c</PathWithFileName>
       <FilenameWithoutPath>semihost_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -525,7 +525,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/pinmap_common.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/pinmap_common.c</PathWithFileName>
       <FilenameWithoutPath>pinmap_common.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -538,7 +538,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/us_ticker_api.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/us_ticker_api.c</PathWithFileName>
       <FilenameWithoutPath>us_ticker_api.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -551,7 +551,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/assert.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/assert.c</PathWithFileName>
       <FilenameWithoutPath>assert.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -564,7 +564,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/gpio.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/gpio.c</PathWithFileName>
       <FilenameWithoutPath>gpio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -577,7 +577,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/error.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/error.c</PathWithFileName>
       <FilenameWithoutPath>error.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -590,7 +590,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/mbed_interface.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/mbed_interface.c</PathWithFileName>
       <FilenameWithoutPath>mbed_interface.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -603,7 +603,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/rtc_time.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/rtc_time.c</PathWithFileName>
       <FilenameWithoutPath>rtc_time.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -616,7 +616,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.c</PathWithFileName>
       <FilenameWithoutPath>rt_Task.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -629,7 +629,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c</PathWithFileName>
       <FilenameWithoutPath>rt_MemBox.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -642,7 +642,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.c</PathWithFileName>
       <FilenameWithoutPath>rt_Robin.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -655,7 +655,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</PathWithFileName>
       <FilenameWithoutPath>rt_Mailbox.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -668,7 +668,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</PathWithFileName>
       <FilenameWithoutPath>rt_System.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -681,7 +681,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</PathWithFileName>
       <FilenameWithoutPath>rt_CMSIS.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -694,7 +694,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</PathWithFileName>
       <FilenameWithoutPath>rt_Event.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -707,7 +707,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</PathWithFileName>
       <FilenameWithoutPath>rt_Semaphore.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -720,7 +720,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c</PathWithFileName>
       <FilenameWithoutPath>RTX_Conf_CM.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -733,7 +733,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</PathWithFileName>
       <FilenameWithoutPath>rt_Time.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -746,7 +746,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</PathWithFileName>
       <FilenameWithoutPath>rt_Mutex.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -759,7 +759,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</PathWithFileName>
       <FilenameWithoutPath>rt_List.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -772,7 +772,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</PathWithFileName>
       <FilenameWithoutPath>HAL_CM.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -785,7 +785,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/HAL_CM4.c</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/HAL_CM4.c</PathWithFileName>
       <FilenameWithoutPath>HAL_CM4.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -811,7 +811,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys.cpp</PathWithFileName>
       <FilenameWithoutPath>sys.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -824,7 +824,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys_helper.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys_helper.cpp</PathWithFileName>
       <FilenameWithoutPath>sys_helper.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -837,7 +837,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/RawSerial.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/RawSerial.cpp</PathWithFileName>
       <FilenameWithoutPath>RawSerial.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -850,7 +850,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Stream.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Stream.cpp</PathWithFileName>
       <FilenameWithoutPath>Stream.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -863,7 +863,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Timeout.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Timeout.cpp</PathWithFileName>
       <FilenameWithoutPath>Timeout.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -876,7 +876,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/LocalFileSystem.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/LocalFileSystem.cpp</PathWithFileName>
       <FilenameWithoutPath>LocalFileSystem.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -889,7 +889,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/FunctionPointer.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/FunctionPointer.cpp</PathWithFileName>
       <FilenameWithoutPath>FunctionPointer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -902,7 +902,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/I2CSlave.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/I2CSlave.cpp</PathWithFileName>
       <FilenameWithoutPath>I2CSlave.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -915,7 +915,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/FilePath.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/FilePath.cpp</PathWithFileName>
       <FilenameWithoutPath>FilePath.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -928,7 +928,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/InterruptManager.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/InterruptManager.cpp</PathWithFileName>
       <FilenameWithoutPath>InterruptManager.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -941,7 +941,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/BusOut.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/BusOut.cpp</PathWithFileName>
       <FilenameWithoutPath>BusOut.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -954,7 +954,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Timer.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Timer.cpp</PathWithFileName>
       <FilenameWithoutPath>Timer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -967,7 +967,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/FileSystemLike.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/FileSystemLike.cpp</PathWithFileName>
       <FilenameWithoutPath>FileSystemLike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -980,7 +980,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/I2C.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/I2C.cpp</PathWithFileName>
       <FilenameWithoutPath>I2C.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -993,7 +993,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/CAN.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/CAN.cpp</PathWithFileName>
       <FilenameWithoutPath>CAN.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1006,7 +1006,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/SPISlave.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/SPISlave.cpp</PathWithFileName>
       <FilenameWithoutPath>SPISlave.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1019,7 +1019,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/TimerEvent.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/TimerEvent.cpp</PathWithFileName>
       <FilenameWithoutPath>TimerEvent.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1032,7 +1032,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Serial.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Serial.cpp</PathWithFileName>
       <FilenameWithoutPath>Serial.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1045,7 +1045,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/SPI.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/SPI.cpp</PathWithFileName>
       <FilenameWithoutPath>SPI.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1058,7 +1058,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/SerialBase.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/SerialBase.cpp</PathWithFileName>
       <FilenameWithoutPath>SerialBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1071,7 +1071,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Ethernet.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Ethernet.cpp</PathWithFileName>
       <FilenameWithoutPath>Ethernet.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1084,7 +1084,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/retarget.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/retarget.cpp</PathWithFileName>
       <FilenameWithoutPath>retarget.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1097,7 +1097,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/CallChain.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/CallChain.cpp</PathWithFileName>
       <FilenameWithoutPath>CallChain.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1110,7 +1110,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/BusIn.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/BusIn.cpp</PathWithFileName>
       <FilenameWithoutPath>BusIn.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1123,7 +1123,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/Ticker.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/Ticker.cpp</PathWithFileName>
       <FilenameWithoutPath>Ticker.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1136,7 +1136,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/InterruptIn.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/InterruptIn.cpp</PathWithFileName>
       <FilenameWithoutPath>InterruptIn.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1149,7 +1149,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/FileLike.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/FileLike.cpp</PathWithFileName>
       <FilenameWithoutPath>FileLike.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1162,7 +1162,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/BusInOut.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/BusInOut.cpp</PathWithFileName>
       <FilenameWithoutPath>BusInOut.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1175,7 +1175,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-src/common/FileBase.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-src/common/FileBase.cpp</PathWithFileName>
       <FilenameWithoutPath>FileBase.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1188,7 +1188,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtos/RtosTimer.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtos/RtosTimer.cpp</PathWithFileName>
       <FilenameWithoutPath>RtosTimer.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1201,7 +1201,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtos/Thread.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtos/Thread.cpp</PathWithFileName>
       <FilenameWithoutPath>Thread.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1214,7 +1214,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtos/Mutex.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtos/Mutex.cpp</PathWithFileName>
       <FilenameWithoutPath>Mutex.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1227,7 +1227,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>mbed-rtos/rtos/Semaphore.cpp</PathWithFileName>
+      <PathWithFileName>HAL/mbed-rtos/rtos/Semaphore.cpp</PathWithFileName>
       <FilenameWithoutPath>Semaphore.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1240,7 +1240,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\BusProtocol.cpp</PathWithFileName>
+      <PathWithFileName>.\app\BusProtocol\BusProtocol.cpp</PathWithFileName>
       <FilenameWithoutPath>BusProtocol.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1253,7 +1253,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\BusHandler.cpp</PathWithFileName>
+      <PathWithFileName>.\app\BusProtocol\BusHandler.cpp</PathWithFileName>
       <FilenameWithoutPath>BusHandler.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1266,7 +1266,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\SerialID.cpp</PathWithFileName>
+      <PathWithFileName>.\app\Support\SerialID.cpp</PathWithFileName>
       <FilenameWithoutPath>SerialID.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1279,7 +1279,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\ADC_4088.cpp</PathWithFileName>
+      <PathWithFileName>.\app\ImpactDetection\ADC_4088.cpp</PathWithFileName>
       <FilenameWithoutPath>ADC_4088.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1292,7 +1292,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\impact_action.cpp</PathWithFileName>
+      <PathWithFileName>.\app\ImpactDetection\impact_action.cpp</PathWithFileName>
       <FilenameWithoutPath>impact_action.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1305,7 +1305,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\impact_event.cpp</PathWithFileName>
+      <PathWithFileName>.\app\ImpactDetection\impact_event.cpp</PathWithFileName>
       <FilenameWithoutPath>impact_event.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1318,7 +1318,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\impact_fsm.cpp</PathWithFileName>
+      <PathWithFileName>.\app\ImpactDetection\impact_fsm.cpp</PathWithFileName>
       <FilenameWithoutPath>impact_fsm.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1331,7 +1331,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\sdram.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\sdram.cpp</PathWithFileName>
       <FilenameWithoutPath>sdram.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1344,7 +1344,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\ProcessingLoops.cpp</PathWithFileName>
+      <PathWithFileName>.\app\ProcessingLoops.cpp</PathWithFileName>
       <FilenameWithoutPath>ProcessingLoops.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1357,7 +1357,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\cmd.cpp</PathWithFileName>
+      <PathWithFileName>.\app\CommandLine\cmd.cpp</PathWithFileName>
       <FilenameWithoutPath>cmd.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1370,7 +1370,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\cmd_action.cpp</PathWithFileName>
+      <PathWithFileName>.\app\CommandLine\cmd_action.cpp</PathWithFileName>
       <FilenameWithoutPath>cmd_action.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1383,7 +1383,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\file_ops.cpp</PathWithFileName>
+      <PathWithFileName>.\app\Support\file_ops.cpp</PathWithFileName>
       <FilenameWithoutPath>file_ops.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1396,7 +1396,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\sensor_config.cpp</PathWithFileName>
+      <PathWithFileName>.\app\CommandLine\sensor_config.cpp</PathWithFileName>
       <FilenameWithoutPath>sensor_config.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1409,7 +1409,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\MCIFileSystem.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\MCIFileSystem.cpp</PathWithFileName>
       <FilenameWithoutPath>MCIFileSystem.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1422,7 +1422,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\FATDirHandle.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\FATDirHandle.cpp</PathWithFileName>
       <FilenameWithoutPath>FATDirHandle.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1435,7 +1435,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\FATFileHandle.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\FATFileHandle.cpp</PathWithFileName>
       <FilenameWithoutPath>FATFileHandle.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1448,7 +1448,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\FATFileSystem.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\FATFileSystem.cpp</PathWithFileName>
       <FilenameWithoutPath>FATFileSystem.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1461,7 +1461,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\ChaN\ccsbcs.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\ChaN\ccsbcs.cpp</PathWithFileName>
       <FilenameWithoutPath>ccsbcs.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1474,7 +1474,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\ChaN\diskio.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\ChaN\diskio.cpp</PathWithFileName>
       <FilenameWithoutPath>diskio.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1487,7 +1487,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\FATFileSystem\ChaN\ff.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\FATFileSystem\ChaN\ff.cpp</PathWithFileName>
       <FilenameWithoutPath>ff.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1500,7 +1500,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\EALib\gpdma.cpp</PathWithFileName>
+      <PathWithFileName>.\HAL\EALib\gpdma.cpp</PathWithFileName>
       <FilenameWithoutPath>gpdma.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -1513,7 +1513,7 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\UART_RTOS_Interrupt.cpp</PathWithFileName>
+      <PathWithFileName>.\app\Support\UART_RTOS_Interrupt.cpp</PathWithFileName>
       <FilenameWithoutPath>UART_RTOS_Interrupt.cpp</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

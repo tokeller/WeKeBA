@@ -95,8 +95,8 @@ ARM Macro Assembler    Page 2
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\bui
 ld\svc_table.d -o.\build\svc_table.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_v5\ARM
 \PACK\ARM\CMSIS\4.1.1\CMSIS\Include -IC:\Keil_v5\ARM\Inc\NXP\LPC407x_8x_177x_8x
- --predefine="__RTX SETA 1" --list=.\build\svc_table.lst mbed-rtos/rtx/TARGET_C
-ORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s
+ --predefine="__RTX SETA 1" --list=.\build\svc_table.lst HAL/mbed-rtos/rtx/TARG
+ET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s
 
 
 
@@ -107,28 +107,28 @@ SVC_Count 00000000
 
 Symbol: SVC_Count
    Definitions
-      At line 41 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 41 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
    Uses
-      At line 38 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 38 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
 Comment: SVC_Count used once
 SVC_End 00000004
 
 Symbol: SVC_End
    Definitions
-      At line 51 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 51 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
    Uses
-      At line 40 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 40 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
 Comment: SVC_End used once
 SVC_TABLE 00000000
 
 Symbol: SVC_TABLE
    Definitions
-      At line 36 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 36 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
    Uses
       None
 Comment: SVC_TABLE unused
@@ -136,13 +136,13 @@ SVC_Table 00000004
 
 Symbol: SVC_Table
    Definitions
-      At line 47 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 47 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
    Uses
-      At line 40 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
-      At line 46 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 40 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
+      At line 46 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
 
 4 symbols
 
@@ -155,11 +155,11 @@ SVC_Cnt 00000000
 
 Symbol: SVC_Cnt
    Definitions
-      At line 40 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 40 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
    Uses
-      At line 41 in file mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/
-SVC_Table.s
+      At line 41 in file HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_
+ARM/SVC_Table.s
 Comment: SVC_Cnt used once
 1 symbol
 336 symbols in table

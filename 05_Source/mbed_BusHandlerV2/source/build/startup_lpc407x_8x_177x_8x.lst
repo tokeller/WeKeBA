@@ -406,8 +406,8 @@ Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\bui
 ld\startup_lpc407x_8x_177x_8x.d -o.\build\startup_lpc407x_8x_177x_8x.o -IC:\Kei
 l_v5\ARM\RV31\INC -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include -IC:\Keil
 _v5\ARM\Inc\NXP\LPC407x_8x_177x_8x --predefine="__RTX SETA 1" --list=.\build\st
-artup_lpc407x_8x_177x_8x.lst mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
-OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+artup_lpc407x_8x_177x_8x.lst HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC40
+8X/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 
 
@@ -418,8 +418,8 @@ RESET 00000000
 
 Symbol: RESET
    Definitions
-      At line 31 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 31 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
       None
 Comment: RESET unused
@@ -427,11 +427,11 @@ __Vectors 00000000
 
 Symbol: __Vectors
    Definitions
-      At line 34 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 34 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 32 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 32 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 Comment: __Vectors used once
 2 symbols
 
@@ -444,8 +444,8 @@ Relocatable symbols
 
 Symbol: .ARM.__at_0x02FC
    Definitions
-      At line 97 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 97 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
       None
 Comment: .ARM.__at_0x02FC unused
@@ -453,8 +453,8 @@ CRP_Key 00000000
 
 Symbol: CRP_Key
    Definitions
-      At line 98 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 98 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
       None
 Comment: CRP_Key unused
@@ -469,8 +469,8 @@ Relocatable symbols
 
 Symbol: .text
    Definitions
-      At line 102 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 102 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
       None
 Comment: .text unused
@@ -478,49 +478,49 @@ ADC_IRQHandler 0000001A
 
 Symbol: ADC_IRQHandler
    Definitions
-      At line 228 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 228 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 75 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 186 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 75 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 186 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 BOD_IRQHandler 0000001A
 
 Symbol: BOD_IRQHandler
    Definitions
-      At line 229 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 229 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 76 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 187 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 76 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 187 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 BusFault_Handler 0000000E
 
 Symbol: BusFault_Handler
    Definitions
-      At line 135 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 135 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 39 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 136 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 39 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 136 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 CANActivity_IRQHandler 0000001A
 
 Symbol: CANActivity_IRQHandler
    Definitions
-      At line 240 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 240 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 87 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 198 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 87 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 198 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 CAN_IRQHandler 0000001A
 
@@ -532,44 +532,44 @@ Relocatable symbols
 
 Symbol: CAN_IRQHandler
    Definitions
-      At line 231 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 231 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 78 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 189 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 78 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 189 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 DMA_IRQHandler 0000001A
 
 Symbol: DMA_IRQHandler
    Definitions
-      At line 232 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 232 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 79 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 190 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 79 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 190 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 DebugMon_Handler 00000014
 
 Symbol: DebugMon_Handler
    Definitions
-      At line 149 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 149 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 47 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 150 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 47 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 150 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 Default_Handler 0000001A
 
 Symbol: Default_Handler
    Definitions
-      At line 162 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 162 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
       None
 Comment: Default_Handler unused
@@ -577,13 +577,13 @@ EEPROM_IRQHandler 0000001A
 
 Symbol: EEPROM_IRQHandler
    Definitions
-      At line 246 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 246 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 93 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 204 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 93 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 204 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 EINT0_IRQHandler 0000001A
 
@@ -595,61 +595,61 @@ Symbol: EINT0_IRQHandler
 ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 224 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 224 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 71 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 182 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 71 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 182 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 EINT1_IRQHandler 0000001A
 
 Symbol: EINT1_IRQHandler
    Definitions
-      At line 225 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 225 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 72 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 183 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 72 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 183 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 EINT2_IRQHandler 0000001A
 
 Symbol: EINT2_IRQHandler
    Definitions
-      At line 226 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 226 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 73 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 184 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 73 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 184 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 EINT3_IRQHandler 0000001A
 
 Symbol: EINT3_IRQHandler
    Definitions
-      At line 227 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 227 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 74 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 185 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 74 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 185 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 ENET_IRQHandler 0000001A
 
 Symbol: ENET_IRQHandler
    Definitions
-      At line 234 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 234 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 81 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 192 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 81 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 192 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 GPIO_IRQHandler 0000001A
 
@@ -661,61 +661,61 @@ ARM Macro Assembler    Page 4 Alphabetic symbol ordering
 Relocatable symbols
 
    Definitions
-      At line 244 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 244 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 91 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 202 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 91 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 202 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 HardFault_Handler 0000000A
 
 Symbol: HardFault_Handler
    Definitions
-      At line 125 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 125 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 37 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 126 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 37 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 126 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 I2C0_IRQHandler 0000001A
 
 Symbol: I2C0_IRQHandler
    Definitions
-      At line 216 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 216 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 63 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 174 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 63 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 174 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 I2C1_IRQHandler 0000001A
 
 Symbol: I2C1_IRQHandler
    Definitions
-      At line 217 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 217 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 64 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 175 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 64 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 175 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 I2C2_IRQHandler 0000001A
 
 Symbol: I2C2_IRQHandler
    Definitions
-      At line 218 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 218 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 65 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 176 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 65 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 176 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 I2S_IRQHandler 0000001A
 
@@ -727,61 +727,61 @@ Relocatable symbols
 
 Symbol: I2S_IRQHandler
    Definitions
-      At line 233 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 233 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 80 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 191 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 80 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 191 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 LCD_IRQHandler 0000001A
 
 Symbol: LCD_IRQHandler
    Definitions
-      At line 243 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 243 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 90 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 201 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 90 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 201 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 MCI_IRQHandler 0000001A
 
 Symbol: MCI_IRQHandler
    Definitions
-      At line 235 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 235 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 82 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 193 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 82 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 193 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 MCPWM_IRQHandler 0000001A
 
 Symbol: MCPWM_IRQHandler
    Definitions
-      At line 236 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 236 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 83 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 194 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 83 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 194 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 MemManage_Handler 0000000C
 
 Symbol: MemManage_Handler
    Definitions
-      At line 130 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 130 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 38 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 131 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 38 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 131 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 NMI_Handler 00000008
 
@@ -793,61 +793,61 @@ Relocatable symbols
 
 Symbol: NMI_Handler
    Definitions
-      At line 120 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 120 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 36 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 121 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 36 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 121 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 PLL0_IRQHandler 0000001A
 
 Symbol: PLL0_IRQHandler
    Definitions
-      At line 222 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 222 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 69 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 180 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 69 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 180 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 PLL1_IRQHandler 0000001A
 
 Symbol: PLL1_IRQHandler
    Definitions
-      At line 238 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 238 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 85 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 196 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 85 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 196 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 PWM0_IRQHandler 0000001A
 
 Symbol: PWM0_IRQHandler
    Definitions
-      At line 245 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 245 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 92 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 203 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 92 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 203 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 PWM1_IRQHandler 0000001A
 
 Symbol: PWM1_IRQHandler
    Definitions
-      At line 215 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 215 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 62 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 173 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 62 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 173 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 
 
@@ -859,61 +859,61 @@ PendSV_Handler 00000016
 
 Symbol: PendSV_Handler
    Definitions
-      At line 153 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 153 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 49 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 154 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 49 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 154 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 QEI_IRQHandler 0000001A
 
 Symbol: QEI_IRQHandler
    Definitions
-      At line 237 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 237 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 84 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 195 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 84 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 195 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 RTC_IRQHandler 0000001A
 
 Symbol: RTC_IRQHandler
    Definitions
-      At line 223 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 223 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 70 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 181 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 70 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 181 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 Reset_Handler 00000000
 
 Symbol: Reset_Handler
    Definitions
-      At line 107 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 107 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 35 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 108 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 35 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 108 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 SSP0_IRQHandler 0000001A
 
 Symbol: SSP0_IRQHandler
    Definitions
-      At line 220 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 220 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 67 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 178 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 67 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 178 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 
 
@@ -925,223 +925,223 @@ SSP1_IRQHandler 0000001A
 
 Symbol: SSP1_IRQHandler
    Definitions
-      At line 221 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 221 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 68 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 179 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 68 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 179 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 SSP2_IRQHandler 0000001A
 
 Symbol: SSP2_IRQHandler
    Definitions
-      At line 242 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 242 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 89 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 200 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 89 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 200 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 SVC_Handler 00000012
 
 Symbol: SVC_Handler
    Definitions
-      At line 144 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 144 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 46 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 145 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 46 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 145 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 SysTick_Handler 00000018
 
 Symbol: SysTick_Handler
    Definitions
-      At line 157 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 157 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 50 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 158 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 50 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 158 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 TIMER0_IRQHandler 0000001A
 
 Symbol: TIMER0_IRQHandler
    Definitions
-      At line 207 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 207 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 54 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 165 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
+      At line 54 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 165 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
 
 
 
 ARM Macro Assembler    Page 9 Alphabetic symbol ordering
 Relocatable symbols
 
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 TIMER1_IRQHandler 0000001A
 
 Symbol: TIMER1_IRQHandler
    Definitions
-      At line 208 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 208 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 55 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 166 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 55 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 166 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 TIMER2_IRQHandler 0000001A
 
 Symbol: TIMER2_IRQHandler
    Definitions
-      At line 209 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 209 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 56 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 167 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 56 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 167 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 TIMER3_IRQHandler 0000001A
 
 Symbol: TIMER3_IRQHandler
    Definitions
-      At line 210 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 210 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 57 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 168 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 57 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 168 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UART0_IRQHandler 0000001A
 
 Symbol: UART0_IRQHandler
    Definitions
-      At line 211 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 211 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 58 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 169 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 58 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 169 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UART1_IRQHandler 0000001A
 
 Symbol: UART1_IRQHandler
    Definitions
-      At line 212 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 212 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 59 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 59 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 
 
 ARM Macro Assembler    Page 10 Alphabetic symbol ordering
 Relocatable symbols
 
-      At line 170 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 170 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UART2_IRQHandler 0000001A
 
 Symbol: UART2_IRQHandler
    Definitions
-      At line 213 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 213 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 60 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 171 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 60 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 171 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UART3_IRQHandler 0000001A
 
 Symbol: UART3_IRQHandler
    Definitions
-      At line 214 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 214 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 61 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 172 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 61 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 172 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UART4_IRQHandler 0000001A
 
 Symbol: UART4_IRQHandler
    Definitions
-      At line 241 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 241 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 88 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 199 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 88 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 199 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 USBActivity_IRQHandler 0000001A
 
 Symbol: USBActivity_IRQHandler
    Definitions
-      At line 239 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 239 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 86 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 197 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 86 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 197 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 USB_IRQHandler 0000001A
 
 Symbol: USB_IRQHandler
    Definitions
-      At line 230 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 230 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 77 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
+      At line 77 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
 
 
 
 ARM Macro Assembler    Page 11 Alphabetic symbol ordering
 Relocatable symbols
 
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 188 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 188 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 UsageFault_Handler 00000010
 
 Symbol: UsageFault_Handler
    Definitions
-      At line 140 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 140 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 40 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 141 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 40 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 141 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 WDT_IRQHandler 0000001A
 
 Symbol: WDT_IRQHandler
    Definitions
-      At line 206 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 206 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 53 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
-      At line 164 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 53 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 164 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 
 52 symbols
 
@@ -1154,11 +1154,11 @@ __initial_sp 10010000
 
 Symbol: __initial_sp
    Definitions
-      At line 24 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 24 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 34 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLC
-HAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 34 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/T
+OOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 Comment: __initial_sp used once
 1 symbol
 
@@ -1171,21 +1171,21 @@ SystemInit 00000000
 
 Symbol: SystemInit
    Definitions
-      At line 109 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 109 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 111 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 111 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 Comment: SystemInit used once
 __main 00000000
 
 Symbol: __main
    Definitions
-      At line 110 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 110 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
    Uses
-      At line 113 in file mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOL
-CHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
+      At line 113 in file HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/
+TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s
 Comment: __main used once
 2 symbols
 395 symbols in table
