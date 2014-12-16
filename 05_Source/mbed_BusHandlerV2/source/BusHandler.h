@@ -93,10 +93,10 @@ typedef struct {
 
 typedef struct {
 	uint16_t threshold;			// 10 bit threshold
-	uint16_t baseline; 			// 10 bit zero level
+	uint16_t started;  			// 10 bit flags, [0] indicating if started. rest reserved bits
 	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
 	uint16_t timeoutRange;	// 16 bit timeout range
-	uint8_t  started;  			// 1 bit flag, indicating if started
+	uint16_t baseline; 			// 16 bit zero level
 } SensorConfigMsg_t;
 
 typedef struct{

@@ -225,14 +225,14 @@ void cmd_enter_sensor_params(void)
 	
 	printf(" 2) set threshold value ");
 	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
-		printf("(current: %d5.0)", 
+		printf("(current: %5.0d)", 
 			sensor[menu_fsm_current_sensor].threshold);
 	}
 	printf("\n");
 	
 	printf(" 3) set baseline value ");
 	if(menu_fsm_current_sensor !=99){ // retrieve current value unless all sensors selected
-		printf("(current: %d5.0)", 
+		printf("(current: %5.0d)", 
 			sensor[menu_fsm_current_sensor].baseline);
 	}
 	printf("\n");
@@ -918,7 +918,13 @@ void cmd_store_config_file(void)
  */
 void cmd_read_config_file(void)
 {
-	// TODO read configuration from file
+	FILE *fp = NULL;
+	
+	// open config file (overwrite)
+	fp = fopen("/mci/config.txt", "r");
+	if(fp != NULL){
+		sensor_config_read_file(fp, sensor);
+	}
 	// TODO set all sensors according config file
 	// for every entry in config file, look for the corresponding sensor in array 'foundsensors'
 	

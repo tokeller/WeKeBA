@@ -96,6 +96,14 @@ void sensor_config_default(SensorConfig *sc, uint8_t id);
 uint8_t sensor_config_to_str(SensorConfig *sc, char *result);
 
  /**
+ * 
+ *   @param   FILE *input      : pointer to input file
+ *   @param   SensorConfig *sc : pointer to the sensorConfig for storing
+ *   @retval  uint8_t          : 0 when successful, 1 otherwise
+ */
+
+uint8_t sensor_config_read_file(FILE *input, SensorConfig *sc);
+ /**
  * Read one sensor config from config file.
  *   @param   FILE *input      : pointer to input file
  *   @param   SensorConfig *sc : pointer to the sensorConfig for storing
@@ -125,5 +133,14 @@ uint8_t sensor_config_to_file(FILE *fp, SensorConfig *sc);
  *   @retval  none
  */
 void init_logger_config(LoggerConfig logger);
+
+/**
+ * register found sensor.
+ *   @param   uint64_t serial  : serial number of registered sensor
+ *   @param   SensorConfig *sc : pointer to the sensorConfig Array
+ *   @retval  uint8_t			     : CAN-ID for registered sensor
+ */ 
+uint8_t register_sensor(uint32_t serialID, SensorConfig *sc);
+
 
 #endif

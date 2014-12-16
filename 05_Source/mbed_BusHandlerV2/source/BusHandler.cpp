@@ -211,22 +211,24 @@ void enableSensorFilter(uint8_t canId){
 void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
 	uint64_t data = settings.threshold;
 	data = data<<10;
-	data |= settings.baseline;
+	data |= settings.started;
 	data = data<<12;
 	data |= settings.fs;
 	data = data<<16;
 	data |= settings.timeoutRange;
-	data = data<<8;
-	data |= settings.started;
-	char part[7];	
-	part[0] = (data >> 48) & 0xff;
-	part[1] = (data >> 40) & 0xff;
-	part[2] = (data >> 32) & 0xff;
-	part[3] = (data >> 24) & 0xff;
-	part[4] = (data >> 16) & 0xff;
-	part[5] = (data >> 8)  & 0xff;
-	part[6] =  data 			 & 0xff;
-	enqueueMessage(7,part,receiver & 0xff,0x01,SENSOR_CONFIG_SINGLE);
+	data = data<<16;
+	data |= settings.baseline;
+	printf("\n\nbaseline:%x\n",settings.baseline);
+	char part[8];	
+	part[0] = (data >> 56) & 0xff;
+	part[1] = (data >> 48) & 0xff;
+	part[2] = (data >> 40) & 0xff;
+	part[3] = (data >> 32) & 0xff;
+	part[4] = (data >> 24) & 0xff;
+	part[5] = (data >> 16) & 0xff;
+	part[6] = (data >> 8)  & 0xff;
+	part[7] =  data 			 & 0xff;
+	enqueueMessage(8,part,receiver & 0xff,0x01,SENSOR_CONFIG_SINGLE);
 }
 
 int setTokenStatus(char status, char counter){

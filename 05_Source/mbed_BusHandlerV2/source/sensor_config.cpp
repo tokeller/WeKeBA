@@ -83,16 +83,20 @@ uint8_t sensor_config_read_file(FILE *input, SensorConfig *sc)
 	SensorConfig temp_config;
 	
 	
-	result = fscanf(input, "{%hhu\n", &entries);
+	result = fscanf(input, "{%hhu%[^\n]\n", &entries);
+	printf("entries in file: %d, result: %d\n",entries, result);
 	// read the number of config entries
-	if(result == 1 && entries > 0 && entries <= MAX_SENSORS){
+	if(result == 2 && entries > 0 && entries <= MAX_SENSORS){
+		printf("read configs\n");
 		// read the configs and store them in the sensor config array
 		for(i = 0; i < entries; i++){
 			result = sensor_config_from_file(input, &temp_config);
 			if(result == 0){
-				sc[temp_config.sensor_ID] = temp_config;
+				printf("read sensor\n");
+				//sc[temp_config.sensor_ID] = temp_config;
 				// copy from temp into sensor array at id-2 because sensor[0] has id 2
-				memcpy((void*)(& sc[temp_config.sensor_ID - 2]), &temp_config, sizeof(SensorConfig));
+				//memcpy((void*)(& sc[temp_config.sensor_ID - 2]), &temp_config, sizeof(SensorConfig));
+				memcpy(&sc[temp_config.sensor_ID - 2], &temp_config, sizeof(SensorConfig));
 			}
 			
 		}
@@ -116,15 +120,20 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 	uint8_t success = 1;
 	uint8_t started = 2;
 	
-  result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
-			&(sc->sensor_ID), &(sc->serialID), &(sc->fs), 
-			&(sc->threshold), &(sc->baseline), &(sc->timeout), 
+  //result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
+	char string[60];
+	if(fgets(string,60,input) != NULL){
+		printf("read OK\n");
+	};
+	result = sscanf(string, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},%[^\n]\n", 
+			&sensor_ID, &serialID, &fs, 
+			&threshold, &baseline, &timeout, 
 			&detail_level, &started);
   // prüfen...
   if (result == EOF){
 		//war das file zu früh fertig => failed, Fehlermeldung raus und defaults einlesen
 	}
-  if (result == 8){
+  if (result == 9){
     //validiere die Werte, speichere sie im sensors array
 		if(sensor_ID < MAX_SENSORS){
 			sc->sensor_ID = sensor_ID;
@@ -139,22 +148,26 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 		}
 		if(threshold < 2047 && (threshold + baseline) < 4096 && baseline - threshold > 0){
 			sc->threshold = threshold;
+			printf("threshold %d\n",threshold);
 		} else {
 			success = 0;
 		}
 		if(baseline < 4096){
 			sc->baseline = baseline;
+			printf("baseline %d\n",baseline);
 		} else {
 			success = 0;
 		}
 		// timeout can be max 256. reason: only 8 bit for distance between peaks in can message
 		if(timeout < 256){
 			sc->timeout = timeout;
+			printf("timeout %d\n",timeout);
 		} else {
 			success = 0;
 		}
 		if(detail_level < 5){
 			sc->detail_level = (detail_mode_t)detail_level;
+			printf("detail_level %d\n",detail_level);
 		} else{
 			success = 0;
 		}
@@ -168,9 +181,9 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 		sc->filename[0] = 0;
 		sc->pf_sensor_data = NULL;
 	} 
-	if (success == 0 || result != 8){
+	if (success == 0 || result != 9){
 		
-		printf("error reading config file");
+		printf("error reading config file, success %d, result %d \n",success,result);
 		return 1;
 	}
 	// all went fine
@@ -214,4 +227,20 @@ void init_logger_config(LoggerConfig logger)
 	logger.started = 0;
 	logger.nr_of_registered_sensors = 0;
 	logger.seconds_at_timestamp_reset = 0;
+}
+
+/*
+ * See header file
+ */
+uint8_t register_sensor(uint32_t serialID, SensorConfig *sc){
+	for(int i = 0; i < MAX_SENSORS; i++){
+		printf("file: %x\n",sc->serialID);
+		printf("sensor: %x\n",serialID);
+		if (sc->serialID == serialID){
+			sc->is_registered = 1;
+			return sc->sensor_ID;
+		}
+		sc++;
+	}
+	return 0;
 }
