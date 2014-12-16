@@ -140,7 +140,6 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 \label{table.stecker}
 \end{table}  
 
-\todo{resave pdf polstecker/polbuchse as v1.5}
 \begin{figure}
 \centering
 \begin{minipage}{0.5\textwidth}
@@ -186,7 +185,7 @@ Ein Beispiel eines Ereignisses ist in Abbildung \ref{fig.impactraw} gegeben. Es 
 	\label{fig.impactraw}
 \end{figure}
 
-\subsection{Detail-Level}
+\subsection{Detail-Level}\label{ssec.detaillevel}
 Die Messstation kann Daten mit unterschiedlichen Detailgraden speichern. Jede \gls{sensoreinh} kann individuell auf einen Detail-Level konfiguriert werden.
 
 \begin{itemize}
@@ -320,7 +319,7 @@ Das Basis-Menü (siehe Listing \ref{list.basemenu}) listet alle Überwachungs- u
 \paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oderr aus einer Datei eingelesen, siehe Abschnitt \ref{sssec.configfile}.
 
 \subsection{Befehle}\label{ssec.befehle}
-
+\todo{dateiliste einfügen.}
 \subsubsection{Dateiliste}\label{sssec.listfiles}
 \begin{lstlisting}[caption=, label=list.]
 HIER LISTE DER FILES EINFueGEN
@@ -390,7 +389,8 @@ Mit dem Befehl 'logger status' können einige Information über den \gls{logger}
 
 \todo{logger status listing}
 \begin{lstlisting}[caption=Untermenü Logger-Status, label=list.loggerstatus]
-
+Time: Sat Dec 6 18:00:00 2014
+Started?: 1
 \end{lstlisting}
 
 
@@ -416,9 +416,14 @@ Wenn die Aufzeichnung am Logger gestoppt wird, wird an alle \glspl{sensoreinh} d
 \subsubsection{Sensor-Parameter}\label{sssec.sensorparam}
 Die Parameter der Datenerfassung und Ereigniserkennung können für alle \glspl{sensoreinh} gemeinsam oder für jede \gls{sensoreinh} individuell eingestellt werden. Die Auswahl einer einzelnen oder aller \glspl{sensoreinh} erfolgt beim Einstieg in das Untermenü der Sensor-Parameter. Listing \ref{list.sensorsel} zeigt die Auswahl der Sensoren. Die Auswahlliste enthält gleich die aktuellen Werte der Parameter, damit man eine Übersicht hat.
 
-\todo{sensorauswahl listet die sensoren auf, das noch einfügen}
 
 \begin{lstlisting}[caption=Untermenü Sensor-Auswahl, label=list.sensorsel]
+ Nr  SID  serial       fs threshold baseline timeout   detail
+ 1)    2  461bfdf6  10000       200     2047      30      raw
+ 2)    3  361509a5  10000       150     2000      20    peaks
+ ...
+ 7)    8  1562a010  20000       400     2047      15 detailed
+ 
  #) Select a sensor from the list.
 99) Select all sensors.
  0) cancel
@@ -553,10 +558,13 @@ Could not create or open file. Please check SD card for free space.
 \subsubsection{Sensor-Status}\label{sssec.sensorstate}
 Um die Einstellungen alles Sensoren auf einen Blick zu überprüfen, kann mit dem Befehl 'sensor states' die Liste aller Einstellungen aufgerufen werden, Listing \ref{list.sensorstatus}. In der Liste sind eine interne Nummer, die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} sowie alle Einstellungen aufgeführt.
 
-\todo{Liste von Sensor-Stati ins Listing einfügen}
+\todo{TW: Liste von Sensor-Stati ins Listing einfügen}
 \begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
 Listing sensor config:
-HIER EINFueGEN
+ Nr  SID  serial       fs threshold baseline timeout     detail
+ 1)    2  461bfdf6  10000       200     2047      30        raw
+ 2)    3  361509a5  10000       150     2000      20 peaks only
+ 
  0) continue
 \end{lstlisting}
 
@@ -579,7 +587,7 @@ Anhand der internen Uhr werden die Timestamps vom \gls{logger} in einen realen Z
  2) adjust time
  0) exit
 
- current time: HIER EINFueGEN
+ current time: Sat Dec 6 18:00:00 2014
 \end{lstlisting}
 
 Das Einstellung des Datums erfolgt mit Inkrementen resp. Dekrementen von 365, 30, 10 Tagen oder 1 Tag.
@@ -596,7 +604,7 @@ adjust internal date
  8) adjust date -  1 day
  0) exit
 
- current time: HIER EINFueGEN
+ current time: Sat Dec 6 18:00:00 2014
 \end{lstlisting}
 
 Die Uhrzeit wird mittels Inkrementen resp. Dekrementen von 1 Stunde, 10 oder 1 Minute oder 1 Sekunde eingestellt. Die aktuelle Uhrzeit wird jeweils unterhalb des Menüs angezeigt.
@@ -613,7 +621,7 @@ adjust internal time
  8) adjust time -1 second
  0) exit
 
- current time: HIER EINFueGEN
+ current time: Sat Dec 6 18:00:00 2014
 \end{lstlisting}
 
 \subsubsection{Konfigurations-Datei}\label{sssec.configfile}
@@ -639,7 +647,7 @@ The configuration data will remain stored in the logger unless you turn off powe
 \subsection{Konfigurationsdatei}
 In der Konfigurationsdatei werden die Einstellungen der \glspl{sensoreinh} gespeichert. Die Datei kann auch auf einem \gls{compi} erstellt werden und über eine SD-Karte auf den \gls{logger} übertragen werden. Ein Beispiel einer Konfigurationsdatei zeigt Listing \ref{list.configfile}. Die erste Zeile enthält die Anzahl Datensätze. Jeder Datensatz enthält die Konfiguration einer \gls{sensoreinh}. Auf der zweiten und den folgenden Zeilen folgen die Datensätze. 
 
-Ein Datensatz enthält die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh}, die \gls{fs} (ohne die hintersten zwei Nullen), den \gls{threshold}, den \gls{nullpegel} und den \gls{timeout} sowie den Detail-Level und ob der Sensor Daten aufzeichnen soll (1) oder nicht (0).
+Ein Datensatz enthält die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} als Hexadezimalzahl, die \gls{fs} (ohne die hintersten zwei Nullen), den \gls{threshold}, den \gls{nullpegel} und den \gls{timeout} sowie den Detail-Level und ob der Sensor Daten aufzeichnen soll (1) oder nicht (0).
 
 Der \gls{logger} versucht nach dem Einschalten der Spannungsversorgung die Konfigurationsdatei von der SD-Karte zu lesen. Falls keine SD-Karte vorhanden ist, startet der \gls{logger} den Betrieb nicht, da keine Messdaten gespeichert werden können. Falls die SD-Karte vorhanden ist, aber keine Konfigurationsdatei 'config.txt' enthält, startet der Betrieb der Messstation im Standardmodus.
 
@@ -648,8 +656,8 @@ Der \gls{logger} versucht nach dem Einschalten der Spannungsversorgung die Konfi
 \begin{lstlisting}[caption=Beispiel einer Konfigurationsdatei, label=list.configfile]
 {3,
 {2, 461bfdf6, 100, 200, 2047, 30, 3, 1},
-{3, 461b7b39, 100, 150, 2040, 30, 2, 1},
-{4, 461b6dca, 100, 100, 2049, 30, 4, 1},
+{3, 15047b39, 100, 150, 2040, 30, 2, 1},
+{4, b78d6dca, 100, 100, 2049, 30, 4, 1},
 }
 \end{lstlisting}
 
