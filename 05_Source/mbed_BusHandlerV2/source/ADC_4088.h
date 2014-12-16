@@ -45,7 +45,13 @@ void stop_ADC_Conversion(void);
  *  @param obj
  */	
 int get_ADC_result(analogin_s *obj);
-	
+
+/** set new ADC interrupt frequency
+ *  
+ */
+
+void set_ADC_frequency(uint16_t interval);
+
 #ifdef __cplusplus
 }
 #endif

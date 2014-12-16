@@ -1,11 +1,11 @@
-#ifndef LPC4088_CAN_HANDLER
+#ifndef LPC4088_CAN_HANDLER 
 #define LPC4088_CAN_HANDLER
 
 #include "BusProtocol.h"
 
-#define SEN
+//#define SEN
 
-//#define LOG
+#define LOG
 
 
 
@@ -93,10 +93,10 @@ typedef struct {
 
 typedef struct {
 	uint16_t threshold;			// 10 bit threshold
-	uint16_t baseline; 			// 10 bit zero level
+	uint16_t started;  			// 10 bit flags, [0] indicating if started. rest reserved bits
 	uint16_t fs; 						// 12 bit sampling rate (100 Hz steps)
 	uint16_t timeoutRange;	// 16 bit timeout range
-	uint8_t  started;  			// 1 bit flag, indicating if started
+	uint16_t baseline; 			// 16 bit zero level
 } SensorConfigMsg_t;
 
 typedef struct{
@@ -122,6 +122,7 @@ typedef struct{
 } TokenAck_t;
 
 typedef struct{
+	uint8_t	 numberOfPkgs;	// 8 bit, number of packages (including the starter one)
 	uint32_t timestamp;			// 32 bit, timestamp of first package. one tick = 100us
 	uint8_t  value[4];			// 32 bit, first 4 values of raw data
 } ImpRawDataStart_t;
@@ -131,6 +132,7 @@ typedef struct{
 } ImpRawData_t;
 
 typedef struct{
+	uint8_t  numberOfPkgs;  // 8 bit, number of packages (1 for std, < 255 for extended)
 	uint32_t timestamp;			// 32 bit, timestamp of impact. one tick = 100us
 	uint8_t	 maxPeaks;			// 8 bit, value of highest peak
 	uint8_t  nrOfPeaks;			// 8 bit, number of peaks in impact

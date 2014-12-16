@@ -1,6 +1,5 @@
 #include "ProcessingLoops.h"
 
-
 #ifdef LOG
 Queue <CANmessage_t, 800> outQueue;
 MemoryPool<CANmessage_t, 800> mpoolOutQueue;
@@ -20,6 +19,7 @@ uint32_t data = 0;
 uint32_t old_data = 0;
 
 extern Serial pcSerial;
+extern SensorConfig sensor[MAX_SENSORS];
 
 volatile uint64_t timeStamp = 0;
 
@@ -118,15 +118,10 @@ void sensor_loop(void const *args){
 			if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 				// set the settings flag to 1
 				settingsReceived = 1;
-				/*
-				 * TODO set the settings
-				 *
-				 */
-				/*set_baseline(0x00);
-				set_threshold(0x00);
-				set_max_impact_length(0x00);
-				set_samples_until_timeout(0x00);
-				*/
+				
+				processSettings(message);
+				
+				
 				printf("settings data: ");
 				for (int i = 0; i< message->dataLength; i++){
 					printf("%x", message->payload[i]);
@@ -150,8 +145,6 @@ void sensor_loop(void const *args){
 				
 				timeSet = 1;
 				printf("\nTimestamp id  : %0x \n\r", message->msgId);
-				// after getting the timestamp, reovke the received token since the configuration is complete
-				setTokenStatus(0,0);
 			}
 			mpoolOutQueue.free(message);
 		}
@@ -206,7 +199,7 @@ void sensor_loop(void const *args){
 								break;
 							default:
 								if (message->msgId == (SETTINGS_MSG | (canId << 16))){
-									setTokenStatus(message->payload[6],0);
+									processSettings(message);
 								} else if (message->msgId == (TOKEN_MSG | (canId << 16))){
 									setTokenStatus(1,message->payload[0]);
 									pcSerial.printf("Token received, start sending %d msgs\n",message->payload[0]);
@@ -228,7 +221,7 @@ void sensor_loop(void const *args){
  *		- TODO: SD-Card prep
  *		- Initialize CAN bus
  *		- start the communication thread
- *		- TODO: get Config from SD card or wait for console input
+ *		- get Config from SD card or wait for console input
  *		- send serialID request broadcast
  *		- process received serial-IDs and send the corresponding CAN-Ids as broadcast
  *		- send the configs of all registered sensors
@@ -245,7 +238,7 @@ void logger_loop (void const *args){
 	start_CAN_Bus(LOGGER);
 	RtosTimer timeMs (time,osTimerPeriodic);
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
-	osDelay(1000);
+	osDelay(10000);
 	// send serial request broadcast
 	enqueueMessage(0,0,0xff,0x01,GET_SENSOR_SERIAL_BC);
 	char sensorCounter = 0;
@@ -257,8 +250,7 @@ void logger_loop (void const *args){
 		evt = outQueue.get(0);
 	}
 			
-	uint32_t sensor1 = 0x61bfdf6;
-	uint16_t canIdentifier = 2;
+	uint16_t nrOfRegSensors = 0;
 	// loop through all sensors or timeout
 	while (timeStamp < 50){
 		// received a response, check if it was a serial one
@@ -271,20 +263,21 @@ void logger_loop (void const *args){
 			}
 			printf("\nResponse id  : %0x \n\r", message->msgId);
 			printf("Response len : %d \n\r", message->dataLength);
-			if (message->msgId == SERIAL_MSG){
-				/*if ((message->payload[0] == ((sensor1 >> 24) & 0xff)) &&
-						(message->payload[1] == ((sensor1 >> 16) & 0xff)) &&
-						(message->payload[2] == ((sensor1 >> 8) & 0xff)) &&
-						(message->payload[3] == ((sensor1) & 0xff))){
-					*/
-					printf("sensor %d registered\n",canIdentifier);
+			if (message->msgId == SERIAL_MSG){		
+					
+					uint32_t serialID = message->payload[0];
+					serialID = serialID << 8;
+					serialID |= message->payload[1];
+					serialID = serialID << 8;
+					serialID |= message->payload[2];
+					serialID = serialID << 8;
+					serialID |= message->payload[3];
+				
+					uint8_t canIdentifier = 0;
+					canIdentifier = register_sensor(serialID, sensor);
 					char serial[5];
-					/*
-							* TODO: call register_sensor to get the CANIf	
-					 *
-					 */
 					serial[0] = canIdentifier;
-					canIdentifier++;
+					nrOfRegSensors++;
 					serial[1] = message->payload[0];
 					serial[2] = message->payload[1];
 					serial[3] = message->payload[2];
@@ -300,17 +293,18 @@ void logger_loop (void const *args){
 	}
 	timeMs.stop();
 	osDelay(1000);
-	for(int i = 2; i < canIdentifier;i++){
+	for(int i = 0; i < nrOfRegSensors;i++){
 	// loop sending the configs to all sensors
 		SensorConfigMsg_t cfg;
-		cfg.threshold = 1023;
-		cfg.baseline = 4095;
-		cfg.fs = 1023;
-		cfg.timeoutRange = 4095 * 2;
+		cfg.threshold = 200;
+		cfg.baseline = 2047;
+		cfg.fs = 100;
+		cfg.timeoutRange = 30;
 		cfg.started = 0;
-		sendSettings(i,cfg);
+		sendSettings(i+2,cfg);
 	//end: loop sending the configs to all sensors
 	}
+	osDelay(1000);
 	// send time sync BC
 	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
 	osDelay(1000);
@@ -323,7 +317,7 @@ void logger_loop (void const *args){
 	char nrOfMsg = 10;
 	char sensorId = 0x02;
 	enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
-	pcSerial.printf("nr of reg sensors: %d\n",canIdentifier - 2);
+	pcSerial.printf("nr of reg sensors: %d\n",nrOfRegSensors);
 	while (1){
 		// the logger will always have the send token, must be reset for each cycle
 		setTokenStatus(1,255);
@@ -342,12 +336,12 @@ void logger_loop (void const *args){
 		}
 		if (nrOfMsg <= 0){
 			nrOfMsg = 10;
-			if (sensorId < canIdentifier - 1){
+			if (sensorId < nrOfRegSensors + 2){
 				sensorId++;
 			} else {
 				sensorId = 0x02;
 			}
-			pcSerial.printf("give token to Sensor %d of %d\n",sensorId,canIdentifier);
+			pcSerial.printf("give token to Sensor %d of %d\n",sensorId,nrOfRegSensors);
 			enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
 		}
 	}	
@@ -356,15 +350,59 @@ void logger_loop (void const *args){
 // command line input reader
 void get_cmd_event_thread(void const *args)
 {
+	Setup_CHOSEN_UART(115200);
 	uint32_t event;
 	char input[20];
 	init_menu_fsm();
 	while(1){
 		pcSerial.printf(" >");
-		pcSerial.scanf("%s", input);
+		int i = 0;
+		while(1){
+			input[i] = UART_RTOS_getc();
+			if (input[i] == '\r'){
+				break;
+			}
+			i++;
+		}
+		input[i+1] = '\0';
 		event = atoi(input);
-		pcSerial.printf("%d\n", event);
+		input[0] = 0;
 		menu_fsm(event);
 		osDelay(100);
 	}
+}
+
+
+void processSettings(CANmessage_t *message){
+	// 200
+	uint16_t threshold = message->payload[0];
+	threshold = threshold << 2;
+	threshold |= message->payload[1] >> 6;
+	printf("Threshold %x\n",threshold);
+	set_threshold(threshold);
+	
+	// started and CTRL-Flags
+	setTokenStatus((message->payload[2]>>4)&0x01,0);
+	
+	
+	// 10000 Khz: (sampling rate (in 100 Hz steps) * 100) / 100 = micro sec
+	uint16_t fsampling = message->payload[2] & 0x0f;
+	fsampling = fsampling<<8;
+	fsampling |= message->payload[3];
+	printf("fsampling %x\n",fsampling);
+	set_ADC_frequency(fsampling);
+	
+	// 30
+	uint16_t timeout = message->payload[4];
+	timeout = timeout<<8;
+	timeout |= message->payload[5];
+	printf("timeout %x\n",timeout);
+	set_samples_until_timeout(timeout);
+	
+	// 2047
+	uint16_t baseline = message->payload[6] & 0x3f;
+	baseline = baseline << 8;
+	baseline |= message->payload[7] & 0xff;
+	printf("baseline %x\n",baseline);
+	set_baseline(baseline);	
 }

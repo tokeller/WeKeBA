@@ -9,7 +9,6 @@
 // Logger: 150576ea
 // Sensor: 61bfdf6
 
-
 //#define DEBUG_IMPACT
 MCIFileSystem mcifs("mci");
 
@@ -60,7 +59,7 @@ int main() {
 			printf("Card detected!\n");
 		}*/
 		pcSerial.printf("start\n");
-		//Thread threadConsole(get_cmd_event_thread,NULL,osPriorityNormal);
+		Thread threadConsole(get_cmd_event_thread,NULL,osPriorityNormal);
 		logger_loop(0);
 	#endif
 }

@@ -153,9 +153,7 @@ extern "C" {
 	 * threshold for the impact to be considered finished.
 	 * @param uint_16_t samples_until_timeout
 	 */
-	void set_samples_until_timeout(uint16_t samples);
-	
-	
+	void set_samples_until_timeout(uint16_t samples);	
 	
 	
 	

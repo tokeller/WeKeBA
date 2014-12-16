@@ -110,4 +110,5 @@
 .\build\main.o: .\EALib\FATFileSystem\ChaN\ff.h
 .\build\main.o: .\EALib\FATFileSystem\ChaN\integer.h
 .\build\main.o: .\EALib\FATFileSystem\ChaN\ffconf.h
+.\build\main.o: UART_RTOS_Interrupt.h
 .\build\main.o: file_ops.h

@@ -244,7 +244,7 @@
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
             <Im1Chk>1</Im1Chk>
-            <Im2Chk>0</Im2Chk>
+            <Im2Chk>1</Im2Chk>
             <OnChipMemories>
               <Ocm1>
                 <Type>0</Type>
@@ -362,9 +362,9 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls>--gnu --no_rtti </MiscControls>
-              <Define> TARGET_LPC4088,  TARGET_M4,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1416915036.73,  __MBED__=1,  __ASSERT_MSG, </Define>
+              <Define>TARGET_LPC4088,  TARGET_M4,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1416915036.73,  __MBED__=1,  __ASSERT_MSG,</Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  mbed-src;  mbed-src/targets;  mbed-src/targets/cmsis;  mbed-src/targets/cmsis/TARGET_NXP;  mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X;  mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD;  mbed-src/targets/hal;  mbed-src/targets/hal/TARGET_NXP;  mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X;  mbed-src/common;  mbed-src/api;  mbed-src/hal;  mbed-rtos;  mbed-rtos/rtx;  mbed-rtos/rtx/TARGET_CORTEX_M;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM;  mbed-rtos/rtos</IncludePath>
+              <IncludePath>.;.\EALib;.\EALib\FATFileSystem;.\EALib\FATFileSystem\ChaN;mbed-src;mbed-src/targets;mbed-src/targets/cmsis;mbed-src/targets/cmsis/TARGET_NXP;mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X;mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD;mbed-src/targets/hal;mbed-src/targets/hal/TARGET_NXP;mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X;mbed-src/common;mbed-src/api;mbed-src/hal;mbed-rtos;mbed-rtos/rtx;mbed-rtos/rtx/TARGET_CORTEX_M;mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4;mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM;mbed-rtos/rtos</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -400,7 +400,7 @@
             <Misc>
             
                 --any_placement=first_fit
-            </Misc>
+</Misc>
             <LinkerInputFile></LinkerInputFile>
             <DisabledWarnings></DisabledWarnings>
           </LDads>
@@ -2640,6 +2640,81 @@
               <FileName>impact_fsm.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\impact_fsm.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>sdram.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\sdram.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ProcessingLoops.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\ProcessingLoops.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cmd.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\cmd.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>cmd_action.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\cmd_action.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>file_ops.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\file_ops.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>sensor_config.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\sensor_config.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>MCIFileSystem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\MCIFileSystem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATDirHandle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATDirHandle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATFileHandle.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATFileHandle.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FATFileSystem.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\FATFileSystem.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ccsbcs.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\ccsbcs.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\diskio.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>ff.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\FATFileSystem\ChaN\ff.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>gpdma.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\EALib\gpdma.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>UART_RTOS_Interrupt.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UART_RTOS_Interrupt.cpp</FilePath>
             </File>
           </Files>
         </Group>

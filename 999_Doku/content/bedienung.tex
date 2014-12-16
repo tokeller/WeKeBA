@@ -124,7 +124,7 @@ Damit die Bus-Signale an den Enden der Leitung nicht reflektiert werden und die 
 \end{figure}
 
 \subsection{Steckverbinder}
-Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss Tabelle \ref{table.stecker} bestückt, die Polnummerierung in Stecker und Buchse sind in den Abbildungen \ref{fig.polbuchse} und \ref{pol.stecker} dargestellt.
+Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss Tabelle \ref{table.stecker} bestückt, die Polnummerierung in Stecker und Buchse sind in den Abbildungen \ref{fig.polbuchse} und \ref{fig.polstecker} dargestellt.
 
 \begin{table}
 \begin{tabular}{|l|l|l|l|}
@@ -140,6 +140,7 @@ Die Steckverbinder sind fünfpolig und wasserdicht (IP68). Die Pole sind gemäss
 \label{table.stecker}
 \end{table}  
 
+\todo{resave pdf polstecker/polbuchse as v1.5}
 \begin{figure}
 \centering
 \begin{minipage}{0.5\textwidth}
@@ -205,7 +206,7 @@ Im Modus 'raw' werden Rohdaten ohne Ereigniserkennung übertragen und gespeicher
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/rawshort.png}
 	\caption{Detail-Level 'raw'.}
-	\label{fig.detailRaw}
+	\label{fig.detailraw}
 \end{figure}
 
 \paragraph{Datenaufkommen} Das Datenaufkommen ist in diesem Modus am grössten. Für jedes \gls{sample} wird ein 8-bit Wert abgespeichert. Bei einer \gls{fs} von 10000~Hz fallen also 10000~Byte Daten pro Sensor und Sekunde an.
@@ -320,7 +321,7 @@ Das Basis-Menü (siehe Listing \ref{list.basemenu}) listet alle Überwachungs- u
 
 \subsection{Befehle}\label{ssec.befehle}
 
-\subsubsection{Dateiliste}\label{ssec.listfiles}
+\subsubsection{Dateiliste}\label{sssec.listfiles}
 \begin{lstlisting}[caption=, label=list.]
 HIER LISTE DER FILES EINFueGEN
  0) exit
@@ -355,7 +356,7 @@ Returning to base menu.
 
 
 \subsubsection{SD-Karte anmelden}\label{sssec.sdmount}
-Damit Dateien auf die SD-Karte geschrieben werden können, muss sie vorher erkannt werden. Normalerweise geschieht dies, sobald die Karte eingesetzt wird. Wenn keine SD-Karte erkannt wird, wird dies im Basismenü angezeigt wie im Listing \ref{list.sdmissing}. Durch den Aufruf des Befehls 'mount SD card' im Basismenü (Listing \ref{list.basemenu}) kann die eingesetzte SD-Karte angemeldet werden.
+Damit Dateien auf die SD-Karte geschrieben werden können, muss sie vorher erkannt werden. Normalerweise geschieht dies, sobald die Karte eingesetzt wird. Wenn keine SD-Karte erkannt wird, wird dies im Basismenü angezeigt wie im Listing \ref{list.sdmountfail}. Durch den Aufruf des Befehls 'mount SD card' im Basismenü (Listing \ref{list.basemenu}) kann die eingesetzte SD-Karte angemeldet werden.
 
 Nach erfolgreicher Anmeldung der SD-Karte wird das Basismenü angezeigt. 
 
@@ -394,7 +395,7 @@ Mit dem Befehl 'logger status' können einige Information über den \gls{logger}
 
 
 \subsubsection{Starten und stoppen der Aufzeichnung}\label{sssec.startstop}
-Um die Datenspeicherung im \gls{logger} zu unterbrechen oder wieder zu starten wird der Befehl 'start/stop logger' verwendet. Beim Aufruf des Befehls wird ein Untermenü gemäss Listing \ref{list.startstop} angezeigt.
+Um die Datenspeicherung im \gls{logger} zu unterbrechen oder wieder zu starten wird der Befehl 'start/stop logger' verwendet. Beim Aufruf des Befehls wird ein Untermenü gemäss Listing \ref{list.startstop1} oder Listing \ref{list.startstop2} angezeigt.
 
 \begin{lstlisting}[caption=Untermenü Stoppen der Aufzeichnung, label=list.startstop1]
  Logger is running.
@@ -615,7 +616,7 @@ adjust internal time
  current time: HIER EINFueGEN
 \end{lstlisting}
 
-\subsubsection{Konfigurations-Datei}
+\subsubsection{Konfigurations-Datei}\label{sssec.configfile}
 
 Über den Befehl 'config file' (Listing \ref{list.configfile}) kann die aktuelle Konfiguration der \glspl{sensoreinh} in die Konfigurationsdatei 'config.txt' abgespeichert werden, oder eine neue Konfiguration aus der Datei eingelesen und an die \glspl{sensoreinh} gesendet werden. Es ist nicht möglich, aus mehreren Konfigurationsdateien auszuwählen.
 \todo{mehrere konfig-files und file löschen könnte man in den Ausblick nehmen, als zu verbessernde punkte}

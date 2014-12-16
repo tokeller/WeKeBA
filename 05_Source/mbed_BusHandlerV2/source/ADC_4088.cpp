@@ -4,13 +4,21 @@ Ticker ticker;
 uint32_t clkdiv;
 uint32_t data_o;
 
+char resetTicker = 0;
+uint16_t newInterval = 0;
+
 static inline int div_round_up(int x, int y) {
   return (x + (y - 1)) / y;
 };
 
 void start_ADC_Conversion(){
-		// start conversion, when the ticker fires
-		LPC_ADC->CR |=(1 << 24);
+	// start conversion, when the ticker fires
+	LPC_ADC->CR |=(1 << 24);
+	if (resetTicker == 1){
+		resetTicker = 0;
+		ticker.detach();
+		ticker.attach_us(&start_ADC_Conversion, newInterval);
+	}
 
 }
 
@@ -77,5 +85,12 @@ int get_ADC_result(analogin_s *obj){
 	return (data_o >> 4) & 0xFFF; // 12 bit range
 	
 };
+
+void set_ADC_frequency(uint16_t interval){
+	/*ticker.detach();
+	ticker.attach_us(&start_ADC_Conversion, interval);*/
+	newInterval = interval;
+	resetTicker = 1;
+}
 
 

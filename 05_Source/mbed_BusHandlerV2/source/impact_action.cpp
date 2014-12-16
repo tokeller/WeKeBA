@@ -218,6 +218,7 @@ static Impact_t *impact = NULL;
 		pcSerial.printf("\n");
 		*/
 		ImpStd_t std;
+		std.numberOfPkgs = 1;
 		std.maxPeaks = impact->max_amplitude;
 		//printf("amplitude %x\n",impact->max_amplitude);
 		std.timestamp = impact->starttime;

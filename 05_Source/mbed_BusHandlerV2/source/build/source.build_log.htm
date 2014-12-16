@@ -4,64 +4,67 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 D:\ZHAW\BA\WeKeBA\05_Source\mbed_BusHandlerV2\source\source.uvproj
-Project File Date:  12/13/2014
+Project File Date:  12/16/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
-compiling main.cpp...
-ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
-  #endif
-main.cpp: 1 warning, 0 errors
+compiling sensor_config.cpp...
+sensor_config.cpp(105): warning:  #940-D: missing return statement at end of non-void function "sensor_config_read_file"
+  }
+sensor_config.cpp(131): warning:  #224-D: the format string requires additional arguments
+                        &detail_level, &started);
+sensor_config.cpp(227): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp(250): warning:  #1-D: last line of file ends without a newline
+  }
+sensor_config.cpp: 4 warnings, 0 errors
+linking...
+mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
+Program Size: Code=82600 RO-data=5416 RW-data=764 ZI-data=42560  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
+".\build\source.axf" - 0 Error(s), 5 Warning(s).
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+</pre>
+</body>
+</html>
+ning(s).
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+_action.cpp(183): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+cmd_action.cpp: 2 warnings, 0 errors
+compiling sensor_config.cpp...
+sensor_config.cpp(101): warning:  #940-D: missing return statement at end of non-void function "sensor_config_read_file"
+  }
+sensor_config.cpp(210): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+sensor_config.cpp(233): warning:  #1-D: last line of file ends without a newline
+  }
+sensor_config.cpp: 3 warnings, 0 errors
+linking...
+mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
+Program Size: Code=82184 RO-data=5416 RW-data=764 ZI-data=42560  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
+".\build\source.axf" - 0 Error(s), 14 Warning(s).
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+(s).
+pp: 2 warnings, 0 errors
 compiling BusHandler.cpp...
 BusHandler.cpp(108): warning:  #550-D: variable "stat" was set but never used
         osStatus stat;
-BusHandler.cpp(246): warning:  #1-D: last line of file ends without a newline
+BusHandler.cpp(237): warning:  #1-D: last line of file ends without a newline
   }
-BusHandler.cpp(246): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
-  }
-BusHandler.cpp: 3 warnings, 0 errors
-compiling impact_action.cpp...
-impact_action.cpp(204): warning:  #177-D: variable "i" was declared but never referenced
-                uint16_t i;
-impact_action.cpp: 1 warning, 0 errors
-compiling ProcessingLoops.cpp...
-ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
-  #endif
-ProcessingLoops.cpp(244): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
-        char allSensorsReceived = 0;
-ProcessingLoops.cpp(251): warning:  #177-D: variable "sensorCounter" was declared but never referenced
-        char sensorCounter = 0;
-ProcessingLoops.cpp(260): warning:  #177-D: variable "sensor1" was declared but never referenced
-        uint32_t sensor1 = 0x61bfdf6;
-ProcessingLoops.cpp(370): warning:  #1-D: last line of file ends without a newline
-  }
-ProcessingLoops.cpp: 5 warnings, 0 errors
-compiling cmd_action.cpp...
-cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
-  void cmd_close_sensor_file(uint8_t sensor_index);
-cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
-        uint8_t success = 1;
-cmd_action.cpp: 2 warnings, 0 errors
-linking...
-mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=81408 RO-data=5412 RW-data=760 ZI-data=42428  
-Finished: 0 information, 1 warning and 0 error messages.
-After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 13 Warning(s).
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
-usHandler.cpp...
-BusHandler.cpp(107): warning:  #550-D: variable "stat" was set but never used
-        osStatus stat;
-BusHandler.cpp(244): warning:  #1-D: last line of file ends without a newline
-  }
-BusHandler.cpp(244): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
+BusHandler.cpp(237): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
   }
 BusHandler.cpp: 3 warnings, 0 errors
 compiling SerialID.cpp...
@@ -74,16 +77,16 @@ compiling impact_event.cpp...
 compiling impact_fsm.cpp...
 compiling sdram.cpp...
 compiling ProcessingLoops.cpp...
-ProcessingLoops.h(21): warning:  #1-D: last line of file ends without a newline
+ProcessingLoops.h(20): warning:  #1-D: last line of file ends without a newline
   #endif
-ProcessingLoops.cpp(353): warning:  #1-D: last line of file ends without a newline
-  }
-ProcessingLoops.cpp(244): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
+ProcessingLoops.cpp(265): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
         char allSensorsReceived = 0;
-ProcessingLoops.cpp(251): warning:  #177-D: variable "sensorCounter" was declared but never referenced
+ProcessingLoops.cpp(272): warning:  #177-D: variable "sensorCounter" was declared but never referenced
         char sensorCounter = 0;
-ProcessingLoops.cpp(260): warning:  #177-D: variable "sensor1" was declared but never referenced
+ProcessingLoops.cpp(281): warning:  #177-D: variable "sensor1" was declared but never referenced
         uint32_t sensor1 = 0x61bfdf6;
+ProcessingLoops.cpp(401): warning:  #1-D: last line of file ends without a newline
+  }
 ProcessingLoops.cpp: 5 warnings, 0 errors
 compiling cmd.cpp...
 cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
@@ -106,15 +109,29 @@ sensor_config.cpp(101): warning:  #940-D: missing return statement at end of non
 sensor_config.cpp(210): warning:  #550-D: parameter "logger" was set but never used
   void init_logger_config(LoggerConfig logger)
 sensor_config.cpp: 2 warnings, 0 errors
+compiling MCIFileSystem.cpp...
+compiling FATDirHandle.cpp...
+compiling FATFileHandle.cpp...
+compiling FATFileSystem.cpp...
+compiling ccsbcs.cpp...
+compiling diskio.cpp...
+compiling ff.cpp...
+EALib\FATFileSystem\ChaN\ff.cpp(1689): warning:  #111-D: statement is unreachable
+              w = (w << 8) + b;           /* Create a DBC */
+EALib\FATFileSystem\ChaN\ff.cpp: 1 warning, 0 errors
+compiling gpdma.cpp...
+compiling UART_RTOS_Interrupt.cpp...
 linking...
-.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::MCIFileSystem(const char*, PinName) (referred from main.o).
-.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::~MCIFileSystem() (referred from main.o).
-.\build\source.axf: Error: L6218E: Undefined symbol cmd_reset_timestamp() (referred from cmd.o).
-.\build\source.axf: Error: L6218E: Undefined symbol sensor_config_to_file(std::__FILE*, sensor_config*) (referred from cmd_action.o).
-.\build\source.axf: Error: L6218E: Undefined symbol FATFileSystem::format() (referred from cmd_action.o).
-.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::disk_initialize() (referred from cmd_action.o).
-.\build\source.axf: Error: L6218E: Undefined symbol MCIFileSystem::cardInserted() const (referred from cmd_action.o).
-Not enough information to list image symbols.
-Finished: 1 information, 0 warning and 7 error messages.
-".\build\source.axf" - 7 Error(s), 19 Warning(s).
-Target not created
+mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
+Program Size: Code=82032 RO-data=5416 RW-data=764 ZI-data=42560  
+Finished: 0 information, 1 warning and 0 error messages.
+After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
+".\build\source.axf" - 0 Error(s), 21 Warning(s).
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
+Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
+Erase Done.
+Programming Done.
+Verify OK.
