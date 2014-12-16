@@ -19,7 +19,7 @@
 
 \thispagestyle{empty}
 \chapter{Funktionale Anforderungen}\label{chap.funktionale}
-\section{\gls{logger} (F1\ldots)}
+\section{Datenlogger (F1\ldots)}
 
 
 \subsection{F110 Busmaster}
@@ -34,7 +34,7 @@ Die angeschlossenen \glspl{sensor} werden vom \gls{logger} erkannt und mit einer
 Der \gls{logger} verfügt über eine interne Uhr, um die \glspl{ereignis} in den Dateien mit einem lesbaren Zeitstempel zu versehen.
 
 
-\subsection{F140 \gls{timestamp} verteilen}
+\subsection{F140 Timestamp verteilen}
 Der \gls{logger} sendet ein Signal an alle \glspl{sensoreinh}, dass der Zeitstempel (\gls{timestamp}) neu gestellt werden soll. Ab dann beziehen sich die \gls{timestamp}s auf die Dauer seit dem jetzigen Zeitpunkt.
 
 
@@ -60,7 +60,7 @@ Der \gls{logger} fragt in regelmässigen Abständen bei den \glspl{sensoreinh} a
 Die Daten werden vom \gls{logger} auf einer Speicherkarte in Dateien abgelegt. Nach entsprechenden Befehlen vom Steuerrechner kann die Karte entfernt und ausgetauscht werden, um die Daten abzuholen.
 
 
-\section{\gls{sensoreinh} (F4\ldots)}
+\section{Sensoreinheit (F4\ldots)}
 
 
 \subsection{F410 Ereignisdetektion}

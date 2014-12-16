@@ -41,10 +41,15 @@
 
 
 \subsection{Messdatenerfassung}\label{subsec.sw_messen}
-Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit A/D-Wandler, der über einen Multiplexer auf acht \glspl{pin} messen kann. Auf dem verwendeten Quickstart-Board stehen sechs \glspl{pin} für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Pin, da der Beschleunigungs-\gls{sensor} die Beschleunigung nur auf einer Achse misst. Der \gls{adwandler} des NXP LPC4088 wird mit einer \gls{fs} von 10~kHz betrieben. Falls höhere \glspl{fs} nötig sind, kann der \gls{adwandler} theoretisch mit bis zu 400~kHz betrieben werden.
+Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit \gls{adwandler}, der über einen Multiplexer auf acht \glspl{pin} messen kann. Auf dem verwendeten Quickstart-Board stehen sechs \glspl{pin} für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Pin, da der Beschleunigungs-\gls{sensor} die Beschleunigung nur auf einer Achse misst. Der \gls{adwandler} des NXP LPC4088 wird mit einer \gls{fs} von 10~kHz betrieben. Falls höhere \glspl{fs} nötig sind, kann der \gls{adwandler} theoretisch mit bis zu 400~kHz betrieben werden.
 
-\todo{Prioritäten des Prozesse Messung, Erkennung, Übermittlung erklären, und wie wir das gelöst haben.}
+\paragraph{Abtastrate} Um die \gls{fs} genau einzuhalten wird ein Timer des \emph{NXP LPC4088} \gls{mc}s eingesetzt, der die Messung des \gls{adwandler}s anstösst. Die A/D-Wandlung nimmt immer genau 31 Taktzyklen in Anspruch. Nach abgeschlossener Messung schreibt der \gls{adwandler} den Messwert in ein eigenes Register und setzt einen \gls{irq}. Der \gls{irq} signalisiert dem \gls{mc}, dass ein Messwert zur Abholung bereit liegt. Damit der Messwert so rasch wie möglich, auf jeden Fall aber vor Ablauf der nächsten Messperiode, für die weitere Verarbeitung abgeholt werden kann, hat der \gls{irq} die höchst mögliche Priorität. Der Interrupt des \gls{adwandler}s unterbricht also jeden laufenden Prozess.
 
+\paragraph{ISR} Der \gls{mc} ruft die \gls{isr} auf, um den \gls{irq} abzuhandeln. Die \gls{isr} holt den Messwert aus dem Register und speichert ihn zusammen mit dem \gls{timestamp} in einer \gls{fifo} ab. Die \gls{isr} erhöht den \gls{timestamp} um eins für den nächsten Messwert und gibt dann die Kontrolle an den unterbrochenen Prozess zurück.
+
+\paragraph{Timestamp} Der Timestamp muss zwingend in der \gls{isr} erhöht werden, damit er immer sofort nach der Erfassung eines neuen Messwerts aktualisiert wird. Würde der Timestamp mittels einem zweiten Timer und einer zweiten \gls{isr} erhöht, bestünde die Gefahr einer ungeregelten Reihenfolge der Abarbeitung der \gls{irq}s. Einmal würde der \gls{timestamp} vor dem Kopieren der Messdaten erhöht, ein anderes mal erst danach.
+
+\paragraph{Datenauswertung} Die Datenauswertung wird in regelmässigen Abständen aufgerufen und arbeitet die \gls{fifo} mit den neuen Messwerten ab, um Ereignisse zu erkennen. Der Aufruf der \gls{ereignisdet} ist nicht so stark an einen genauen Takt gebunden wie die A/D-Wandlung, da die \gls{fifo} genügend gross ist, um mehrere hundert Messwerte zwischenzuspeichern.
 
 \subsection{Ereigniserkennung}\label{subsec.sw_ereignis}
 \subsubsection{Hilbert-Transformation}
@@ -101,7 +106,7 @@ Der Timer läuft nicht in Echtzeit, sondern zählt die Anzahl Messwerte seit sei
 \todo{Verschiedene Betriebsmodi mit Grafiken beschreiben}
 \todo{Berechnungen, in welchem Modus wie lange gemessen werden kann, und wie lange ein \gls{sensor} mit dem vorhandenen Speicher die Resultate zwischenspeichern kann. Allenfalls ein System erwähnen, das automatisch zwischen verschiedenen Modi hin- und herschalten kann. (Ist allerdings heikel). Wie viele \glspl{sensor} können in welchem Modus gleichzeitig am System betrieben werden, bei welcher Ereignisrate ist Schluss mit Busbandbreite.}
 
-\subsection{\gls{timestamp}}\label{subsec.sw_timestamp}
+\subsection{Timestamp}\label{subsec.sw_timestamp}
 \todo{Timestamp beschreiben, Rechnung über die Dauer der eindeutigen Zuweisung.}
 
 \subsection{Verwaltung der Messstation}\label{subsec.sw_busverwaltung}

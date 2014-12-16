@@ -45,7 +45,7 @@ Die \gls{sensoreinh} benötigt einen Beschleunigungssensor, um die Einschläge v
 	\label{fig.hwkonzept_sensor}
 \end{figure}
 
-\subsection{\gls{bussys}}
+\subsection{Bussystem}
 Das \gls{bussys} muss die Daten und Befehle zwischen \gls{logger} und \glspl{sensoreinh} übertragen. Die Reichweite des \gls{bussys}s muss genügen, um alle Komponenten der Messinstallation zu verbinden. Die Datenbandbreite muss die Übertragung der Messresultate aller \glspl{sensor} erlauben.
 
 
@@ -135,13 +135,12 @@ SDRAM & 32 MByte \\
 \hline
 \end{tabular}
 \caption{Zusätzliche Fähigkeiten des NXP LPC4088 QuickStart Boards von \emph{Embedded Artists}  \cite{nxplpc4088qsb}.}
-\label{table.lpc4088qsb}
+\label{table.nxplpc4088qsb}
 \end{center}
 \end{table}
 
 \subsection{Bus-System}
-Anhand folgender Kriterien wurde ein \gls{bussys} ausgewählt:
-
+Das \gls{bussys} für die Messanlage muss die folgenden Kriterien erfüllen:
 \begin{itemize}
 \item Übertragungsbandbreite genügend für fortlaufende Übertragung von Rohdaten einer \gls{sensoreinh}.
 \item Reichweite mindestens 20 Meter.
@@ -269,8 +268,14 @@ Die verschraubbare Öffnung für die SD-Karte besteht aus einer M36/M32-Gewindeb
 
 
 \section{Datenlogger}
+Die Hardware-Architektur des \gls{logger}s ist in Abbildung \ref{fig.hw_logger} schematisch dargestellt. Kernstück ist der \gls{mc} \emph{NXP LPC4088}. Der \gls{mc} ist über eine serielle Schnittstelle mit dem CAN-Transceiver verbunden. Der Transceiver sendet Konfigurations- und Kontrolldaten und empfängt Messdaten über den CAN-Bus.
 
-\todo{Datenlogger übersicht}
+Dem \gls{mc} steht sowohl interner Programm- und Datenspeicher zur Verfügung, dieser ist aber sehr beschränkt. Damit Konfigurations- und Messdaten zwischengespeichert werden können, steht dem \gls{mc} auf dem \emph{NXP LPC4088 QuickStartBoard} (gestrichelter Kasten) mehr Speicher zur Verfügung: 8~MByte \gls{flash} und 32~MByte \gls{sdram}. Dieser Speicher genügt, um Daten von mehreren \glspl{sensoreinh} zwischenzuspeichern.
+
+Über das \gls{mci} ist eine SD-Karte an den \gls{mc} angebunden. Auf der SD-Karte werden sowohl die Konfigurationsdaten als auch die Messdaten gespeichert. Heute sind SD-Karten mit bis zu 256~GByte Speicherplatz erhältlich (SDXC-Karten). Zur Zeit unterstützt die verwendete Bibliothek zur Verwendung der SD-Karten nur SDHC-Karten mit bis zu 32~GByte Speicherplatz. 
+
+Für die Kommunikation mit einem \gls{compi} verfügt der \gls{logger} über einen \gls{usb}-Anschluss. Über einen \gls{terminalemu} wie \emph{PuTTY} kann via serielle Schnittstelle auf ein Konfigurationsmenü zugegriffen werden, um die Messanlage zu überwachen und zu steuern.
+
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_logger.pdf}
@@ -281,8 +286,10 @@ Die verschraubbare Öffnung für die SD-Karte besteht aus einer M36/M32-Gewindeb
 
 
 \section{Sensoreinheit}
+Die \gls{sensoreinh} ist ähnlich aufgebaut wie der \gls{logger}. Das Schema in Abbildung \ref{fig.hw_sensor} zeigt die Hardware. Wie der \gls{logger} ist der \emph{NXP LPC4088} \gls{mc} mit zusätzlichem \gls{sdram} und \gls{flash} ausgerüstet. Der Anschluss an den CAN-Bus ist identisch. Die SD-Karte wird in der \gls{sensoreinh} nicht benötigt und wurde deshalb weggelassen. Auch eine USB-Schnittstelle für die Konfiguration ist nicht nötig, da die Konfiguration über den CAN-Bus erfolgt.
 
-\todo{Sensoreinheit übersicht}
+Der Beschleunigungs-\gls{sensor} wird vom \emph{QuickStart Board} mit Spannung versorgt und gibt die gemessene Beschleunigung als analoge Spannung aus. Diese Spannung wird vom \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} gemessen.
+
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/hardware_sensor.pdf}
