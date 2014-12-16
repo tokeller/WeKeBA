@@ -145,6 +145,17 @@
   Url                      = {http://www.ixxat.com/download/artikel_20105_can-vs-rs485_e.pdf, Stand: 8.12.2014}
 }
 
+@Standard{sdstd,
+  Title                    = {{SD Specifications, Physical Layer Simplified Specification, Version 4.10}},
+  Institution              = {SD Card Association},
+  Organization             = {SD Group},
+  Author                   = {o. V.},
+  Year                     = {o. J.},
+
+  Owner                    = {tobiaswelti},
+  Timestamp                = {2014.12.08}
+}
+
 @Misc{cfstd,
   Title                    = {{Wikipedia: CompactFlash}},
 
@@ -219,15 +230,5 @@
 
   Owner                    = {tobiaswelti},
   Timestamp                = {2014.12.06}
-}
-
-@Standard{sdstd,
-  Title                    = {{SD Specifications, Physical Layer Simplified Specification, Version 4.10}},
-  Institution              = {SD Card Association},
-  Organization             = {SD Group},
-  Year                     = {o. J.},
-
-  Owner                    = {tobiaswelti},
-  Timestamp                = {2014.12.08}
 }
 
