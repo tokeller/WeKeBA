@@ -33,9 +33,15 @@ Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit an
 
 
 \section{Aufbau der Messstation}\label{sec.manualoverview}
-Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh}.
+Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh} (Abbildung \ref{fig.schemamessanlage}). Der \gls{logger} kann bis 20 Sensoren verwalten. Die tatsächliche maximale Anzahl der verwendbaren Sensoren ist auch von der Stromversorgung und dem gewünschten Detail-Level der Messdaten abhängig.
 
-\todo{bildchen des Aufbaus der Messstation}
+\todo{figure zu messstation einfpgen}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/schemaMessanlage.pdf}
+	\caption{Schematischer Aufbau einer Messanlage.}
+	\label{fig.schemamessanlage}
+\end{figure}
 
 Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
 
@@ -54,28 +60,29 @@ Die \glspl{sensoreinh} sind in einem wasserdichten Gehäuse verbaut und über wa
 Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Kommunikation hat, die Messdaten speichert und den Anschluss eines \gls{compi}s für die Konfiguration der Anlage ermöglicht. Im Datenlogger arbeitet ein \emph{ARM Cortex-M4} Prozessor mit 120~MHz Taktgeschwindigkeit. Dieser Prozessor steuert die Kommunikation und wandelt die Messdaten für die Speicherung in lesbare Information um.
 
 \subsection{Anschlüsse}
-Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref
+Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref{foto.logger} zeigt einen geöffneten \gls{logger}.
 
+\todo{foto des datenloggers einfügen}
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/fotos/datelogger.png}
+		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
 	\caption{Der Datenlogger in geöffnetem Zustand.}
 	\label{foto.logger}
 \end{figure}
 
 
 \subsubsection{Stromversorgung}
-Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
+Ein Anschluss ist für die Stromversorgung, in Abbildung \ref{foto.logger} auf der rechten Seite. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
 
 
 \subsubsection{Busanschluss}
-Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
+Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen, in Abbildung \ref{foto.logger} auf der linken Seite unten. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
 
 \subsubsection{Schnittstelle zum Computer}
-Ein wasserdichter Steckverbinder für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
+Ein wasserdichter Steckverbinder (in Abbildung \ref{foto.logger} auf der linken Seite oben) für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
 
 \subsubsection{Speicherkarte}
-Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
+Die Speicherkarte kann über einen wasserdichten Schraubdeckel (Abbildung \ref{foto.logger}: oben) ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
 
 
 
@@ -88,10 +95,19 @@ Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt wer
 
 
 \section{Sensor}\label{sec.manualsensor}
-Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und einen Mikroprozessor. Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
+Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor, einen Mikroprozessor und zwei Anschlüsse für das Bussystem (Abbildung \ref{foto.sensoreinh}). Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
+
+\todo{foto des datenloggers einfügen}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
+	\caption{Die Sensoreinheit in geöffnetem Zustand.}
+	\label{foto.logger}
+\end{figure}
 
 \subsection{Beschleunigungssensor}
-Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen abzuschwächen oder der Sensor wird ausgewechselt. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Sensor muss mit einem Objekt in festem Kontakt stehen, auf dem die Geschiebekörner aufschlagen. Dazu muss entweder das Gehäuse mit einer Platte verbunden werden, oder das Sensorkabel wasserdicht aus dem Gehäuse zu einer Platte geführt werden.
 
 \subsection{A/D-Wandler}
 Die Messsignale vom Beschleunigungssensor werden von einem 12-Bit-\gls{adwandler} digitalisiert. Der \gls{adwandler} kann theoretisch mit bis zu 200000~Hz betrieben werden.
@@ -586,12 +602,12 @@ Could not create or open file. Please check SD card for free space.
 \subsubsection{Sensor-Status}\label{sssec.sensorstate}
 Um die Einstellungen alles Sensoren auf einen Blick zu überprüfen, kann mit dem Befehl 'sensor states' die Liste aller Einstellungen aufgerufen werden, Listing \ref{list.sensorstatus}. In der Liste sind eine interne Nummer, die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} sowie alle Einstellungen aufgeführt.
 
-\todo{TW: Liste von Sensor-Stati ins Listing einfügen}
+
 \begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
 Listing sensor config:
- Nr  SID  serial       fs threshold baseline timeout     detail
- 1)    2  461bfdf6  10000       200     2047      30        raw
- 2)    3  361509a5  10000       150     2000      20 peaks only
+ Nr  SID  serial       fs threshold baseline timeout     detail  started?
+ 1)    2  461bfdf6  10000       200     2047      30        raw      yes
+ 2)    3  361509a5  10000       150     2000      20 peaks only      yes
  
  0) continue
 \end{lstlisting}
