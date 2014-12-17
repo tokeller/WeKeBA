@@ -54,9 +54,15 @@ Die \glspl{sensoreinh} sind in einem wasserdichten Gehäuse verbaut und über wa
 Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Kommunikation hat, die Messdaten speichert und den Anschluss eines \gls{compi}s für die Konfiguration der Anlage ermöglicht. Im Datenlogger arbeitet ein \emph{ARM Cortex-M4} Prozessor mit 120~MHz Taktgeschwindigkeit. Dieser Prozessor steuert die Kommunikation und wandelt die Messdaten für die Speicherung in lesbare Information um.
 
 \subsection{Anschlüsse}
-Der \gls{logger} verfügt über vier Anschlüsse. 
+Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref
 
-\todo{figur über den logger}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/fotos/datelogger.png}
+	\caption{Der Datenlogger in geöffnetem Zustand.}
+	\label{foto.logger}
+\end{figure}
+
 
 \subsubsection{Stromversorgung}
 Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
