@@ -18,6 +18,13 @@
 
 \include{header}
 
+\makeatletter
+\renewcommand*{\l@lstlisting}{\@dottedtocline{1}{0em}{3.0em}}
+\renewcommand*{\l@table}{\@dottedtocline{1}{0em}{3.0em}}
+\renewcommand*{\l@figure}{\@dottedtocline{1}{0em}{3.0em}}
+%\renewcommand*{\l@lstlisting}{\@dottedtocline{1}{0em}{2.3em}}
+\makeatother
+
 \begin{document}
 \title{Bachelorarbeit (IT)}
 \author{Tobias Keller, Tobias Welti}
@@ -67,6 +74,7 @@
  \listoffigures
  %\addcontentsline{toc}{section}{(Abbildungsverzeichnis)}
  \listoftables
+ \lstlistoflistings
  %\addcontentsline{toc}{section}{(Tabellenverzeichnis)}
  \deftranslation[to=German]{Acronyms}{AbkŸrzungsverzeichnis}
  \deftranslation[to=German]{Glossary}{Glossar}
@@ -74,7 +82,6 @@
  %\addcontentsline{toc}{section}{(Glossar)}
  \printglossary[type=acronym]
  % \addcontentsline{toc}{section}{(Abkürzungen)}
- \lstlistoflistings
  %\addcontentsline{toc}{section}{(Listingverzeichnis)}
  
 \include{content/anhang}

@@ -16,7 +16,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Software-Konzept}\label{chap.software}
+\chapter{Software}\label{chap.software}
 \todo{software}
 
 \section{Software-Stack}\label{sec.sw_stack}
@@ -46,7 +46,7 @@ Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit \gls{adwandler}, der 
 
 \paragraph{Abtastrate} Um die \gls{fs} genau einzuhalten wird ein Timer des \emph{NXP LPC4088} \gls{mc}s eingesetzt, der die Messung des \gls{adwandler}s anstösst (Listing \ref{list.tickerADC}). Die A/D-Wandlung nimmt immer genau 31 Taktzyklen in Anspruch. Nach abgeschlossener Messung schreibt der \gls{adwandler} den Messwert in ein eigenes Register und setzt einen \gls{irq}. Der \gls{irq} signalisiert dem \gls{mc}, dass ein Messwert zur Abholung bereit liegt. Damit der Messwert so rasch wie möglich, auf jeden Fall aber vor Ablauf der nächsten Messperiode, für die weitere Verarbeitung abgeholt werden kann, hat der \gls{irq} die höchst mögliche Priorität. Der Interrupt des \gls{adwandler}s unterbricht also jeden laufenden Prozess.
 
-\begin{lstlisting}[caption=Timer mit Aufruf der A/D-Wandler-Funktion (ADC\_4088.cpp), label=list.tickerADC]
+\begin{lstlisting}[language=C,caption=Timer mit Aufruf der A/D-Wandler-Funktion (ADC\_4088.cpp), label=list.tickerADC]
 // ISR 
 void start_ADC_Conversion(){
 		// start conversion when the ticker fires
@@ -64,7 +64,7 @@ int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler
 
 \paragraph{ISR} Der \gls{mc} ruft die \gls{isr} (Listing \ref{list.isrADC}) auf, um den \gls{irq} abzuhandeln. Die \gls{isr} holt den Messwert aus dem Register und speichert ihn zusammen mit dem \gls{timestamp} in einer \gls{fifo} ab. Die \gls{isr} erhöht den \gls{timestamp} um eins für den nächsten Messwert und gibt dann die Kontrolle an den unterbrochenen Prozess zurück.
 
-\begin{lstlisting}[caption=ISR zur Abhandlung des ADC-Interrupt Requests (impact\_event.cpp), label=list.isrADC]
+\begin{lstlisting}[language=C,caption=ISR zur Abhandlung des ADC-Interrupt Requests (impact\_event.cpp), label=list.isrADC]
 void isr_nextMeasurement(){
 	// read ADC measurement from Register, automatically resets IRQ
 	value = LPC_ADC->GDR;

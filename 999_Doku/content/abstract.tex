@@ -17,7 +17,13 @@
 
 \thispagestyle{empty}
 \chapter*{Zusammenfassung}\label{chap.zusammenfassung}
-\todo{Zusammenfassung in Deutsch}
+Zurzeit kommen zur Messung von Geschiebebewegungen in Gewässern diverse Lösungen zur Anwendung. Bei der Eidg. Forschungsanstalt für Wald, Schnee und Landschaft (WSL) werden hauptsächlich Geophone verwendet, welche kostspielig sind und aufwändige bauliche Massnahmen sowie eine verhältnismässig komplexe IT-Infrastruktur bedingen. Das Erstellen eines Prototypen, der die Vereinfachung dieses Systems durch die Konzeption eines geeigneten Bussystems und der Verwendung kompakter MEMS-Beschleunigungssensoren zur Ereigniserkennung demonstriert, war das Hauptziel dieser Arbeit.
+
+Als Basis für die im Einsatz befindlichen Geräte dienen Boards mit einem ARM Cortex-M4 Mikrocontroller. Das konzipierte System besteht im wesentlichen aus zwei Komponenten: einem Datenlogger und den Sensoreinheiten. Der Datenlogger zeichnet die Messwerte auf einer SD-Karte auf und übernimmt die Konfiguration der angehängten Sensoreinheiten. Im Unterschied zum normalen CAN-Bus muss der Absender einer Meldung für das Bus-Protokoll identifizierbar sein. Deshalb fungiert der Datenlogger auch als Busmaster und weist den Teilnehmern am CAN-Bus eindeutige Identifikationen zu. Die Sensoreinheiten bestehen aus den MEMS-Beschleunigungssensoren und dem Mikrocontroller, der die Messdaten je nach gewähltem Modus verarbeitet. Möglich ist dabei das Aufzeichnen der wichtigsten Kenndaten eines Ereignisses, die detailreiche Aufzeichnung eines Einschlages in zwei Detailstufen oder das Senden der Rohdaten eines Sensors. Durch die direkt im Sensor stattfindende Verarbeitung der Messdaten wird einerseits der Bus entlastet. Es werden nur die verarbeiteten Daten übermittelt. Andererseits fällt für den Datenlogger weniger Arbeit an, da dieser keine Sensordaten auswerten muss und nur noch die fertigen Daten speichert.
+
+Da das ganze System unter anderem in Gebirgsbächen eingesetzt werden soll, musste ein besonderes Augenmerk auf die Stabilität und die Autarkie der Lösung gelegt werden. Wurde die Konfiguration des System einmal manuell vorgenommen, so können die Werte abgespeichert und bei einem Neustart des Systems automatisch wieder geladen werden. Die Verwendung eines CAN-Busses garantiert zudem die fehlerfreie Übertragung der Daten. 
+
+Der erstellte Prototyp erfüllt die Erwartungen in Bezug auf die Vereinfachung des Aufbaus und den Verbrauch des ganzen Systems. Er könnte somit als Basis für ein finales Produkt dienen.
 
 
 
