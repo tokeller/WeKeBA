@@ -1,0 +1,119 @@
+% !TeX spellcheck = de_CH
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  _____   ____  _____                                          %
+% |_   _| /  __||  __ \    Institute of Computitional Physics   %
+%   | |  |  /   | |__) |   Zuercher Hochschule Winterthur       %
+%   | |  | (    |  ___/    (University of Applied Sciences)     %
+%  _| |_ |  \__ | |        8401 Winterthur, Switzerland         %
+% |_____| \____||_|                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Project     : BA Welti Keller
+% Title       : 
+% File        : tests.tex Rev. 00
+% Date        : 16.12.2014
+% Author      : Tobias Welti
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Tests}\label{chap.tests}
+
+Dieses Kapitel listet die Testfälle auf, die zu Beginn des Projekts definiert wurden. Für jeden Testfall sind wo nötig Vorbedingungen definiert. Ein Testfall beschreibt Aktionen, die vorgenommen werden müssen und das zu erreichende Resultat.
+
+Die Testergebnisse sind am Ende jedes Testfalls angegeben.
+
+\section{Testaufbau}
+In der Testanlage stehen ein \gls{logger} und drei \gls{sensoreinh} zur Verfügung. Die \glspl{sensor} sind unter einer Aluminiumplatte montiert, die auf Elastomer gelagert und auf einem Holzgestell verschraubt ist.
+
+\todo{Foto Testaufbau(Platte)}
+
+\section{Datenlogger}
+\subsection{T110 Busmaster}
+\paragraph{Aktionen} Die Messstation wird an die Stromversorgung angeschlossen.
+
+\paragraph{Resultate} Der \gls{logger} übernimmt die Kontrolle über den CAN-Bus und vergibt jedem angeschlossenen Sensor die eindeutige CAN-ID aus der Konfigurationsdatei.
+
+\paragraph{Testergebnis} Die \glspl{sensoreinh} haben die vordefinierte CAN-ID erhalten. Der Test ist erfüllt.
+
+\subsection{T120 Sensorerkennung}
+\paragraph{Aktionen} Eine neue \gls{sensoreinh} wird an die Messstation angeschlossen, deren Seriennummer nicht in der Konfigurationsdatei erfasst ist. Die Messstation wird an die Stromversorgung angeschlossen.
+
+\paragraph{Resultate} Der \gls{logger} erkennt die neue \gls{sensoreinh} und teilt ihr eine eindeutige CAN-ID zu.
+
+\paragraph{Testergebnis} Die \gls{sensoreinh} hat eine bisher unbenutzte, unreservierte CAN-ID erhalten. Der Test ist erfüllt.
+
+\subsection{T130 Uhrzeit}
+\paragraph{Aktionen} Die Uhrzeit wird im laufenden Betrieb richtig eingestellt. Die Messstation wird während mind. 12~Stunden in Betrieb gehalten.
+
+\paragraph{Resultate} Die interne Uhrzeit weist nicht mehr als 2~Sekunden Fehlgang innert 12~Stunden auf.
+
+\paragraph{Testergebnis} Zum Zeitpunkt der Berichterstellung konnte dieser Test noch nicht durchgeführt werden. \todo{Test Uhrzeit}
+
+\subsection{T140 Timestamp zurücksetzen}
+\paragraph{Aktionen} Über die Konfigurationsschnittstelle wird der Befehl zum Zurücksetzen der \gls{timestamp}s in den \glspl{sensoreinh} gegeben.
+
+\paragraph{Resultate} Alle \glspl{sensoreinh} führen den Befehl innert weniger Sekunden aus und senden ab dann die Ereignisse mit dem neuen \gls{timestamp}.
+
+\paragraph{Testergebnis} Zum Zeitpunkt der Berichterstellung konnte dieser Test noch nicht durchgeführt werden. \todo{test timestamp reset}
+
+\subsection{T160 Schnittstelle zum Steuerrechner}
+\paragraph{Aktionen} Ein \gls{compi} wird an die Konfigurationsschnittstelle angeschlossen und ein \gls{terminalemu} gestartet.
+
+\paragraph{Resultate} Das Konfigurationsmenü erscheint in der Terminal-Emulation und kann über Tastatureingaben bedient werden.
+
+Die Eingaben werden vom \gls{logger} ausgeführt und bei Bedarf an die \glspl{sensoreinh} kommuniziert.
+
+\paragraph{Testergebnis} Das Konfigurationsmenü funktioniert wie vorgesehen. Die Einstellungen werden an die \glspl{sensoreinh} übertragen.
+
+\subsection{T170 Steuerung Detail-Level}
+\paragraph{Aktionen} Am \gls{logger} wird für eine \gls{sensoreinh} ein anderer Detail-Level eingestellt.
+
+\paragraph{Resultate} Die \gls{sensoreinh} wechselt den Detail-Level bei der Übertragung neuer Ereignisse.
+
+\paragraph{Testergebnis} Zum Zeitpunkt der Berichterstellung konnte dieser Test noch nicht durchgeführt werden. \todo{test change Detail-level}
+
+\subsection{T180 Daten sammeln und speichern}
+\paragraph{Aktionen} Mehrere \glspl{sensoreinh} senden Ereignisdaten an den \gls{logger}. 
+
+\paragraph{Resultate} Der \gls{logger} legt für jede \gls{sensoreinh} eine Datei an und speichert die Ereignisdaten in der richtigen Datei.
+
+\paragraph{Testergebnis} Zum Zeitpunkt der Berichterstellung konnte dieser Test noch nicht durchgeführt werden. \todo{test datensammlung und speicherung}
+
+
+\section{Sensoreinheit}
+\subsection{T400 Konfiguration}
+\paragraph{Aktionen} Via Konfigurationsmenü des Datenloggers werden die Parameter des Sensors auf neue Werte gesetzt. 
+
+\paragraph{Resultate} Die \gls{sensoreinh} übernimmt die neuen Einstellungen und passt die Ereigniserkennung entsprechend an.
+
+\paragraph{Testergebnis} \todo{test sensor config change}
+
+\subsection{T410 Ereignisdetektion}
+\paragraph{Aktionen} Die \gls{sensoreinh} ist im Messbetrieb. Am \gls{sensor} wird ein Einschlag simuliert, indem ein Objekt auf die Metallplatte geschlagen wird. 
+
+\paragraph{Resultate} Am Ausgang des \gls{sensor}s misst ein Oszilloskop den Spannungsverlauf. Die so gemessene Referenzkurve wird mit den von der \gls{sensoreinh} ausgegebenen Daten verglichen.
+
+\paragraph{Testergebnis} \todo{test data acquisition and comparison}
+
+\subsection{T430 Datenübertragung}
+\paragraph{Aktionen} Mehrere Einschläge werden simuliert und mit einem Oszilloskop aufgezeichnet, um Referenzdaten zu haben.
+
+\paragraph{Resultate} Die \gls{sensoreinh} überträgt die Daten von Test T410 fehlerfrei an den \gls{logger}.
+
+\paragraph{Testergebnis} \todo{test datenübertragung}
+
+\subsection{T450 Rohdatenaufzeichnung}
+\paragraph{Aktionen} Eine \gls{sensoreinh} wird in den Rohdatenmodus versetzt.
+
+\paragraph{Resultate} Die \gls{sensoreinh} zeichnet Rohdaten während 60 Sekunden ohne einen Puffer-Überlauf auf und überträgt die Daten an den \gls{logger}.
+
+\paragraph{Testergebnis} \todo{test 60 sek rohdaten}
+
+\section{Nichtfunktionale Tests}
+\subsection{T710 Stromverbrauch}
+\paragraph{Aktionen} Der Stromverbrauch der Messanlage mit dem \gls{logger} und drei \gls{sensoreinh} wird gemessen. 
+
+\paragraph{Resultate} Der Stromverbrauch sollte unter 3~Watt liegen.
+
+\paragraph{Testergebnis} \todo{test stromverbrauch}

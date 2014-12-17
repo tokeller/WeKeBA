@@ -23,6 +23,7 @@
 
 
 \subsection{Überblick}\label{subsec.sw_ueberblick}
+\todo{TK kurzbeschrieb über die softwarestruktur anhand der zwei Schemata}
 
 \begin{figure}
 	\centering
@@ -74,7 +75,7 @@ void isr_nextMeasurement(){
 }
 \end{lstlisting}
 
-\paragraph{Timestamp} Der Timestamp muss zwingend in der \gls{isr} (Listing \ref{list.isrADC}) erhöht werden, damit er immer sofort nach der Erfassung eines neuen Messwerts aktualisiert wird. Würde der Timestamp mittels einem zweiten Timer und einer zweiten \gls{isr} erhöht, bestünde die Gefahr einer ungeregelten Reihenfolge der Abarbeitung der \gls{irq}s. Einmal würde der \gls{timestamp} vor dem Kopieren der Messdaten erhöht, ein anderes mal erst danach.
+\paragraph{Timestamp} Der Timestamp muss zwingend in der \gls{isr} (Listing \ref{list.isrADC}) erhöht werden, damit er immer sofort nach der Erfassung eines neuen Messwerts aktualisiert wird. Würde der Timestamp mittels einem zweiten Timer und einer zweiten \gls{isr} erhöht, bestünde die Gefahr einer ungeregelten Reihenfolge der Abarbeitung der \gls{irq}s. Mal würde der \gls{timestamp} vor dem Kopieren der Messdaten erhöht, mal erst danach.
 
 \paragraph{Datenauswertung} Die Datenauswertung wird in regelmässigen Abständen aufgerufen und arbeitet die \gls{fifo} mit den neuen Messwerten ab, um Ereignisse zu erkennen. Der Aufruf der \gls{ereignisdet} ist nicht so stark an einen genauen Takt gebunden wie die A/D-Wandlung, da die \gls{fifo} genügend gross ist, um mehrere hundert Messwerte zwischenzuspeichern. Ein Thread ruft die \gls{ereignisdet} auf und wartet nach Beendigung der Subroutine 1~ms.
 
@@ -131,7 +132,7 @@ Der Timer läuft nicht in Echtzeit, sondern zählt die Anzahl Messwerte seit sei
 
 Falls die \gls{fifo} doch einmal überlaufen sollte, wird eine Nachricht an den \gls{logger} übertragen, der eine entsprechende Meldung in die Datendatei der \gls{sensoreinh} einträgt. Dies bedeutet, dass zu diesem Zeitpunkt einige Messwerte verloren gegangen sind. Da der \gls{timestamp} in der \gls{sensoreinh} trotzdem mit jedem \gls{sample} erhöht wird, stimmen die Zeitangaben in der Datendatei weiterhin. Es besteht lediglich eine Lücke im Datensatz.
 
-\todo{Zusammenhänge A/D-Wandlung und Ereigniserkennung und Übertragung beschreiben, dazu ein Kommunikationsdiagramm, wo synchron, wo asynchron.}
+\todo{TK: Zusammenhänge A/D-Wandlung und Ereigniserkennung und Übertragung beschreiben, dazu ein Kommunikationsdiagramm, wo synchron, wo asynchron.}
 
 \subsection{Detail-Level}
 Je nach Einsatz der Messstation variiert die benötigte unbeaufsichtigte Messdauer von einigen Tagen bis zu mehreren Monaten. Die zu speichernde Datenmenge muss an diese Dauer angepasst werden können. Für einen langen Einsatz werden von Vorteil weniger detaillierte Messdaten abgespeichert, während für einen eher kurzen Einsatz unter Umständen sogar unkomprimierte Daten abgespeichert werden können.
@@ -180,7 +181,7 @@ Eine ausführliche Beschreibung der Detail-Level ist in der Bedienungsanleitung 
 \end{minipage}
 \end{figure}
 
-\todo{TW: Berechnungen, in welchem Modus wie lange gemessen werden kann, und wie lange ein \gls{sensor} mit dem vorhandenen Speicher die Resultate zwischenspeichern kann. Allenfalls ein System erwähnen, das automatisch zwischen verschiedenen Modi hin- und herschalten kann. (Ist allerdings heikel). Wie viele \glspl{sensor} können in welchem Modus gleichzeitig am System betrieben werden, bei welcher Ereignisrate ist Schluss mit Busbandbreite.}
+
 
 \subsection{Timestamp}\label{subsec.sw_timestamp}
 Der \gls{timestamp} ist ein Zähler, der in jeder \gls{sensoreinh} die gemessenen \glspl{sample} zählt. Die übertragenen \glspl{ereignis} werden mit dem \gls{timestamp} versehen. Der \gls{logger} kann anhand des \gls{timestamp}s, der \gls{fs} der betreffenden \gls{sensoreinh} und des Zeitpunkts des letzten Zurücksetzens der \gls{timestamp}s den Zeitpunkt der Aufnahme des \gls{ereignis}ses berechnen (Gleichung \ref{eq.timestamp}).

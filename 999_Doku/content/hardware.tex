@@ -66,7 +66,7 @@ Bei der Auswahl des \gls{mc}s werden folgende Kriterien berücksichtigt:
 
 Für die vorliegende Anwendung eignen sich Mobile-Prozessoren sehr gut. Sie sind für den Einsatz in mobilen Geräten konzipiert, d.h. für den Batteriebetrieb, sind aber trotzdem sehr leistungsfähig. Die \emph{ARM Cortex}-Reihe bietet ein breites Spektrum an Prozessoren an. Im Mobile-Segment der \emph{ARM Cortex}-Reihe sind vier Prozessoren erhältlich. Da nur ein Modell einen \gls{dsp} aufweist, ist die Entscheidung einfach. Der \emph{ARM Cortex-M4} ist auch der neueste Prozessor aus dem Mobile-Segment. Mit dem Ausblick, das Messsystem in einem zukünftigen Projekt zur Serienreife zu bringen, macht es nur Sinn, den neuesten Prozessor zu verwenden. Ein Auszug aus dem Datenblatt des \emph{ARM Cortex-M4} befindet sich im Anhang \ref{ds.lpc4088}. Abbildung \ref{fig.M4diagramm} zeigt die Fähigkeiten des \emph{ARM Cortex-M4}.
 
-\paragraph{\gls{nvicgloss}} Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird. Für das Messsystem wird ein \gls{nvic} benötigt, da mehrere zeitkritische Prozesse parallel ablaufen sollen. Einerseits muss die Abtastrate der Messwerterfassung genau eingehalten werden. Andererseits darf die Verarbeitung der Messwerte nicht zu lange unterbrochen werden, um einen Überlauf der Queue zu vermeiden. Die Daten der \glspl{ereignis} müssen parallel dazu an den \gls{logger} übermittelt werden. Die Prioritäten dieser Prozesse müssen richtig gewählt werden. Im Abschnitt \ref{sec.parallel} wird näher darauf eingegangen.
+\paragraph{\gls{nvicgloss}} Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird. Für das Messsystem wird ein \gls{nvic} benötigt, da mehrere zeitkritische Prozesse parallel ablaufen sollen. Einerseits muss die Abtastrate der Messwerterfassung genau eingehalten werden. Andererseits darf die Verarbeitung der Messwerte nicht zu lange unterbrochen werden, um einen Überlauf der Queue zu vermeiden. Die Daten der \glspl{ereignis} müssen parallel dazu an den \gls{logger} übermittelt werden. Die Prioritäten dieser Prozesse müssen richtig gewählt werden. Im Abschnitt \todo{referenz ändern \ref{sec.parallel}} wird näher darauf eingegangen.
 
 \paragraph{\gls{dsp}} Der \emph{ARM Cortex-M4} verfügt über \gls{dsp}-Funktionen, eine sog. single-cycle \gls{mac}. In einer single-cycle \gls{macgloss} können Multiplikationen in einem einzigen Prozessorzyklus ausgeführt werden. Normalerweise benötigt ein Prozessor für eine Multiplikation bis zu mehreren zehn Zyklen, bis das Resultat vorliegt. Mit einem \gls{dspgloss} ist es daher möglich, z.B. eine Filterfunktion viel effizienter zu berechnen als mit einem normalen Prozessor, da für diese viele Multiplikationen und Additionen ausgeführt werden müssen.
 
@@ -258,7 +258,7 @@ Das gewählte \emph{NXP LPC4088 QuickStart Board} verfügt über einen \gls{usb}
 
 
 \subsection{Gehäuse}
-Um den \gls{logger} und die \glspl{sensoreinh} wasserdicht zu verpacken, wurden Gehäuse und Komponenten mit der Schutzklasse IP68 gesucht. Die wasserdichten Gehäuse der Firma \emph{FIBOX} sind in verschiedenen Ausführungen erhältlich. Da diese Arbeit kein serienreifes Produkt zum Ziel hatte, wurden Gehäuse aus ABS-Kunststoff mit transparenten Deckeln gewählt. 
+Um den \gls{logger} und die \glspl{sensoreinh} wasserdicht zu verpacken, wurden Gehäuse und Komponenten mit der Schutzklasse IP68 gesucht. Die wasserdichten Gehäuse der Firma \emph{FIBOX} sind in verschiedenen Ausführungen erhältlich. Da diese Arbeit kein serienreifes Produkt zum Ziel hatte, wurden Gehäuse aus ABS-Kunststoff mit transparenten Deckeln gewählt. Die Gehäuse messen 180x130x75~mm.
 
 Die Stecker wurden ebenfalls mit Schutzklasse IP68 gewählt. Als zusätzliches Kriterium galt der Durchmesser des Kabelmantels. Die Stecker \emph{Lumberg 0332 05-1} verfügen über fünf Pole, die vierpolige Variante war zur Zeit nicht lieferbar.
 
@@ -286,7 +286,7 @@ Für die Kommunikation mit einem \gls{compi} verfügt der \gls{logger} über ein
 
 
 \section{Sensoreinheit}
-Die \gls{sensoreinh} ist ähnlich aufgebaut wie der \gls{logger}. Das Schema in Abbildung \ref{fig.hw_sensor} zeigt die Hardware. Wie der \gls{logger} ist der \emph{NXP LPC4088} \gls{mc} mit zusätzlichem \gls{sdram} und \gls{flash} ausgerüstet. Der Anschluss an den CAN-Bus ist identisch. Die SD-Karte wird in der \gls{sensoreinh} nicht benötigt und wurde deshalb weggelassen. Auch eine USB-Schnittstelle für die Konfiguration ist nicht nötig, da die Konfiguration über den CAN-Bus erfolgt.
+Die \gls{sensoreinh} ist ähnlich aufgebaut wie der \gls{logger}. Das Schema in Abbildung \ref{fig.hw_sensor} zeigt die Hardware. Wie im \gls{logger} ist der \emph{NXP LPC4088} \gls{mc} mit zusätzlichem \gls{sdram} und \gls{flash} ausgerüstet. Der Anschluss an den CAN-Bus ist identisch. Die SD-Karte wird in der \gls{sensoreinh} nicht benötigt und wurde deshalb weggelassen. Auch eine USB-Schnittstelle für die Konfiguration ist nicht nötig, da die Konfiguration über den CAN-Bus erfolgt.
 
 Der Beschleunigungs-\gls{sensor} wird vom \emph{QuickStart Board} mit Spannung versorgt und gibt die gemessene Beschleunigung als analoge Spannung aus. Diese Spannung wird vom \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} gemessen.
 
@@ -296,5 +296,4 @@ Der Beschleunigungs-\gls{sensor} wird vom \emph{QuickStart Board} mit Spannung v
 	\caption{Schematischer Hardware-Aufbau der \gls{sensoreinh}.}
 	\label{fig.hw_sensor}
 \end{figure}
-
 

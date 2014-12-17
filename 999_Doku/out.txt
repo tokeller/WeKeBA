@@ -1,0 +1,2189 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./doc.tex
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+\@input{header.aux}
+(./header.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2013/12/19 v3.12 KOMA-Script document class (report)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package scrlfile, 2013/12/19 v3.12 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+))) (/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/tocbasic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrsize10pt.clo)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/typearea.sty
+Package typearea, 2013/12/19 v3.12 KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+
+Class scrreprt Warning: Usage of package `fancyhdr' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use 
+(scrreprt)              package `scrpage2' or `scrlayer-scrpage'.
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `fancyhdr' on input line 27.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ifthen.sty))
+
+Class scrreprt Warning: Usage of package `titlesec' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use the package only
+(scrreprt)              if you really need it, because it breaks several
+(scrreprt)              KOMA-Script features, i.e., option `headings' and
+(scrreprt)              the extended optional argument of the section
+(scrreprt)              commands .
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `titlesec' on input line 29.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/mathptmx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/helvet.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/german/ngerman.sty
+v2.5e 1998-07-08)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.sty
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.cfg)
+Option `squaren' provided!
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textpos/textpos.sty
+Package: textpos 2014/01/03 1.7j, absolute positioning of text on the page
+Grid set 16 x 16 = 37.34424pt x 52.81543pt
+TextBlockOrigin set to 0pt x 0pt
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/lscape.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/atbegshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pppdftex.def))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrhack.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/float.hak)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/listings.hak))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/wallpaper/wallpaper.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textcase/textcase.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xfor/xfor.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/substr/substr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-fp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp.sty
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/defpattern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-basic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-addons.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-snap.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-exp.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-trigo.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-pas.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-random.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eqn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-upn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eval.sty))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries-compat
+ible-307.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tracklang/tracklang.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries-german/glossaries-germ
+an.ldf)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-hypern
+av.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-super.
+sty (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
+ty)) (./content/glossar.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngerman.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator-lang
+uage-mappings.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+
+Package tocbibind Note: Using chapter style headings, unless overridden.
+
+)
+Writing index file doc.idx
+TextBlockOrigin set to 10mm x 10mm
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty))
+(./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmss.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+ABD: EveryShipout initializing macros
+Option `squaren' provided! 
+ Command \squaren defined by SIunits package!
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(./doc.out) (./doc.out) (./content/titlepage.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 39--52
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 53--66
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 67--80
+[][] [] [] 
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 81--92
+[][] [] [] 
+
+Overfull \hbox (23.74657pt too wide) in paragraph at lines 25--93
+[][] [] 
+<images/logos/InES.pdf, id=553, 597.51233pt x 845.0471pt>
+<use images/logos/InES.pdf> [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdft
+ex/updmap/pdftex.map} <./images/logos/InES.pdf>])
+<images/Erklaerung_BA.pdf, id=578, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf> <use images/Erklaerung_BA.pdf>
+<images/Erklaerung_BA.pdf, id=581, page=1, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> [2 <./images/Erklaerung_BA.pdf>]
+(./content/vorwort.tex) [3] (./content/kontakt.tex
+Underfull \hbox (badness 10000) in paragraph at lines 21--26
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 \include{content/kontakt}
+                               [1] (./doc.tocpdfTeX warning (ext4): destination
+ with the same identifier (name{page.2}) has been already used, duplicate ignor
+ed
+<to be read again> 
+                   \relax 
+l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+                                                   [2]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.3}) has been already used, duplic
+ate ignored
+<to be read again> 
+                   \relax 
+l.165 ... {10.3.2}Software}{44}{subsection.10.3.2}
+                                                   [3]) [4] (./doc.tdo
+
+LaTeX Warning: Reference `sec.parallel' on page 5 undefined on input line 13.
+
+[5]) [6] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [7]) [8]
+(./content/aufgabenstellung.tex
+Kapitel 2.
+[9]) [10] (./content/vorgehen.tex
+Kapitel 3.
+<images/visio/Situationskroki.pdf, id=966, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [11 <./images/visio/Situationskroki.pdf>
+] [12]) [13] (./content/funktionale.tex
+Kapitel 4.
+[14]) [15] (./content/nichtfunktionale.tex
+Kapitel 5.
+) [16] (./content/tests.tex
+Kapitel 6.
+[17] [18] [19]) [20] (./content/hardware.tex
+Kapitel 7.
+<images/visio/hardwarekonzept_logger.pdf, id=1238, 333.68877pt x 262.51083pt>
+<use images/visio/hardwarekonzept_logger.pdf>
+<images/visio/hardwarekonzept_sensor.pdf, id=1250, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [21] [22 <./images/visio/hardware
+konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
+_sensor.pdf, page is rotated 90 degrees>]
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1424, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [23] [24 <./images/
+datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 157--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--160
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+[]\T1/lmss/m/n/10 slave
+
+Underfull \hbox (badness 2096) in paragraph at lines 164--167
+\T1/lmss/m/n/10 - Bei Aus-fall ei-nes [][]MC[] gan-zer Bus
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
+
+
+Underfull \hbox (badness 4832) in paragraph at lines 178--181
+\T1/lmss/m/n/10 + Strom-ver-sor-gung bei Power over
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--181
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+[25] [26] <images/differential.pdf, id=1529, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [27 <./images/differential.pdf>] [28]
+Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
+\T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
+T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
+ss,
+[29] <images/visio/hardware_logger.pdf, id=1647, 502.87875pt x 360.61725pt>
+<use images/visio/hardware_logger.pdf>
+<images/visio/hardware_sensor.pdf, id=1661, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [30 <./images/visio/hardware_logger.pdf
+>] [31 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+Kapitel 8.
+<images/visio/Softwarestack_Logger.pdf, id=1739, 509.39299pt x 348.64674pt>
+<use images/visio/Softwarestack_Logger.pdf>
+<images/visio/Softwarestack_Sensor.pdf, id=1742, 404.83546pt x 331.91002pt>
+<use images/visio/Softwarestack_Sensor.pdf>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [32] [33 <./images/
+visio/Softwarestack_Logger.pdf, page is rotated 90 degrees> <./images/visio/Sof
+twarestack_Sensor.pdf>]
+Overfull \hbox (25.68816pt too wide) in paragraph at lines 86--87
+[]\T1/lmss/m/n/10 Die Be-rech-nung der [][]Hilbert-Transformation[] er-for-dert
+ ei-ni-gen Auf-wand. Mit-tels [][]dis-kre-te Fourier-Transformation
+<images/FIR_Hilbert_Transform_Filter.png, id=1956, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png> [34]
+<images/magicdraw/Ereigniserkennung.pdf, id=2003, 352.28412pt x 294.0074pt>
+<use images/magicdraw/Ereigniserkennung.pdf>
+<images/impact_params.png, id=2006, 578.16pt x 433.62pt>
+<use images/impact_params.png> [35 <./images/FIR_Hilbert_Transform_Filter.png>]
+ [36 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
+[37] <images/rawshort.png, id=2091, 578.16pt x 433.62pt>
+<use images/rawshort.png> <images/detailed.png, id=2092, 578.16pt x 433.62pt>
+<use images/detailed.png> <images/peaks.png, id=2093, 578.16pt x 433.62pt>
+<use images/peaks.png> <images/sparse.png, id=2094, 578.16pt x 433.62pt>
+<use images/sparse.png> [38 <./images/rawshort.png> <./images/detailed.png> <./
+images/peaks.png> <./images/sparse.png>]
+<images/magicdraw/StartUpSequenz.pdf, id=2121, 240.0177pt x 654.52531pt>
+<use images/magicdraw/StartUpSequenz.pdf>
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+) [39] [40 <./images/magicdraw/StartUpSequenz.pdf>] (./content/resultate.tex
+Kapitel 9.
+
+LaTeX Warning: Marginpar on page 41 moved.
+
+[41]) [42] (./content/diskussion.tex
+Kapitel 10.
+[43]) [44] (./content/bedienung.tex
+Kapitel 11.
+[45] [46] <images/fotos/terminator.png, id=2263, 1702.36pt x 830.10126pt>
+<use images/fotos/terminator.png>
+<images/Polbelegung_Buchse.pdf, id=2271, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Buchse.pdf>
+<images/Polbelegung_Stecker.pdf, id=2272, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Stecker.pdf>
+<images/AnschlussKabel.png, id=2275, 2295.57625pt x 1315.91624pt>
+<use images/AnschlussKabel.png> [47] [48 <./images/fotos/terminator.png> <./ima
+ges/Polbelegung_Buchse.pdf> <./images/Polbelegung_Stecker.pdf
+
+pdfTeX warning: pdflatex (file ./images/Polbelegung_Stecker.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] <images/raw.png, id=2348, 578.16pt x 433.62pt> <use images/raw.png>
+<use images/rawshort.png> [49 <./images/AnschlussKabel.png>] [50 <./images/raw.
+png>] <use images/detailed.png> <use images/peaks.png> [51]
+<use images/sparse.png> [52] [53] [54] [55] [56] [57]
+<use images/impact_params.png> [58] [59] [60] [61] [62]) [63]
+Kapitel 12.
+(./doc.bbl [64]) [65] (./doc.lof
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.10. 
+) [66] (./doc.lot) (./doc.gls [67] [68] [69] [70] [71]) (./doc.acr [72])
+[73] (./doc.lol
+Overfull \hbox (2.55548pt too wide) detected at line 23
+\T1/lmss/m/n/10 11.10. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 24
+\T1/lmss/m/n/10 11.11. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 25
+\T1/lmss/m/n/10 11.12. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 26
+\T1/lmss/m/n/10 11.13. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 27
+\T1/lmss/m/n/10 11.14. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 28
+\T1/lmss/m/n/10 11.15. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 29
+\T1/lmss/m/n/10 11.16. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 30
+\T1/lmss/m/n/10 11.17. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 31
+\T1/lmss/m/n/10 11.18. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 32
+\T1/lmss/m/n/10 11.19. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 33
+\T1/lmss/m/n/10 11.20. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 34
+\T1/lmss/m/n/10 11.21. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 35
+\T1/lmss/m/n/10 11.22. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 36
+\T1/lmss/m/n/10 11.23. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 37
+\T1/lmss/m/n/10 11.24. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.25. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 39
+\T1/lmss/m/n/10 11.26. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 40
+\T1/lmss/m/n/10 11.27. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 41
+\T1/lmss/m/n/10 11.28. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 42
+\T1/lmss/m/n/10 11.29. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 43
+\T1/lmss/m/n/10 11.30. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 44
+\T1/lmss/m/n/10 11.31. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 45
+\T1/lmss/m/n/10 11.32. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 46
+\T1/lmss/m/n/10 11.33. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 47
+\T1/lmss/m/n/10 11.34. 
+) [74] (./content/anhang.tex
+Anhang A.
+<images/BA_welti_keller_hs14.pdf, id=3278, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf> <use images/BA_welti_keller_hs14.pdf>
+[1]
+<images/BA_welti_keller_hs14.pdf, id=3285, page=1, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1> [2 <./images/BA_welti_keller_hs14
+.pdf>] <images/pcb/Schematic.pdf, id=3315, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf> <use images/pcb/Schematic.pdf> [3]
+<images/pcb/Schematic.pdf, id=3322, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> [4 <./images/pcb/Schematic.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3349, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf> <use images/pcb/PCB_Layout.pdf>
+<use images/pcb/PCB_Layout.pdf>
+<images/pcb/PCB_Layout.pdf, id=3353, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1> [5 <./images/pcb/PCB_Layout.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3367, page=2, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2> [6 <./images/pcb/PCB_Layout.pdf>]
+<images/datasheets/LPC408X_7X.pdf, id=3380, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf> <use images/datasheets/LPC408X_7X.pdf>
+[7]
+<images/datasheets/LPC408X_7X.pdf, id=3386, page=7, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7> [8 <./images/datasheets/LPC408X_
+7X.pdf>]
+<images/datasheets/lpc4088_qsb_key_components_reva.png, id=3415, 758.3532pt x 6
+47.0574pt> <use images/datasheets/lpc4088_qsb_key_components_reva.png>
+<images/datasheets/LPC4088_QSB_pinning_revA_800x769.png, id=3416, 385.44pt x 37
+0.5042pt> <use images/datasheets/LPC4088_QSB_pinning_revA_800x769.png>
+<images/datasheets/LPC4088qsb.pdf, id=3417, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf> <use images/datasheets/LPC4088qsb.pdf>
+[9 <./images/datasheets/lpc4088_qsb_key_components_reva.png> <./images/datashee
+ts/LPC4088_QSB_pinning_revA_800x769.png>]
+<images/datasheets/LPC4088qsb.pdf, id=3426, page=1, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1> [10 <./images/datasheets/LPC4088
+qsb.pdf>] <images/datasheets/ADXL001.pdf, id=3487, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf> <use images/datasheets/ADXL001.pdf>
+[11] <images/datasheets/ADXL001.pdf, id=3494, page=3, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3> [12 <./images/datasheets/ADXL001.pd
+f>]
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+)
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+[13] (./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+
+Package rerunfilecheck Warning: File `doc.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{glo:terminal} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:RAM} has been referenced but does not exist, re
+placed by a fixed one
+
+pdfTeX warning (dest): name{section.11.9} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.11.8} has been referenced but does not exis
+t, replaced by a fixed one
+
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/loca
+l/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/
+2014/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2014/texmf-dis
+t/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dv
+ips/lm/lm-ts1.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmm
+i10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2014/texmf-dist/
+fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/lm/lmss8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm
+/lmssbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsso10
+.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
+Output written on doc.pdf (90 pages, 9887394 bytes).
+Transcript written on doc.log.
+This is BibTeX, Version 0.99d (TeX Live 2014)
+The top-level auxiliary file: doc.aux
+A level-1 auxiliary file: content/titlepage.aux
+A level-1 auxiliary file: content/vorwort.aux
+A level-1 auxiliary file: content/kontakt.aux
+A level-1 auxiliary file: content/einleitung.aux
+A level-1 auxiliary file: content/aufgabenstellung.aux
+A level-1 auxiliary file: content/vorgehen.aux
+A level-1 auxiliary file: content/funktionale.aux
+A level-1 auxiliary file: content/nichtfunktionale.aux
+A level-1 auxiliary file: content/tests.aux
+A level-1 auxiliary file: content/hardware.aux
+A level-1 auxiliary file: content/software.aux
+A level-1 auxiliary file: content/resultate.aux
+A level-1 auxiliary file: content/diskussion.aux
+A level-1 auxiliary file: content/bedienung.aux
+The style file: bibtex.bst
+A level-1 auxiliary file: content/anhang.aux
+Database file #1: literatur.bib
+Warning--entry type for "sdstd" isn't style-file defined
+--line 123 of file literatur.bib
+Warning--entry type for "boschcanspec2" isn't style-file defined
+--line 182 of file literatur.bib
+(There were 2 warnings)
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./doc.tex
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+\@input{header.aux}
+(./header.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2013/12/19 v3.12 KOMA-Script document class (report)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package scrlfile, 2013/12/19 v3.12 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+))) (/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/tocbasic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrsize10pt.clo)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/typearea.sty
+Package typearea, 2013/12/19 v3.12 KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+
+Class scrreprt Warning: Usage of package `fancyhdr' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use 
+(scrreprt)              package `scrpage2' or `scrlayer-scrpage'.
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `fancyhdr' on input line 27.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ifthen.sty))
+
+Class scrreprt Warning: Usage of package `titlesec' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use the package only
+(scrreprt)              if you really need it, because it breaks several
+(scrreprt)              KOMA-Script features, i.e., option `headings' and
+(scrreprt)              the extended optional argument of the section
+(scrreprt)              commands .
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `titlesec' on input line 29.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/mathptmx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/helvet.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/german/ngerman.sty
+v2.5e 1998-07-08)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.sty
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.cfg)
+Option `squaren' provided!
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textpos/textpos.sty
+Package: textpos 2014/01/03 1.7j, absolute positioning of text on the page
+Grid set 16 x 16 = 37.34424pt x 52.81543pt
+TextBlockOrigin set to 0pt x 0pt
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/lscape.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/atbegshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pppdftex.def))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrhack.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/float.hak)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/listings.hak))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/wallpaper/wallpaper.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textcase/textcase.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xfor/xfor.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/substr/substr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-fp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp.sty
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/defpattern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-basic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-addons.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-snap.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-exp.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-trigo.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-pas.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-random.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eqn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-upn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eval.sty))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries-compat
+ible-307.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tracklang/tracklang.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries-german/glossaries-germ
+an.ldf)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-hypern
+av.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-super.
+sty (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
+ty)) (./content/glossar.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngerman.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator-lang
+uage-mappings.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+
+Package tocbibind Note: Using chapter style headings, unless overridden.
+
+)
+Writing index file doc.idx
+TextBlockOrigin set to 10mm x 10mm
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty))
+(./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmss.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+ABD: EveryShipout initializing macros
+Option `squaren' provided! 
+ Command \squaren defined by SIunits package!
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(./doc.out) (./doc.out) (./content/titlepage.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 39--52
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 53--66
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 67--80
+[][] [] [] 
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 81--92
+[][] [] [] 
+
+Overfull \hbox (23.74657pt too wide) in paragraph at lines 25--93
+[][] [] 
+<images/logos/InES.pdf, id=549, 597.51233pt x 845.0471pt>
+<use images/logos/InES.pdf> [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdft
+ex/updmap/pdftex.map} <./images/logos/InES.pdf>])
+<images/Erklaerung_BA.pdf, id=574, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf> <use images/Erklaerung_BA.pdf>
+<images/Erklaerung_BA.pdf, id=577, page=1, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> [2 <./images/Erklaerung_BA.pdf>]
+(./content/vorwort.tex) [3] (./content/kontakt.tex
+Underfull \hbox (badness 10000) in paragraph at lines 21--26
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 \include{content/kontakt}
+                               [1] (./doc.tocpdfTeX warning (ext4): destination
+ with the same identifier (name{page.2}) has been already used, duplicate ignor
+ed
+<to be read again> 
+                   \relax 
+l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+                                                   [2]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.3}) has been already used, duplic
+ate ignored
+<to be read again> 
+                   \relax 
+l.165 ... {10.3.2}Software}{44}{subsection.10.3.2}
+                                                   [3]) [4] (./doc.tdo
+
+LaTeX Warning: Reference `sec.parallel' on page 5 undefined on input line 13.
+
+[5]) [6] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [7]) [8]
+(./content/aufgabenstellung.tex
+Kapitel 2.
+[9]) [10] (./content/vorgehen.tex
+Kapitel 3.
+<images/visio/Situationskroki.pdf, id=961, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [11 <./images/visio/Situationskroki.pdf>
+] [12]) [13] (./content/funktionale.tex
+Kapitel 4.
+[14]) [15] (./content/nichtfunktionale.tex
+Kapitel 5.
+) [16] (./content/tests.tex
+Kapitel 6.
+[17] [18] [19]) [20] (./content/hardware.tex
+Kapitel 7.
+<images/visio/hardwarekonzept_logger.pdf, id=1233, 333.68877pt x 262.51083pt>
+<use images/visio/hardwarekonzept_logger.pdf>
+<images/visio/hardwarekonzept_sensor.pdf, id=1245, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [21] [22 <./images/visio/hardware
+konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
+_sensor.pdf, page is rotated 90 degrees>]
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1419, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [23] [24 <./images/
+datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 157--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--160
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+[]\T1/lmss/m/n/10 slave
+
+Underfull \hbox (badness 2096) in paragraph at lines 164--167
+\T1/lmss/m/n/10 - Bei Aus-fall ei-nes [][]MC[] gan-zer Bus
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
+
+
+Underfull \hbox (badness 4832) in paragraph at lines 178--181
+\T1/lmss/m/n/10 + Strom-ver-sor-gung bei Power over
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--181
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+[25] [26] <images/differential.pdf, id=1524, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [27 <./images/differential.pdf>] [28]
+Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
+\T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
+T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
+ss,
+[29] <images/visio/hardware_logger.pdf, id=1642, 502.87875pt x 360.61725pt>
+<use images/visio/hardware_logger.pdf>
+<images/visio/hardware_sensor.pdf, id=1656, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [30 <./images/visio/hardware_logger.pdf
+>] [31 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+Kapitel 8.
+<images/visio/Softwarestack_Logger.pdf, id=1734, 509.39299pt x 348.64674pt>
+<use images/visio/Softwarestack_Logger.pdf>
+<images/visio/Softwarestack_Sensor.pdf, id=1737, 404.83546pt x 331.91002pt>
+<use images/visio/Softwarestack_Sensor.pdf>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [32] [33 <./images/
+visio/Softwarestack_Logger.pdf, page is rotated 90 degrees> <./images/visio/Sof
+twarestack_Sensor.pdf>]
+Overfull \hbox (25.68816pt too wide) in paragraph at lines 86--87
+[]\T1/lmss/m/n/10 Die Be-rech-nung der [][]Hilbert-Transformation[] er-for-dert
+ ei-ni-gen Auf-wand. Mit-tels [][]dis-kre-te Fourier-Transformation
+<images/FIR_Hilbert_Transform_Filter.png, id=1951, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png> [34]
+<images/magicdraw/Ereigniserkennung.pdf, id=1998, 352.28412pt x 294.0074pt>
+<use images/magicdraw/Ereigniserkennung.pdf>
+<images/impact_params.png, id=2001, 578.16pt x 433.62pt>
+<use images/impact_params.png> [35 <./images/FIR_Hilbert_Transform_Filter.png>]
+ [36 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
+[37] <images/rawshort.png, id=2086, 578.16pt x 433.62pt>
+<use images/rawshort.png> <images/detailed.png, id=2087, 578.16pt x 433.62pt>
+<use images/detailed.png> <images/peaks.png, id=2088, 578.16pt x 433.62pt>
+<use images/peaks.png> <images/sparse.png, id=2089, 578.16pt x 433.62pt>
+<use images/sparse.png> [38 <./images/rawshort.png> <./images/detailed.png> <./
+images/peaks.png> <./images/sparse.png>]
+<images/magicdraw/StartUpSequenz.pdf, id=2115, 240.0177pt x 654.52531pt>
+<use images/magicdraw/StartUpSequenz.pdf>
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+) [39] [40 <./images/magicdraw/StartUpSequenz.pdf>] (./content/resultate.tex
+Kapitel 9.
+
+LaTeX Warning: Marginpar on page 41 moved.
+
+[41]) [42] (./content/diskussion.tex
+Kapitel 10.
+[43]) [44] (./content/bedienung.tex
+Kapitel 11.
+[45] [46] <images/fotos/terminator.png, id=2258, 1702.36pt x 830.10126pt>
+<use images/fotos/terminator.png>
+<images/Polbelegung_Buchse.pdf, id=2266, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Buchse.pdf>
+<images/Polbelegung_Stecker.pdf, id=2267, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Stecker.pdf>
+<images/AnschlussKabel.png, id=2270, 2295.57625pt x 1315.91624pt>
+<use images/AnschlussKabel.png> [47] [48 <./images/fotos/terminator.png> <./ima
+ges/Polbelegung_Buchse.pdf> <./images/Polbelegung_Stecker.pdf
+
+pdfTeX warning: pdflatex (file ./images/Polbelegung_Stecker.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] <images/raw.png, id=2342, 578.16pt x 433.62pt> <use images/raw.png>
+<use images/rawshort.png> [49 <./images/AnschlussKabel.png>] [50 <./images/raw.
+png>] <use images/detailed.png> <use images/peaks.png> [51]
+<use images/sparse.png> [52] [53] [54] [55] [56] [57]
+<use images/impact_params.png> [58] [59] [60] [61] [62]) [63]
+Kapitel 12.
+(./doc.bbl [64]) [65] (./doc.lof
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.10. 
+) [66] (./doc.lot) (./doc.gls [67] [68] [69] [70] [71]) (./doc.acr [72])
+[73] (./doc.lol
+Overfull \hbox (2.55548pt too wide) detected at line 23
+\T1/lmss/m/n/10 11.10. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 24
+\T1/lmss/m/n/10 11.11. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 25
+\T1/lmss/m/n/10 11.12. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 26
+\T1/lmss/m/n/10 11.13. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 27
+\T1/lmss/m/n/10 11.14. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 28
+\T1/lmss/m/n/10 11.15. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 29
+\T1/lmss/m/n/10 11.16. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 30
+\T1/lmss/m/n/10 11.17. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 31
+\T1/lmss/m/n/10 11.18. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 32
+\T1/lmss/m/n/10 11.19. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 33
+\T1/lmss/m/n/10 11.20. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 34
+\T1/lmss/m/n/10 11.21. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 35
+\T1/lmss/m/n/10 11.22. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 36
+\T1/lmss/m/n/10 11.23. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 37
+\T1/lmss/m/n/10 11.24. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.25. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 39
+\T1/lmss/m/n/10 11.26. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 40
+\T1/lmss/m/n/10 11.27. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 41
+\T1/lmss/m/n/10 11.28. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 42
+\T1/lmss/m/n/10 11.29. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 43
+\T1/lmss/m/n/10 11.30. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 44
+\T1/lmss/m/n/10 11.31. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 45
+\T1/lmss/m/n/10 11.32. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 46
+\T1/lmss/m/n/10 11.33. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 47
+\T1/lmss/m/n/10 11.34. 
+) [74] (./content/anhang.tex
+Anhang A.
+<images/BA_welti_keller_hs14.pdf, id=3272, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf> <use images/BA_welti_keller_hs14.pdf>
+[1]
+<images/BA_welti_keller_hs14.pdf, id=3279, page=1, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1> [2 <./images/BA_welti_keller_hs14
+.pdf>] <images/pcb/Schematic.pdf, id=3309, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf> <use images/pcb/Schematic.pdf> [3]
+<images/pcb/Schematic.pdf, id=3316, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> [4 <./images/pcb/Schematic.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3343, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf> <use images/pcb/PCB_Layout.pdf>
+<use images/pcb/PCB_Layout.pdf>
+<images/pcb/PCB_Layout.pdf, id=3347, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1> [5 <./images/pcb/PCB_Layout.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3361, page=2, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2> [6 <./images/pcb/PCB_Layout.pdf>]
+<images/datasheets/LPC408X_7X.pdf, id=3374, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf> <use images/datasheets/LPC408X_7X.pdf>
+[7]
+<images/datasheets/LPC408X_7X.pdf, id=3380, page=7, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7> [8 <./images/datasheets/LPC408X_
+7X.pdf>]
+<images/datasheets/lpc4088_qsb_key_components_reva.png, id=3409, 758.3532pt x 6
+47.0574pt> <use images/datasheets/lpc4088_qsb_key_components_reva.png>
+<images/datasheets/LPC4088_QSB_pinning_revA_800x769.png, id=3410, 385.44pt x 37
+0.5042pt> <use images/datasheets/LPC4088_QSB_pinning_revA_800x769.png>
+<images/datasheets/LPC4088qsb.pdf, id=3411, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf> <use images/datasheets/LPC4088qsb.pdf>
+[9 <./images/datasheets/lpc4088_qsb_key_components_reva.png> <./images/datashee
+ts/LPC4088_QSB_pinning_revA_800x769.png>]
+<images/datasheets/LPC4088qsb.pdf, id=3420, page=1, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1> [10 <./images/datasheets/LPC4088
+qsb.pdf>] <images/datasheets/ADXL001.pdf, id=3481, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf> <use images/datasheets/ADXL001.pdf>
+[11] <images/datasheets/ADXL001.pdf, id=3488, page=3, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3> [12 <./images/datasheets/ADXL001.pd
+f>]
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+)
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+[13] (./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{glo:terminal} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:RAM} has been referenced but does not exist, re
+placed by a fixed one
+
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/loca
+l/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/
+2014/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2014/texmf-dis
+t/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dv
+ips/lm/lm-ts1.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmm
+i10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2014/texmf-dist/
+fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/lm/lmss8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm
+/lmssbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsso10
+.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
+Output written on doc.pdf (90 pages, 9887092 bytes).
+Transcript written on doc.log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./doc.tex
+LaTeX2e <2014/05/01>
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+\@input{header.aux}
+(./header.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2013/12/19 v3.12 KOMA-Script document class (report)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrkbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrbase.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package scrlfile, 2013/12/19 v3.12 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+))) (/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/tocbasic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrsize10pt.clo)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/typearea.sty
+Package typearea, 2013/12/19 v3.12 KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/omsenc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+
+Class scrreprt Warning: Usage of package `fancyhdr' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use 
+(scrreprt)              package `scrpage2' or `scrlayer-scrpage'.
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `fancyhdr' on input line 27.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/rotating/rotating.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ifthen.sty))
+
+Class scrreprt Warning: Usage of package `titlesec' together
+(scrreprt)              with a KOMA-Script class is not recommended.
+(scrreprt)              I'd suggest to use the package only
+(scrreprt)              if you really need it, because it breaks several
+(scrreprt)              KOMA-Script features, i.e., option `headings' and
+(scrreprt)              the extended optional argument of the section
+(scrreprt)              commands .
+(scrreprt)              Nevertheless, using requested
+(scrreprt)              package `titlesec' on input line 29.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/titlesec/titlesec.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/mathptmx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/todonotes/todonotes.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkvutils.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/color.cfg))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex)
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex)))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarypositioning.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/helvet.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2014/texmf-dist/tex/generic/german/ngerman.sty
+v2.5e 1998-07-08)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.dfu)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.sty
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/SIunits/SIunits.cfg)
+Option `squaren' provided!
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textpos/textpos.sty
+Package: textpos 2014/01/03 1.7j, absolute positioning of text on the page
+Grid set 16 x 16 = 37.34424pt x 52.81543pt
+TextBlockOrigin set to 0pt x 0pt
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/colortbl/colortbl.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/lscape.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/atbegshi.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/pdfpages/pppdftex.def))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/lmodern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/scrhack.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/float.hak)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/koma-script/listings.hak))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/wallpaper/wallpaper.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty)))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/textcase/textcase.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/xfor/xfor.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/substr/substr.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-fp.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp.sty
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/defpattern.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-basic.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-addons.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-snap.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-exp.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-trigo.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-pas.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-random.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eqn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-upn.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eval.sty))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries-compat
+ible-307.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tracklang/tracklang.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/tracklang/tracklang.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries-german/glossaries-germ
+an.ldf)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-hypern
+av.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-list.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-long.s
+ty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-super.
+sty (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
+))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
+ty)) (./content/glossar.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngerman.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+(/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def))))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/beamer/translator/translator-lang
+uage-mappings.tex))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+
+Package tocbibind Note: Using chapter style headings, unless overridden.
+
+)
+Writing index file doc.idx
+TextBlockOrigin set to 10mm x 10mm
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty))
+(./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmss.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+ABD: EveryShipout initializing macros
+Option `squaren' provided! 
+ Command \squaren defined by SIunits package!
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(./doc.out) (./doc.out) (./content/titlepage.tex
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ot1lmr.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omllmm.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omslmsy.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/omxlmex.fd)
+(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 41--43
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--51
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 39--52
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 55--57
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 53--66
+[][] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--71
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
+
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 67--80
+[][] [] [] 
+
+Overfull \hbox (4.4444pt too wide) in paragraph at lines 81--92
+[][] [] [] 
+
+Overfull \hbox (23.74657pt too wide) in paragraph at lines 25--93
+[][] [] 
+<images/logos/InES.pdf, id=549, 597.51233pt x 845.0471pt>
+<use images/logos/InES.pdf> [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdft
+ex/updmap/pdftex.map} <./images/logos/InES.pdf>])
+<images/Erklaerung_BA.pdf, id=574, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf> <use images/Erklaerung_BA.pdf>
+<images/Erklaerung_BA.pdf, id=577, page=1, 597.55246pt x 845.07718pt>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> <use images/Erklaerung_BA.pdf, page 1>
+<use images/Erklaerung_BA.pdf, page 1> [2 <./images/Erklaerung_BA.pdf>]
+(./content/vorwort.tex) [3] (./content/kontakt.tex
+Underfull \hbox (badness 10000) in paragraph at lines 21--26
+
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 \include{content/kontakt}
+                               [1] (./doc.tocpdfTeX warning (ext4): destination
+ with the same identifier (name{page.2}) has been already used, duplicate ignor
+ed
+<to be read again> 
+                   \relax 
+l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+                                                   [2]pdfTeX warning (ext4): de
+stination with the same identifier (name{page.3}) has been already used, duplic
+ate ignored
+<to be read again> 
+                   \relax 
+l.165 ... {10.3.2}Software}{44}{subsection.10.3.2}
+                                                   [3]) [4] (./doc.tdo
+
+LaTeX Warning: Reference `sec.parallel' on page 5 undefined on input line 13.
+
+[5]) [6] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [7]) [8]
+(./content/aufgabenstellung.tex
+Kapitel 2.
+[9]) [10] (./content/vorgehen.tex
+Kapitel 3.
+<images/visio/Situationskroki.pdf, id=961, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [11 <./images/visio/Situationskroki.pdf>
+] [12]) [13] (./content/funktionale.tex
+Kapitel 4.
+[14]) [15] (./content/nichtfunktionale.tex
+Kapitel 5.
+) [16] (./content/tests.tex
+Kapitel 6.
+[17] [18] [19]) [20] (./content/hardware.tex
+Kapitel 7.
+<images/visio/hardwarekonzept_logger.pdf, id=1233, 333.68877pt x 262.51083pt>
+<use images/visio/hardwarekonzept_logger.pdf>
+<images/visio/hardwarekonzept_sensor.pdf, id=1245, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [21] [22 <./images/visio/hardware
+konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
+_sensor.pdf, page is rotated 90 degrees>]
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+LaTeX Warning: Reference `sec.parallel' on page 23 undefined on input line 69.
+
+
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1419, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [23] [24 <./images/
+datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 157--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--160
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+[]\T1/lmss/m/n/10 slave
+
+Underfull \hbox (badness 2096) in paragraph at lines 164--167
+\T1/lmss/m/n/10 - Bei Aus-fall ei-nes [][]MC[] gan-zer Bus
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--167
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--176
+
+
+Underfull \hbox (badness 4832) in paragraph at lines 178--181
+\T1/lmss/m/n/10 + Strom-ver-sor-gung bei Power over
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--181
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+[25] [26] <images/differential.pdf, id=1524, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [27 <./images/differential.pdf>] [28]
+Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
+\T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
+T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
+ss,
+[29] <images/visio/hardware_logger.pdf, id=1642, 502.87875pt x 360.61725pt>
+<use images/visio/hardware_logger.pdf>
+<images/visio/hardware_sensor.pdf, id=1656, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [30 <./images/visio/hardware_logger.pdf
+>] [31 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+Kapitel 8.
+<images/visio/Softwarestack_Logger.pdf, id=1734, 509.39299pt x 348.64674pt>
+<use images/visio/Softwarestack_Logger.pdf>
+<images/visio/Softwarestack_Sensor.pdf, id=1737, 404.83546pt x 331.91002pt>
+<use images/visio/Softwarestack_Sensor.pdf>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [32] [33 <./images/
+visio/Softwarestack_Logger.pdf, page is rotated 90 degrees> <./images/visio/Sof
+twarestack_Sensor.pdf>]
+Overfull \hbox (25.68816pt too wide) in paragraph at lines 86--87
+[]\T1/lmss/m/n/10 Die Be-rech-nung der [][]Hilbert-Transformation[] er-for-dert
+ ei-ni-gen Auf-wand. Mit-tels [][]dis-kre-te Fourier-Transformation
+<images/FIR_Hilbert_Transform_Filter.png, id=1951, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png> [34]
+<images/magicdraw/Ereigniserkennung.pdf, id=1998, 352.28412pt x 294.0074pt>
+<use images/magicdraw/Ereigniserkennung.pdf>
+<images/impact_params.png, id=2001, 578.16pt x 433.62pt>
+<use images/impact_params.png> [35 <./images/FIR_Hilbert_Transform_Filter.png>]
+ [36 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
+[37] <images/rawshort.png, id=2086, 578.16pt x 433.62pt>
+<use images/rawshort.png> <images/detailed.png, id=2087, 578.16pt x 433.62pt>
+<use images/detailed.png> <images/peaks.png, id=2088, 578.16pt x 433.62pt>
+<use images/peaks.png> <images/sparse.png, id=2089, 578.16pt x 433.62pt>
+<use images/sparse.png> [38 <./images/rawshort.png> <./images/detailed.png> <./
+images/peaks.png> <./images/sparse.png>]
+<images/magicdraw/StartUpSequenz.pdf, id=2115, 240.0177pt x 654.52531pt>
+<use images/magicdraw/StartUpSequenz.pdf>
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+
+LaTeX Warning: Marginpar on page 39 moved.
+
+) [39] [40 <./images/magicdraw/StartUpSequenz.pdf>] (./content/resultate.tex
+Kapitel 9.
+
+LaTeX Warning: Marginpar on page 41 moved.
+
+[41]) [42] (./content/diskussion.tex
+Kapitel 10.
+[43]) [44] (./content/bedienung.tex
+Kapitel 11.
+[45] [46] <images/fotos/terminator.png, id=2258, 1702.36pt x 830.10126pt>
+<use images/fotos/terminator.png>
+<images/Polbelegung_Buchse.pdf, id=2266, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Buchse.pdf>
+<images/Polbelegung_Stecker.pdf, id=2267, 56.29431pt x 42.51785pt>
+<use images/Polbelegung_Stecker.pdf>
+<images/AnschlussKabel.png, id=2270, 2295.57625pt x 1315.91624pt>
+<use images/AnschlussKabel.png> [47] [48 <./images/fotos/terminator.png> <./ima
+ges/Polbelegung_Buchse.pdf> <./images/Polbelegung_Stecker.pdf
+
+pdfTeX warning: pdflatex (file ./images/Polbelegung_Stecker.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] <images/raw.png, id=2342, 578.16pt x 433.62pt> <use images/raw.png>
+<use images/rawshort.png> [49 <./images/AnschlussKabel.png>] [50 <./images/raw.
+png>] <use images/detailed.png> <use images/peaks.png> [51]
+<use images/sparse.png> [52] [53] [54] [55] [56] [57]
+<use images/impact_params.png> [58] [59] [60] [61] [62]) [63]
+Kapitel 12.
+(./doc.bbl [64]) [65] (./doc.lof
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.10. 
+) [66] (./doc.lot) (./doc.gls [67] [68] [69] [70] [71]) (./doc.acr [72])
+[73] (./doc.lol
+Overfull \hbox (2.55548pt too wide) detected at line 23
+\T1/lmss/m/n/10 11.10. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 24
+\T1/lmss/m/n/10 11.11. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 25
+\T1/lmss/m/n/10 11.12. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 26
+\T1/lmss/m/n/10 11.13. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 27
+\T1/lmss/m/n/10 11.14. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 28
+\T1/lmss/m/n/10 11.15. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 29
+\T1/lmss/m/n/10 11.16. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 30
+\T1/lmss/m/n/10 11.17. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 31
+\T1/lmss/m/n/10 11.18. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 32
+\T1/lmss/m/n/10 11.19. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 33
+\T1/lmss/m/n/10 11.20. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 34
+\T1/lmss/m/n/10 11.21. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 35
+\T1/lmss/m/n/10 11.22. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 36
+\T1/lmss/m/n/10 11.23. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 37
+\T1/lmss/m/n/10 11.24. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 38
+\T1/lmss/m/n/10 11.25. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 39
+\T1/lmss/m/n/10 11.26. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 40
+\T1/lmss/m/n/10 11.27. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 41
+\T1/lmss/m/n/10 11.28. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 42
+\T1/lmss/m/n/10 11.29. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 43
+\T1/lmss/m/n/10 11.30. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 44
+\T1/lmss/m/n/10 11.31. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 45
+\T1/lmss/m/n/10 11.32. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 46
+\T1/lmss/m/n/10 11.33. 
+
+Overfull \hbox (2.55548pt too wide) detected at line 47
+\T1/lmss/m/n/10 11.34. 
+) [74] (./content/anhang.tex
+Anhang A.
+<images/BA_welti_keller_hs14.pdf, id=3278, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf> <use images/BA_welti_keller_hs14.pdf>
+[1]
+<images/BA_welti_keller_hs14.pdf, id=3285, page=1, 597.23125pt x 845.1575pt>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1>
+<use images/BA_welti_keller_hs14.pdf, page 1> [2 <./images/BA_welti_keller_hs14
+.pdf>] <images/pcb/Schematic.pdf, id=3315, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf> <use images/pcb/Schematic.pdf> [3]
+<images/pcb/Schematic.pdf, id=3322, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> <use images/pcb/Schematic.pdf, page 1>
+<use images/pcb/Schematic.pdf, page 1> [4 <./images/pcb/Schematic.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3349, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf> <use images/pcb/PCB_Layout.pdf>
+<use images/pcb/PCB_Layout.pdf>
+<images/pcb/PCB_Layout.pdf, id=3353, page=1, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1>
+<use images/pcb/PCB_Layout.pdf, page 1> [5 <./images/pcb/PCB_Layout.pdf>]
+<images/pcb/PCB_Layout.pdf, id=3367, page=2, 845.1575pt x 597.23125pt>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2>
+<use images/pcb/PCB_Layout.pdf, page 2> [6 <./images/pcb/PCB_Layout.pdf>]
+<images/datasheets/LPC408X_7X.pdf, id=3380, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf> <use images/datasheets/LPC408X_7X.pdf>
+[7]
+<images/datasheets/LPC408X_7X.pdf, id=3386, page=7, 597.45204pt x 845.1575pt>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7>
+<use images/datasheets/LPC408X_7X.pdf, page 7> [8 <./images/datasheets/LPC408X_
+7X.pdf>]
+<images/datasheets/lpc4088_qsb_key_components_reva.png, id=3415, 758.3532pt x 6
+47.0574pt> <use images/datasheets/lpc4088_qsb_key_components_reva.png>
+<images/datasheets/LPC4088_QSB_pinning_revA_800x769.png, id=3416, 385.44pt x 37
+0.5042pt> <use images/datasheets/LPC4088_QSB_pinning_revA_800x769.png>
+<images/datasheets/LPC4088qsb.pdf, id=3417, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf> <use images/datasheets/LPC4088qsb.pdf>
+[9 <./images/datasheets/lpc4088_qsb_key_components_reva.png> <./images/datashee
+ts/LPC4088_QSB_pinning_revA_800x769.png>]
+<images/datasheets/LPC4088qsb.pdf, id=3426, page=1, 597.23125pt x 845.1575pt>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1>
+<use images/datasheets/LPC4088qsb.pdf, page 1> [10 <./images/datasheets/LPC4088
+qsb.pdf>] <images/datasheets/ADXL001.pdf, id=3487, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf> <use images/datasheets/ADXL001.pdf>
+[11] <images/datasheets/ADXL001.pdf, id=3494, page=3, 614.295pt x 794.97pt>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3>
+<use images/datasheets/ADXL001.pdf, page 3> [12 <./images/datasheets/ADXL001.pd
+f>]
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+)
+
+LaTeX Warning: Marginpar on page XIII moved.
+
+[13] (./doc.aux (./content/titlepage.aux) (./content/vorwort.aux)
+(./content/kontakt.aux) (./content/einleitung.aux)
+(./content/aufgabenstellung.aux) (./content/vorgehen.aux)
+(./content/funktionale.aux) (./content/nichtfunktionale.aux)
+(./content/tests.aux) (./content/hardware.aux) (./content/software.aux)
+(./content/resultate.aux) (./content/diskussion.aux) (./content/bedienung.aux)
+(./content/anhang.aux))
+
+LaTeX Warning: There were undefined references.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{glo:terminal} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:RAM} has been referenced but does not exist, re
+placed by a fixed one
+
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/loca
+l/texlive/2014/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/
+2014/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2014/texmf-dis
+t/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dv
+ips/lm/lm-ts1.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmm
+i10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/te
+xlive/2014/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2014/t
+exmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2014/texmf-dist/
+fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
+1/public/lm/lmss8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm
+/lmssbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsso10
+.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
+ive/2014/texmf-dist/fonts/type1/public/lm/lmtt9.pfb>
+Output written on doc.pdf (90 pages, 9887299 bytes).
+Transcript written on doc.log.

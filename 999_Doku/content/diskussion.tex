@@ -18,6 +18,49 @@
 
 \chapter{Diskussion}\label{chap.diskussion}
 \todo{Diskussion}
-\todo{haben wir erfüllt?, wo gabs schwierigkeiten?, worauf sind wir stolz
-, was könnte man jetzt weiter noch machen?
-, was ist noch geplant?}
+
+
+\section{Ergebnisse}
+\subsection{Funktionale Anforderungen}
+Wir haben eine Messstation entwickelt, die an einem \gls{logger} mehrere \glspl{sensoreinh} betreiben kann und die Messdaten nach definierbaren Kriterien verarbeitet, die Datenmenge um einen wählbaren Faktor reduziert und die interessanten Daten über ein \gls{bussys} überträgt. Die Messstation speichert die Daten auf einem einfach austauschbaren Speichermedium. Die Konfiguration der Messstation kann im Feld überprüft und angepasst werden. Es ist möglich, die \glspl{sensoreinh} im Feld zu überwachen und ihre Konfiguration anzupassen, ohne dass sie aus der Installation im Bach entfernt werden müssen. Die \glspl{sensoreinh} sind in der Lage, Ereignisse nach konfigurierbaren Kriterien zu erkennen.
+
+
+\subsection{Nichtfunktionale Anforderungen}
+Zum Stromverbrauch der Anlage lagen beim Verfassen des Berichts noch keine Daten vor.
+
+Mit den verschiedenen Detail-Levels und der \gls{fs} kann die Datenqualität den Bedürfnissen in einem gewissen Rahmen angepasst werden.
+
+Die vorliegenden Geräte sind in wasserdichten Gehäusen untergebracht. Die Gehäuse sind nicht stabil genug, um Einschlägen von grossen Geschiebekörnern zu widerstehen. Daher sind weiterhin Stahlplatten notwendig, um die \glspl{sensoreinh} zu schützen. Mit dieser Messstation können in der \gls{vaw} an der ETH Hönggerberg in einer Versuchsrinne Tests durchgeführt werden. Die Installation in einem Bergbach ist beim gegenwärtigen Projektstand nicht möglich.
+
+\section{Rückblick auf die Aufgabenstellung}
+Die Aufgabenstellung sah vor, die Messstation fertig zu entwickeln. Schon zu Beginn der Arbeit zeichnete sich jedoch ab, dass die Unbekannten zu zahlreich sind:
+\begin{itemize}
+\item Die Neuentwicklung des Algorithmus für die Ereigniserkennung.
+\item Der Entwurf der Messdatenerfassung mit \gls{adwandler} und \gls{timestamp}.
+\item Der Entwurf und die Entwicklung eines Protokolls für die Übertragung der Konfigurations- und Steuerbefehle und der Messresultate über CAN-Bus.
+\item Die Notwendigkeit sehr grosser Konfigurierbarkeit aufgrund des unbekannten Verhaltens der endgültigen Konstruktion des Sensorträgers.
+\end{itemize}
+
+Deshalb wurden grosse Sicherheitsmargen bei Rechenleistung und Fähigkeiten des \gls{mc} gewählt. Mit dem Auftraggeber wurde vereinbart, dass das Ziel der Arbeit angepasst wird auf die Entwicklung eines Prototypen, an dem das Konzept getestet werden kann.
+
+So konnten wir uns mehr auf die Zusammenstellung der Hardware und die Entwicklung der Software kümmern.
+
+Die Entwicklung des Bus-Protokolls für die Kommunikation zwischen den Geräten dauerte wesentlich länger als geplant. Dies verzögerte die Fertigstellung des Projekts stark und verhinderte ausgiebige Tests. Die geplante Funktionalität wurde bis zur Fertigstellung des Berichts nur teilweise erreicht und getestet.
+
+\section{Ausblick}
+Mit dem vorliegenden Prototyp sind erste Tests in der Versuchsrinne in der \gls{vaw} möglich. So können die Hydrologen Erfahrungen mit dem neuen Messsystem sammeln. Diese Erfahrungen sollten verwendet werden, um Mängel am System und fehlende Funktionalität aufzudecken. 
+
+Die Software ist nicht fertig und es sind einige Ideen für zusätzliche Ziele vorhanden.
+
+\subsection{Hardware}
+Das vorliegende Hardware demonstriert lediglich die Machbarkeit eines solchen Systems. Für einen Einsatz im Bergbach bedarf es einer Weiterentwicklung der Hardware: Die Quickstart Boards enthalten viele unbenutzte Bauteile. Mit der Entwicklung einer optimierten Hardware, die nur die wirklich nötigen Teile enthält, könnten wesentlich kleinere Gehäuse gebaut werden. Ein Gehäuse von 60x50x40~mm sollte machbar sein. Mit dieser Grösse sollte es auch möglich sein, mehrere \glspl{sensoreinh} in einer Elastomerplatte zu vergiessen. Ein Thema für ein Folgeprojekt könnte die Entwicklung einer serienreifen Hardware für dieses Messsystem sein.
+
+Die vorliegende Hardware ist nicht auf einen \gls{mems}-Beschleunigungssensor beschränkt. Es könnten auch andere Sensorbauarten angeschlossen werden, wenn die Messwerte über eine analoge Spannung ausgegeben werden. Die Verwendung mehrerer Sensoren wäre mit der vorliegenden Hardware möglich. Die Software müsste dafür aber angepasst werden.
+
+\subsection{Software}
+Die vorliegende Hardware ist mit dem verwendeten Algorithmus nur schwach ausgelastet. Es besteht grosser Spielraum für andere, komplexere Algorithmen. Die Versuche an der \gls{vaw} könnten hier eine neue Stossrichtung aufzeigen.
+
+Falls eine höhere Datenqualität (bis 12 Bit statt nur 8 Bit) gewünscht wird, könnte das Busprotokoll angepasst werden.
+
+Es wäre auch möglich, einen Algorithmus zu entwickeln, der das aktuelle Geschiebeaufkommen verfolgt und je nach Vorgaben in einen anderen Betriebsmodus wechselt. Bei hohem Geschiebeaufkommen könnten zum Beispiel einige Sensoren in höhere Detail-Level versetzt werden, um genauere Daten zu erhalten. Bei knapp werdendem Speicher würden die Detail-Levels automatisch gesenkt.
+

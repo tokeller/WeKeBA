@@ -86,6 +86,10 @@ Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und 
 \subsection{Beschleunigungssensor}
 Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
 
+\subsection{A/D-Wandler}
+Die Messsignale vom Beschleunigungssensor werden von einem 12-Bit-\gls{adwandler} digitalisiert. Der \gls{adwandler} kann theoretisch mit bis zu 200000~Hz betrieben werden.
+
+
 \subsection{Mikroprozessor}
 Der \emph{ARM Cortex-M4} mit 120~MHz Taktfrequenz hat weit mehr Rechenleistung, als für die vorliegende Anwendung benötigt wird. Sollten komplexere Algorithmen für die Erkennung von Ereignissen, für die Filterung der Messdaten oder für die Verarbeitung der Signale benötigt werden, wäre dies dank der bereits vorhandenen Rechenleistung möglich.
 
@@ -213,7 +217,7 @@ Im Modus 'raw' werden Rohdaten ohne Ereigniserkennung übertragen und gespeicher
 \paragraph{Beispieldaten} \todo{beispieldaten einfügen}
 
 \subsubsection{Detaillierte Ereignisdaten (detailed)}
-Die \gls{ereignisdet} sucht den Beginn und das Ende des Ereignisses. Es werden sämtliche \glspl{sample} des Ereignisses übertragen. Im Konfigurationsmenü (Listing \ref{}) wird dieser Modus als 'detailed' bezeichnet. In Abbildung \ref{fig.detaildetailed} entspricht die grüne Kurve den gespeicherten Daten.
+Die \gls{ereignisdet} sucht den Beginn und das Ende des Ereignisses. Es werden sämtliche \glspl{sample} des Ereignisses übertragen. Im Konfigurationsmenü wird dieser Modus als 'detailed' bezeichnet. In Abbildung \ref{fig.detaildetailed} entspricht die grüne Kurve den gespeicherten Daten.
 
 \begin{figure}
 	\centering
@@ -667,43 +671,3 @@ Falls Änderungen an der Konfiguration gemacht, aber nicht in die Konfigurations
 Config has been modified but not saved to SD card.
 \end{lstlisting}
 
-
-
-
-
-
-
-
-
-
-
-
-\section{Betrieb}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Technische Daten}
-Cortex-M4
-CAN-Bus/Transceiver
-Spannungen
-Stromverbrauch
-Kabel
-Stecker
-Sensoren
-SD-Karte
-g-Bereiche
-Messzeiten
-Puffergrössen logger und sensor
-anzahl sensoren (bandbreite/signalstärke/rechenleistungLogger)

@@ -1,69 +1,92 @@
 \begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
 
-\bibitem{boschcanspec2}
-{CAN Specification 2.0}, 09 1991.
+\bibitem{rickenmann2012ESPL}
+D.~Rickenmann, J.~M. Turowski, B.~Fritschi, A.~Klaiber, A.~Ludwig, Bedload
+  transport measurements at the Erlenbach stream with geophones and automated
+  basket samplers, \textit{Earth Surf. Process. Landforms} \textbf{2012},
+  \textit{37}, 1000--1011.
 
-\bibitem{sdstd}
-{SD Specifications, Physical Layer Simplified Specification, Version 4.10}, o.
-  J.
+\bibitem{reid2007}
+S.~C. Reid, S.~N. Lane, J.~M. Berney, J.~Holden, The timing and magnitude of
+  coarse sediment transport events within an upland, temperate gravel-bed
+  river, \textit{Geomorphology} \textbf{2007}, \textit{83}, 152--182.
+
+\bibitem{wyss2014}
+C.~R. Wyss, D.~Rickenmann, B.~Fritschi, J.~M. Turowski, V.~Weitbrecht, R.~M.
+  Boes, Measuring bedload transport rates by grain-size fraction using the
+  swiss plate geophone signal at the erlenbach., \textit{Submitted to Journal
+  of Hydrologic Engineering} \textbf{2014}, \textit{xx}, xxx.
+
+\bibitem{rickenmann2014ESPL}
+D.~Rickenmann, J.~M. Turowski, B.~Fritschi, C.~Wyss, J.~Laronne, R.~Barzilai,
+  I.~Reid, A.~Kreisler, J.~Aigner, H.~Seitz, H.~Habersack, Bedload transport
+  measurements with impact plate geophones: comparison of sensor calibration in
+  different gravel-bed streams, \textit{Earth Surf. Process. Landforms}
+  \textbf{2014}, \textit{39}, 928--942.
+
+\bibitem{turowski2008}
+J.~M. Turowski, A.~Badoux, D.~Rickenmann, B.~Fritschi, Erfassung des
+  Sedimenttransportes in Wildb\"achen und Gebirgsfl\"ussen,
+  Anwendungsm\"oglichkeiten von Geophonmessanlagen, \textit{Wasser Energie
+  Luft} \textbf{2008}, \textit{100}(1), 69--74.
 
 \bibitem{armcortex}
-{ARM Ltd.}
-\newblock {Cortex-M4 Processor}, o. J.
-\newblock
-  http://www.arm.com/products/processors/cortex-m/cortex-m4-processor.php,
+{ARM Ltd.}, {Cortex-M4 Processor}, \textbf{o. J.}
+  Http://www.arm.com/products/processors/cortex-m/cortex-m4-processor.php,
   Stand: 7.12.2014.
-
-\bibitem{muellerkt1}
-Thomas M\"uller.
-\newblock {Vorlesung Kommunikationstechnik 1}, 2013.
-\newblock Kap. 2, S. 14.
 
 \bibitem{nxplpc4088}
-{NXP Semiconductors}.
-\newblock {LPC4088FBD208 Processor Datasheet}, o. J.
-\newblock
-  http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html,
-  Stand: 7.12.2014.
+{NXP Semiconductors}, {LPC4088FBD208 Processor Datasheet}, \textbf{o. J.}
+  \urlprefix\url{http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html,
+  Stand: 7.12.2014}.
 
 \bibitem{nxplpc4088qsb}
-{NXP Semiconductors}.
-\newblock {NXP LPC4088 QuickStart Board}, o. J.
-\newblock http://www.nxp.com/demoboard/OM13063.html, Stand: 7.12.2014.
-
-\bibitem{cfstd}
-o.~V.
-\newblock {Wikipedia: CompactFlash}, 12 2014.
-\newblock http://en.wikipedia.org/wiki/CompactFlash, Stand: 8.12.2014.
-
-\bibitem{wiki_hilbert}
-o.~V.
-\newblock {Wikipedia: Hilbert-Transformation}, 11 2014.
-\newblock https://de.wikipedia.org/wiki/Hilbert-Transformation, Stand:
-  6.12.2014.
-
-\bibitem{usbwiki}
-o.~V.
-\newblock {Wikipedia: USB}, 12 2014.
-\newblock http://en.wikipedia.org/wiki/USB, Stand: 8.12.2014.
+{NXP Semiconductors}, {NXP LPC4088 QuickStart Board}, \textbf{o. J.}
+  \urlprefix\url{http://www.nxp.com/demoboard/OM13063.html, Stand: 7.12.2014}.
 
 \bibitem{ixxatcan}
-o.~V.
-\newblock {CAN vs. RS485}.
-\newblock White paper, IXXAT Automation GmbH, o. J.
+o.~V., {CAN vs. RS485}, White paper, IXXAT Automation GmbH, \textbf{o. J.}
+  \urlprefix\url{http://www.ixxat.com/download/artikel_20105_can-vs-rs485_e.pdf,
+  Stand: 8.12.2014}.
 
-\bibitem{wiki_hilbertFIR}
-{'wdwd'}.
-\newblock {FIR Hilbert Transform Filter}.
-\newblock Licensed under the Creative Commons Attribution-Share Alike 3.0
-  Unported., 3 2013.
-\newblock URL:
-  https://commons.wikimedia.org/wiki/File:FIR\_Hilbert\_Transform\_Filter.svg
-  License: https://creativecommons.org/licenses/by-sa/3.0/deed.en.
+\bibitem{boschcanspec2}
+o.~V., {CAN Specification 2.0}, \textbf{1991}.
+
+\bibitem{muellerkt1}
+T.~M\"uller, {Vorlesung Kommunikationstechnik 1}, \textbf{2013}. Kap. 2, S. 14.
+
+\bibitem{sdstd}
+o.~V., {SD Specifications, Physical Layer Simplified Specification, Version
+  4.10}, \textbf{o. J.}
+
+\bibitem{cfstd}
+o.~V., {Wikipedia: CompactFlash}, \textbf{2014}.
+  \urlprefix\url{http://en.wikipedia.org/wiki/CompactFlash, Stand: 8.12.2014}.
+
+\bibitem{usbwiki}
+o.~V., {Wikipedia: USB}, \textbf{2014}.
+  \urlprefix\url{http://en.wikipedia.org/wiki/USB, Stand: 8.12.2014}.
+
+\bibitem{wiki_hilbert}
+o.~V., {Wikipedia: Hilbert-Transformation}, \textbf{2014}.
+  \urlprefix\url{https://de.wikipedia.org/wiki/Hilbert-Transformation, Stand:
+  6.12.2014}.
 
 \bibitem{dsv1_hilbert}
-Sigisbert Wyrsch.
-\newblock {Vorlesung Digitale Signalverarbeitung 1}, 2013.
-\newblock Kap. 3, DFT und FFT, S. 48.
+S.~Wyrsch, {Vorlesung Digitale Signalverarbeitung 1}, \textbf{2013}. Kap. 3,
+  DFT und FFT, S. 48.
+
+\bibitem{wiki_hilbertFIR}
+{'wdwd'}, {FIR Hilbert Transform Filter}, Licensed under the Creative Commons
+  Attribution-Share Alike 3.0 Unported., \textbf{2013}.
+  \urlprefix\url{https://commons.wikimedia.org/wiki/File:FIR_Hilbert_Transform_Filter.svg}.
+
+\bibitem{wiki_mems}
+o.~V., {Wikipedia: Microelectromechanical systems}, \textbf{2014}.
+  \urlprefix\url{http://en.wikipedia.org/wiki/Microelectromechanical\_systems,
+  Stand: 8.12.2014}.
 
 \end{thebibliography}
