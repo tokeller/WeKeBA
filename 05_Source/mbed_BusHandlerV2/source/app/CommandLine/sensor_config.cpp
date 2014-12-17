@@ -121,8 +121,8 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 	uint8_t started = 2;
 	
   //result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
-	char string[60];
-	if(fgets(string,60,input) != NULL){
+	char string[45];
+	if(fgets(string,45,input) != NULL){
 		printf("read OK\n");
 	};
 	result = sscanf(string, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},%[^\n]\n", 
