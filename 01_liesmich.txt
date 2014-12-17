@@ -1,9 +1,0 @@
-Win Installation:
-
-Download and extract "proTeXt" from http://www.latex-project.org/ftp.html 1.1 GB
-Mit proTeXt Setup.exe MiKTeX und TeXMakerX installieren
-Das erste Mal doc.tex aus der Vorlage (Ordner doc) mit TeXworks ausführen (Rechtslick -> Öffnen mit..) dann grüner Play-Knopf (Setzen)
-
-Ab jetzt doc.tex mit dem Editor TeXMakerX öffnen
-Optionen -> TexMakerX einrichten -> Schnelles Erzeugen: PdfLaTeX + View PDF auswählen
-Icon "Q" Schnelles Erzeugen (F1) anklicken. (Zur Referenzerzeugung immer zweimal ausführen)
