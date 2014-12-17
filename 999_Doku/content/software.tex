@@ -90,7 +90,7 @@ Von der \gls{wsl} wurde die \gls{ereignisdet} bisher mittels \gls{hilbert} gelö
 	\label{fig.wslcurve}
 \end{figure}
 
-Die Berechnung der \gls{hilbert} erfordert einigen Aufwand. Mittels \gls{dft} wird das Spektrum des Signals berechnet. Negative Frequenzanteile werden auf null gesetzt und das resultierende Spektrum mittels \gls{idft} wieder in ein Signal umgerechnet (vgl. \cite{wiki_hilbert}). Das resultierende Signal umhüllt das Eingangssignal. 
+Die Berechnung der \gls{hilbert} erfordert einigen Aufwand. Durch \gls{dft} wird das Spektrum des Signals berechnet. Negative Frequenzanteile werden auf null gesetzt und das resultierende Spektrum mittels \gls{idft} wieder in ein Signal umgerechnet (vgl. \cite{wiki_hilbert}). Das resultierende Signal umhüllt das Eingangssignal. 
 
 Für die \gls{dft} und die \gls{idft} ist der Rechenaufwand je \ensuremath{N \cdot log_2(N)}. Je mehr Datenpunkte in einem Schritt verrechnet werden (\gls{blockg}), desto höher ist der Aufwand, aber desto genauer ist das Resultat. Mit einer \gls{blockg} von 128 Messwerten benötigt die \gls{dft} und die \gls{idft} je 896 komplexe Multiplikationen und Additionen (vgl. \cite[Kap. 3, S. 48]{dsv1_hilbert}). Pro Messwert sind das 7 komplexe Multiplikationen und Additionen. Dank der DSP-Fähigkeiten des gewählten Cortex\texttrademark -M4 Prozessors liegt die zu erwartende Prozessorauslastung für die \gls{hilbert} bei einer \gls{fs} von \ensuremath{10~kHz} bei wenigen Prozent.
 
@@ -104,7 +104,7 @@ Die \gls{hilbert} kann mittels eines \gls{fir}s angenähert werden. Ein Allpass 
 \end{figure}
 
 \subsubsection{Zustandsmaschine}
-Um den Rechenaufwand der Hilbert-Transformation zu umgehen, lösen wir die \gls{ereignisdet} mittels einer \gls{fsm}. Das Zustandsdiagramm der \gls{fsmgloss} in Abbildung \ref{fig.fsm_impact_detection} zeigt alle möglichen Zustände der \gls{fsm} und welche Ereignisse einen Übergang in einen anderen Zustand auslösen.
+Um den Rechenaufwand der Hilbert-Transformation zu umgehen, lösen wir die \gls{ereignisdet} mittels einer \gls{fsm}. Das Zustandsdiagramm der \gls{fsmgloss} in Abbildung \ref{fig.fsm_impact_detection} zeigt alle möglichen Zustände der \gls{fsm} sowie welche Ereignisse einen Übergang in einen anderen Zustand auslösen.
 
 \begin{figure}
 	\centering
@@ -148,7 +148,7 @@ Für die Wahl einer geeigneten Datenrate stehen vier verschiedene Modi, sog. Det
 
 Im 'raw'-Modus werden Rohdaten gespeichert (Abbildung \ref{fig.det_raw}). Dieser Modus soll hauptsächlich der Gewinnung von Kalibrierungsdaten dienen, da hier sehr viele Daten anfallen. Es wird empfohlen, nur wenige Sensoren in diesen Modus zu versetzen.
 
-Im 'detailed'-Modus werden von jedem Ereignis alle Datenpunkte gespeichert (Abbildung \ref{fig.det_det}. Die uninteressanten Datenpunkte zwischen den Ereignissen werden nicht übertragen und aufgezeichnet. Dieser Modus ist sowohl für kurze als auch für längere Messperioden interessant, da er nur interessante Daten aufzeichnet. Die Menge anfallender Daten hängt direkt von der Häufigkeit der Ereignisse ab.
+Im 'detailed'-Modus werden von jedem Ereignis alle Datenpunkte gespeichert (Abbildung \ref{fig.det_det}). Die uninteressanten Datenpunkte zwischen den Ereignissen werden nicht übertragen und aufgezeichnet. Dieser Modus ist sowohl für kurze als auch für längere Messperioden interessant, da er nur interessante Daten aufzeichnet. Die Menge anfallender Daten hängt direkt von der Häufigkeit der Ereignisse ab.
 
 Der 'peaks only'-Modus zeichnet die Dauer des \gls{ereignis}ses sowie Zeitpunkt und Intensität aller \gls{peak}s eines \gls{ereignis}ses auf. Damit ist ein grosser Teil der Information des 'detailed'-Modus vorhanden, aber in geringerer zeitlicher Auflösung.
 
