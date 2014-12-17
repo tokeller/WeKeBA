@@ -2,6 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2014)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: doc.aux
 A level-1 auxiliary file: content/titlepage.aux
+A level-1 auxiliary file: content/abstract.aux
 A level-1 auxiliary file: content/vorwort.aux
 A level-1 auxiliary file: content/kontakt.aux
 A level-1 auxiliary file: content/einleitung.aux
@@ -24,7 +25,7 @@ Warning--entry type for "boschcanspec2" isn't style-file defined
 --line 182 of file literatur.bib
 You've used 18 entries,
             2349 wiz_defined-function locations,
-            647 strings with 7571 characters,
+            648 strings with 7591 characters,
 and the built_in function-call counts, 4259 in all, are:
 = -- 233
 > -- 147

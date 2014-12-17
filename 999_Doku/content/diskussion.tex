@@ -17,8 +17,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Diskussion}\label{chap.diskussion}
-\todo{Diskussion}
-
 
 \section{Ergebnisse}
 \subsection{Funktionale Anforderungen}
@@ -64,3 +62,6 @@ Falls eine höhere Datenqualität (bis 12 Bit statt nur 8 Bit) gewünscht wird, 
 
 Es wäre auch möglich, einen Algorithmus zu entwickeln, der das aktuelle Geschiebeaufkommen verfolgt und je nach Vorgaben in einen anderen Betriebsmodus wechselt. Bei hohem Geschiebeaufkommen könnten zum Beispiel einige Sensoren in höhere Detail-Level versetzt werden, um genauere Daten zu erhalten. Bei knapp werdendem Speicher würden die Detail-Levels automatisch gesenkt.
 
+Der Bedienung der Messstation lässt noch einige Wünsche nach mehr Komfort offen, besonders im Bereich der Datei-Verwaltung. So ist es zum Beispiel noch nicht möglich, über den \gls{logger} einzelne Dateien zu löschen. Dies wäre jedoch wünschenswert, wenn schnell freier Platz geschaffen werden soll. Die Auswahl aus mehreren Konfigurationsdateien wäre auch angenehm. Zudem kann noch nicht angezeigt werden, wie viel freier Platz noch auf der SD-Karte vorhanden ist.
+
+In der vorliegenden Version werden die Ereignisdaten in lesbarer Form in die Datei gespeichert. Dafür wird mehr Speicherplatz als in einem binären Format. Die Verwendung eines binären Formats würde die verfügbare Messdauer beträchtlich erhöhen. Zusätzlich könnte ein Kompressionsalgorithmus verwendet werden, um den benötigten Speicherplatz weiter zu verringern.

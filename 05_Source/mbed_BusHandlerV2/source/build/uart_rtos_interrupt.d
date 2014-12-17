@@ -1,4 +1,5 @@
 .\build\uart_rtos_interrupt.o: app\Support\UART_RTOS_Interrupt.cpp
+.\build\uart_rtos_interrupt.o: app\Support\UART_RTOS_Interrupt.h
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/api/mbed.h
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/api/platform.h
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/device.h
@@ -79,4 +80,3 @@
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/api/wait_api.h
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/hal/sleep_api.h
 .\build\uart_rtos_interrupt.o: HAL/mbed-src/api/rtc_time.h
-.\build\uart_rtos_interrupt.o: app\Support\UART_RTOS_Interrupt.h

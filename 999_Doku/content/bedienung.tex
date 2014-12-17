@@ -33,9 +33,15 @@ Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit an
 
 
 \section{Aufbau der Messstation}\label{sec.manualoverview}
-Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh}.
+Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh} (Abbildung \ref{fig.schemamessanlage}). Der \gls{logger} kann bis 20 Sensoren verwalten. Die tatsächliche maximale Anzahl der verwendbaren Sensoren ist auch von der Stromversorgung und dem gewünschten Detail-Level der Messdaten abhängig.
 
-\todo{bildchen des Aufbaus der Messstation}
+\todo{figure zu messstation einfpgen}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/schemaMessanlage.pdf}
+	\caption{Schematischer Aufbau einer Messanlage.}
+	\label{fig.schemamessanlage}
+\end{figure}
 
 Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
 
@@ -54,21 +60,29 @@ Die \glspl{sensoreinh} sind in einem wasserdichten Gehäuse verbaut und über wa
 Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Kommunikation hat, die Messdaten speichert und den Anschluss eines \gls{compi}s für die Konfiguration der Anlage ermöglicht. Im Datenlogger arbeitet ein \emph{ARM Cortex-M4} Prozessor mit 120~MHz Taktgeschwindigkeit. Dieser Prozessor steuert die Kommunikation und wandelt die Messdaten für die Speicherung in lesbare Information um.
 
 \subsection{Anschlüsse}
-Der \gls{logger} verfügt über vier Anschlüsse. 
+Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref{foto.logger} zeigt einen geöffneten \gls{logger}.
 
-\todo{figur über den logger}
+\todo{foto des datenloggers einfügen}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
+	\caption{Der Datenlogger in geöffnetem Zustand.}
+	\label{foto.logger}
+\end{figure}
+
+
 \subsubsection{Stromversorgung}
-Ein Anschluss ist für die Stromversorgung. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
-\todo{Stromverbrauch logger und pro sensor nennen}
+Ein Anschluss ist für die Stromversorgung, in Abbildung \ref{foto.logger} auf der rechten Seite. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
+
 
 \subsubsection{Busanschluss}
-Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
+Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen, in Abbildung \ref{foto.logger} auf der linken Seite unten. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
 
 \subsubsection{Schnittstelle zum Computer}
-Ein wasserdichter Steckverbinder für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
+Ein wasserdichter Steckverbinder (in Abbildung \ref{foto.logger} auf der linken Seite oben) für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
 
 \subsubsection{Speicherkarte}
-Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
+Die Speicherkarte kann über einen wasserdichten Schraubdeckel (Abbildung \ref{foto.logger}: oben) ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
 
 
 
@@ -81,10 +95,19 @@ Die Speicherkarte kann über einen wasserdichten Schraubdeckel ausgewechselt wer
 
 
 \section{Sensor}\label{sec.manualsensor}
-Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor und einen Mikroprozessor. Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
+Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor, einen Mikroprozessor und zwei Anschlüsse für das Bussystem (Abbildung \ref{foto.sensoreinh}). Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
+
+\todo{foto des datenloggers einfügen}
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
+	\caption{Die Sensoreinheit in geöffnetem Zustand.}
+	\label{foto.logger}
+\end{figure}
 
 \subsection{Beschleunigungssensor}
-Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen schwächer zu machen, oder der Sensor ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen abzuschwächen oder der Sensor wird ausgewechselt. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Sensor muss mit einem Objekt in festem Kontakt stehen, auf dem die Geschiebekörner aufschlagen. Dazu muss entweder das Gehäuse mit einer Platte verbunden werden, oder das Sensorkabel wasserdicht aus dem Gehäuse zu einer Platte geführt werden.
 
 \subsection{A/D-Wandler}
 Die Messsignale vom Beschleunigungssensor werden von einem 12-Bit-\gls{adwandler} digitalisiert. Der \gls{adwandler} kann theoretisch mit bis zu 200000~Hz betrieben werden.
@@ -214,7 +237,12 @@ Im Modus 'raw' werden Rohdaten ohne Ereigniserkennung übertragen und gespeicher
 
 \paragraph{Datenaufkommen} Das Datenaufkommen ist in diesem Modus am grössten. Für jedes \gls{sample} wird ein 8-bit Wert abgespeichert. Bei einer \gls{fs} von 10000~Hz fallen also 10000~Byte Daten pro Sensor und Sekunde an.
 
-\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+\paragraph{Beispieldaten} In der Datei wird beim Start der Aufzeichnung eingetragen, wann die Aufzeichnung (in Sekunden seit 0:00 Uhr, 1.1.1970) beginnt und wie viele Samples gemessen werden sollen. Danach folgen nur noch Datenwerte zwischen -128 und 127. Listing \ref{list.sampleraw} zeigt den Anfang und Ende eines Eintrags aus dem Rohdatenmodus. Die Messwerte sind durch Kommas getrennt, ein Strichpunkt markiert das Ende des Eintrags.
+
+\begin{lstlisting}[caption=Beispieldaten auf Detail-Level 'raw', label=list.sampleraw]
+start=1417865674,samples=600000;0,3,15,-12,15, ... 97,12,-45,-100;
+\end{lstlisting}
+
 
 \subsubsection{Detaillierte Ereignisdaten (detailed)}
 Die \gls{ereignisdet} sucht den Beginn und das Ende des Ereignisses. Es werden sämtliche \glspl{sample} des Ereignisses übertragen. Im Konfigurationsmenü wird dieser Modus als 'detailed' bezeichnet. In Abbildung \ref{fig.detaildetailed} entspricht die grüne Kurve den gespeicherten Daten.
@@ -228,10 +256,15 @@ Die \gls{ereignisdet} sucht den Beginn und das Ende des Ereignisses. Es werden s
 
 \paragraph{Datenaufkommen} Pro \gls{sample} wird ein Byte abgespeichert, der Startzeitpunkt und die Dauer belegen zusammen sechs Byte pro Ereignis. Die Datenmenge variiert mit der Dauer der Ereignisse. Es wird geschätzt, dass bei hohem Ereignisaufkommen während etwa 10~\% der Messzeit ein Ereignis vorliegt. Somit wird die Datenrate ungefähr ein Zehntel der \gls{fs} in Byte/Sekunde sein.
 
-\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+\paragraph{Beispieldaten} Das Format der Datenablage ist im Detail-Level 'detailed' genau gleich wie bei 'raw'. Der Eintrag enthält jedoch nur Messwerte von einem einzigen Ereignis und ist daher viel kürzer (Listing \ref{list.sampledetailed}).
+
+\begin{lstlisting}[caption=Beispieldaten auf Detail-Level 'detailed', label=list.sampledetailed]
+start=1417865674,samples=187;-125,-107,-12,15, ... 43,7,-45;
+\end{lstlisting}
+
 
 \subsubsection{Peaks (peaks only)}
-Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und somit die Dauer des Ereignisses. Ausserdem wird der maximale Ausschlag und alle Peakspitzen mit dem \gls{timestamp} und Höhe des Ausschlags gespeichert.
+Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und somit die Dauer des Ereignisses. Ausserdem werden alle Peakspitzen mit dem \gls{timestamp} und Höhe des Ausschlags gespeichert.
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/peaks.png}
@@ -241,7 +274,11 @@ Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und so
 
 \paragraph{Datenaufkommen} Für die Eckdaten (Beginn, Dauer, Anzahl Peaks, maximaler Ausschlag) fallen 8 Byte Daten an. Jeder Peak benötigt zwei Byte: ein Byte für die Anzahl Samples seit dem letzten Peak und ein Byte für die Höhe des Ausschlags. In der Abbildung \ref{fig.detailsparse} zeigt die blau gestrichelte Linie den Verlauf der Messkurve, die roten Geraden markieren Beginn und Ende des \gls{ereignis}ses. Die grünen 'X' markieren die Peakspitzen, die übertragen werden.
 
-\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+\paragraph{Beispieldaten} Der Eintrag enthält die Startzeit in Sekunden, die Dauer in Samples und die Anzahl Peaks. Danach folgen Wertepaare mit dem Abstand zum vorherigen Peak (resp. zum Beginn des Ereignisses) in Samples und der Peakhöhe (Listing \ref{list.samplepeaks}). Der Maximalwert des Ereignisses entspricht dem höchsten Peak und wird deshalb nicht extra gespeichert.
+
+\begin{lstlisting}[caption=Beispieldaten auf Detail-Level 'peaks only', label=list.samplepeaks]
+start=1417865674,samples=187,nrpeaks=22;3 -120,12 110, ..., 18 68,7 -55;
+\end{lstlisting}
 
 \subsubsection{Minimale Daten (sparse)}
 Im Modus 'sparse' werden nur Eckdaten des \gls{ereignis}ses gespeichert: Beginn und Dauer, Anzahl Peaks und maximaler Ausschlag. Dafür genügen acht Byte pro Ereignis. Die Eckdaten sind in Abbildung \ref{fig.detailsparse} dargestellt.
@@ -255,7 +292,10 @@ Im Modus 'sparse' werden nur Eckdaten des \gls{ereignis}ses gespeichert: Beginn 
 
 \paragraph{Datenaufkommen} Der \gls{timestamp} für den Beginn des \gls{ereignis}ses benötigt vier Byte, die Dauer (Anzahl Samples) zwei Byte. Die Anzahl Peaks und der maximale Ausschlag belegen je ein Byte.
 
-\paragraph{Beispieldaten} \todo{beispieldaten einfügen}
+\paragraph{Beispieldaten} Der Eintrag enthält die Startzeit in Sekunden, die Dauer in Samples, die Anzahl Peaks und den maximalen Ausschlag (Listing \ref{list.samplesparse}). 
+\begin{lstlisting}[caption=Beispieldaten auf Detail-Level 'sparse', label=list.samplesparse]
+start=1417865674,samples=187,nrpeaks=22,max=-125;
+\end{lstlisting}
 
 \subsubsection{Inaktiv (off)}
 Die \gls{sensoreinh} kann in den Detail-Level 'off' gesetzt werden. In diesem Fall startet sie auch keine Messung, wenn der \gls{logger} alle \glspl{sensoreinh} startet.
@@ -320,13 +360,15 @@ Das Basis-Menü (siehe Listing \ref{list.basemenu}) listet alle Überwachungs- u
 
 \paragraph{Interne Uhr} Die interne Uhr wird mit den Befehl 'internal clock' eingestellt, Abschnitt \ref{sssec.intclock} beschreibt dies im Detail.
 
-\paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oderr aus einer Datei eingelesen, siehe Abschnitt \ref{sssec.configfile}.
+\paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oder aus einer Datei eingelesen, siehe Abschnitt \ref{sssec.configfile}.
 
 \subsection{Befehle}\label{ssec.befehle}
-\todo{dateiliste einfügen.}
+
 \subsubsection{Dateiliste}\label{sssec.listfiles}
 \begin{lstlisting}[caption=, label=list.]
-HIER LISTE DER FILES EINFueGEN
+f:       90 /mci/config.txt
+f:   122086 /mci/s02_1214_0530.dat
+
  0) exit
 \end{lstlisting}
 
@@ -391,7 +433,6 @@ Falls die Konfiguration der Sensoren verändert, aber noch nicht in die Konfigur
 \subsubsection{Logger-Status}\label{sssec.loggerstate}
 Mit dem Befehl 'logger status' können einige Information über den \gls{logger} angezeigt werden.
 
-\todo{logger status listing}
 \begin{lstlisting}[caption=Untermenü Logger-Status, label=list.loggerstatus]
 Time: Sat Dec 6 18:00:00 2014
 Started?: 1
@@ -506,8 +547,7 @@ and
 threshold - baseline must not be below 0 value
 \end{lstlisting}
 
-\paragraph{Timeout} Der \gls{timeout} definiert, wie viele Samples der Signalwert unterhalb des \gls{threshold}s liegen kann, bevor das \gls{ereignis} als beendet betrachtet wird (Listing \ref{list.paramtimeout}). Die einzige Einschränkung an den \gls{timeout} ist, dass er die Länge des Ereignispuffers nicht überschreiten darf.
-\todo{Länge des Ereignispuffers}
+\paragraph{Timeout} Der \gls{timeout} definiert, wie viele Samples der Signalwert unterhalb des \gls{threshold}s liegen kann, bevor das \gls{ereignis} als beendet betrachtet wird (Listing \ref{list.paramtimeout}). Die Obergrenze für den \gls{timeout} ist 255.
 
 \begin{lstlisting}[caption=Untermenü Timeout, label=list.paramtimeout]
  #) Enter timeout in samples.
@@ -562,12 +602,12 @@ Could not create or open file. Please check SD card for free space.
 \subsubsection{Sensor-Status}\label{sssec.sensorstate}
 Um die Einstellungen alles Sensoren auf einen Blick zu überprüfen, kann mit dem Befehl 'sensor states' die Liste aller Einstellungen aufgerufen werden, Listing \ref{list.sensorstatus}. In der Liste sind eine interne Nummer, die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} sowie alle Einstellungen aufgeführt.
 
-\todo{TW: Liste von Sensor-Stati ins Listing einfügen}
+
 \begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
 Listing sensor config:
- Nr  SID  serial       fs threshold baseline timeout     detail
- 1)    2  461bfdf6  10000       200     2047      30        raw
- 2)    3  361509a5  10000       150     2000      20 peaks only
+ Nr  SID  serial       fs threshold baseline timeout     detail  started?
+ 1)    2  461bfdf6  10000       200     2047      30        raw      yes
+ 2)    3  361509a5  10000       150     2000      20 peaks only      yes
  
  0) continue
 \end{lstlisting}
@@ -585,7 +625,6 @@ Der Timestamp kann manuell zurückgesetzt werden, dafür wird eine Bestätigung 
 \subsubsection{Interne Uhr}\label{sssec.intclock}
 Anhand der internen Uhr werden die Timestamps vom \gls{logger} in einen realen Zeitpunkt umgerechnet. Deshalb wird empfohlen, die interne Uhr auf die korrekte Uhrzeit einzustellen. Dies erfolgt über den Befehl 'internal clock', Listing \ref{list.intclock}. Hier kann das Datum (Untermenü \ref{list.setdate}) und die Tageszeit (Untermenü \ref{list.settime}) eingestellt werden.
 
-\todo{Beispiel einer Uhrzeit einfügen}
 \begin{lstlisting}[caption=Untermenü interne Uhr, label=list.intclock]
  1) adjust date
  2) adjust time
@@ -631,7 +670,6 @@ adjust internal time
 \subsubsection{Konfigurations-Datei}\label{sssec.configfile}
 
 Über den Befehl 'config file' (Listing \ref{list.configfile}) kann die aktuelle Konfiguration der \glspl{sensoreinh} in die Konfigurationsdatei 'config.txt' abgespeichert werden, oder eine neue Konfiguration aus der Datei eingelesen und an die \glspl{sensoreinh} gesendet werden. Es ist nicht möglich, aus mehreren Konfigurationsdateien auszuwählen.
-\todo{mehrere konfig-files und file löschen könnte man in den Ausblick nehmen, als zu verbessernde punkte}
 
 \begin{lstlisting}[caption=Untermenü Konfigurationsdatei, label=list.config]
  1) read configuration from file and set up all sensors accordingly.
