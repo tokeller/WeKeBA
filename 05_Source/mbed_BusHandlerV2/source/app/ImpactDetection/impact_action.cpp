@@ -206,7 +206,7 @@ static Impact_t *impact = NULL;
 		pcSerial.printf("Samples: %d\nPeaks: %d\nMaximum: %d\n***********\n", impact->sample_count, impact->peak_count, impact->max_amplitude);
 		
 		// samples
-	/*	for(i = 0; i < impact->sample_count; i++){
+		for(i = 0; i < impact->sample_count; i++){
 			pcSerial.printf("%10u, %5hd; ", impact->starttime + i, impact->samples[i]);
 		}
 		pcSerial.printf("\n\n");
@@ -216,7 +216,6 @@ static Impact_t *impact = NULL;
 			pcSerial.printf("%3hu: %10u %5hd\n", i, impact->peaks[i].timestamp, impact->peaks[i].value);
 		}
 		pcSerial.printf("\n");
-		*/
 		ImpStd_t std;
 		std.numberOfPkgs = 1;
 		std.maxPeaks = impact->max_amplitude;

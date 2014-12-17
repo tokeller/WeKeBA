@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\source.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\source.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Dec 16 22:12:55 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Wed Dec 17 09:20:11 2014
 <BR><P>
 <H3>Maximum Stack Usage =       1656 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -4015,7 +4015,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[272]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;impact_fsm
 </UL>
 
-<P><STRONG><a name="[26c]"></a>store_impact</STRONG> (Thumb, 140 bytes, Stack size 32 bytes, impact_action.o(.text), UNUSED)
+<P><STRONG><a name="[26c]"></a>store_impact</STRONG> (Thumb, 296 bytes, Stack size 32 bytes, impact_action.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Stream::printf(const char*, ...)
 <LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;enqueueMessage(unsigned, ImpStd_t, char, char, msgType_t)
 </UL>
@@ -4231,7 +4231,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[46]"></a>get_cmd_event_thread(const void*)</STRONG> (Thumb, 100 bytes, Stack size 24 bytes, processingloops.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 744 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 736 + Unknown Stack Size
 <LI>Call Chain = get_cmd_event_thread(const void*) &rArr; menu_fsm(unsigned) &rArr; cmd_read_config_file() &rArr; sensor_config_read_file(std::__FILE*, sensor_config*) &rArr; sensor_config_from_file(std::__FILE*, sensor_config*) &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
 <BR>[Calls]<UL><LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
@@ -4256,7 +4256,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[297]"></a>menu_fsm(unsigned)</STRONG> (Thumb, 1892 bytes, Stack size 8 bytes, cmd.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 720 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 712 + Unknown Stack Size
 <LI>Call Chain = menu_fsm(unsigned) &rArr; cmd_read_config_file() &rArr; sensor_config_read_file(std::__FILE*, sensor_config*) &rArr; sensor_config_from_file(std::__FILE*, sensor_config*) &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd_sensor_id_is_valid(unsigned char)
@@ -4847,7 +4847,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2ca]"></a>cmd_read_config_file()</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, cmd_action.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 712 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 704 + Unknown Stack Size
 <LI>Call Chain = cmd_read_config_file() &rArr; sensor_config_read_file(std::__FILE*, sensor_config*) &rArr; sensor_config_from_file(std::__FILE*, sensor_config*) &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_config_read_file(std::__FILE*, sensor_config*)
@@ -4962,8 +4962,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_config_to_file(std::__FILE*, sensor_config*)
 </UL>
 
-<P><STRONG><a name="[2ec]"></a>sensor_config_from_file(std::__FILE*, sensor_config*)</STRONG> (Thumb, 356 bytes, Stack size 136 bytes, sensor_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 632 + Unknown Stack Size
+<P><STRONG><a name="[2ec]"></a>sensor_config_from_file(std::__FILE*, sensor_config*)</STRONG> (Thumb, 356 bytes, Stack size 128 bytes, sensor_config.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 624 + Unknown Stack Size
 <LI>Call Chain = sensor_config_from_file(std::__FILE*, sensor_config*) &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
 <BR>[Calls]<UL><LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__0sscanf
@@ -4974,7 +4974,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[2d6]"></a>sensor_config_read_file(std::__FILE*, sensor_config*)</STRONG> (Thumb, 120 bytes, Stack size 72 bytes, sensor_config.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 704 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 696 + Unknown Stack Size
 <LI>Call Chain = sensor_config_read_file(std::__FILE*, sensor_config*) &rArr; sensor_config_from_file(std::__FILE*, sensor_config*) &rArr; __0sscanf &rArr; __vfscanf_char &rArr; __vfscanf &rArr; _scanf_real &rArr; _scanf_really_real &rArr; _fp_value &rArr; _btod_etento &rArr; _btod_emul &rArr; _e2e
 </UL>
 <BR>[Calls]<UL><LI><a href="#[2ec]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_config_from_file(std::__FILE*, sensor_config*)
@@ -6114,13 +6114,11 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> uart_rtos_interrupt.o(.text)
 </UL>
-<P><STRONG><a name="[293]"></a>Setup_CHOSEN_UART(int)</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, uart_rtos_interrupt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
-<LI>Call Chain = Setup_CHOSEN_UART(int) &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<P><STRONG><a name="[293]"></a>Setup_CHOSEN_UART(int)</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, uart_rtos_interrupt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = Setup_CHOSEN_UART(int) &rArr; mbed::SerialBase::attach(void(*)(), mbed::SerialBase::IrqType) &rArr; serial_irq_set &rArr; NVIC_SetVector
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::baud(int)
 <LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::SerialBase::attach(void(*)(), mbed::SerialBase::IrqType)
-<LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_cmd_event_thread(const void*)
 </UL>
@@ -6254,7 +6252,6 @@ Global Symbols
 <LI><a href="#[2a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd_format_sd()
 <LI><a href="#[29b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;cmd_mount_sd()
 <LI><a href="#[297]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;menu_fsm(unsigned)
-<LI><a href="#[293]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Setup_CHOSEN_UART(int)
 <LI><a href="#[292]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;register_sensor(unsigned, sensor_config*)
 <LI><a href="#[28d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_loop(const void*)
 <LI><a href="#[28a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processSettings(CANmessage_t*)
