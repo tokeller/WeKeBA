@@ -27,7 +27,15 @@ Im Kapitel \ref{chap.tests} ab Seite \pageref{chap.tests} sind die Testfälle un
 Zum Zeitpunkt des Verfassens dieses Berichts konnten keine weiteren Tests durchgeführt werden. Geplant währen
 
 \section{Ereigniserkennung}
-Der \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} wurde wie geplant in Betrieb genommen und liefert Messdaten, die sich sehr gut mit dem analogen Ausgangssignal des \gls{sensor}s decken. \todo{Abbildung BLABLA zeigt den Vergleich.}  Die \gls{sensoreinh} arbeitete mit einer \gls{fs} von 10000~\ensuremath{Hz}, das Oszilloskop zeichnete mit einer \gls{fs} von \todo{oszilloskopfrequenz} auf. Der Vergleich zeigt, dass vom Oszilloskop ein hochfrequentes, überlagertes Signal aufgezeichnet wurde, das von der \gls{sensoreinh} mit einer \gls{fs} von 10000~Hz gemäss dem Gesetz von Shannon nicht erfasst werden konnte. Das Shannon-Gesetz besagt, dass ein Signal nur dann korrekt abgetastet werden kann, wenn die \gls{fs} mindestens doppelt so hoch ist wie die Signalfrequenz.
+Der \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} wurde wie geplant in Betrieb genommen und liefert Messdaten, die sich sehr gut mit dem analogen Ausgangssignal des \gls{sensor}s decken. Abbildung \ref{fig.comparison} zeigt den Vergleich zwischen der Messung von Oszilloskop (blau) und der \gls{sensoreinh} (grün). Die \gls{sensoreinh} arbeitete mit einer \gls{fs} von 10000~\ensuremath{Hz}, das Oszilloskop zeichnete mit einer \gls{fs} von 3.125~MHz auf. Um ein Ereignis zu simulieren, wurde ein Golfball auf den Testaufbau (siehe im Verzeichnis Fotos/Testaufbau/ auf der beiliegenden CD) fallen gelassen. Der Vergleich zeigt, dass die beiden Kurven gut übereinstimmen. 
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_logger.pdf}
+	\caption{Vergleichsmessung mit Oszilloskop und \gls{sensoreinh}.}
+	\label{fig.comparison}
+\end{figure}
+
 
 Der Betrieb mit 10000~Hz war für unseren Testaufbau genügend, die Peaks traten mit einer Frequenz von ungefähr 2000~Hz auf. Die Frequenz der Peakspitzen variiert sowohl mit der Plattenkonstruktion als auch mit der Korngrösse, Kornbeschaffenheit und der Art des Aufschlags. Daher muss für den tatsächlichen Messbetrieb eine Kalibrierung gemacht werden, um die geeigneten Parameter zu finden.
 
