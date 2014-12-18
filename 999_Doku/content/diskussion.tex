@@ -43,7 +43,11 @@ Deshalb wurden grosse Sicherheitsmargen bei Rechenleistung und Fähigkeiten des 
 
 So konnten wir uns mehr um die Zusammenstellung der Hardware und die Entwicklung der Software kümmern.
 
-Die Entwicklung des Bus-Protokolls für die Kommunikation zwischen den Geräten dauerte wesentlich länger als geplant. Dies verzögerte die Fertigstellung des Projekts stark und verhinderte ausgiebige Tests. Die geplante Funktionalität wurde bis zur Fertigstellung des Berichts nur teilweise erreicht und getestet.
+Die Implementation des Busprotokolls gestaltete sich schwieriger als angenommen. Die ersten Testimplementationen sahen zwar vielversprechend aus, es tauchten bei der Zusammenarbeit zwischen dem Acceptance-Filter, dem Interrupt-Handling und dem RTOS aber Probleme auf, die massive Verzögerungen verursachten. Für den Acceptance-Filter wird von mbed.org eine Bibliothek (Library) zur Verfügung gestellt, sie ist aber nicht funktionsfähig und musste deshalb von uns implementiert werden.
+
+Die Fehlersuche auf einem Bussystem gestaltet sich schwierig, da debuggen auf einem Bus, der Daten mit 1~MHz übermittelt, zu Timingproblemen führt. Auch die Verwendung von Ausgaben über den Serial-Port war ausgeschlossen, da diese in Interruptroutinen zu einem Hardfault führen. So blieb schlussendlich nichts anderes übrig, als das ganze Busprotokoll zu zerlegen und die einzelnen Teile nach dem oder den Fehlern zu untersuchen, was sehr zeitintenisv war.
+
+Dies verzögerte die Fertigstellung des Projekts stark und verhinderte ausgiebige Tests. Die geplante Funktionalität wurde bis zur Fertigstellung des Berichts nur teilweise erreicht und getestet.
 
 \section{Ausblick}
 Mit dem vorliegenden Prototyp sind erste Tests in der Versuchsrinne in der \gls{vaw} möglich. So können die Hydrologen Erfahrungen mit dem neuen Messsystem sammeln. Diese Erfahrungen sollten verwendet werden, um Mängel am System und fehlende Funktionalität aufzudecken. 

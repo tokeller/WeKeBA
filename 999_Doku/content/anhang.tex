@@ -30,8 +30,30 @@
 
 \section{Projektmanagement}\label{app.projektmanagement}
 
-\subsection{Zeitplan}
-\todo{Zeitplan}
+\subsection{Zeitplanung und Meilensteine}
+Abbildung \ref{fig.gantt} zeigt den Gantt-Chart des Projekts. Die Konzeptphase wurde gemeinsam bearbeitet. Danach wurden die Arbeiten aufgeteilt, T. Keller entwickelte das CAN-Protokoll und die zugehörigen \gls{ipc}-Abläufe. Die Konfiguration und Bedienung der Messstation wurde von T. Welti entwickelt. Die Aufteilung aller Arbeitspakete ist im Gantt-Chart auf Seite \pageref{fig.gantt} aufgeführt.
+
+\begin{figure}
+	\centering		\includegraphics[angle=270,width=1\textwidth]{images/gantt.pdf}
+	\caption{Gantt-Chart des Projekts.}
+	\label{fig.gantt}
+\end{figure}
+
+\subsubsection{Meilenstein 1: Hardware in Betrieb}
+Ein erstes Konzept wurde pünktlich zum Meilenstein 1 erstellt. Bezüglich der Art, wie die Dokumentation (vor allem welche Diagramme am besten geeignet wären) im Detail auszusehen hat, bestanden noch Unsicherheiten. Soweit sinnvoll soll UML verwendet werden, damit die Diagramme verständlich sind.
+
+\subsubsection{Meilenstein 2: Gehäuse und Leiterplatte}
+Die Leiterplatte wurde in unserem Auftrag und unter Mithilfe von T. Welti durch Valentin Schlatter (ZHAW InES) entwickelt. Beim Entwurf und dem Bau der Gehäuse stand Erich Ruff (ZHAW InES) als Berater zur Seite und übernahm die Bohrarbeiten. Dank ihrer Mithilfe konnte der Meilenstein 2 termingerecht abgeschlossen werden.
+
+\subsubsection{Meilenstein 3: Software}
+Der dritte Meilenstein konnte nicht eingehalten werden. Die ersten proof-of-concept-Implementationen sahen zwar vielversprechend aus, allerdings tauchten bei der Detailimplementation des CAN-Protokolls Schwierigkeiten auf, die einige Umstellungen notwendig machten. So konnte der Meilenstein erst mit drei Wochen Verspätung erreicht werden.
+
+\subsubsection{Meilenstein 4: Testing}
+Aufgrund der Verzögerung des zweiten Meilensteins konnte auch dieser Meilenstein nicht fristgereicht erreicht werden. Zudem ist das Testing rudimentär ausgefallen, da nach der Verzögerung kaum mehr Zeit für intensive Tests blieb. Wir waren aus terminlichen Gründen gezwungen, die Arbeit auf den MS~5 zu fokussieren.
+
+\subsubsection{Meilenstein 5: Dokumentation}
+Der letzte Meilenstein konnte fristgerecht erreicht werden.
+
 
 \subsection{Besprechungsprotokolle}
 
@@ -63,6 +85,7 @@ Als Folgeprojekt oder möglicher Entwicklungsauftrag an die ZHAW wurde die Minia
 
 Im Anschluss an die Sitzung wurde die \gls{vaw} besichtigt. Hier konnten sich die Entwickler zum ersten Mal ein (eindrückliches!) Bild der bestehenden Messinstallationen mit Geophonen machen.
 
+\clearpage
 \section{Schaltpläne}\label{app.pcb}
 \includepdf[angle=90]{images/pcb/Schematic.pdf}
 \includepdf[pages={1,2},angle=90]{images/pcb/PCB_Layout.pdf}
@@ -78,13 +101,13 @@ Um die Dokumentation übersichtlich zu halten, wird der Grossteil der Datenblät
 
 \subsection{Embedded Artists NXP LPC4088 QuickStart Board}
 
-\begin{figure}[H]
+\begin{figure}
 	\centering		\includegraphics[width=0.7\textwidth]{images/datasheets/lpc4088_qsb_key_components_reva.png}
 	\caption{Hauptkomponenten des NXP LPC4088 QuickStart Boards von Embedded Artists.}
 	\label{fig.NXP_LPC4088_QSB_comps}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
 	\centering		\includegraphics[width=0.7\textwidth]{images/datasheets/LPC4088_QSB_pinning_revA_800x769.png}
 	\caption{Pins des NXP LPC4088 QuickStart Boards von Embedded Artists.}
 	\label{fig.NXP_LPC4088_QSB_pinout}

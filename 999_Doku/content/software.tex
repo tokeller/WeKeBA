@@ -23,7 +23,7 @@
 
 
 \subsection{Überblick}\label{subsec.sw_ueberblick}
-Die Hauptkomponenten (Abbildung \ref{fig.swlogger})des \gls{logger}s sind die Datenablage und das Busprotokoll, welche jeweils in einem eigenen \glspl{thread} implementiert wurden, damit sie unabhängig voneinander arbeiten können. Damit die Kommunikation zwischen den Teilnehmern reibungslos funktioniert wurde eine Busverwaltung implementiert, die mehrere Aufgaben wahrnimmt. Zum einen kümmert sie sich um die Teilnehmerverwaltung und verteilt eindeutige CAN-IDs, die aus einer Konfigurationsdatei gelesen werden. Weiter weist die Busverwaltung jeweils einem Teilnehmer ein Token zu als Erlaubnis, Daten zu schicken. Damit wird sichergestellt, dass kein Sensor verhungert, weil seine Nachrichten jeweils von anderen Sensoren überschrieben werden. 
+Die Hauptkomponenten (Abbildung \ref{fig.swlogger}) des \gls{logger}s sind die Datenablage und das Busprotokoll, welche jeweils in einem eigenen \glspl{thread} implementiert wurden, damit sie unabhängig voneinander arbeiten können. Damit die Kommunikation zwischen den Teilnehmern reibungslos funktioniert wurde eine Busverwaltung implementiert, die mehrere Aufgaben wahrnimmt. Zum einen kümmert sie sich um die Teilnehmerverwaltung und verteilt eindeutige CAN-IDs, die aus einer Konfigurationsdatei gelesen werden. Weiter weist die Busverwaltung jeweils einem Teilnehmer ein Token zu als Erlaubnis, Daten zu schicken. Damit wird sichergestellt, dass kein Sensor verhungert, weil seine Nachrichten jeweils von anderen Sensoren überschrieben werden. 
 
 \begin{figure}
 	\centering
@@ -41,7 +41,16 @@ Das Busprotokoll kümmert sich um die technische Kommunikation mit den \glspl{se
 	\label{fig.swsensor}
 \end{figure}
 
-Die Software der \gls{sensoreinh} ist ähnlich der \gls{logger}-Software strukturiert, auch in der \gls{sensoreinh} operieren zwei Threads (Abbildung \ref{fig.swsensor}). Zum einen ist hier auch wieder der Busprotokoll-Thread anzutreffen, der wie beim \gls{logger} die ganze Kommunikation kapselt. Im zweiten Thread läuft auf der \gls{sensoreinh} die \gls{ereignisdet}, welche die Daten des angeschlossenen Beschleunigungssensors ausliest und die Ergebnisse basierend auf dem festgelegten Detail-Level aufbereitet. Ist ein Ereignis abgeschlossen (d.h. der Ausschlag des Beschleunigungssensors liegt unter einem festgelegten Schwellwert) wird dieses in die Queue zum Busprotokoll geschrieben. Hat der Sensor das Token bereits erhalten, wird er die Meldung unverzüglich übermitteln, andernfalls wird er die Message in der Queue belassen, bis ihm das Token zugewiesen wird. Damit die Queue nicht so schnell überläuft, wurde sie entsprechend gross gewählt und dient somit als eine Art Buffer. Die Queue für eingehende Meldungen bietet dafür nur wenigen Meldungen Platz, da die Sensoren einerseits nur Meldungen erhalten, die entweder an sie selbst oder als Broadcast adressiert wurden (andere Meldungen werden vom Acceptance-Filter ausgeschlossen) und andererseits nur Steuerkommandos vom \gls{logger} zu erwarten sind.
+Die Software der \gls{sensoreinh} (Abbildung \ref{fig.swsensor}) ist ähnlich der \gls{logger}-Software strukturiert, auch in der \gls{sensoreinh} operieren zwei Threads (Abbildung \ref{fig.commsensor}). Zum einen ist hier auch wieder der Busprotokoll-Thread anzutreffen, der wie beim \gls{logger} die ganze Kommunikation kapselt. Im zweiten Thread läuft auf der \gls{sensoreinh} die \gls{ereignisdet}, welche die Daten des angeschlossenen Beschleunigungssensors ausliest und die Ergebnisse basierend auf dem festgelegten Detail-Level aufbereitet. Ist ein Ereignis abgeschlossen (d.h. der Ausschlag des Beschleunigungssensors liegt unter einem festgelegten Schwellwert) wird dieses in die Queue zum Busprotokoll geschrieben. Hat der Sensor das Token bereits erhalten, wird er die Meldung unverzüglich übermitteln, andernfalls wird er die Message in der Queue belassen, bis ihm das Token zugewiesen wird. Damit die Queue nicht so schnell überläuft, wurde sie entsprechend gross gewählt und dient somit als eine Art Buffer. Die Queue für eingehende Meldungen bietet dafür nur wenigen Meldungen Platz, da die Sensoren einerseits nur Meldungen erhalten, die entweder an sie selbst oder als Broadcast adressiert wurden (andere Meldungen werden vom Acceptance-Filter ausgeschlossen) und andererseits nur Steuerkommandos vom \gls{logger} zu erwarten sind.
+
+Die Abbildung \ref{fig.ipccomm} zeigt das Zusammenspiel der internen (\gls{ipc}) und externen (CAN-Bus) Kommunikation. Im \gls{logger} arbeiten drei Threads zusammen, um die Benutzereingaben (Console-Thread), die Datenverarbeitung (Processing-Thread) und die Kommunikation über den CAN-Bus abzuwickeln. In der \sgls{sensoreinh} kommunizieren die \gls{ereignisdet} und der Kommunikations-Thread (CAN-Bus) miteinander.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/IPC-Grob.pdf}
+	\caption{Interne und externe Kommunikation.}
+	\label{fig.ipccomm}
+\end{figure}
 
 
 \subsection{Messdatenerfassung}\label{subsec.sw_messen}
@@ -152,8 +161,6 @@ Der Timer läuft nicht in Echtzeit, sondern zählt die Anzahl Messwerte seit sei
 
 Falls die \gls{fifo} doch einmal überlaufen sollte, wird eine Nachricht an den \gls{logger} übertragen, der eine entsprechende Meldung in die Datendatei der \gls{sensoreinh} einträgt. Dies bedeutet, dass zu diesem Zeitpunkt einige Messwerte verloren gegangen sind. Da der \gls{timestamp} in der \gls{sensoreinh} trotzdem mit jedem \gls{sample} erhöht wird, stimmen die Zeitangaben in der Datendatei weiterhin. Es besteht lediglich eine Lücke im Datensatz.
 
-\todo{TK: Zusammenhänge A/D-Wandlung und Ereigniserkennung und Übertragung beschreiben, dazu ein Kommunikationsdiagramm, wo synchron, wo asynchron.}
-
 \subsection{Detail-Level}
 Je nach Einsatz der Messstation variiert die benötigte unbeaufsichtigte Messdauer von einigen Tagen bis zu mehreren Monaten. Die zu speichernde Datenmenge muss an diese Dauer angepasst werden können. Für einen langen Einsatz werden von Vorteil weniger detaillierte Messdaten abgespeichert, während für einen eher kurzen Einsatz unter Umständen sogar unkomprimierte Daten abgespeichert werden können.
 
@@ -214,21 +221,86 @@ t_{Ereignis} = t_{reset} + (timestamp/fs)
 
 \subsection{Verwaltung des Bussystems}\label{subsec.sw_busverwaltung}
 
-\todo{TK: Busverwaltung beschreiben}
+Da der CAN-Bus für dieses Projekt in einem Internet Protocol (IP) ähnlichen Modus laufen soll, muss der Bus von einer zentralen Stelle verwaltet werden. Ansonsten wäre es schwierig, die einzelnen Teilnehmer am Bus eindeutig zu identifizieren oder zu verhindern, dass ein Sensor auf seinen Daten sitzenbleibt. Abbildungen \ref{fig.seqstartuplogger} und \ref{fig.seqstartupsensor} zeigen die Sequenzen der Verwaltung des Bussystems.
+Um das zu garantieren, wird der Datenlogger als Busmaster eingesetzt, der den Sensoren aufgrund einer Konfigurationsdatei und der Mikrocontroller-Seriennummer eine eindeutige CAN-ID zuweist. Hat der \gls{logger} die Seriennummer aller \glspl{sensoreinh} erhalten und diese registriert oder ist vorher ein Timeout aufgetreten, werden die CAN-Identifier verschickt. Als nächstes übermittelt der \gls{logger} allen \glspl{sensoreinh} ihre spezifischen Einstellungen (sofern in der Konfigurationsdatei vorhanden) oder die Standardwerte. Die \gls{sensoreinh} erhalten daraufhin den Timesync-Broadcast des \gls{logger}, der eine Zurücksetzung des Timestamps in den \glspl{sensoreinh} veranlasst. Sobald alle Einstellungen gesetzt wurden, aktiviert der Logger standardmässig den Aufnahmemodus der Sensoren und schickt dem ersten registrierten Sensor den Token zu. Dieser Token enthält auch die maximale Anzahl der Meldungen, die der Sensor dem Logger schicken darf. Der Sensor bestätigt den Token und sendet dem Logger die Anzahl der Meldungen, die er übermitteln wird. So weiss der Logger jederzeit, wieviele Meldungen des Sensors noch ausstehend sind und kann genug Speicher reservieren.
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/magicdraw/StartUpSequenz.pdf}
+		\includegraphics[height=0.9\textheight]{images/magicdraw/AblaufLogger.pdf}
 	\caption{Sequenzdiagramm des Startupvorgangs der Messstation.}
-	\label{fig.seq_startup}
+	\label{fig.seqstartuplogger}
 \end{figure}
 
-\todo{TK: Figur \ref{fig.seq_startup} neu machen}
+Der Start-Ablauf einer \gls{sensoreinh} (Abbildung \ref{fig.seqstartupsensor}) ist das Gegenstück zu dem des \gls{logger}s. Zu Beginn erwartet die \gls{sensoreinh} die Anforderung, ihre Seriennummer bekanntzugeben. Da die \glspl{sensoreinh} keinen persistenten Speicher aufweisen, müssen die Einstellungen jeweils vom  \gls{logger} übermittelt werden. Erhält die \gls{sensoreinh} diese nicht, läuft sie mit den Standardwerten weiter. Beim Eintreffen des Timesync-Broadcasts setzt die \gls{sensoreinh} den Timestamp auf 0 und erwartet den Befehl zum Start der Aufnahme. Sobald dieser eingetroffen ist, wird die Ereigniserkennung gestartet und die \gls{sensoreinh} ist betriebsbereit.
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/magicdraw/AblaufSensor.pdf}
+	\caption{Sequenzdiagramm des Startupvorgangs der Messstation.}
+	\label{fig.seqstartupsensor}
+\end{figure}
+
 
 \subsection{Busprotokoll}\label{subsec.sw_busprotokoll}
-\todo{TK: Busprotokoll}
-\todo{TK: Kommunikationsdiagramm Bushandler}
-\todo{TK: Interrupt-System des Bushandlers aufführen}
+Ursprünglich wurde das Controller Area Network (CAN) von Bosch entwickelt, um die Steuergeräte in Automobilen zu verbinden \cite{boschcanspec2}. In einem solchen Umfeld ist es wichtig, dass die Kommunikation fehlerfrei und zeitnah erfolgt, da fehlerhafte oder verpasste Meldungen verheerende Folgen nach sich ziehen können (z.B. verpasstes Auslösen des ABS oder der Airbags). Um diese Anforderungen zu erfüllen, wurden einige Vorkehrungen getroffen. Zum einen werden die Daten auf dem CAN-Bus als differenzielles Signal übertragen. Äussere Einflüsse wirken auf beide Leitungen etwa gleich stark und verändern die Differenz deshalb praktisch nicht (siehe auch Abbildung \ref{fig.diff}, Seite \pageref{fig.diff}).
+
+Ein weiteres Problem, dass bei einem Bussystem auftreten kann, sind Daten-Kollisionen zwischen den einzelnen Teilnehmern. Um diese zu verhindern, wird beim CAN das 'Carrier Sense Multiple Access/Collision Resolution'-Verfahren angewandt, bei dem die Teilnehmer zum Sendezeitpunkt feststellen, dass ihre Nachricht mit der eines anderen Teilnehmers kollidiert und dann den Konflikt lösen. Derjenige Sender mit der niedrigeren CAN-ID hat Priorität vor dem anderen Sender, er darf seine Nachricht zu Ende senden \cite{boschcanspec2}. Abbildung \ref{fig.canframe} zeigt den Aufbau eines CAN-Frames im Detail.
+
+Um eine Kollision zu erkennen, prüft jeder Teilnehmer simultan zum Senden, was für ein Signal gerade auf dem Bus anliegt. Stimmt das Bit auf dem Bus mit dem gerade übermittelten überein, ist keine Kollision aufgetreten oder es wurde von allen Teilnehmern gerade ein dominantes Bit (0) übermittelt. Sendet der Teilnehmer im Arbitration-Feld (das aus der Message-ID und einem Control-Bit besteht) ein rezessives Bit und liegt auf dem Bus ein dominantes Bit an, stellt der Teilnehmer seine Übermittlung ein und schickt die Meldung später selbständig erneut \cite{boschcanspec2}. Abbildung \ref{fig.canarbitration} zeigt den Ablauf einer Kollision und ihrer Auflösung mit drei Sendern, die gleichzeitig eine Übertragung starten. 
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/canarbitration.png}
+	\caption{Auflösung einer Kollision bei CAN-Bus.}
+	\label{fig.canarbitration}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/canframe.pdf}
+	\caption{Aufbau eines CAN-Frames \cite{can_arbit}.}
+	\label{fig.canframe}
+\end{figure}
+
+\subsubsection{Implementation}
+In einem CAN-Bus wird normalerweise kein Bus-Master verwendet, da die Nachrichten nach Verwendungszweck mit IDs versehen sind und so jeder Teilnehmer herausfinden kann, welche Meldungen für ihn relevant sind (zum Beispiel interessiert sich der Auslöser des Airbags nicht für die Abgaswerte der Lambdasonde). Für dieses Bussystem ist aber neben der Art der Meldung auch noch der Absender und der Empfänger wichtig, um einerseits die direkte Kommunikation zwischen dem Datenlogger und einem Sensor und andererseits die Steuerung des Busses per Broadcast-Meldungen zu ermöglichen.
+
+
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/canmess.pdf}
+	\caption{Header verschiedener Message-Typen.}
+	\label{fig.canmess}
+\end{figure}
+
+Da für den Datenlogger wichtig ist, wer welche Daten geschickt hat und die einzelnen Sensoren auch unabhängig voneinander konfiguriert werden müssen, muss jeder Sensor eine eindeutige ID erhalten. Zusätzlich soll unterschieden werden, welcher Art die Nachrichten sind und welche Nachrichten Vorrang haben, falls bei der Übertragung eine Kollision auftritt. Wenn die vorhandenen 11 Bit der Message-ID für den Message-Typ, die Sender- und die Receiveradresse verwendet würden, könnten die Adressen etwa vier Bit ausmachen, es wären also 16 Teilnehmer auf dem Bus erlaubt. Um diese Beschränkung zu umgehen, können Meldungen im „extended format“ geschickt werden. In diesem Format werden Identifier mit einer Länge von 29 Bit zugelassen, welche ausreichen, um den Bus für insgesamt 255 Teilnehmer mit 32 Nachrichtentypen und einem 8 Bit Paketzähler zu  betreiben. Abbildung \ref{fig.canmess} zeigt einige Beispiele der Header von CAN-Frames. Das Busprotokoll mit dem Aufbau aller Nachrichtentypen befindet sich als Excel-Datei auf der beiliegenden CD.
+
+Um sicherzustellen, dass der Busmaster (in diesem Fall der \gls{logger}) immer Priorität vor den anderen Teilnehmern hat, wurde das erste Bit der Message-ID als Prioritätsbit verwendet und für alle Nachrichten vom \gls{logger} auf 0 gesetzt. In der Konfiguration dieses Busses steht eine 0 für ein dominantes Bit, d.h. eine gleichzeitig gesendete 1 würde überschrieben und der andere Teilnehmer erkennt eine Kollision, woraufhin er die Übertragung abbricht und später erneut versucht. Die folgenden vier Bits dienen als Message-Typ (nicht zu verwechseln mit dem CAN-Message Typ, der nicht in der Message-ID vorkommt), welcher an erster Stelle ebenfalls das Prioritätsbit aufweist. Sollten mehr als die bereits verwendeten Message-Typen notwendig werden, kann der volle Bereich ausgeschöpft werden. Die nächsten acht Bits enthalten die Empfängeradresse, darauf folgen die Senderadresse und die eigentliche Message-ID (der Paketzähler). Für eine Broadcast-Message wird die Zieladresse auf 0xFF gesetzt, ansonsten muss der gewünschte Empfänger angegeben werden (0x01 für den Busmaster und eine aufsteigende Nummerierung für jeden Teilnehmer). Als Senderadresse verwenden die noch nicht registrierten Teilnehmer eine leere Sourceadresse, die sonst die zugewiesene CAN-ID des Teilnehmers enthalten sollte. Die Reihenfolge dieser Felder wurde so gewählt, um die Möglichkeit des CAN-Acceptancefilters auszunutzen.
+
+\subsubsection{Acceptance-Filter}
+Da nicht jeder am Bus angehängte Teilnehmer alle Nachrichten empfangen muss (eine \gls{sensoreinh} interessiert sich nicht für die Daten einer anderen \gls{sensoreinh} oder die Konfigurationsmeldungen für diese), müssen die irrelevanten Nachrichten ignoriert werden. Dazu gibt es zwei mögliche Ansätze, entweder das Filtern per Software oder die Verwendung des CAN-Acceptance-Filters. Die Filterung per Software kostet zusätzliche Rechenleistung, sollte also nur angewendet werden, wenn die Performance nicht so wichtig ist oder kein Hardwarefilter verfügbar ist.
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/cancontroller.pdf}
+	\caption{Schema des CAN-Controllers.}
+	\label{fig.cancontroller}
+\end{figure}
+
+Im LPC4088 ist für beide CAN-Controller (Abbildung \ref{fig.cancontroller}) ein Hardwarefilter eingebaut, der insgesamt 1024 Standard-Identifier oder 512 Extended Identifier aufnehmen kann. Neben dem spezifischen Filtern, das nur eindeutige Treffer zulässt, kann der Filter auch so konfiguriert werden, dass ganze Bereiche von Message-IDs akzeptiert werden. Zusätzlich besteht noch die Möglichkeit, den Filter in den Full-CAN-Modus zu stellen, bei dem die empfangenen Nachrichten gleich in einem definierten Buffer zwischengespeichert werden, das Auslesen des Empfangsbuffers entfällt hier also. Da dieser Modus aber nur mit spezifischen Standard-Filtern funktioniert, wurde er hier nicht implementiert.
+
+\begin{figure}
+	\centering
+		\includegraphics[height=0.9\textheight]{images/canfilter.pdf}
+	\caption{CAN-Filter.}
+	\label{fig.canfilter}
+\end{figure}
+
+Der Filter (Abbildung \ref{fig.canfilter}) besteht aus einer Lookup-Tabelle, die hierarchisch aufgebaut ist: zuerst sind die spezifischen Standard-Filter (16 Bit), dann die Gruppen Standard-Filter (2x16 Bit mit lower- und upper-Bound), dann die spezifischen Extended-Filter (32 Bit) und zuletzt die Gruppen Extended-Filter (2x32 Bit) eingetragen. Trifft nun eine CAN-Nachricht ein, wird geprüft, welcher Art die erhaltene Message-ID ist. Im Anschluss wird die ID zuerst gegen die spezifischen Filter geprüft, wird kein Treffer erzielt, werden die Gruppen-Filter geprüft. Bei einem Treffer wird die Nachricht in den Receive-Buffer geladen, der CAN-Controller löst einen Interrupt aus und die ganze Meldung kann ausgelesen werden.
+
+Im vorliegenden Bussystem wurden die Filter des Loggers so konfiguriert, dass alle Sensor-Nachrichten akzeptiert werden. Bei den Sensoren wird die Konfiguration des Filters in drei Schritten vorgenommen: nach dem Reset eines Sensors wird der Filter so gesetzt, dass nur eine Seriennummer-Anfrage des Loggers durchgelassen wird. Auf diese Anfrage antworten die Sensoren mit dem versenden ihrer Seriennummer und dem Setzen der Broadcast-Filter. Nun können die Sensoren alle Broadcast-Meldungen des Loggers empfangen. Der Logger verschickt nun die zugeteilten CAN-Ids zusammen mit den entsprechenden Seriennummern als Broadcast. Empfängt ein Sensor den Broadcast, prüft er die Seriennummer und, falls diese mit seiner übereinstimmt, setzt die Filter für alle an ihn gerichteten Meldungen.
 
 \subsection{Filesystem}\label{subsec.sw_filesystem}
 Der \gls{logger} legt die Messdaten für jede \gls{sensoreinh} in eine eigene Datei ab. Die Filepointer werden zusammen mit den Konfigurationsdaten im Arbeitsspeicher gehalten. Beim Stoppen einer \gls{sensoreinh} wird die Datei geschlossen und beim erneuten Start der \gls{sensoreinh} eine neue Datei eröffnet. Beim Stopp/Start des \gls{logger}s erfolgt dies für alle Dateien.
