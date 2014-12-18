@@ -27,9 +27,9 @@
 \glossaryentry{CRC?\glossentry{crc}|setentrycounter[]{page}\glsnumberformat}{30}
 \glossaryentry{USB?\glossentry{usb}|setentrycounter[]{page}\glsnumberformat}{31}
 \glossaryentry{USB?\glossentry{usb}|setentrycounter[]{page}\glsnumberformat}{31}
-\glossaryentry{MCI?\glossentry{mci}|setentrycounter[]{page}\glsnumberformat}{32}
+\glossaryentry{MCI?\glossentry{mci}|setentrycounter[]{page}\glsnumberformat}{31}
 \glossaryentry{USB?\glossentry{usb}|setentrycounter[]{page}\glsnumberformat}{32}
-\glossaryentry{IPC?\glossentry{ipc}|setentrycounter[]{page}\glsnumberformat}{36}
+\glossaryentry{IPC?\glossentry{ipc}|setentrycounter[]{page}\glsnumberformat}{34}
 \glossaryentry{IRQ?\glossentry{irq}|setentrycounter[]{page}\glsnumberformat}{36}
 \glossaryentry{IRQ?\glossentry{irq}|setentrycounter[]{page}\glsnumberformat}{36}
 \glossaryentry{IRQ?\glossentry{irq}|setentrycounter[]{page}\glsnumberformat}{36}
@@ -37,8 +37,8 @@
 \glossaryentry{IRQ?\glossentry{irq}|setentrycounter[]{page}\glsnumberformat}{37}
 \glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{37}
 \glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{37}
-\glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{38}
-\glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{38}
+\glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{37}
+\glossaryentry{ISR?\glossentry{isr}|setentrycounter[]{page}\glsnumberformat}{37}
 \glossaryentry{IRQ?\glossentry{irq}|setentrycounter[]{page}\glsnumberformat}{38}
 \glossaryentry{WSL?\glossentry{wsl}|setentrycounter[]{page}\glsnumberformat}{38}
 \glossaryentry{DFT?\glossentry{dft}|setentrycounter[]{page}\glsnumberformat}{38}

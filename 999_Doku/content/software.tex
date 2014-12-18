@@ -17,7 +17,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Software}\label{chap.software}
-\todo{software}
+
 
 \section{Software-Stack}\label{sec.sw_stack}
 
@@ -305,7 +305,7 @@ Im LPC4088 ist für beide CAN-Controller (Abbildung \ref{fig.cancontroller}) ein
 	\label{fig.canfiltermiss}
 \end{figure}
 
-Der Filter (Abbildungen \ref{fig.canfilterhit} und \ref{fig.canfiltermiss}) besteht aus einer Lookup-Tabelle, die hierarchisch aufgebaut ist: zuerst sind die spezifischen Standard-Filter (16 Bit), dann die Gruppen Standard-Filter (2x16 Bit mit lower- und upper-Bound), dann die spezifischen Extended-Filter (32 Bit) und zuletzt die Gruppen Extended-Filter (2x32 Bit) eingetragen. Trifft nun eine CAN-Nachricht ein, wird geprüft, welcher Art die erhaltene Message-ID ist. Im Anschluss wird die ID zuerst gegen die spezifischen Filter geprüft, wird kein Treffer erzielt, werden die Gruppen-Filter geprüft. Bei einem Treffer wird die Nachricht in den Receive-Buffer geladen, der CAN-Controller löst einen Interrupt aus und die ganze Meldung kann ausgelesen werden. Dieser Ablauf mit einem Treffer ist in Abbildung \ref{fig.canfilterhit} dargestellt. Abbildung \ref{fig.canfiltermiss} zeigt den Ablauf, wenn kein Filter zutrifft und die Nachricht ignoriert wird.
+Der Filter (Abbildungen \ref{fig.canfilterhit} und \ref{fig.canfiltermiss}) besteht aus einer Lookup-Tabelle, die hierarchisch aufgebaut ist: zuerst sind die spezifischen Standard-Filter (16 Bit), dann die Gruppen Standard-Filter (2x16 Bit mit lower- und upper-Bound), dann die spezifischen Extended-Filter (32 Bit) und zuletzt die Gruppen Extended-Filter (2x32 Bit) eingetragen. Trifft nun eine CAN-Nachricht ein, wird geprüft, welcher Art die erhaltene Message-ID ist. Im Anschluss wird die ID zuerst gegen die spezifischen Filter geprüft, wird kein Treffer erzielt, werden die Gruppen-Filter geprüft. Bei einem Treffer wird die Nachricht in den Receive-Buffer geladen, der CAN-Controller löst einen Interrupt aus und die ganze Meldung kann ausgelesen werden. Dieser Ablauf mit einem Treffer ist in Abbildung \ref{fig.canfilterhit} dargestellt. Abbildung \ref{fig.canfiltermiss} zeigt den Ablauf, wenn kein Filter zutrifft und die Nachricht ignoriert wird. Wie beim vorigen Beispiel wird zuerst eruiert, um welche Art von MessageID es sich handelt. Dementsprechend wird die passende Startadresse geladen und die Lookup-Tabelle durchgelesen. Wird kein Treffer erzielt, d.h. die letzte Adresse (End of AF Tables register) erreicht, wird keine Interrupt ausgelöst und die Meldung wird verworfen.
 
 Im vorliegenden Bussystem wurden die Filter des Loggers so konfiguriert, dass alle Sensor-Nachrichten akzeptiert werden. Bei den Sensoren wird die Konfiguration des Filters in drei Schritten vorgenommen: nach dem Reset eines Sensors wird der Filter so gesetzt, dass nur eine Seriennummer-Anfrage des Loggers durchgelassen wird. Auf diese Anfrage antworten die Sensoren mit dem versenden ihrer Seriennummer und dem Setzen der Broadcast-Filter. Nun können die Sensoren alle Broadcast-Meldungen des Loggers empfangen. Der Logger verschickt nun die zugeteilten CAN-Ids zusammen mit den entsprechenden Seriennummern als Broadcast. Empfängt ein Sensor den Broadcast, prüft er die Seriennummer und, falls diese mit seiner übereinstimmt, setzt die Filter für alle an ihn gerichteten Meldungen.
 

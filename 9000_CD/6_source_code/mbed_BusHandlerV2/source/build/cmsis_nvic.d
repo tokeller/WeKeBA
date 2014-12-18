@@ -1,0 +1,11 @@
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.c
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/LPC407x_8x_177x_8x.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/core_cm4.h
+.\build\cmsis_nvic.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/core_cmInstr.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/core_cmFunc.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/core_cm4_simd.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/system_LPC407x_8x_177x_8x.h
+.\build\cmsis_nvic.o: HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.h
