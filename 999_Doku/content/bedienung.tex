@@ -20,7 +20,7 @@
 \todo{Bedienungsanleitung}
 
 \section{Produktbeschrieb}\label{sec.manualproduct}
-Die Messstation wurde entwickelt, um Geschiebemessungen in einem Bach oder Fluss zu machen. Als Vorbild hat eine Messstation mit \glspl{geophon} als \glspl{sensor} gedient, die einen Embedded-PC als Auswertungsrechner einsetzt. Der bauliche Aufwand für eine solche Messstation ist ziemlich gross, da viele Kabel verlegt und vor dem Geschiebe geschützt werden müssen. Mit dem Ziel, den Aufwand für die Konstruktion und die Verkabelung zu reduzieren, wurde eine neue Messstation entwickelt, die über ein Bussystem kommuniziert und die Messdaten gleich am Sensor auswertet. Auf diese Weise müssen nur noch die gewünschten, vorher spezifizierten Messdaten übertragen und gespeichert werden.
+Die Messstation wurde entwickelt, um Geschiebemessungen in einem Bach oder Fluss zu machen. Als Vorbild hat eine Messstation mit \glspl{geophon}n als \glspl{sensor} gedient, die einen Embedded-PC als Auswertungsrechner einsetzt. Der bauliche Aufwand für eine solche Messstation ist ziemlich gross, da viele Kabel verlegt und vor dem Geschiebe geschützt werden müssen. Mit dem Ziel, den Aufwand für die Konstruktion und die Verkabelung zu reduzieren, wurde eine neue Messstation entwickelt, die über ein Bussystem kommuniziert und die Messdaten gleich am Sensor auswertet. Auf diese Weise müssen nur noch die gewünschten, vorher spezifizierten Messdaten übertragen und gespeichert werden.
 
 Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit angeschlossen werden, die alle Messdaten aufzeichnet. Diese Anzahl kann nach eingehenden Tests wahrscheinlich noch erhöht werden. Die Obergrenze wird auch von der gewünschten Messdatenqualität abhängen, da das Bussystem eine begrenzte Übertragungskapazität hat.
 
@@ -33,7 +33,7 @@ Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit an
 
 
 \section{Aufbau der Messstation}\label{sec.manualoverview}
-Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zu \gls{sensoreinh} zu \gls{sensoreinh} (Abbildung \ref{fig.schemamessanlage}). Der \gls{logger} kann bis 20 Sensoren verwalten. Die tatsächliche maximale Anzahl der verwendbaren Sensoren ist auch von der Stromversorgung und dem gewünschten Detail-Level der Messdaten abhängig.
+Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zur ersten \gls{sensoreinh} und dann jeweils von einer zur nächsten \gls{sensoreinh} (Abbildung \ref{fig.schemamessanlage}). Der \gls{logger} kann bis 20 Sensoren verwalten. Die tatsächliche maximale Anzahl der verwendbaren Sensoren ist auch von der Stromversorgung und dem gewünschten Detail-Level der Messdaten abhängig.
 
 \todo{figure zu messstation einfpgen}
 \begin{figure}
@@ -42,8 +42,6 @@ Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit de
 	\caption{Schematischer Aufbau einer Messanlage.}
 	\label{fig.schemamessanlage}
 \end{figure}
-
-Stromversorgung, Verdrahtung, Can-Bus, Terminator, R2D2, C3PO
 
 Die \glspl{sensoreinh} sind in einem wasserdichten Gehäuse verbaut und über wasserdichte Steckverbinder (IP68) untereinander verbunden. 
 
@@ -62,7 +60,6 @@ Das Herzstück der Anlage ist der \gls{logger}, der die Kontrolle über die Komm
 \subsection{Anschlüsse}
 Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref{foto.logger} zeigt einen geöffneten \gls{logger}.
 
-\todo{foto des datenloggers einfügen}
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
@@ -72,17 +69,17 @@ Der \gls{logger} verfügt über vier Anschlüsse. Abbildung \ref{foto.logger} ze
 
 
 \subsubsection{Stromversorgung}
-Ein Anschluss ist für die Stromversorgung, in Abbildung \ref{foto.logger} auf der rechten Seite. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
+Ein Anschluss ist für die Stromversorgung, in Abbildung \ref{foto.logger} auf der linken Seite. Hier werden \ensuremath{12 V} Gleichspannung angeschlossen. Der Stromverbrauch ist abhängig von der Anzahl angeschlossener Sensoren.
 
 
 \subsubsection{Busanschluss}
-Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen, in Abbildung \ref{foto.logger} auf der linken Seite unten. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
+Über den zweiten Anschluss wird das Kabel des \gls{bussys}s angeschlossen, in Abbildung \ref{foto.logger} auf der rechten Seite oben. Der Steckverbinder ist wasserdicht (IP68, Binder), damit kein Regen- oder Kondenswasser in den \gls{logger} eindringen kann. Die Messstation verwendet CAN-Bus für die Kommunikation, da dieser Standard ein sehr robustes Protokoll für die Sicherstellung der korrekten und fehlerfreien Übertragung hat. 
 
 \subsubsection{Schnittstelle zum Computer}
-Ein wasserdichter Steckverbinder (in Abbildung \ref{foto.logger} auf der linken Seite oben) für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
+Ein wasserdichter Steckverbinder (in Abbildung \ref{foto.logger} auf der rechten Seite unten) für ein \gls{usb}-Kabel erlaubt den Anschluss eines Computers oder auch einen Smartphones. Über eine serielle Schnittstelle kann dann die Messstation konfiguriert werden. Der Anschluss eines \gls{compi}s und die Konfiguration ist in den Abschnitten \ref{ssec.manualserial} bis \ref{ssec.befehle} ab Seite \pageref{ssec.manualserial} im Detail beschrieben.
 
 \subsubsection{Speicherkarte}
-Die Speicherkarte kann über einen wasserdichten Schraubdeckel (Abbildung \ref{foto.logger}: oben) ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
+Die Speicherkarte kann über einen wasserdichten Schraubdeckel (Abbildung \ref{foto.logger}: unten) ausgewechselt werden, ohne dass das ganze Gehäuse des \gls{logger}s geöffnet werden muss. Der Umgang mit der Speicherkarte ist im Abschnitt \ref{sssec.sdformat} ab Seite \pageref{sssec.sdformat} erklärt.
 
 
 
@@ -95,22 +92,21 @@ Die Speicherkarte kann über einen wasserdichten Schraubdeckel (Abbildung \ref{f
 
 
 \section{Sensor}\label{sec.manualsensor}
-Die \gls{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor, einen Mikroprozessor und zwei Anschlüsse für das Bussystem (Abbildung \ref{foto.sensoreinh}). Der Sensor misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
+Die \glspl{sensoreinh} der Anlage verfügen über einen Beschleunigungssensor, einen Mikroprozessor und zwei Anschlüsse für das Bussystem (Abbildung \ref{foto.sensoreinh}). Der \gls{sensor} misst über die Beschleunigung die Vibrationen, die vom Einschlag des Geschiebes verursacht werden. Der Mikroprozessor wertet die Messdaten aus und erkennt nach vorher definierten Kriterien die Ereignisse, deren Daten gesammelt werden sollen. Diese bereinigten Daten werden dann über das \gls{bussys} an den \gls{logger} übertragen.
 
-\todo{foto des datenloggers einfügen}
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/fotos/datenlogger.png}
+		\includegraphics[width=0.8\textwidth]{images/fotos/sensoreinh.png}
 	\caption{Die Sensoreinheit in geöffnetem Zustand.}
-	\label{foto.logger}
+	\label{foto.sensoreinh}
 \end{figure}
 
 \subsection{Beschleunigungssensor}
-Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen abzuschwächen oder der Sensor wird ausgewechselt. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassungen an der \gls{software} verwendet werden.
+Der Beschleunigungssensor (\emph{Analog Devices ADXL001-70}) misst Beschleunigungen zwischen -70~g und +70~g. Ein g entspricht der Beschleunigung durch die Erdanziehungskraft, ungefähr 10~\ensuremath{m/s^2}. Sollten die Vibrationen stärkere Beschleunigungen erzeugen, kann entweder die Konstruktion der Messanlage angepasst werden um die Vibrationen abzuschwächen oder der Sensor kann ausgewechselt werden. Aus der Baureihe \emph{ADXL001} von \emph{Analog Devices} sind auch Sensoren mit Messbereichen von \ensuremath{\pm}250 g und \ensuremath{\pm}500 g erhältlich. Diese Modelle geben Messsignale im gleichen Spannungsbereich aus wie das verwendete Modell ADXL001-70 und können daher ohne Umkonfiguration oder Anpassung der \gls{software} verwendet werden.
 Der Sensor muss mit einem Objekt in festem Kontakt stehen, auf dem die Geschiebekörner aufschlagen. Dazu muss entweder das Gehäuse mit einer Platte verbunden werden, oder das Sensorkabel wasserdicht aus dem Gehäuse zu einer Platte geführt werden.
 
 \subsection{A/D-Wandler}
-Die Messsignale vom Beschleunigungssensor werden von einem 12-Bit-\gls{adwandler} digitalisiert. Der \gls{adwandler} kann theoretisch mit bis zu 200000~Hz betrieben werden.
+Die Messsignale vom Beschleunigungssensor werden von einem 12-Bit-\gls{adwandler} digitalisiert. Der \gls{adwandler} kann theoretisch mit bis zu 200'000~Hz betrieben werden.
 
 
 \subsection{Mikroprozessor}
@@ -136,7 +132,7 @@ Die \gls{sensoreinh} hat zwei Anschlüsse für das Bussystem. Mit dieser Bauweis
 Als Bussystem wird CAN-Bus verwendet. Mit einer Datenübertragungsrate von 1~MBit/s bis zu einer Kabelgesamtlänge von 40~m, resp 125~kBit/s bis zu 500~m eignet sich CAN-Bus für diese Messstation sehr gut. Es sind keine Kabellängen zu erwarten, die weit über 40~m hinausgehen. CAN-Bus ist des Weiteren sehr robust gegenüber Umwelteinflüssen, die die Übertragung stören könnten.
 
 \subsection{Kabel}
-Die Kabel der Messstation verfügen über 4 Leitungen, die jeweils paarweise verdrillt sind. Zusätzlich zu den Leitungen ist eine Zugentlastung zum Schutz vor mechanischer Beschädigung im Kabel enthalten. Um die zwei Aderpaare und die Zugentlastung ist ein metallisches Geflecht als Schild angebracht, das sowohl gegen mechanische Beschädigung als auch gegen elektrische Störeinflüsse schützt. Die PVC-Hülle des Kabels ist noch ein zusätzlicher mechanischer Schutz. 
+Die Kabel der Messstation verfügen über 4 Leitungen, die jeweils paarweise verdrillt sind. Zusätzlich zu den Leitungen ist eine Zugentlastung zum Schutz vor mechanischer Beschädigung im Kabel enthalten. Um die zwei Aderpaare und die Zugentlastung ist ein metallisches Geflecht als Schild angebracht, das sowohl gegen mechanische Beschädigung als auch gegen elektrische Störeinflüsse schützt. Die PVC-Hülle des Kabels ist ein zusätzlicher mechanischer Schutz. 
 
 Ein Aderpaar wird für die Spannungsversorgung verwendet, das zweite Aderpaar für die Kommunikation auf dem Bussystem.
 
@@ -203,7 +199,7 @@ Auf der Leiterplatte der \gls{sensoreinh} ist eine Schraubklemmenleiste mit 8 An
 \section{Ereignis}\label{sec.manualimpact}
 Als Ereignis wird eine Signalform bezeichnet, die einem Einschlag eines Steins auf dem Sensor entspricht. Um Ereignisse zu erkennen, wird ein \gls{threshold} für den Signalpegel definiert. Wird dieser Wert überschritten, beginnt ein Ereignis. Sobald der Signalpegel für eine gewisse Zeit unterhalb des \gls{threshold}s geblieben ist, ist das Ereignis beendet. Das Verfahren der Ereigniserkennung wird im Abschnitt \ref{subsec.sw_ereignis} ab Seite \pageref{subsec.sw_ereignis} im Detail erklärt.
 
-Ein Beispiel eines Ereignisses ist in Abbildung \ref{fig.impactraw} gegeben. Es handelt sich um den Einschlag eines Golfballs auf einer Aluminiumplatte, unter der der Beschleunigungssensor montiert ist. Die schwarz gestrichelten Geraden zeigen den \gls{threshold}, die roten Geraden zeigen den erkannten Anfang und Ende des \gls{ereignis}ses. Das Ende des \gls{ereignis}ses wird von der \gls{ereignisdet} auf jenen Messpunkt gelegt, an dem der Signalpegel den \gls{threshold} vor dem \gls{timeout} das letzte Mal unterschritten hat. Die Messwerte vor der dem \gls{timeout} werden je nach Detail-Level abgeschnitten. Die folgende Beschreibung der Detail-Level bezieht sich auf dieses Beispiel-Ereignis.
+Ein Beispiel eines Ereignisses ist in Abbildung \ref{fig.impactraw} gegeben. Es handelt sich um den Einschlag eines Golfballs auf einer Aluminiumplatte, unter der der Beschleunigungssensor montiert ist. Die schwarz gestrichelten Geraden zeigen den \gls{threshold}, die roten Geraden zeigen den erkannten Anfang und das Ende des \gls{ereignis}ses. Das Ende des \gls{ereignis}ses wird von der \gls{ereignisdet} auf jenen Messpunkt gelegt, an dem der Signalpegel den \gls{threshold} vor dem \gls{timeout} das letzte Mal unterschritten hat. Die Messwerte vor dem \gls{timeout} werden je nach Detail-Level abgeschnitten. Die folgende Beschreibung der Detail-Level bezieht sich auf dieses Beispiel-Ereignis.
 
 \begin{figure}
 	\centering
@@ -264,7 +260,7 @@ start=1417865674,samples=187;-125,-107,-12,15, ... 43,7,-45;
 
 
 \subsubsection{Peaks (peaks only)}
-Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und somit die Dauer des Ereignisses. Ausserdem werden alle Peakspitzen mit dem \gls{timestamp} und Höhe des Ausschlags gespeichert.
+Die Ereigniserkennung sucht im Modus 'peaks only' den Beginn und das Ende und somit die Dauer des Ereignisses. Ausserdem werden alle Peakspitzen mit dem \gls{timestamp} und der Höhe des Ausschlags gespeichert.
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/peaks.png}
@@ -340,27 +336,27 @@ Das Basis-Menü (siehe Listing \ref{list.basemenu}) listet alle Überwachungs- u
 11) config file
 \end{lstlisting}
 
-\paragraph{Dateien auflisten} Mit dem Befehl 'list files' wird eine Liste aller Dateien auf der SD-Karte angezeigt. Die Liste enthält die Dateigrösse sowie den Dateinamen, siehe Abschnitt \ref{sssec.listfiles}.
+\paragraph{Dateien auflisten} Mit dem Befehl 'list files' wird eine Liste aller Dateien auf der SD-Karte angezeigt. Die Liste enthält die Dateigrösse sowie den Dateinamen.
 
-\paragraph{SD-Karte formatieren} Um die SD-Karte für den ersten Gebrauch vorzubereiten, sollte sie formatiert werden. Dies erfolgt von Vorteil auf einem \gls{compi}, kann aber auch im \gls{logger} mit dem Befehl 'format SD card' gemacht werden, siehe Abschnitt \ref{sssec.sdformat}.
+\paragraph{SD-Karte formatieren} Um die SD-Karte für den ersten Gebrauch vorzubereiten, sollte sie formatiert werden. Dies erfolgt von Vorteil auf einem \gls{compi}, kann aber auch im \gls{logger} mit dem Befehl 'format SD card' gemacht werden.
 
-\paragraph{SD-Karte anmelden} Nach dem Einsetzen einer SD-Karte erkennt der \gls{logger} dies normalerweise automatisch. Es kann jedoch vorkommen, dass der \gls{logger} auf die neue Karte aufmerksam gemacht werden muss. Dies erfolgt mit dem Befehl 'mount SD card', siehe Abschnitt \ref{sssec.sdmount}.
+\paragraph{SD-Karte anmelden} Nach dem Einsetzen einer SD-Karte erkennt der \gls{logger} dies normalerweise automatisch. Es kann jedoch vorkommen, dass der \gls{logger} auf die neue Karte aufmerksam gemacht werden muss. Dies erfolgt mit dem Befehl 'mount SD card'.
 
-\paragraph{SD-Karte abmelden} Vor dem Entfernen der SD-Karte müssen alle Dateien geschlossen werden. Dies erfolgt mit dem Befehl 'unmount SD card', siehe Abschnitt \ref{sssec.sdunmount}.
+\paragraph{SD-Karte abmelden} Vor dem Entfernen der SD-Karte müssen alle Dateien geschlossen werden. Dies erfolgt mit dem Befehl 'unmount SD card'.
 
-\paragraph{Status des Datenloggers} Mit dem Befehl 'logger status' werden einige Betriebszustandsdaten des Datenloggers angezeigt, siehe Abschnitt \ref{sssec.loggerstate}.
+\paragraph{Status des Datenloggers} Mit dem Befehl 'logger status' werden einige Betriebszustandsdaten des Datenloggers angezeigt.
 
-\paragraph{Aufzeichnung starten/stoppen} Um die Aufzeichnung im ganzen System zu starten oder zu stoppen wird der Befehl 'start/stop logging' verwendet, siehe Abschnitt \ref{sssec.startstop}.
+\paragraph{Aufzeichnung starten/stoppen} Um die Aufzeichnung im ganzen System zu starten oder zu stoppen wird der Befehl 'start/stop logging' verwendet.
 
-\paragraph{Sensor-Einstellungen} Mit dem Befehl 'sensor parameters' kann eine einzelne \gls{sensoreinh} oder alle \glspl{sensoreinh} zusammen konfiguriert werden. Siehe Abschnitt \ref{sssec.sensorparam}.
+\paragraph{Sensor-Einstellungen} Mit dem Befehl 'sensor parameters' kann eine einzelne \gls{sensoreinh} oder alle \glspl{sensoreinh} zusammen konfiguriert werden.
 
-\paragraph{Status der Sensoreinheiten} Der Betriebszustand aller angeschlossenen \glspl{sensoreinh} kann mit dem Befehl 'sensor state' (siehe \ref{sssec.sensorstate}) aufgelistet werden.
+\paragraph{Status der Sensoreinheiten} Der Betriebszustand aller angeschlossenen \glspl{sensoreinh} kann mit dem Befehl 'sensor state' aufgelistet werden.
 
-\paragraph{Timestamp zurücksetzen} Um den Timestamp in allen \glspl{sensoreinh} auf Null zurückzustellen, wird der Befehl 'reset timestamp' verwendet. Siehe Abschnitt \ref{sssec.timestamp}.
+\paragraph{Timestamp zurücksetzen} Um den Timestamp in allen \glspl{sensoreinh} auf Null zurückzustellen, wird der Befehl 'reset timestamp' verwendet.
 
-\paragraph{Interne Uhr} Die interne Uhr wird mit den Befehl 'internal clock' eingestellt, Abschnitt \ref{sssec.intclock} beschreibt dies im Detail.
+\paragraph{Interne Uhr} Die interne Uhr wird mit dem Befehl 'internal clock' eingestellt.
 
-\paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oder aus einer Datei eingelesen, siehe Abschnitt \ref{sssec.configfile}.
+\paragraph{Konfigurations-Datei} Mit dem Befehl 'config file' wird die Konfiguration der Sensoren abgespeichert oder aus einer Datei eingelesen.
 
 \subsection{Befehle}\label{ssec.befehle}
 
@@ -380,7 +376,7 @@ f:   122086 /mci/s02_1214_0530.dat
  0) cancel
 \end{lstlisting}
 
-Beim Formattieren werden alle Dateien auf der SD-Karte gelöscht, inklusive der Konfigurationsdatei mit allen Sensor-Einstellungen. Der Befehl 'format SD card' holt vor der Ausführung nochmals eine Bestätigung ein, ob sich der Benutzer wirklich sicher ist, dass er alle Dateien löschen will (Listing \ref{list.sdformat}). Während dem Formatieren wird die Meldung \ref{list.sdformatting} angezeigt.
+Beim Formatieren werden alle Dateien auf der SD-Karte gelöscht, inklusive der Konfigurationsdatei mit allen Sensor-Einstellungen. Der Befehl 'format SD card' holt vor der Ausführung nochmals eine Bestätigung ein, ob sich der Benutzer wirklich sicher ist, dass er alle Dateien löschen will (Listing \ref{list.sdformat}). Während dem Formatieren wird die Meldung \ref{list.sdformatting} angezeigt.
 
 \begin{lstlisting}[caption=Statusmeldung SD formatieren, label=list.sdformatting]
 formatting SD Card
@@ -405,7 +401,7 @@ Damit Dateien auf die SD-Karte geschrieben werden können, muss sie vorher erkan
 
 Nach erfolgreicher Anmeldung der SD-Karte wird das Basismenü angezeigt. 
 
-Wenn keine SD-Karte erkannt werden kann, wird eine Fehlermeldung \ref{list.sdmountfail} ausgegeben.
+Wenn keine SD-Karte erkannt werden kann, wird die Fehlermeldung in Listing \ref{list.sdmountfail} ausgegeben.
 
 \begin{lstlisting}[caption=Fehlermeldung SD-Karte anmelden, label=list.sdmountfail]
 No SD card detected! Please insert card and try again!
@@ -488,7 +484,7 @@ Nach der Auswahl einer \gls{sensoreinh} gelangt man zur Auswahl des anzupassende
 
 \paragraph{Abtastrate} Die Abtastrate legt fest, wie oft pro Sekunde ein Messwert vom Beschleunigungssensor eingelesen werden soll. Die \glspl{sensoreinh} können in einem Bereich zwischen \ensuremath{100 Hz} und \ensuremath{200000 Hz} messen. Die Abtastrate kann in Schritten von \ensuremath{100 Hz} eingestellt werden, Listing \ref{list.paramfs}.
 
-Die Abtastrate hat einen wesentlichen Einfluss auf die zu übertragende und zu speichernde Datenmenge, die benötigte Rechenleistung. Davon wiederum hängt die Zeitspanne ab, wie lange die Messstation ohne Wartung betrieben werden kann. Es wird deshalb empfohlen, die Abtastrate nur so hoch einzustellen, wie es wirklich benötigt wird. Wie hoch dieser Wert ist, hängt stark von den geplanten Auswertungen ab.
+Die Abtastrate hat einen wesentlichen Einfluss auf die zu übertragende und zu speichernde Datenmenge, sowie die benötigte Rechenleistung. Davon wiederum hängt die Zeitspanne ab, wie lange die Messstation ohne Wartung betrieben werden kann. Es wird deshalb empfohlen, die Abtastrate nur so hoch wie nötig einzustellen. Wie hoch dieser Wert ist, hängt stark von den geplanten Auswertungen ab.
 
 \begin{lstlisting}[caption=Untermenü Abtastrate, label=list.paramfs]
  #) Enter sampling rate in Hz. (multiple of 100 Hz in range 100..200'000 Hz)
@@ -557,7 +553,7 @@ threshold - baseline must not be below 0 value
 Bei zu langem (Listing \ref{list.paramtimeoutlong}) oder sehr kurzem (Listing \ref{list.paramtimeoutshort}) \gls{timeout} wird eine Fehlermeldung resp. Warnung angezeigt.
 
 \begin{lstlisting}[caption=Fehlermeldung zu langer Timeout, label=list.paramtimeoutlong]
-Timeout too long, can not exceed 512.
+Timeout too long, can not exceed 255.
 \end{lstlisting}
 
 \begin{lstlisting}[caption=Warnung kurzer Timeout, label=list.paramtimeoutshort]
@@ -600,14 +596,14 @@ Could not create or open file. Please check SD card for free space.
 \end{lstlisting}
 
 \subsubsection{Sensor-Status}\label{sssec.sensorstate}
-Um die Einstellungen alles Sensoren auf einen Blick zu überprüfen, kann mit dem Befehl 'sensor states' die Liste aller Einstellungen aufgerufen werden, Listing \ref{list.sensorstatus}. In der Liste sind eine interne Nummer, die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} sowie alle Einstellungen aufgeführt.
+Um die Einstellungen aller Sensoren auf einen Blick zu überprüfen, kann mit dem Befehl 'sensor states' die Liste aller Einstellungen aufgerufen werden, Listing \ref{list.sensorstatus}. In der Liste sind eine interne Nummer, die CAN-Bus-ID, die Seriennummer der \gls{sensoreinh} sowie alle Einstellungen aufgeführt.
 
 
 \begin{lstlisting}[caption=Untermenü Sensor-Status, label=list.sensorstatus]
 Listing sensor config:
- Nr  SID  serial       fs threshold baseline timeout     detail  started?
- 1)    2  461bfdf6  10000       200     2047      30        raw      yes
- 2)    3  361509a5  10000       150     2000      20 peaks only      yes
+ Nr  SID  serial       fs threshold baseline timeout detail     started?
+ 1)    2  461bfdf6  10000       200     2047      30 raw        started
+ 2)    3  361509a5  10000       150     2000      20 peaks only started
  
  0) continue
 \end{lstlisting}
@@ -623,7 +619,7 @@ Der Timestamp kann manuell zurückgesetzt werden, dafür wird eine Bestätigung 
 
 
 \subsubsection{Interne Uhr}\label{sssec.intclock}
-Anhand der internen Uhr werden die Timestamps vom \gls{logger} in einen realen Zeitpunkt umgerechnet. Deshalb wird empfohlen, die interne Uhr auf die korrekte Uhrzeit einzustellen. Dies erfolgt über den Befehl 'internal clock', Listing \ref{list.intclock}. Hier kann das Datum (Untermenü \ref{list.setdate}) und die Tageszeit (Untermenü \ref{list.settime}) eingestellt werden.
+Anhand der internen Uhr werden die Timestamps vom \gls{logger} in einen realen Zeitpunkt umgerechnet. Deshalb wird empfohlen, die interne Uhr auf die korrekte Uhrzeit einzustellen. Dies erfolgt über den Befehl 'internal clock', Listing \ref{list.intclock}. Hier können das Datum (Untermenü \ref{list.setdate}) und die Tageszeit (Untermenü \ref{list.settime}) eingestellt werden.
 
 \begin{lstlisting}[caption=Untermenü interne Uhr, label=list.intclock]
  1) adjust date
@@ -679,7 +675,7 @@ adjust internal time
 
 Falls die Konfigurationsdatei nicht gespeichert werden kann, wird die Fehlermeldung in Listing \ref{list.configerror} angezeigt. Um die Konfigurationsdatei trotzdem speichern zu können, kann die SD-Karte abgemeldet und ausgetauscht werden. Die Konfiguration bleibt erhalten, so lange die Spannungsversorgung besteht.
 
-Um einem möglichen Konfigurationsdatenverlust vorzubeugen empfiehlt es sich, die Konfigurationsdatei zu speichern, sobald alle Einstellungen wie gewünscht gemacht wurden. Nach einem Unterbruch in der Spannungsversorgung wird nach automatisch die Konfiguration aus der 
+Um einem möglichen Konfigurationsdatenverlust vorzubeugen, empfiehlt es sich, die Konfigurationsdatei zu speichern, sobald alle Einstellungen wie gewünscht gemacht wurden. Nach einem Unterbruch in der Spannungsversorgung wird automatisch die Konfiguration aus der Konfigurationsdatei gelesen und an die Sensoren gesendet.
 
 \begin{lstlisting}[caption=Fehlermeldung beim Speichern der Konfigurationsdatei, label=list.configerror]
 The config file could not be written. Please check the SD card in a computer.

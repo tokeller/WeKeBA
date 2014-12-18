@@ -16,7 +16,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Hardware-Konzept}\label{chap.hardware}
+\chapter{Hardware}\label{chap.hardware}
 
 \todo{Hardware}
 
@@ -26,7 +26,7 @@ Anhand der funktionalen Vorgaben für die Messstation werden der \gls{logger}, d
 
 \subsection{Datenlogger}
 Das \gls{hardware}-Konzept des \gls{logger}s ist in Abbildung \ref{fig.hwkonzept_logger} dargestellt.
-Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys} ein und speichert sie ab. Dafür benötigt er das \gls{bussys}, einen \gls{mc}, internen Speicher und ein leicht auswechselbares \gls{speichermedium}. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der \gls{logger} wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des \gls{speichermedium}s wäre eine verschraubbare Öffnung denkbar.
+Der \gls{logger} sammelt die Daten der \glspl{sensoreinh} über das \gls{bussys} ein und speichert sie ab. Dafür benötigt er das \gls{bussys}, einen \gls{mc}, einen internen Speicher und ein leicht auswechselbares \gls{speichermedium}. Ausserdem soll über eine Schnittstelle ein Computer angeschlossen werden können, um den Betrieb der Messstation zu steuern. Der \gls{logger} wird in einem wasserdichten Gehäuse untergebracht. Für den Austausch des \gls{speichermedium}s wäre eine verschraubbare Öffnung denkbar.
 
 \begin{figure}
 	\centering
@@ -64,7 +64,7 @@ Bei der Auswahl des \gls{mc}s werden folgende Kriterien berücksichtigt:
 \item möglichst geringer Stromverbrauch.
 \end{itemize}
 
-Für die vorliegende Anwendung eignen sich Mobile-Prozessoren sehr gut. Sie sind für den Einsatz in mobilen Geräten konzipiert, d.h. für den Batteriebetrieb, sind aber trotzdem sehr leistungsfähig. Die \emph{ARM Cortex}-Reihe bietet ein breites Spektrum an Prozessoren an. Im Mobile-Segment der \emph{ARM Cortex}-Reihe sind vier Prozessoren erhältlich. Da nur ein Modell einen \gls{dsp} aufweist, ist die Entscheidung einfach. Der \emph{ARM Cortex-M4} ist auch der neueste Prozessor aus dem Mobile-Segment. Mit dem Ausblick, das Messsystem in einem zukünftigen Projekt zur Serienreife zu bringen, macht es nur Sinn, den neuesten Prozessor zu verwenden. Ein Auszug aus dem Datenblatt des \emph{ARM Cortex-M4} befindet sich im Anhang \ref{ds.lpc4088}. Abbildung \ref{fig.M4diagramm} zeigt die Fähigkeiten des \emph{ARM Cortex-M4}.
+Für die vorliegende Anwendung eignen sich Mobile-Prozessoren sehr gut. Sie sind für den Einsatz in mobilen Geräten konzipiert, d.h. für den Batteriebetrieb, sind aber trotzdem sehr leistungsfähig. Die \emph{ARM Cortex}-Reihe bietet ein breites Spektrum an Prozessoren an. Im Mobile-Segment der \emph{ARM Cortex}-Reihe sind vier Prozessoren erhältlich. Da nur in einem Modell ein \gls{dsp} integriert ist, fällt die Entscheidung leicht. Der \emph{ARM Cortex-M4} ist auch der neueste Prozessor aus dem Mobile-Segment. Mit dem Ausblick, das Messsystem in einem zukünftigen Projekt zur Serienreife zu bringen, macht es nur Sinn, den neuesten Prozessor zu verwenden. Ein Auszug aus dem Datenblatt des \emph{ARM Cortex-M4} befindet sich im Anhang \ref{ds.lpc4088}. Abbildung \ref{fig.M4diagramm} zeigt die Fähigkeiten des \emph{ARM Cortex-M4}.
 
 \paragraph{\gls{nvicgloss}} Ein Prozessor mit NVIC kann auf verschiedene Ereignisse reagieren, indem Interrupts ausgelöst werden. Jedem Interrupt kann eine Priorität zugewiesen werden, um festzulegen, ob ein Interrupt einen anderen unterbrechen darf, der gerade vom Prozessor abgearbeitet wird. Für das Messsystem wird ein \gls{nvic} benötigt, da mehrere zeitkritische Prozesse parallel ablaufen sollen. Einerseits muss die Abtastrate der Messwerterfassung genau eingehalten werden. Andererseits darf die Verarbeitung der Messwerte nicht zu lange unterbrochen werden, um einen Überlauf der Queue zu vermeiden. Die Daten der \glspl{ereignis} müssen parallel dazu an den \gls{logger} übermittelt werden. Die Prioritäten dieser Prozesse müssen richtig gewählt werden. Im Abschnitt \todo{referenz ändern \ref{sec.parallel}} wird näher darauf eingegangen.
 
@@ -93,7 +93,7 @@ Für die vorliegende Anwendung eignen sich Mobile-Prozessoren sehr gut. Sie sind
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
-Taktfrequenz & bis 120 MHz \\
+\begin{minipage}{38mm}Taktfrequenz\end{minipage} & \begin{minipage}{44mm}bis 120 MHz\end{minipage} \\
 \hline
 NVIC & vorhanden \\
 \hline
@@ -117,13 +117,13 @@ SD-Card & Anschlüsse vorhanden \\
 \end{center}
 \end{table}
 
-Auf dem \emph{NXP LPC4088 QuickStart Board} sind zusätzliche Bauteile verbaut, z.B. Speicher (\gls{sdram} und \gls{flash} und \gls{pin}-Steckleisten, um CAN-Bus-\glspl{pin} oder A/D-Eingänge anzuschliessen. Tabelle \ref{table.nxplpc4088qsb} listet die für dieses Projekt relevanten, zusätzlichen Eigenschaften auf.
+Auf dem \emph{NXP LPC4088 QuickStart Board} sind zusätzliche Bauteile verbaut, z.B. Speicher (\gls{sdram} und \gls{flash}) und \gls{pin}-Steckleisten, um CAN-Bus-\glspl{pin} oder A/D-Eingänge anzuschliessen. Tabelle \ref{table.nxplpc4088qsb} listet die für dieses Projekt relevanten, zusätzlichen Eigenschaften auf.
 
 \begin{table}
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
-Prozessor & NXP LPC4088FET208\\
+\begin{minipage}{38mm}Prozessor\end{minipage} & \begin{minipage}{44mm}NXP LPC4088FET208\end{minipage}\\
 \hline
 Taktfrequenz & bis 120 MHz \\
 \hline
@@ -171,7 +171,7 @@ slave select
 10 m\\1200 m
 \end{minipage} & >32 & \begin{minipage}{6cm}
 \mbox{ }\\- Master am besten in der Mitte des Bus $\Rightarrow$ ungünstig.\\
-- Braucht 2..4 Drähte (bei Full Duplex)\\
+- Braucht 2--4 Drähte (bei Full Duplex)\\
 - braucht pull-up und pull-down Widerstände $\Rightarrow$ mehr Leistungsaufnahme.\\
 \end{minipage} \\ 
 \hline \textbf{Ethernet} & 100 MBit/s & 100 m & > 20 & \begin{minipage}{6cm}
@@ -208,9 +208,9 @@ Da der CAN-Bus bereits mit dem Standard viele benötigte Merkmale mitbringt, fä
 \paragraph{Entscheidung}
 CAN-Bus erfüllt alle Kriterien und erlaubt es, den Busmaster am Ende des Bus zu platzieren. Dies ist ein weiterer Vorteil gegenüber RS485, wo der Master in der Mitte platziert werden sollte. CAN-Bus bietet bereits \gls{cdetgloss} und Fehlererkennung, während dies bei RS485 in der Software gelöst werden muss. Für CAN-Bus sind Bus-Treiber (\gls{transceiver}) erhältlich, die mit hohen Spannungen umgehen können, was das \gls{bussys} robuster gegenüber Umwelteinflüssen macht. Die Grösse der Datenpakete ist bei CAN-Bus auf 8 Byte begrenzt, bei RS485 werden die Datenpakete über die Software frei definiert, was einen Vorteil von RS485 darstellt. Insgesamt überwiegen die Vorteile von CAN-Bus klar. 
 
-\paragraph{CAN-Bus} CAN-Bus ist ein Bussystem über eine differentielle Leitung. Auf zwei Drähten liegt eine bestimmte Spannung an. Der Empfänger misst den Spannungsdifferenz zwischen den beiden Drähten. Die Differenz wird vom Sender entweder klein oder gross gehalten, um ein 'dominantes' oder ein 'rezessives' Bit zu senden. 'Rezessiv' bedeutet dabei, dass ein anderer Busteilnehmer durch anlegen eines 'dominanten' Bits das 'rezessive' Bit überschreiben kann. Welche Spannungsdifferenzen 'dominant' und 'rezessiv' darstellen, ist vom Standard nicht definiert und lässt dem Entwickler damit freie Hand, die elektrischen Eigenschaften seiner CAN-Implementation seinen Bedürfnissen entsprechend zu definieren. Um Signalreflexionen am Ende der Leitungen zu vermeiden, wird ein Terminierungswiderstand an beiden Enden benötigt, der die beiden Leitungen abschliesst. (vgl. \cite{boschcanspec2}).
+\paragraph{CAN-Bus} CAN-Bus ist ein Bussystem über eine differentielle Leitung. Auf zwei Drähten liegt eine bestimmte Spannung an. Der Empfänger misst die Spannungsdifferenz zwischen den beiden Drähten. Die Differenz wird vom Sender entweder klein oder gross gehalten, um ein 'dominantes' oder ein 'rezessives' Bit zu senden. 'Rezessiv' bedeutet dabei, dass ein anderer Busteilnehmer durch Anlegen eines 'dominanten' Bits das 'rezessive' Bit überschreiben kann. Welche Spannungsdifferenzen 'dominant' und 'rezessiv' darstellen, ist vom Standard nicht definiert und lässt dem Entwickler damit freie Hand, die elektrischen Eigenschaften seiner CAN-Implementation seinen Bedürfnissen entsprechend zu definieren. Um Signalreflexionen am Ende der Leitungen zu vermeiden, wird ein Terminierungswiderstand an beiden Enden benötigt, der die beiden Leitungen abschliesst. (vgl. \cite{boschcanspec2}).
 
-Die beiden Drähte der differentiellen Leitung sind verdrillt. Dadurch wird das Signal der Leitung besser vor äusseren Einflüssen geschützt. Elektrische und magnetische Felder induzieren in einem Draht einen Strom. Da das äussere Feld aber in beiden Drähten praktisch den gleichen Strom induziert, ändert sich an der Spannungsdifferenz in den Drähten kaum etwas (siehe Abbildung \ref{fig.diff}). Die beiden Drähte stellen auch eine Spule dar. Durch das verdrillen der Drähte ändert sich die Ausrichtung der Spule im äusseren Feld auf kurzen Abständen, induzierte Störungen heben sich so gegenseitig auf (vgl. \cite[Kap. 2, S. 14]{muellerkt1}).
+Die beiden Drähte der differentiellen Leitung sind verdrillt. Dadurch wird das Signal der Leitung besser vor äusseren Einflüssen geschützt. Elektrische und magnetische Felder induzieren in einem Draht einen Strom. Da das äussere Feld aber in beiden Drähten praktisch den gleichen Strom induziert, ändert sich an der Spannungsdifferenz in den Drähten kaum etwas (siehe Abbildung \ref{fig.diff}). Die beiden Drähte stellen auch eine Spule dar. Durch das Verdrillen der Drähte ändert sich die Ausrichtung der Spule im äusseren Feld auf kurzen Abständen, induzierte Störungen heben sich so gegenseitig auf (vgl. \cite[Kap. 2, S. 14]{muellerkt1}).
 
 \begin{figure}
 	\centering
@@ -228,13 +228,13 @@ Die korrekte Übertragung wird mittels eines \gls{crc}-Codes überprüft. Der Em
 
 \paragraph{Datenmenge} Pro \gls{sensor} werden bei hohem Geschiebeaufkommen maximal hundert \glspl{ereignis} pro Sekunde erwartet. Ein solches Geschiebeaufkommen stellt jedoch die Ausnahme dar. Ein \gls{ereignis} benötigt je nach verlangtem Detailgrad und Dauer des \gls{ereignis}ses 10--200 Byte Speicherplatz. Für den normalen Betriebsmodus werden 50 Byte/\gls{ereignis} gerechnet, bei 5 \glspl{ereignis}n pro Sekunde. Damit ergibt sich eine Datenrate von 250 Byte/s, die es pro \gls{sensor} abzuspeichern gilt. Mit zehn \glspl{sensor} im Einsatz müssen 2.5 kByte/s gespeichert werden. 
 
-\paragraph{Unabhängige Betriebsdauer} Pro Gigabyte Speicherplatz können 111 Stunden Daten für zehn \glspl{sensor} gespeichert werden. Bei hohem Geschiebeaufkommen mit zwanzig mal mehr \glspl{ereignis}n bleiben immer noch 5 Stunden Aufzeichnungszeit pro Gigabyte. Begnügt man sich mit weniger Details, fallen pro \gls{sensor} in zehn Sekunden rund 400 Byte Daten an. Bei dieser Datenrate reicht ein Gigabyte für rund 700 Stunden. Auch bei hohem Geschiebeaufkommen kann die Anlage mehrere Tage an Daten speichern. 
+\paragraph{Unabhängige Betriebsdauer} Pro Gigabyte Speicherplatz können 111 Stunden Daten für zehn \glspl{sensor} gespeichert werden. Bei hohem Geschiebeaufkommen mit zwanzig Mal mehr \glspl{ereignis}n bleiben immer noch 5 Stunden Aufzeichnungszeit pro Gigabyte. Begnügt man sich mit weniger Details, fallen pro \gls{sensor} in zehn Sekunden rund 400 Byte Daten an. Bei dieser Datenrate reicht ein Gigabyte für rund 700 Stunden. Auch bei hohem Geschiebeaufkommen kann die Anlage über mehrere Tage Daten speichern. 
 
 \paragraph{Kapazität} Heute sind Speichermedien mit Kapazitäten bis über 128 GB erhältlich, so dass die Detailrate kein entscheidendes Kriterium mehr darstellt.
 
 \paragraph{Datentransfer} Für den Transfer der Daten aus dem \gls{logger} auf einen Computer gibt es grundsätzlich zwei Varianten. Entweder man liest die Daten über eine Schnittstelle auf den Computer aus, oder man tauscht das Speichermedium aus. Das Auslesen via Schnittstelle benötigt zusätzlich Strom, das Wechseln des Speichermediums setzt einen mehr oder weniger komfortablen und trotzdem wasserdichten Zugang zum Medium voraus. Da heute Speichermedien mit kleinem Platzbedarf erhältlich sind, kann ein solcher Zugang recht einfach mit einem Schraubverschluss realisiert werden.
 
-\paragraph{Vergleich} In Tabelle \ref{table.speichermedium} werden verschiedene Speichermedien miteinander verglichen. In der Spalte 'Breite' ist aufgelistet, wie gross eine Öffnung mindestens sein muss, um das Speichermedium wechseln zu können. 'Pins' gibt an, wie viele Leitungen für den Anschluss des Mediums am Microcontroller nötig sind. Der Stromverbrauch in Klammern ist für den Standby-Modus des Speichermediums.
+\paragraph{Vergleich} In Tabelle \ref{table.speichermedium} werden verschiedene Speichermedien miteinander verglichen. In der Spalte 'Breite' ist aufgelistet, wie gross eine Öffnung mindestens sein muss, um das Speichermedium wechseln zu können. 'Pins' gibt an, wie viele Leitungen für den Anschluss des Mediums am Microcontroller nötig sind. Der Stromverbrauch in Klammern gilt für den Standby-Modus des Speichermediums.
 
 \begin{table}
 \begin{tabular}{|l|l|l|l|l|}
@@ -248,7 +248,7 @@ Die korrekte Übertragung wird mittels eines \gls{crc}-Codes überprüft. Der Em
 \label{table.speichermedium}
 \end{table} 
 
-\paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross werden. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der \gls{logger} mit einem SD-Kartenleser ausgestattet.
+\paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der \gls{logger} mit einem SD-Kartenleser ausgestattet.
 
 \subsection{Sensor}
 \todo{Sensorauswahl beschreiben}
@@ -262,7 +262,7 @@ Um den \gls{logger} und die \glspl{sensoreinh} wasserdicht zu verpacken, wurden 
 
 Die Stecker wurden ebenfalls mit Schutzklasse IP68 gewählt. Als zusätzliches Kriterium galt der Durchmesser des Kabelmantels. Die Stecker \emph{Lumberg 0332 05-1} verfügen über fünf Pole, die vierpolige Variante war zur Zeit nicht lieferbar.
 
-Für den \gls{usb}-Anschluss gibt es wasserdichte Durchführungen, an denen sowohl innen als auch aussen Standard-USB-Kabel angeschlossen werden können. Die \emph{Buccaneer PCXP6043/B}-Gerätebuchse von \emph{Bulgin} erfüllt die Anforderungen. Für diese Buchse ist auch eine wasserdichte Kappe erhältlich.
+Für den \gls{usb}-Anschluss gibt es wasserdichte Ausführungen, an denen sowohl innen als auch aussen Standard-USB-Kabel angeschlossen werden können. Die \emph{Buccaneer PCXP6043/B}-Gerätebuchse von \emph{Bulgin} erfüllt die Anforderungen. Für diese Buchse ist auch eine wasserdichte Kappe erhältlich.
 
 Die verschraubbare Öffnung für die SD-Karte besteht aus einer M36/M32-Gewindebuchse, in die ein M32-Schraubdeckel eingeschraubt wird.
 
@@ -270,7 +270,7 @@ Die verschraubbare Öffnung für die SD-Karte besteht aus einer M36/M32-Gewindeb
 \section{Datenlogger}
 Die Hardware-Architektur des \gls{logger}s ist in Abbildung \ref{fig.hw_logger} schematisch dargestellt. Kernstück ist der \gls{mc} \emph{NXP LPC4088}. Der \gls{mc} ist über eine serielle Schnittstelle mit dem CAN-Transceiver verbunden. Der Transceiver sendet Konfigurations- und Kontrolldaten und empfängt Messdaten über den CAN-Bus.
 
-Dem \gls{mc} steht sowohl interner Programm- und Datenspeicher zur Verfügung, dieser ist aber sehr beschränkt. Damit Konfigurations- und Messdaten zwischengespeichert werden können, steht dem \gls{mc} auf dem \emph{NXP LPC4088 QuickStartBoard} (gestrichelter Kasten) mehr Speicher zur Verfügung: 8~MByte \gls{flash} und 32~MByte \gls{sdram}. Dieser Speicher genügt, um Daten von mehreren \glspl{sensoreinh} zwischenzuspeichern.
+Dem \gls{mc} verfügt über einen interner Programm- und Datenspeicher, dieser ist aber sehr beschränkt. Damit Konfigurations- und Messdaten zwischengespeichert werden können, steht dem \gls{mc} auf dem \emph{NXP LPC4088 QuickStartBoard} (gestrichelter Kasten) externer Speicher zur Verfügung: 8~MByte \gls{flash} und 32~MByte \gls{sdram}. Dieser Speicher genügt, um Daten von mehreren \glspl{sensoreinh} zwischenzuspeichern.
 
 Über das \gls{mci} ist eine SD-Karte an den \gls{mc} angebunden. Auf der SD-Karte werden sowohl die Konfigurationsdaten als auch die Messdaten gespeichert. Heute sind SD-Karten mit bis zu 256~GByte Speicherplatz erhältlich (SDXC-Karten). Zur Zeit unterstützt die verwendete Bibliothek zur Verwendung der SD-Karten nur SDHC-Karten mit bis zu 32~GByte Speicherplatz. 
 

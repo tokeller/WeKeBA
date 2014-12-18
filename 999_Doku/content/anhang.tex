@@ -30,11 +30,38 @@
 
 \section{Projektmanagement}\label{app.projektmanagement}
 
+\subsection{Zeitplan}
+\todo{Zeitplan}
 
-\todo{Zeitplan\\
-Besprechungsprotokolle oder Journals}
+\subsection{Besprechungsprotokolle}
+
+\subsubsection{Projektskizzierung an der WSL, Birmensdorf}
+Die erste Sitzung zum Projekt fand am 16. Juli 2014 an der \gls{wsl} in Birmensdorf statt. Anwesende waren Bruno Fritschi (Projektidee), Carlos Wyss (Doktorand), Alexandre Badoux (Gruppenleiter) sowie Tobias Keller und Tobias Welti.
+
+Die Projektidee wurde von Bruno Fritschi noch einmal erklärt. Carlos Wyss zeigte einige Beispiele von bestehenden Messresultaten und erläuterte den Algorithmus der \gls{ereignisdet}, die mittels Hilbert-Transformation gelöst wird. Die Datenreduktion erfolgt durch Berechnung eines Histogramms der Peakintensitäten über eine Minute und die Speicherung der Dauer, Intensität und Anzahl \glspl{peak} jedes \gls{ereignis}ses. Als minimale Anforderung an die Messdaten wurde vereinbart, dass die \gls{fs} mindestens 10~kHz beträgt und mindestens die gleichen Werte gespeichert werden wie bisher.
+
+Als Wunsch wurde von Carlos Wyss geäussert, die Originaldaten von Anfang bis Ende der \gls{ereignis} speichern zu können.
 
 
+\subsubsection{Zwischenbesprechung an der ZHAW, Winterthur}
+Eine Zwischenbesprechung am 28. Oktober 2014 an der ZHAW Winterthur verlief sehr zufriedenstellend. Anwesend waren Prof. Hans Gelke (Betreuer), Bruno Fritschi sowie Tobias Keller und Tobias Welti.
+
+\paragraph{Projektstand} An der Zwischenbesprechung konnte bereits der Testaufbau mit einer \gls{sensoreinh} vorgeführt werden. Die Signale wurden auf einem Oszilloskop visualisiert und entsprachen den Erwartungen von Bruno Fritschi. Die Dimensionen der Geräte waren jedoch wesentlich grösser als erwartet. 
+
+\paragraph{Beschlüsse} In der Diskussion wurde entschieden, die bereits im Aufbau befindlichen Gehäuse trotzdem fertig zu bauen. Das Projekt war zu diesem Zeitpunkt auf einem guten Weg, weshalb keine Massnahmen oder Änderungen an den Zielen beschlossen wurden.
+
+\subsubsection{Zwischenbesprechung an der VAW, ETH Hönggerberg}
+Am 12. November 2014 fand eine zweite Projektsitzung statt, diesmal an der \gls{vaw} an der ETH Hönggerberg. Anwesend waren Prof. Hans Gelke, Prof. Dieter Rickenmann (WSL), Bruno Fritschi, Carlos Wyss sowie Tobias Keller und Tobias Welti.
+
+\paragraph{Projektstand} Die Methode der Ereigniserkennung mittels einer State Machine mit konfigurierbaren Parametern wurde vorgestellt und von den Anwesenden gelobt. Die verschiedenen Detail-Level wurden intensiv diskutiert und Vor- und Nachteile aufgeführt. 
+
+\paragraph{Beschlüsse} Es wurde beschlossen, das Projekt mit allen vorgeschlagenen Detail-Levels weiterzuführen, da für jeden Modus ein plausibles Szenario gefunden wurde. Da das Projekt mit der \gls{ereignisdet} und Teilen des CAN-Protokolls gut im Zeitplan lag, wurden keine Änderungen der Ziele definiert. Die geplanten Tests an der \gls{vaw} wurden aber auf einen Zeitpunkt nach dem Abschluss der Bachelorarbeit verschoben.
+
+Für die Tests in der Versuchsrinne ist vorgesehen, die Sensoren ausserhalb der Gehäuse der \glspl{sensoreinh} anzuschliessen und unter die bestehende Stahlplatte zu montieren. Dann können Vergleichsmessungen mit Geophonen und \gls{mems}-Beschleunigungssensoren durchgeführt werden.
+
+Als Folgeprojekt oder möglicher Entwicklungsauftrag an die ZHAW wurde die Miniaturisierung  der \gls{sensoreinh} und deren Entwicklung zur Produktreife ins Auge gefasst.
+
+Im Anschluss an die Sitzung wurde die \gls{vaw} besichtigt. Hier konnten sich die Entwickler zum ersten Mal ein (eindrückliches!) Bild der bestehenden Messinstallationen mit Geophonen machen.
 
 \section{Schaltpläne}\label{app.pcb}
 \includepdf[angle=90]{images/pcb/Schematic.pdf}
@@ -68,11 +95,6 @@ Um die Dokumentation übersichtlich zu halten, wird der Grossteil der Datenblät
 \subsection{Analog Devices ADXL001 Beschleunigungssensor}
 \includepdf[pages={3}]{images/datasheets/ADXL001.pdf}
 
-
-
-\todo{Spezifikationen u. Datenblätter der verwendeten Messgeräte und/oder Komponenten\\
-Berechnungen, Messwerte, Simulationsresultate\\
-Grafische Darstellungen, Fotos}
 
 \section{Fotos}\label{sec.foto.testaufbau}
 Die Fotos befinden sich auf der beiliegenden CD und können auch aus dem Git-Repository unter \url{https://github.com/tokeller/WeKeBA} heruntergeladen werden.

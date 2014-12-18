@@ -46,8 +46,8 @@ Der \gls{logger} bietet eine Schnittstelle, an der ein Steuerrechner (Laptop, \g
 Der Betriebsmodus der \glspl{sensor} wird vom \gls{logger} aus gesteuert: Wie viele und welche Art von Daten gesammelt werden soll und ob alle \glspl{sensor} oder nur bestimmte aktiv sein sollen. \\
 Folgende Betreibsmodi sind verfügbar:
 \begin{itemize}
-\item Normaler Modus: Alle \glspl{sensor} übermitteln die verarbeiteten Ereignisdaten. Zeitpunkt, Intensität, Dauer und Anzahl Ausschläge jedes \gls{ereignis} werden gespeichert.
-\item Detaillierter Modus: Alle \glspl{sensor} übermitteln die verarbeiteten Ereignisdaten sowie die gesamten Messdaten für die Dauer des \gls{ereignis}.
+\item Normaler Modus: Alle \glspl{sensor} übermitteln die verarbeiteten Ereignisdaten. Zeitpunkt, Intensität, Dauer und Anzahl Ausschläge jeden \gls{ereignis}ses werden gespeichert.
+\item Detaillierter Modus: Alle \glspl{sensor} übermitteln die verarbeiteten Ereignisdaten sowie die gesamten Messdaten für die Dauer des \gls{ereignis}ses.
 \item Rohdatenmodus: Ein \gls{sensor} übermittelt kontinuierlich Rohdaten, die anderen \glspl{sensor} werden vorübergehend abgeschaltet.
 \end{itemize}
 
@@ -64,7 +64,7 @@ Die Daten werden vom \gls{logger} auf einer Speicherkarte in Dateien abgelegt. N
 
 
 \subsection{F410 Ereignisdetektion}
-Die \gls{sensoreinh} liest den \gls{sensor} mit einer definierten \gls{fs} aus und wertet die Messdaten aus. Der Prozessor erkennt \glspl{ereignis} anhand definierter Kriterien. Zu jedem \gls{ereignis} werden folgende Daten gespeichert: Zeitpunkt (\gls{timestamp}), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während einem \gls{ereignis} gespeichert werden.
+Die \gls{sensoreinh} liest den \gls{sensor} mit einer definierten \gls{fs} aus und wertet die Messdaten aus. Der Prozessor erkennt \glspl{ereignis} anhand definierter Kriterien. Zu jedem \gls{ereignis} werden folgende Daten gespeichert: Zeitpunkt (\gls{timestamp}), Dauer, Anzahl Peaks und höchster Peak. In einem zweiten Betriebsmodus können alle Messpunkte während eines \gls{ereignis}ses gespeichert werden.
 
 
 \subsection{F430 Datenübertragung}
@@ -72,6 +72,6 @@ Die \gls{sensoreinh} übermittelt die Ereignisdaten über das \gls{bussys} an de
 
 
 \subsection{F450 Rohdatenaufzeichnung}
-In einem Sondermodus werden alle Messpunkte gespeichert und über das \gls{bussys} an den \gls{logger} übertragen. In diesem Betriebsmodus kann darf auch nur eine \gls{sensoreinh} aktiv sein, die anderen werden auf Standby geschaltet.
+In einem Sondermodus werden alle Messpunkte gespeichert und über das \gls{bussys} an den \gls{logger} übertragen. In diesem Betriebsmodus kann, darf auch nur eine \gls{sensoreinh} aktiv sein, die anderen werden auf Standby geschaltet.
 
 
