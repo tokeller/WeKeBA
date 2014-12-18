@@ -17,7 +17,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Bedienungsanleitung}\label{chap.bedienung}
-\todo{Bedienungsanleitung}
 
 \section{Produktbeschrieb}\label{sec.manualproduct}
 Die Messstation wurde entwickelt, um Geschiebemessungen in einem Bach oder Fluss zu machen. Als Vorbild hat eine Messstation mit \glspl{geophon}n als \glspl{sensor} gedient, die einen Embedded-PC als Auswertungsrechner einsetzt. Der bauliche Aufwand für eine solche Messstation ist ziemlich gross, da viele Kabel verlegt und vor dem Geschiebe geschützt werden müssen. Mit dem Ziel, den Aufwand für die Konstruktion und die Verkabelung zu reduzieren, wurde eine neue Messstation entwickelt, die über ein Bussystem kommuniziert und die Messdaten gleich am Sensor auswertet. Auf diese Weise müssen nur noch die gewünschten, vorher spezifizierten Messdaten übertragen und gespeichert werden.
@@ -35,7 +34,6 @@ Mit der neuen Messstation können bis zu 20 Sensoren an einer Kontrolleinheit an
 \section{Aufbau der Messstation}\label{sec.manualoverview}
 Die Messstation besteht aus einem \gls{logger} der über ein \gls{bussys} mit den \glspl{sensoreinh} verbunden ist. Die Stromversorgung (12~V Gleichspannung) erfolgt über zwei zusätzliche Leitungen im gleichen Kabel wie für das Bussystem verwendet wird. Das Kabel verläuft vom \gls{logger} zur ersten \gls{sensoreinh} und dann jeweils von einer zur nächsten \gls{sensoreinh} (Abbildung \ref{fig.schemamessanlage}). Der \gls{logger} kann bis 20 Sensoren verwalten. Die tatsächliche maximale Anzahl der verwendbaren Sensoren ist auch von der Stromversorgung und dem gewünschten Detail-Level der Messdaten abhängig.
 
-\todo{figure zu messstation einfpgen}
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/schemaMessanlage.pdf}

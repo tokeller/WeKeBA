@@ -43,7 +43,7 @@ Das Busprotokoll kümmert sich um die technische Kommunikation mit den \glspl{se
 
 Die Software der \gls{sensoreinh} (Abbildung \ref{fig.swsensor}) ist ähnlich der \gls{logger}-Software strukturiert, auch in der \gls{sensoreinh} operieren zwei Threads (Abbildung \ref{fig.commsensor}). Zum einen ist hier auch wieder der Busprotokoll-Thread anzutreffen, der wie beim \gls{logger} die ganze Kommunikation kapselt. Im zweiten Thread läuft auf der \gls{sensoreinh} die \gls{ereignisdet}, welche die Daten des angeschlossenen Beschleunigungssensors ausliest und die Ergebnisse basierend auf dem festgelegten Detail-Level aufbereitet. Ist ein Ereignis abgeschlossen (d.h. der Ausschlag des Beschleunigungssensors liegt unter einem festgelegten Schwellwert) wird dieses in die Queue zum Busprotokoll geschrieben. Hat der Sensor das Token bereits erhalten, wird er die Meldung unverzüglich übermitteln, andernfalls wird er die Message in der Queue belassen, bis ihm das Token zugewiesen wird. Damit die Queue nicht so schnell überläuft, wurde sie entsprechend gross gewählt und dient somit als eine Art Buffer. Die Queue für eingehende Meldungen bietet dafür nur wenigen Meldungen Platz, da die Sensoren einerseits nur Meldungen erhalten, die entweder an sie selbst oder als Broadcast adressiert wurden (andere Meldungen werden vom Acceptance-Filter ausgeschlossen) und andererseits nur Steuerkommandos vom \gls{logger} zu erwarten sind.
 
-Die Abbildung \ref{fig.ipccomm} zeigt das Zusammenspiel der internen (\gls{ipc}) und externen (CAN-Bus) Kommunikation. Im \gls{logger} arbeiten drei Threads zusammen, um die Benutzereingaben (Console-Thread), die Datenverarbeitung (Processing-Thread) und die Kommunikation über den CAN-Bus abzuwickeln. In der \sgls{sensoreinh} kommunizieren die \gls{ereignisdet} und der Kommunikations-Thread (CAN-Bus) miteinander.
+Die Abbildung \ref{fig.ipccomm} zeigt das Zusammenspiel der internen (\gls{ipc}) und externen (CAN-Bus) Kommunikation. Im \gls{logger} arbeiten drei Threads zusammen, um die Benutzereingaben (Console-Thread), die Datenverarbeitung (Processing-Thread) und die Kommunikation über den CAN-Bus abzuwickeln. In der \gls{sensoreinh} kommunizieren die \gls{ereignisdet} und der Kommunikations-Thread (CAN-Bus) miteinander.
 
 \begin{figure}
 	\centering
@@ -235,7 +235,7 @@ Der Start-Ablauf einer \gls{sensoreinh} (Abbildung \ref{fig.seqstartupsensor}) i
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/magicdraw/AblaufSensor.pdf}
+		\includegraphics[width=0.8\textwidth]{images/magicdraw/AblaufSensor.pdf}
 	\caption{Sequenzdiagramm des Startupvorgangs der Messstation.}
 	\label{fig.seqstartupsensor}
 \end{figure}
@@ -250,16 +250,16 @@ Um eine Kollision zu erkennen, prüft jeder Teilnehmer simultan zum Senden, was 
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/canarbitration.png}
-	\caption{Auflösung einer Kollision bei CAN-Bus.}
+		\includegraphics[width=0.8\textwidth]{images/canarbitration.png}
+	\caption{Auflösung einer Kollision bei CAN-Bus \cite{canarbit}.}
 	\label{fig.canarbitration}
 \end{figure}
 
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/canframe.pdf}
-	\caption{Aufbau eines CAN-Frames \cite{can_arbit}.}
+		\includegraphics[width=0.8\textwidth]{images/canframe.pdf}
+	\caption{Aufbau eines CAN-Frames \cite{boschcanspec2}.}
 	\label{fig.canframe}
 \end{figure}
 
@@ -270,7 +270,7 @@ In einem CAN-Bus wird normalerweise kein Bus-Master verwendet, da die Nachrichte
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/canmess.pdf}
+		\includegraphics[width=0.8\textwidth]{images/canmess.pdf}
 	\caption{Header verschiedener Message-Typen.}
 	\label{fig.canmess}
 \end{figure}
@@ -284,8 +284,8 @@ Da nicht jeder am Bus angehängte Teilnehmer alle Nachrichten empfangen muss (ei
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/cancontroller.pdf}
-	\caption{Schema des CAN-Controllers.}
+		\includegraphics[width=0.8\textwidth]{images/cancontroller.pdf}
+	\caption{Schema des CAN-Controllers des NXP LPC4088 \cite{nxplpc4088manual}.}
 	\label{fig.cancontroller}
 \end{figure}
 
@@ -293,12 +293,19 @@ Im LPC4088 ist für beide CAN-Controller (Abbildung \ref{fig.cancontroller}) ein
 
 \begin{figure}
 	\centering
-		\includegraphics[height=0.9\textheight]{images/canfilter.pdf}
-	\caption{CAN-Filter.}
-	\label{fig.canfilter}
+		\includegraphics[width=0.9\textwidth]{images/canfilterhit.pdf}
+	\caption{Ablauf im CAN-Filter bei Treffer.}
+	\label{fig.canfilterhit}
 \end{figure}
 
-Der Filter (Abbildung \ref{fig.canfilter}) besteht aus einer Lookup-Tabelle, die hierarchisch aufgebaut ist: zuerst sind die spezifischen Standard-Filter (16 Bit), dann die Gruppen Standard-Filter (2x16 Bit mit lower- und upper-Bound), dann die spezifischen Extended-Filter (32 Bit) und zuletzt die Gruppen Extended-Filter (2x32 Bit) eingetragen. Trifft nun eine CAN-Nachricht ein, wird geprüft, welcher Art die erhaltene Message-ID ist. Im Anschluss wird die ID zuerst gegen die spezifischen Filter geprüft, wird kein Treffer erzielt, werden die Gruppen-Filter geprüft. Bei einem Treffer wird die Nachricht in den Receive-Buffer geladen, der CAN-Controller löst einen Interrupt aus und die ganze Meldung kann ausgelesen werden.
+\begin{figure}
+	\centering
+		\includegraphics[width=0.9\textwidth]{images/canfiltermiss.pdf}
+	\caption{Ablauf im CAN-Filter bei Treffer.}
+	\label{fig.canfiltermiss}
+\end{figure}
+
+Der Filter (Abbildungen \ref{fig.canfilterhit} und \ref{fig.canfiltermiss}) besteht aus einer Lookup-Tabelle, die hierarchisch aufgebaut ist: zuerst sind die spezifischen Standard-Filter (16 Bit), dann die Gruppen Standard-Filter (2x16 Bit mit lower- und upper-Bound), dann die spezifischen Extended-Filter (32 Bit) und zuletzt die Gruppen Extended-Filter (2x32 Bit) eingetragen. Trifft nun eine CAN-Nachricht ein, wird geprüft, welcher Art die erhaltene Message-ID ist. Im Anschluss wird die ID zuerst gegen die spezifischen Filter geprüft, wird kein Treffer erzielt, werden die Gruppen-Filter geprüft. Bei einem Treffer wird die Nachricht in den Receive-Buffer geladen, der CAN-Controller löst einen Interrupt aus und die ganze Meldung kann ausgelesen werden. Dieser Ablauf mit einem Treffer ist in Abbildung \ref{fig.canfilterhit} dargestellt. Abbildung \ref{fig.canfiltermiss} zeigt den Ablauf, wenn kein Filter zutrifft und die Nachricht ignoriert wird.
 
 Im vorliegenden Bussystem wurden die Filter des Loggers so konfiguriert, dass alle Sensor-Nachrichten akzeptiert werden. Bei den Sensoren wird die Konfiguration des Filters in drei Schritten vorgenommen: nach dem Reset eines Sensors wird der Filter so gesetzt, dass nur eine Seriennummer-Anfrage des Loggers durchgelassen wird. Auf diese Anfrage antworten die Sensoren mit dem versenden ihrer Seriennummer und dem Setzen der Broadcast-Filter. Nun können die Sensoren alle Broadcast-Meldungen des Loggers empfangen. Der Logger verschickt nun die zugeteilten CAN-Ids zusammen mit den entsprechenden Seriennummern als Broadcast. Empfängt ein Sensor den Broadcast, prüft er die Seriennummer und, falls diese mit seiner übereinstimmt, setzt die Filter für alle an ihn gerichteten Meldungen.
 
