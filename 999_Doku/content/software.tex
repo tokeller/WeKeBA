@@ -23,28 +23,39 @@
 
 
 \subsection{Überblick}\label{subsec.sw_ueberblick}
-\todo{TK kurzbeschrieb über die softwarestruktur anhand der zwei Schemata}
+Die Hauptkomponenten (Abbildung \ref{fig.swlogger})des \gls{logger}s sind die Datenablage und das Busprotokoll, welche jeweils in einem eigenen \glspl{thread} implementiert wurden, damit sie unabhängig voneinander arbeiten können. Damit die Kommunikation zwischen den Teilnehmern reibungslos funktioniert wurde eine Busverwaltung implementiert, die mehrere Aufgaben wahrnimmt. Zum einen kümmert sie sich um die Teilnehmerverwaltung und verteilt eindeutige CAN-IDs, die aus einer Konfigurationsdatei gelesen werden. Weiter weist die Busverwaltung jeweils einem Teilnehmer ein Token zu als Erlaubnis, Daten zu schicken. Damit wird sichergestellt, dass kein Sensor verhungert, weil seine Nachrichten jeweils von anderen Sensoren überschrieben werden. 
 
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/Softwarestack_Logger.pdf}
 	\caption{Softwarestack des \gls{logger}s.}
-	\label{fig.sw_logger}
+	\label{fig.swlogger}
 \end{figure}
+
+Das Busprotokoll kümmert sich um die technische Kommunikation mit den \glspl{sensoreinh} am Bus und bietet Schnittstellen an, um Nachrichten abzuschicken oder eingetroffene Meldungen abzuholen. Trifft eine Meldung von einem Sensor ein wird ein Interrupt ausgelöst, der die Meldung ausliest und in einem Ringbuffer ablegt. Dieser Buffer wird periodisch vom Kommunikationsthread ausgelesen und die darauf enthaltenen Meldungen in ein Format gebracht, das für die Anwendung lesbar ist. Im Anschluss wird diese Meldung mittels einer Queue und unter Verwendung eines Memory-Pools dem Datenablage-Thread zur Verfügung gestellt. Dieser holt sich die vorbereitete Meldung und, sofern es sich dabei um Messdaten handelt, schreibt diese in die Datendatei der sendenden \gls{sensoreinh}. Nach der Verarbeitung der Message gibt der Datenablage-Thread den Platz im Memory-Pool wieder frei. Bei ausgehenden Nachrichten wird gleich verfahren, auch hier schreibt der Absender die Meldung in eine Queue, die dann vom Busprotokoll-Thread abgearbeitet wird. Beim \gls{logger} wurde die Queue für die eingehenden Meldungen gross genug gewählt, um ca. 800 Meldungen zwischen zu speichern, falls viele Ereignisse erfasst und übermittelt wurden. Dem gegenüber wurde die Queue für die ausgehenden Meldungen klein gehalten, da der \gls{logger} nur Steuerkommandos oder Konfigurationen an die Sensoren übermittelt, was nicht so häufig vorkommt, bzw. schnell erledigt ist.
 
 \begin{figure}
 	\centering
 		\includegraphics[width=0.8\textwidth]{images/visio/Softwarestack_Sensor.pdf}
 	\caption{Softwarestack der \gls{sensoreinh}.}
-	\label{fig.sw_sensor}
+	\label{fig.swsensor}
 \end{figure}
 
+Die Software der \gls{sensoreinh} ist ähnlich der \gls{logger}-Software strukturiert, auch in der \gls{sensoreinh} operieren zwei Threads (Abbildung \ref{fig.swsensor}). Zum einen ist hier auch wieder der Busprotokoll-Thread anzutreffen, der wie beim \gls{logger} die ganze Kommunikation kapselt. Im zweiten Thread läuft auf der \gls{sensoreinh} die \gls{ereignisdet}, welche die Daten des angeschlossenen Beschleunigungssensors ausliest und die Ergebnisse basierend auf dem festgelegten Detail-Level aufbereitet. Ist ein Ereignis abgeschlossen (d.h. der Ausschlag des Beschleunigungssensors liegt unter einem festgelegten Schwellwert) wird dieses in die Queue zum Busprotokoll geschrieben. Hat der Sensor das Token bereits erhalten, wird er die Meldung unverzüglich übermitteln, andernfalls wird er die Message in der Queue belassen, bis ihm das Token zugewiesen wird. Damit die Queue nicht so schnell überläuft, wurde sie entsprechend gross gewählt und dient somit als eine Art Buffer. Die Queue für eingehende Meldungen bietet dafür nur wenigen Meldungen Platz, da die Sensoren einerseits nur Meldungen erhalten, die entweder an sie selbst oder als Broadcast adressiert wurden (andere Meldungen werden vom Acceptance-Filter ausgeschlossen) und andererseits nur Steuerkommandos vom \gls{logger} zu erwarten sind.
 
 
 \subsection{Messdatenerfassung}\label{subsec.sw_messen}
 Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit \gls{adwandler}, der über einen Multiplexer auf acht \glspl{pin} messen kann. Auf dem verwendeten Quickstart-Board stehen sechs \glspl{pin} für A/D-Wandlung zur Verfügung. Für die geplante Anwendung reicht ein A/D-Pin, da der Beschleunigungs-\gls{sensor} die Beschleunigung nur auf einer Achse misst. Der \gls{adwandler} des NXP LPC4088 wird mit einer \gls{fs} von 10~kHz betrieben. Falls höhere \glspl{fs} nötig sind, kann der \gls{adwandler} theoretisch mit bis zu 400~kHz betrieben werden.
 
-\paragraph{Abtastrate} Um die \gls{fs} genau einzuhalten wird ein Timer des \emph{NXP LPC4088} \gls{mc}s eingesetzt, der die Messung des \gls{adwandler}s anstösst (Listing \ref{list.tickerADC}). Die A/D-Wandlung nimmt immer genau 31 Taktzyklen in Anspruch. Nach abgeschlossener Messung schreibt der \gls{adwandler} den Messwert in ein eigenes Register und setzt einen \gls{irq}. Der \gls{irq} signalisiert dem \gls{mc}, dass ein Messwert zur Abholung bereit liegt. Damit der Messwert so rasch wie möglich, auf jeden Fall aber vor Ablauf der nächsten Messperiode, für die weitere Verarbeitung abgeholt werden kann, hat der \gls{irq} die höchst mögliche Priorität. Der Interrupt des \gls{adwandler}s unterbricht also jeden laufenden Prozess.
+\paragraph{Abtastrate} Um die \gls{fs} genau einzuhalten wird ein Ticker (Timer) des \emph{NXP LPC4088} \gls{mc}s eingesetzt, der die Messung des \gls{adwandler}s anstösst (Listing \ref{list.tickerADC}). Das Intervall des Tickers kann dynamisch konfiguriert werden. Diese Methode ist genauer als das Heruntertakten des \gls{adwandler}s, was nur in relativ groben Stufen erfolgen kann. Der Ticker löst einen Interrupt aus, der den \gls{adwandler} anstösst. Die A/D-Wandlung nimmt immer genau 31 Taktzyklen in Anspruch. Nach abgeschlossener Messung schreibt der \gls{adwandler} den Messwert in ein eigenes Register und setzt einen \gls{irq}. Der \gls{irq} signalisiert dem \gls{mc}, dass ein Messwert zur Abholung bereit liegt. Damit der Messwert so rasch wie möglich, auf jeden Fall aber vor Ablauf der nächsten Messperiode, für die weitere Verarbeitung abgeholt werden kann, hat der \gls{irq} die höchst mögliche Priorität. Der Interrupt des \gls{adwandler}s unterbricht also jeden laufenden Prozess. Das Zusammenspiel von Ticker,  \gls{adwandler}, Ereigniserkennung und Busprotokoll ist in einem Kommunikationsdiagramm in Abbildung \ref{fig.commsensor} dargestellt.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/AD-Er-Com.pdf}
+	\caption{Kommunikationsdiagramm der Threads in der \gls{sensoreinh}.}
+	\label{fig.commsensor}
+\end{figure}
+
 
 \begin{lstlisting}[language=C,caption=Timer mit Aufruf der A/D-Wandler-Funktion (ADC\_4088.cpp), label=list.tickerADC]
 // ISR 
@@ -74,6 +85,8 @@ void isr_nextMeasurement(){
 	enqueue_impact_input(timestamp, value);
 }
 \end{lstlisting}
+
+Sobald das Ereignis abgeschlossen ist (siehe \ref{subsec.sw_ereignis}), wird es mittels einer Queue asynchron dem Kommunikationsthread zur Verfügung gestellt, der die Meldungen dem Logger weiterleitet, sofern der Bus frei ist und der aktuelle Sensor den Token zur Datenübermittlung erhalten hat.
 
 \paragraph{Timestamp} Der Timestamp muss zwingend in der \gls{isr} (Listing \ref{list.isrADC}) erhöht werden, damit er immer sofort nach der Erfassung eines neuen Messwerts aktualisiert wird. Würde der Timestamp mittels einem zweiten Timer und einer zweiten \gls{isr} erhöht, bestünde die Gefahr einer ungeregelten Reihenfolge der Abarbeitung der \gls{irq}s. Mal würde der \gls{timestamp} vor dem Kopieren der Messdaten erhöht, mal erst danach.
 
