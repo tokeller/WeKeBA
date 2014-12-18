@@ -92,6 +92,68 @@ Die Eingaben werden vom \gls{logger} ausgeführt und bei Bedarf an die \glspl{se
 
 \paragraph{Testergebnis} Bis zur Berichterstellung konnte dieser Test noch nicht durchgeführt werden.
 
+\subsection{T190 Tokenvergabe}
+\paragraph{Aktionen} Der \gls{logger} vergibt ein Token an eine \gls{sensoreinh}. Nach erhaltenen zehn Nachrichten verfällt der Token. Der \gls{logger} vergibt den Token der nächsten \gls{sensoreinh}.
+
+\paragraph{Resultate} Token wird korrekt weitergegeben. Es sendet nur jene \gls{sensoreinh} Nachrichten, die den Token hält. Die andere \gls{sensoreinh} hält die Ereignisdaten so lange im Zwischenspeicher, bis sie den Token erhält.
+
+\paragraph{Testergebnis} Das Übermittlungsprotokoll des \gls{logger}s und der \glspl{sensoreinh} ist in Listing \ref{t190} aufgeführt und zeigt den korrekten Ablauf des Tests.
+
+\begin{lstlisting}[caption=T190 Tokenvergabe, label=t190]
+//Logger                           //Sensor02
+// sent Token to Sensor02          // received token
+prepare message id: 4020101        Timestamp id  : 2ff0101
+OK                                 Token received, start sending 10 msgs
+
+                                   //Sensor03
+                                   // no token, stops after timesync
+                                   Timestamp id  : 2ff0101
+
+//Logger                           //Sensor02
+// receive 10 msgs from Sensor02   // send 10 packages to logger
+Sensor data: 055f7cf52602e         Impact complete:
+Sensor id  : 1c010201              Starttime: 5633999
+Sensor len : 8                     Samples: 46
+...                                Peaks: 6
+...                                 Maximum: 594
+...                                ***********
+...                                sent payload 055f7cf52602e
+...                                OK, Message sent to logger
+...                                
+...                                Impact complete:
+...                                Starttime: 5829023
+...                                Samples: 36
+...                                Peaks: 5
+...                                Maximum: 260
+...                                ***********
+...                                sent payload 058f19f45024
+Sensor data: 058f19f45024          OK, Message sent to logger
+Sensor id  : 1c010201              Token revoked
+Sensor len : 8                     
+//Logger                           //Sensor03
+give token to SensorID 3 of 2      Timestamp id  : 2ff0101
+prepare message id: 4030101        Token received, start sending 10 msgs
+OK
+                                   Impact complete:
+                                   Starttime: 11874290
+                                   Samples: 1
+                                   Peaks: 1
+                                   Maximum: 410
+                                   ***********
+                                   sent payload 0b52ff29a101
+Sensor data: 0b52ff29a101          OK, Message sent to logger
+Sensor id  : 1c010301              Token revoked
+Sensor len : 8                     
+                                   Impact complete:
+give token to SensorID 2 of 2      Starttime: 12065974
+prepare message id: 4020101        Samples: 25
+                                   Peaks: 6
+                                   Maximum: 334
+                                   ***********
+                                   sent payload 0b81cb64e6019
+                                   No token, message stored
+\end{lstlisting}
+
 
 \section{Sensoreinheit}
 \subsection{T400 Konfiguration}
@@ -99,7 +161,7 @@ Die Eingaben werden vom \gls{logger} ausgeführt und bei Bedarf an die \glspl{se
 
 \paragraph{Resultate} Die \gls{sensoreinh} übernimmt die neuen Einstellungen und passt die Ereigniserkennung entsprechend an.
 
-\paragraph{Testergebnis} Die Konfiguration wurde erfolgreich auf die \gls{sensoreinh} übertragen. Die Konfiguration vor dem Test ist in Listing \ref{t400.1} gegeben, mit der Eingabe 99 werden alle Sensoren ausgewählt. Listings \ref{t400.2} und \ref{400.3} zeigen, wie der zu konfigurierende Parameter ausgewählt und der neue Wert eingegeben wird. Am \gls{logger} wird im Testmodus das Absenden einer CAN-Nachricht protokolliert, Listing \ref{t400.4}. Die \glspl{sensoreinh} geben im Testmodus ebenfalls eine Bestätigung aus (Listings \ref{t400.5} und \ref{t400.6}), wenn sie eine neue Konfiguration erhalten. Die Änderung des \gls{threshold}s wurde also von beiden Sensoren übernommen.
+\paragraph{Testergebnis} Die Konfiguration wurde erfolgreich auf die \gls{sensoreinh} übertragen. Die Konfiguration vor dem Test ist in Listing \ref{t400.1} gegeben, mit der Eingabe 99 werden alle Sensoren ausgewählt. Listings \ref{t400.2} und \ref{t400.3} zeigen, wie der zu konfigurierende Parameter ausgewählt und der neue Wert eingegeben wird. Am \gls{logger} wird im Testmodus das Absenden einer CAN-Nachricht protokolliert, Listing \ref{t400.4}. Die \glspl{sensoreinh} geben im Testmodus ebenfalls eine Bestätigung aus (Listings \ref{t400.5} und \ref{t400.6}), wenn sie eine neue Konfiguration erhalten. Die Änderung des \gls{threshold}s wurde also von beiden Sensoren übernommen.
 
 \begin{lstlisting}[caption=T400 Vorbedingung und Auswahl aller Sensoren, label=t400.1]
 Listing sensor config

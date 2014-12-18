@@ -41,7 +41,18 @@
   Title                    = {{LPC4088FBD208 Processor Datasheet}},
 
   Author                   = {{NXP Semiconductors}},
-  Year                     = {o. J.},
+  Year                     = {o. J. \cite{canarbit}},
+
+  Owner                    = {tobiaswelti},
+  Timestamp                = {2014.12.07},
+  Url                      = {http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html, Stand: 7.12.2014}
+}
+
+@Misc{nxplpc4088manual,
+  Title                    = {{LPC4088FBD208 Processor Manual}},
+
+  Author                   = {{NXP Semiconductors}},
+  Year                     = {o. J. \cite{canarbit}},
 
   Owner                    = {tobiaswelti},
   Timestamp                = {2014.12.07},
@@ -108,7 +119,7 @@
   Timestamp                = {2014.12.08}
 }
 
-@Misc{can_arbit,
+@Misc{canarbit,
   Title                    = {{Automotive Hub: CAN BASICS}},
 
   Author                   = {o. V.},

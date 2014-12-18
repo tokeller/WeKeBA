@@ -20,48 +20,48 @@ The style file: bibtex.bst
 A level-1 auxiliary file: content/anhang.aux
 Database file #1: literatur.bib
 Warning--entry type for "sdstd" isn't style-file defined
---line 123 of file literatur.bib
+--line 145 of file literatur.bib
 Warning--entry type for "boschcanspec2" isn't style-file defined
---line 182 of file literatur.bib
-You've used 18 entries,
+--line 204 of file literatur.bib
+You've used 20 entries,
             2349 wiz_defined-function locations,
-            648 strings with 7591 characters,
-and the built_in function-call counts, 4259 in all, are:
-= -- 233
-> -- 147
+            654 strings with 7783 characters,
+and the built_in function-call counts, 4593 in all, are:
+= -- 253
+> -- 155
 < -- 0
-+ -- 61
-- -- 43
-* -- 258
-:= -- 496
-add.period$ -- 29
-call.type$ -- 18
++ -- 65
+- -- 45
+* -- 274
+:= -- 534
+add.period$ -- 33
+call.type$ -- 20
 change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 18
-duplicate$ -- 441
-empty$ -- 460
-format.name$ -- 48
-if$ -- 906
+cite$ -- 20
+duplicate$ -- 475
+empty$ -- 502
+format.name$ -- 50
+if$ -- 980
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 123
-newline$ -- 60
-num.names$ -- 18
-pop$ -- 219
+int.to.str$ -- 20
+missing$ -- 131
+newline$ -- 66
+num.names$ -- 20
+pop$ -- 241
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 82
+skip$ -- 90
 stack$ -- 0
 substring$ -- 99
-swap$ -- 279
+swap$ -- 297
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 23
-width$ -- 20
-write$ -- 155
+while$ -- 25
+width$ -- 22
+write$ -- 171
 (There were 2 warnings)

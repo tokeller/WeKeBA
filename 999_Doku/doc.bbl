@@ -39,7 +39,8 @@ J.~M. Turowski, A.~Badoux, D.~Rickenmann, B.~Fritschi, Erfassung des
   Stand: 7.12.2014.
 
 \bibitem{nxplpc4088}
-{NXP Semiconductors}, {LPC4088FBD208 Processor Datasheet}, \textbf{o. J.}
+{NXP Semiconductors}, {LPC4088FBD208 Processor Datasheet}, \textbf{o. J.
+  \cite{canarbit}}.
   \urlprefix\url{http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html,
   Stand: 7.12.2014}.
 
@@ -83,6 +84,17 @@ S.~Wyrsch, {Vorlesung Digitale Signalverarbeitung 1}, \textbf{2013}. Kap. 3,
 {'wdwd'}, {FIR Hilbert Transform Filter}, Licensed under the Creative Commons
   Attribution-Share Alike 3.0 Unported., \textbf{2013}.
   \urlprefix\url{https://commons.wikimedia.org/wiki/File:FIR_Hilbert_Transform_Filter.svg}.
+
+\bibitem{canarbit}
+o.~V., {Automotive Hub: CAN BASICS}, \textbf{o. J.}
+  \urlprefix\url{http://techiscafe.blogspot.ch/p/the-controller-area-network-can.html,
+  Stand: 18.12.2014}.
+
+\bibitem{nxplpc4088manual}
+{NXP Semiconductors}, {LPC4088FBD208 Processor Manual}, \textbf{o. J.
+  \cite{canarbit}}.
+  \urlprefix\url{http://www.nxp.com/products/microcontrollers/cortex\_m4/lpc4000/LPC4088FBD208.html,
+  Stand: 7.12.2014}.
 
 \bibitem{wiki_mems}
 o.~V., {Wikipedia: Microelectromechanical systems}, \textbf{2014}.
