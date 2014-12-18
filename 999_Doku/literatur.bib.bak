@@ -108,6 +108,17 @@
   Timestamp                = {2014.12.08}
 }
 
+@Misc{can_arbit,
+  Title                    = {{Automotive Hub: CAN BASICS}},
+
+  Author                   = {o. V.},
+  Year                     = {o. J.},
+
+  Owner                    = {tobiaswelti},
+  Timestamp                = {2014.12.08},
+  Url                      = {http://techiscafe.blogspot.ch/p/the-controller-area-network-can.html, Stand: 18.12.2014}
+}
+
 @TechReport{ixxatcan,
   Title                    = {{CAN vs. RS485}},
   Author                   = {o. V.},
