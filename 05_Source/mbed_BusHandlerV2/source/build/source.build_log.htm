@@ -8,19 +8,6 @@ Project File Date:  12/16/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
-compiling main.cpp...
-app/ProcessingLoops.h(65): warning:  #1-D: last line of file ends without a newline
-  #endif
-main.cpp: 1 warning, 0 errors
-compiling BusHandler.cpp...
-app\BusProtocol\BusHandler.cpp(121): warning:  #550-D: variable "stat" was set but never used
-        osStatus stat;
-app\BusProtocol\BusHandler.cpp(274): warning:  #1-D: last line of file ends without a newline
-  }
-app\BusProtocol\BusHandler.cpp(274): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
-  }
-app\BusProtocol\BusHandler.cpp: 3 warnings, 0 errors
-compiling impact_action.cpp...
 compiling ProcessingLoops.cpp...
 app\ProcessingLoops.h(65): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -31,32 +18,13 @@ app\ProcessingLoops.cpp(245): warning:  #177-D: variable "sensorCounter" was dec
 app\ProcessingLoops.cpp(418): warning:  #1-D: last line of file ends without a newline
   }
 app\ProcessingLoops.cpp: 4 warnings, 0 errors
-compiling cmd_action.cpp...
-app\CommandLine\cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
-  void cmd_close_sensor_file(uint8_t sensor_index);
-app\CommandLine\cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
-        uint8_t success = 1;
-app\CommandLine\cmd_action.cpp: 2 warnings, 0 errors
-compiling sensor_config.cpp...
-app\CommandLine\sensor_config.cpp(105): warning:  #940-D: missing return statement at end of non-void function "sensor_config_read_file"
-  }
-app\CommandLine\sensor_config.cpp(131): warning:  #224-D: the format string requires additional arguments
-                        &detail_level, &started);
-app\CommandLine\sensor_config.cpp(223): warning:  #550-D: parameter "logger" was set but never used
-  void init_logger_config(LoggerConfig logger)
-app\CommandLine\sensor_config.cpp(246): warning:  #1-D: last line of file ends without a newline
-  }
-app\CommandLine\sensor_config.cpp: 4 warnings, 0 errors
 linking...
 HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
 Program Size: Code=81856 RO-data=5536 RW-data=764 ZI-data=42560  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 15 Warning(s).
+".\build\source.axf" - 0 Error(s), 5 Warning(s).
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
-</pre>
-</body>
-</html>
