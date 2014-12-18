@@ -33,8 +33,8 @@ plot(tos,vos, '-b', linewidth=0.6)
 plot(ts,vs,'-r',linewidth=2)
 
 xlabel('Zeit [ms]')
-ylabel('Beschleunigung [g]')
+ylabel('Messwert A/D-Wandler []')
 
 grid(True)
 show()
-savefig("../../999_Doku/images/comparison/")
+savefig("comparison.png")

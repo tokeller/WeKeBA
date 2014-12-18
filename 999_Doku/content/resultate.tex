@@ -24,13 +24,13 @@ Die wichtigsten Testfälle für die grundsätzliche Funktionalität der Messstat
 Im Kapitel \ref{chap.tests} ab Seite \pageref{chap.tests} sind die Testfälle und die Testergebnisse aufgeführt.
 
 \section{Ereigniserkennung}
-Der \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} wurde wie geplant in Betrieb genommen und liefert Messdaten, die sich sehr gut mit dem analogen Ausgangssignal des \gls{sensor}s decken. Abbildung \ref{fig.comparison} zeigt den Vergleich zwischen der Messung von Oszilloskop (blau) und der \gls{sensoreinh} (grün). Die \gls{sensoreinh} arbeitete mit einer \gls{fs} von 10000~\ensuremath{Hz}, das Oszilloskop zeichnete mit einer \gls{fs} von 3.125~MHz auf. Um ein Ereignis zu simulieren, wurde ein Golfball auf den Testaufbau (siehe im Verzeichnis Fotos/Testaufbau/ auf der beiliegenden CD) fallen gelassen. Der Vergleich zeigt, dass die beiden Kurven gut übereinstimmen. 
+Der \gls{adwandler} des \emph{NXP LPC4088} \gls{mc} wurde wie geplant in Betrieb genommen und liefert Messdaten, die sich sehr gut mit dem analogen Ausgangssignal des \gls{sensor}s decken. Abbildung \ref{fig.comparison2} zeigt den Vergleich zwischen der Messung von Oszilloskop (blau) und der \gls{sensoreinh} (grün). Die \gls{sensoreinh} arbeitete mit einer \gls{fs} von 10000~\ensuremath{Hz}, das Oszilloskop zeichnete mit einer \gls{fs} von 3.125~MHz auf. Um ein Ereignis zu simulieren, wurde ein Golfball auf den Testaufbau (siehe im Verzeichnis Fotos/Testaufbau/ auf der beiliegenden CD) fallen gelassen. Der Vergleich zeigt, dass die beiden Kurven gut übereinstimmen. 
 
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/visio/hardwarekonzept_logger.pdf}
+		\includegraphics[width=0.8\textwidth]{images/comparison/comparison.png}
 	\caption{Vergleichsmessung mit Oszilloskop und \gls{sensoreinh}.}
-	\label{fig.comparison}
+	\label{fig.comparison2}
 \end{figure}
 
 
@@ -61,6 +61,7 @@ Es werden nur der Timestamp, die Dauer des Ereignisses, die Anzahl \glspl{peak} 
 Je nach Modus fallen sehr unterschiedliche Datenströme pro Sensor an. Ein Vergleich, wie lange mit einem GByte Speicherplatz gemessen werden kann, ist in Tabelle \ref{table.datarate} aufgeführt. Anhand dieser Werte kann abgeschätzt werden, wie lange eine Messstation ohne Wechsel des Speichermediums betrieben werden kann.
 
 \begin{table}
+\begin{center}
 \begin{tabular}{|l|l|l|}
 \hline \textbf{Detail-Level} & \textbf{Byte/s} & Messzeit/GByte\\ 
 \hline raw                   & 10000 & 27~h \\
@@ -71,6 +72,7 @@ Je nach Modus fallen sehr unterschiedliche Datenströme pro Sensor an. Ein Vergl
 \end{tabular}
 \caption{Vergleich des Datenaufkommens verschiedener Detail-Levels.}
 \label{table.datarate}
+\end{center}
 \end{table} 
 
 \section{Hardware}

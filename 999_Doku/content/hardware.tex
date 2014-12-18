@@ -251,7 +251,7 @@ Die korrekte Übertragung wird mittels eines \gls{crc}-Codes überprüft. Der Em
 \paragraph{Entscheid} Für einen verschraubbaren Verschluss ist die CompactFlash-Karte zu breit, das Gehäuse würde dadurch sehr gross. Die SD-Karte und der USB-Stick sind vergleichbar in der Grösse. Von der SD-Karte sind auch kleinere Varianten erhältlich. Eine Öffnung für den Austausch des Speichermediums kann eine gewisse Grösse ohnehin nicht unterschreiten, damit hineingegriffen werden kann. Da die SD-Karte im Standby den geringeren Stromverbrauch hat, wird der \gls{logger} mit einem SD-Kartenleser ausgestattet.
 
 \subsection{Sensor}
-\todo{Sensorauswahl beschreiben}
+Da für den AD-Wandler des verwendeten Boards ein maximaler Messbereich zwischen 0 und 3.3 Volt empfohlen wird, musste ein Beschleunigungssensor ausgewählt werden, der in diesem Bereich arbeitet und eine möglichst genaue Auflösung bietet. Zusätzlich sollte der gewählte Sensor auf einem Evaluationsboard bestellt werden können, um den Implementationsaufwand gering zu halten. Der ADXL001-70 von Analog Devices lässt sich im geforderten Bereich betreiben und liefert eine Auflösung von 16mV/g bei einem Messbereich von -70g bis + 70g. Für den finalen Einsatz muss ein Sensor mit einem weit grösseren Bereich gewählt werden, bereits bei den Laborversuchen konnte festgestellt werden, dass 70g sehr schnell erreicht werden.
 
 \subsection{Schnittstelle}
 Das gewählte \emph{NXP LPC4088 QuickStart Board} verfügt über einen \gls{usb}-Anschluss, über den eine serielle Schnittstelle angesprochen werden kann. Für eine einfache Kommandozeile oder ein Konfigurationsmenü ist diese Schnittstelle ausreichend. Die Schnittstelle kann mit einer Übertragunsrate von 9600 bis 115200 Baud betrieben werden. 
