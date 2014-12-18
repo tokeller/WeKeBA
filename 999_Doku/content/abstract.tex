@@ -30,6 +30,15 @@ Der erstellte Prototyp erfüllt die Erwartungen in Bezug auf die Vereinfachung d
 \newpage
 \thispagestyle{empty}
 \chapter*{Abstract}\label{abstract}
-\todo{Abstract in English}
+There are different ways to measure the transportation of bed load. The most common one, also used by the Swiss Federal Institute for Forest, Snow and Landscape Research (WSL), being the mounting of geophones in the river bed. There are several disadvantages to this, the main ones being the costs involved and the necessary structural measures. 
+
+Additionally, the IT infrastructure becomes rather complex, since the geophones are connected by one cable each to an industrial, rugged PC. The goal of this project is to plan, design and implement a bus-system with MEMS-accelerometers and provide a prototype of a simpler and more cost-efficient measurement installation than the usage of geophones.
+
+All used devices are based on the ARM Cortex-M4 microcontroller. The system implemented consists of two types of devices, the data logger and the sensor units. The data logger  receives and stores the processed data transmitted by the sensors. Additionally, the logger acts as a bus master and configures all the connected devices by sending them unique identifiers, thusly allowing for a proper assignment of the received messages to each sensor. The sensor units are composed of a MEMS-accelerometer and a microcontroller that processes the measurements from the MEMS, packaging the data depending on the detail level specified by the user, effectively reducing the traffic on the bus and the workload for the data logger. The detail level can be set dynamically by the user to either log the basic data of an impact, the detailed data of an impact (two levels of details are possible) or to send unprocessed raw data over a time range.
+
+Since the whole system will be installed in rivers it should be rugged and self-sustaining. Once configured, the settings for each sensor can be stored on the SD card of the logger and, if a reset should occur, will be read automatically and sent to the sensors. The usage of a CAN-bus guarantees the error free transmission of the measured data.
+
+The built prototype fulfills the expectations concerning the simplification of the system and the resource usage of the system and therefore could be used as a base for a final product.
+
 
 
