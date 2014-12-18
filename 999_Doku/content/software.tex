@@ -58,14 +58,6 @@ Der NXP LPC4088 Mikroprozessor verfügt über einen 12-bit \gls{adwandler}, der 
 
 \paragraph{Abtastrate} Um die \gls{fs} genau einzuhalten wird ein Ticker (Timer) des \emph{NXP LPC4088} \gls{mc}s eingesetzt, der die Messung des \gls{adwandler}s anstösst (Listing \ref{list.tickerADC}). Das Intervall des Tickers kann dynamisch konfiguriert werden. Diese Methode ist genauer als das Heruntertakten des \gls{adwandler}s, was nur in relativ groben Stufen erfolgen kann. Der Ticker löst einen Interrupt aus, der den \gls{adwandler} anstösst. Die A/D-Wandlung nimmt immer genau 31 Taktzyklen in Anspruch. Nach abgeschlossener Messung schreibt der \gls{adwandler} den Messwert in ein eigenes Register und setzt einen \gls{irq}. Der \gls{irq} signalisiert dem \gls{mc}, dass ein Messwert zur Abholung bereit liegt. Damit der Messwert so rasch wie möglich, auf jeden Fall aber vor Ablauf der nächsten Messperiode, für die weitere Verarbeitung abgeholt werden kann, hat der \gls{irq} die höchst mögliche Priorität. Der Interrupt des \gls{adwandler}s unterbricht also jeden laufenden Prozess. Das Zusammenspiel von Ticker,  \gls{adwandler}, Ereigniserkennung und Busprotokoll ist in einem Kommunikationsdiagramm in Abbildung \ref{fig.commsensor} dargestellt.
 
-\begin{figure}
-	\centering
-		\includegraphics[width=0.8\textwidth]{images/visio/AD-Er-Com.pdf}
-	\caption{Kommunikationsdiagramm der Threads in der \gls{sensoreinh}.}
-	\label{fig.commsensor}
-\end{figure}
-
-
 \begin{lstlisting}[language=C,caption=Timer mit Aufruf der A/D-Wandler-Funktion (ADC\_4088.cpp), label=list.tickerADC]
 // ISR 
 void start_ADC_Conversion(){
@@ -81,6 +73,15 @@ int register_ADC_interrupt(analogin_s *obj, PinName pin, uint32_t ADC_IRQHandler
   // ...
 }
 \end{lstlisting}
+\clearpage
+\begin{figure}
+	\centering
+		\includegraphics[width=0.8\textwidth]{images/visio/AD-Er-Com.pdf}
+	\caption{Kommunikationsdiagramm der Threads in der \gls{sensoreinh}.}
+	\label{fig.commsensor}
+\end{figure}
+
+
 
 \paragraph{ISR} Der \gls{mc} ruft die \gls{isr} (Listing \ref{list.isrADC}) auf, um den \gls{irq} abzuhandeln. Die \gls{isr} holt den Messwert aus dem Register und speichert ihn zusammen mit dem \gls{timestamp} in einer \gls{fifo} ab. Die \gls{isr} erhöht den \gls{timestamp} um eins für den nächsten Messwert und gibt dann die Kontrolle an den unterbrochenen Prozess zurück.
 
@@ -270,7 +271,7 @@ In einem CAN-Bus wird normalerweise kein Bus-Master verwendet, da die Nachrichte
 
 \begin{figure}
 	\centering
-		\includegraphics[width=0.8\textwidth]{images/canmess.pdf}
+		\includegraphics[width=0.95\textwidth]{images/canmess.pdf}
 	\caption{Header verschiedener Message-Typen.}
 	\label{fig.canmess}
 \end{figure}

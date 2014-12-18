@@ -381,7 +381,7 @@ l.38 \include{content/kontakt}
 ed
 <to be read again> 
                    \relax 
-l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+l.57 ...e zum Steuerrechner}{17}{subsection.6.2.5}
                                                    [2]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.3}) has been already used, duplic
 ate ignored
@@ -399,45 +399,52 @@ Overfull \hbox (3.66734pt too wide) detected at line 272
 <to be read again> 
                    \relax 
 l.44 \newpage
-              [4] (./doc.tdo)pdfTeX warning (ext4): destination with the same i
-dentifier (name{page.5}) has been already used, duplicate ignored
+              [4] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd)pdfTeX warning (ext
+4): destination with the same identifier (name{page.5}) has been already used, 
+duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \newpage
-              [5] (./content/einleitung.tex
-Kapitel 1.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [6]) [7]
-(./content/aufgabenstellung.tex
+l.37 \item D
+            atensammlung an einem zugÃ¤nglichen GerÃ¤t, statt Einsammeln der...
+[5]) [6] (./content/aufgabenstellung.tex
 Kapitel 2.
-[8]) [9] (./content/vorgehen.tex
+[7]) [8] (./content/vorgehen.tex
 Kapitel 3.
-<images/visio/Situationskroki.pdf, id=884, 550.1012pt x 245.49718pt>
-<use images/visio/Situationskroki.pdf> [10 <./images/visio/Situationskroki.pdf>
-] [11]) [12] (./content/funktionale.tex
+<images/visio/Situationskroki.pdf, id=879, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [9 <./images/visio/Situationskroki.pdf>]
+ [10]) [11] (./content/funktionale.tex
 Kapitel 4.
-[13]) [14] (./content/nichtfunktionale.tex
+[12]) [13] (./content/nichtfunktionale.tex
 Kapitel 5.
-) [15] (./content/tests.tex
+) [14] (./content/tests.tex
 Kapitel 6.
-<images/fotos/testaufbau1.jpg, id=1054, 2499.3375pt x 1960.32375pt>
+<images/fotos/testaufbau1.jpg, id=1049, 2499.3375pt x 1960.32375pt>
 <use images/fotos/testaufbau1.jpg>
-<images/fotos/testaufbau2.jpg, id=1055, 1450.41875pt x 896.34875pt>
-<use images/fotos/testaufbau2.jpg> [16] [17 <./images/fotos/testaufbau1.jpg> <.
-/images/fotos/testaufbau2.jpg>] [18]
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [19] [20]
-<images/comparison/comparison.png, id=1240, 578.16pt x 433.62pt>
-<use images/comparison/comparison.png> [21]) [22 <./images/comparison/compariso
+<images/fotos/testaufbau2.jpg, id=1050, 1450.41875pt x 896.34875pt>
+<use images/fotos/testaufbau2.jpg> [15] [16 <./images/fotos/testaufbau1.jpg> <.
+/images/fotos/testaufbau2.jpg>] [17]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [18] [19]
+<images/comparison/comparison.png, id=1233, 578.16pt x 433.62pt>
+<use images/comparison/comparison.png> [20]) [21 <./images/comparison/compariso
 n.png>] (./content/hardware.tex
 Kapitel 7.
-<images/visio/hardwarekonzept_logger.pdf, id=1305, 333.68877pt x 262.51083pt>
+<images/visio/hardwarekonzept_logger.pdf, id=1300, 333.68877pt x 262.51083pt>
 <use images/visio/hardwarekonzept_logger.pdf>
-<images/visio/hardwarekonzept_sensor.pdf, id=1317, 335.7624pt x 247.96901pt>
-<use images/visio/hardwarekonzept_sensor.pdf> [23] [24 <./images/visio/hardware
+<images/visio/hardwarekonzept_sensor.pdf, id=1312, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [22] [23 <./images/visio/hardware
 konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
 _sensor.pdf, page is rotated 90 degrees>]
-<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1492, 608.2725pt x 508.901
-25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [25] [26 <./images/
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1487, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [24] [25 <./images/
 datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 156--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--160
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 162--163
 []\T1/lmss/m/n/10 slave
 
@@ -461,83 +468,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
-[27] [28] <images/differential.pdf, id=1597, 465.94815pt x 262.24684pt>
-<use images/differential.pdf> [29 <./images/differential.pdf>] [30]
+[26] [27] <images/differential.pdf, id=1592, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [28 <./images/differential.pdf>] [29]
 Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
 \T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
 T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
 ss,
-[31] <images/visio/hardware_logger.pdf, id=1715, 502.87875pt x 360.61725pt>
+[30] <images/visio/hardware_logger.pdf, id=1710, 502.87875pt x 360.61725pt>
 <use images/visio/hardware_logger.pdf>
-<images/visio/hardware_sensor.pdf, id=1729, 502.87875pt x 354.93002pt>
-<use images/visio/hardware_sensor.pdf>) [32 <./images/visio/hardware_logger.pdf
->] [33 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+<images/visio/hardware_sensor.pdf, id=1724, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [31 <./images/visio/hardware_logger.pdf
+>] [32 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
 Kapitel 8.
-<images/visio/Softwarestack_Logger.pdf, id=1811, 509.39299pt x 348.64674pt>
+<images/visio/Softwarestack_Logger.pdf, id=1806, 509.39299pt x 348.64674pt>
 <use images/visio/Softwarestack_Logger.pdf>
-<images/visio/Softwarestack_Sensor.pdf, id=1818, 404.83546pt x 331.91002pt>
+<images/visio/Softwarestack_Sensor.pdf, id=1813, 404.83546pt x 331.91002pt>
 <use images/visio/Softwarestack_Sensor.pdf>
-<images/visio/IPC-Grob.pdf, id=1835, 593.7914pt x 454.62949pt>
-<use images/visio/IPC-Grob.pdf> [34] [35 <./images/visio/Softwarestack_Logger.p
+<images/visio/IPC-Grob.pdf, id=1830, 593.7914pt x 454.62949pt>
+<use images/visio/IPC-Grob.pdf> [33] [34 <./images/visio/Softwarestack_Logger.p
 df, page is rotated 90 degrees> <./images/visio/Softwarestack_Sensor.pdf>]
-<images/visio/AD-Er-Com.pdf, id=1992, 495.43294pt x 315.46657pt>
-<use images/visio/AD-Er-Com.pdf>
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [36 <./imag
-es/visio/IPC-Grob.pdf>] [37 <./images/visio/AD-Er-Com.pdf>]
-<images/curve_wsl.png, id=2075, 434.8245pt x 223.7961pt>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [35 <./imag
+es/visio/IPC-Grob.pdf>] [36]
+<images/visio/AD-Er-Com.pdf, id=2019, 495.43294pt x 315.46657pt>
+<use images/visio/AD-Er-Com.pdf> [37 <./images/visio/AD-Er-Com.pdf>]
+<images/curve_wsl.png, id=2077, 434.8245pt x 223.7961pt>
 <use images/curve_wsl.png>
-<images/FIR_Hilbert_Transform_Filter.png, id=2094, 2007.5pt x 1328.965pt>
-<use images/FIR_Hilbert_Transform_Filter.png> [38 <./images/curve_wsl.png>]
-<images/magicdraw/Ereigniserkennung.pdf, id=2130, 352.28412pt x 294.0074pt>
+<images/FIR_Hilbert_Transform_Filter.png, id=2096, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png>
+<images/magicdraw/Ereigniserkennung.pdf, id=2108, 352.28412pt x 294.0074pt>
 <use images/magicdraw/Ereigniserkennung.pdf>
-<images/impact_params.png, id=2133, 578.16pt x 433.62pt>
-<use images/impact_params.png> [39 <./images/FIR_Hilbert_Transform_Filter.png>]
- [40 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
-[41] <images/rawshort.png, id=2218, 578.16pt x 433.62pt>
-<use images/rawshort.png> <images/detailed.png, id=2219, 578.16pt x 433.62pt>
-<use images/detailed.png> <images/peaks.png, id=2220, 578.16pt x 433.62pt>
-<use images/peaks.png> <images/sparse.png, id=2221, 578.16pt x 433.62pt>
-<use images/sparse.png>
-Underfull \vbox (badness 1838) has occurred while \output is active [42 <./imag
-es/rawshort.png> <./images/detailed.png> <./images/peaks.png> <./images/sparse.
-png>] <images/magicdraw/AblaufLogger.pdf, id=2256, 597.23125pt x 845.1575pt>
+<images/impact_params.png, id=2111, 578.16pt x 433.62pt>
+<use images/impact_params.png> [38 <./images/curve_wsl.png>] [39 <./images/FIR_
+Hilbert_Transform_Filter.png> <./images/magicdraw/Ereigniserkennung.pdf>]
+[40 <./images/impact_params.png>]
+<images/rawshort.png, id=2209, 578.16pt x 433.62pt> <use images/rawshort.png>
+<images/detailed.png, id=2210, 578.16pt x 433.62pt> <use images/detailed.png>
+<images/peaks.png, id=2211, 578.16pt x 433.62pt> <use images/peaks.png>
+<images/sparse.png, id=2212, 578.16pt x 433.62pt> <use images/sparse.png>
+[41] [42 <./images/rawshort.png> <./images/detailed.png> <./images/peaks.png> <
+./images/sparse.png>]
+<images/magicdraw/AblaufLogger.pdf, id=2253, 343.40294pt x 585.38683pt>
 <use images/magicdraw/AblaufLogger.pdf>
-Overfull \hbox (2.08481pt too wide) in paragraph at lines 229--230
- [][] 
-<images/magicdraw/AblaufSensor.pdf, id=2266, 597.23125pt x 845.1575pt>
-<use images/magicdraw/AblaufSensor.pdf>
-<images/canarbitration.png, id=2274, 542.025pt x 281.05pt>
+<images/magicdraw/AblaufSensor.pdf, id=2263, 282.57568pt x 464.09384pt>
+<use images/magicdraw/AblaufSensor.pdf> [43] [44 <./images/magicdraw/AblaufLogg
+er.pdf>] [45 <./images/magicdraw/AblaufSensor.pdf>]
+<images/canarbitration.png, id=2318, 542.025pt x 281.05pt>
 <use images/canarbitration.png>
 
 pdfTeX warning: pdflatex (file ./images/canframe.pdf): PDF inclusion: found PDF
  version <1.6>, but at most version <1.5> allowed
-<images/canframe.pdf, id=2277, 460.64026pt x 275.20918pt>
-<use images/canframe.pdf> [43] [44 <./images/magicdraw/AblaufLogger.pdf>]
-[45 <./images/magicdraw/AblaufSensor.pdf>] [46 <./images/canarbitration.png> <.
-/images/canframe.pdf>]
-<images/canmess.pdf, id=2336, 741.61067pt x 171.88216pt>
-<use images/canmess.pdf>
+<images/canframe.pdf, id=2321, 460.64026pt x 275.20918pt>
+<use images/canframe.pdf>
+<images/canmess.pdf, id=2324, 741.61067pt x 171.88216pt>
+<use images/canmess.pdf> [46 <./images/canarbitration.png> <./images/canframe.p
+df>]
 
 pdfTeX warning: pdflatex (file ./images/cancontroller.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
 <images/cancontroller.pdf, id=2342, 415.93623pt x 228.71547pt>
-<use images/cancontroller.pdf> [47 <./images/canmess.pdf>]
+<use images/cancontroller.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfilterhit.pdf): PDF inclusion: found
  PDF version <1.6>, but at most version <1.5> allowed
-<images/canfilterhit.pdf, id=2370, 657.55765pt x 407.70317pt>
+<images/canfilterhit.pdf, id=2346, 657.55765pt x 407.70317pt>
 <use images/canfilterhit.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
-<images/canfiltermiss.pdf, id=2371, 669.1208pt x 383.62282pt>
-<use images/canfiltermiss.pdf> [48 <./images/cancontroller.pdf>] [49 <./images/
-canfilterhit.pdf> <./images/canfiltermiss.pdf
-
-pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
->]) [50] (./content/resultate.tex
+<images/canfiltermiss.pdf, id=2347, 669.1208pt x 383.62282pt>
+<use images/canfiltermiss.pdf> [47 <./images/canmess.pdf>] [48 <./images/cancon
+troller.pdf> <./images/canfilterhit.pdf>] [49 <./images/canfiltermiss.pdf>])
+[50] (./content/resultate.tex
 Kapitel 9.
 <use images/comparison/comparison.png> [51]) [52] [53]
 (./content/diskussion.tex
@@ -667,7 +669,7 @@ fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
 /local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
 ive/2014/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2014/t
 exmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on doc.pdf (112 pages, 14416838 bytes).
+Output written on doc.pdf (112 pages, 14417133 bytes).
 Transcript written on doc.log.
 This is BibTeX, Version 0.99d (TeX Live 2014)
 The top-level auxiliary file: doc.aux
@@ -1077,7 +1079,7 @@ l.38 \include{content/kontakt}
 ed
 <to be read again> 
                    \relax 
-l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+l.57 ...e zum Steuerrechner}{17}{subsection.6.2.5}
                                                    [2]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.3}) has been already used, duplic
 ate ignored
@@ -1095,45 +1097,52 @@ Overfull \hbox (3.66734pt too wide) detected at line 272
 <to be read again> 
                    \relax 
 l.44 \newpage
-              [4] (./doc.tdo)pdfTeX warning (ext4): destination with the same i
-dentifier (name{page.5}) has been already used, duplicate ignored
+              [4] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd)pdfTeX warning (ext
+4): destination with the same identifier (name{page.5}) has been already used, 
+duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \newpage
-              [5] (./content/einleitung.tex
-Kapitel 1.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [6]) [7]
-(./content/aufgabenstellung.tex
+l.37 \item D
+            atensammlung an einem zugÃ¤nglichen GerÃ¤t, statt Einsammeln der...
+[5]) [6] (./content/aufgabenstellung.tex
 Kapitel 2.
-[8]) [9] (./content/vorgehen.tex
+[7]) [8] (./content/vorgehen.tex
 Kapitel 3.
-<images/visio/Situationskroki.pdf, id=884, 550.1012pt x 245.49718pt>
-<use images/visio/Situationskroki.pdf> [10 <./images/visio/Situationskroki.pdf>
-] [11]) [12] (./content/funktionale.tex
+<images/visio/Situationskroki.pdf, id=879, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [9 <./images/visio/Situationskroki.pdf>]
+ [10]) [11] (./content/funktionale.tex
 Kapitel 4.
-[13]) [14] (./content/nichtfunktionale.tex
+[12]) [13] (./content/nichtfunktionale.tex
 Kapitel 5.
-) [15] (./content/tests.tex
+) [14] (./content/tests.tex
 Kapitel 6.
-<images/fotos/testaufbau1.jpg, id=1054, 2499.3375pt x 1960.32375pt>
+<images/fotos/testaufbau1.jpg, id=1049, 2499.3375pt x 1960.32375pt>
 <use images/fotos/testaufbau1.jpg>
-<images/fotos/testaufbau2.jpg, id=1055, 1450.41875pt x 896.34875pt>
-<use images/fotos/testaufbau2.jpg> [16] [17 <./images/fotos/testaufbau1.jpg> <.
-/images/fotos/testaufbau2.jpg>] [18]
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [19] [20]
-<images/comparison/comparison.png, id=1240, 578.16pt x 433.62pt>
-<use images/comparison/comparison.png> [21]) [22 <./images/comparison/compariso
+<images/fotos/testaufbau2.jpg, id=1050, 1450.41875pt x 896.34875pt>
+<use images/fotos/testaufbau2.jpg> [15] [16 <./images/fotos/testaufbau1.jpg> <.
+/images/fotos/testaufbau2.jpg>] [17]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [18] [19]
+<images/comparison/comparison.png, id=1233, 578.16pt x 433.62pt>
+<use images/comparison/comparison.png> [20]) [21 <./images/comparison/compariso
 n.png>] (./content/hardware.tex
 Kapitel 7.
-<images/visio/hardwarekonzept_logger.pdf, id=1305, 333.68877pt x 262.51083pt>
+<images/visio/hardwarekonzept_logger.pdf, id=1300, 333.68877pt x 262.51083pt>
 <use images/visio/hardwarekonzept_logger.pdf>
-<images/visio/hardwarekonzept_sensor.pdf, id=1317, 335.7624pt x 247.96901pt>
-<use images/visio/hardwarekonzept_sensor.pdf> [23] [24 <./images/visio/hardware
+<images/visio/hardwarekonzept_sensor.pdf, id=1312, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [22] [23 <./images/visio/hardware
 konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
 _sensor.pdf, page is rotated 90 degrees>]
-<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1492, 608.2725pt x 508.901
-25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [25] [26 <./images/
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1487, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [24] [25 <./images/
 datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 156--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--160
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 162--163
 []\T1/lmss/m/n/10 slave
 
@@ -1157,83 +1166,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
-[27] [28] <images/differential.pdf, id=1597, 465.94815pt x 262.24684pt>
-<use images/differential.pdf> [29 <./images/differential.pdf>] [30]
+[26] [27] <images/differential.pdf, id=1592, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [28 <./images/differential.pdf>] [29]
 Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
 \T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
 T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
 ss,
-[31] <images/visio/hardware_logger.pdf, id=1715, 502.87875pt x 360.61725pt>
+[30] <images/visio/hardware_logger.pdf, id=1710, 502.87875pt x 360.61725pt>
 <use images/visio/hardware_logger.pdf>
-<images/visio/hardware_sensor.pdf, id=1729, 502.87875pt x 354.93002pt>
-<use images/visio/hardware_sensor.pdf>) [32 <./images/visio/hardware_logger.pdf
->] [33 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+<images/visio/hardware_sensor.pdf, id=1724, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [31 <./images/visio/hardware_logger.pdf
+>] [32 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
 Kapitel 8.
-<images/visio/Softwarestack_Logger.pdf, id=1811, 509.39299pt x 348.64674pt>
+<images/visio/Softwarestack_Logger.pdf, id=1806, 509.39299pt x 348.64674pt>
 <use images/visio/Softwarestack_Logger.pdf>
-<images/visio/Softwarestack_Sensor.pdf, id=1818, 404.83546pt x 331.91002pt>
+<images/visio/Softwarestack_Sensor.pdf, id=1813, 404.83546pt x 331.91002pt>
 <use images/visio/Softwarestack_Sensor.pdf>
-<images/visio/IPC-Grob.pdf, id=1835, 593.7914pt x 454.62949pt>
-<use images/visio/IPC-Grob.pdf> [34] [35 <./images/visio/Softwarestack_Logger.p
+<images/visio/IPC-Grob.pdf, id=1830, 593.7914pt x 454.62949pt>
+<use images/visio/IPC-Grob.pdf> [33] [34 <./images/visio/Softwarestack_Logger.p
 df, page is rotated 90 degrees> <./images/visio/Softwarestack_Sensor.pdf>]
-<images/visio/AD-Er-Com.pdf, id=1992, 495.43294pt x 315.46657pt>
-<use images/visio/AD-Er-Com.pdf>
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [36 <./imag
-es/visio/IPC-Grob.pdf>] [37 <./images/visio/AD-Er-Com.pdf>]
-<images/curve_wsl.png, id=2075, 434.8245pt x 223.7961pt>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [35 <./imag
+es/visio/IPC-Grob.pdf>] [36]
+<images/visio/AD-Er-Com.pdf, id=2019, 495.43294pt x 315.46657pt>
+<use images/visio/AD-Er-Com.pdf> [37 <./images/visio/AD-Er-Com.pdf>]
+<images/curve_wsl.png, id=2077, 434.8245pt x 223.7961pt>
 <use images/curve_wsl.png>
-<images/FIR_Hilbert_Transform_Filter.png, id=2094, 2007.5pt x 1328.965pt>
-<use images/FIR_Hilbert_Transform_Filter.png> [38 <./images/curve_wsl.png>]
-<images/magicdraw/Ereigniserkennung.pdf, id=2130, 352.28412pt x 294.0074pt>
+<images/FIR_Hilbert_Transform_Filter.png, id=2096, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png>
+<images/magicdraw/Ereigniserkennung.pdf, id=2108, 352.28412pt x 294.0074pt>
 <use images/magicdraw/Ereigniserkennung.pdf>
-<images/impact_params.png, id=2133, 578.16pt x 433.62pt>
-<use images/impact_params.png> [39 <./images/FIR_Hilbert_Transform_Filter.png>]
- [40 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
-[41] <images/rawshort.png, id=2218, 578.16pt x 433.62pt>
-<use images/rawshort.png> <images/detailed.png, id=2219, 578.16pt x 433.62pt>
-<use images/detailed.png> <images/peaks.png, id=2220, 578.16pt x 433.62pt>
-<use images/peaks.png> <images/sparse.png, id=2221, 578.16pt x 433.62pt>
-<use images/sparse.png>
-Underfull \vbox (badness 1838) has occurred while \output is active [42 <./imag
-es/rawshort.png> <./images/detailed.png> <./images/peaks.png> <./images/sparse.
-png>] <images/magicdraw/AblaufLogger.pdf, id=2256, 597.23125pt x 845.1575pt>
+<images/impact_params.png, id=2111, 578.16pt x 433.62pt>
+<use images/impact_params.png> [38 <./images/curve_wsl.png>] [39 <./images/FIR_
+Hilbert_Transform_Filter.png> <./images/magicdraw/Ereigniserkennung.pdf>]
+[40 <./images/impact_params.png>]
+<images/rawshort.png, id=2209, 578.16pt x 433.62pt> <use images/rawshort.png>
+<images/detailed.png, id=2210, 578.16pt x 433.62pt> <use images/detailed.png>
+<images/peaks.png, id=2211, 578.16pt x 433.62pt> <use images/peaks.png>
+<images/sparse.png, id=2212, 578.16pt x 433.62pt> <use images/sparse.png>
+[41] [42 <./images/rawshort.png> <./images/detailed.png> <./images/peaks.png> <
+./images/sparse.png>]
+<images/magicdraw/AblaufLogger.pdf, id=2253, 343.40294pt x 585.38683pt>
 <use images/magicdraw/AblaufLogger.pdf>
-Overfull \hbox (2.08481pt too wide) in paragraph at lines 229--230
- [][] 
-<images/magicdraw/AblaufSensor.pdf, id=2266, 597.23125pt x 845.1575pt>
-<use images/magicdraw/AblaufSensor.pdf>
-<images/canarbitration.png, id=2274, 542.025pt x 281.05pt>
+<images/magicdraw/AblaufSensor.pdf, id=2263, 282.57568pt x 464.09384pt>
+<use images/magicdraw/AblaufSensor.pdf> [43] [44 <./images/magicdraw/AblaufLogg
+er.pdf>] [45 <./images/magicdraw/AblaufSensor.pdf>]
+<images/canarbitration.png, id=2318, 542.025pt x 281.05pt>
 <use images/canarbitration.png>
 
 pdfTeX warning: pdflatex (file ./images/canframe.pdf): PDF inclusion: found PDF
  version <1.6>, but at most version <1.5> allowed
-<images/canframe.pdf, id=2277, 460.64026pt x 275.20918pt>
-<use images/canframe.pdf> [43] [44 <./images/magicdraw/AblaufLogger.pdf>]
-[45 <./images/magicdraw/AblaufSensor.pdf>] [46 <./images/canarbitration.png> <.
-/images/canframe.pdf>]
-<images/canmess.pdf, id=2336, 741.61067pt x 171.88216pt>
-<use images/canmess.pdf>
+<images/canframe.pdf, id=2321, 460.64026pt x 275.20918pt>
+<use images/canframe.pdf>
+<images/canmess.pdf, id=2324, 741.61067pt x 171.88216pt>
+<use images/canmess.pdf> [46 <./images/canarbitration.png> <./images/canframe.p
+df>]
 
 pdfTeX warning: pdflatex (file ./images/cancontroller.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
 <images/cancontroller.pdf, id=2342, 415.93623pt x 228.71547pt>
-<use images/cancontroller.pdf> [47 <./images/canmess.pdf>]
+<use images/cancontroller.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfilterhit.pdf): PDF inclusion: found
  PDF version <1.6>, but at most version <1.5> allowed
-<images/canfilterhit.pdf, id=2370, 657.55765pt x 407.70317pt>
+<images/canfilterhit.pdf, id=2346, 657.55765pt x 407.70317pt>
 <use images/canfilterhit.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
-<images/canfiltermiss.pdf, id=2371, 669.1208pt x 383.62282pt>
-<use images/canfiltermiss.pdf> [48 <./images/cancontroller.pdf>] [49 <./images/
-canfilterhit.pdf> <./images/canfiltermiss.pdf
-
-pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
->]) [50] (./content/resultate.tex
+<images/canfiltermiss.pdf, id=2347, 669.1208pt x 383.62282pt>
+<use images/canfiltermiss.pdf> [47 <./images/canmess.pdf>] [48 <./images/cancon
+troller.pdf> <./images/canfilterhit.pdf>] [49 <./images/canfiltermiss.pdf>])
+[50] (./content/resultate.tex
 Kapitel 9.
 <use images/comparison/comparison.png> [51]) [52] [53]
 (./content/diskussion.tex
@@ -1363,7 +1367,7 @@ fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
 /local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
 ive/2014/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2014/t
 exmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on doc.pdf (112 pages, 14416838 bytes).
+Output written on doc.pdf (112 pages, 14417133 bytes).
 Transcript written on doc.log.
 This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1748,7 +1752,7 @@ l.38 \include{content/kontakt}
 ed
 <to be read again> 
                    \relax 
-l.57 ...e zum Steuerrechner}{18}{subsection.6.2.5}
+l.57 ...e zum Steuerrechner}{17}{subsection.6.2.5}
                                                    [2]pdfTeX warning (ext4): de
 stination with the same identifier (name{page.3}) has been already used, duplic
 ate ignored
@@ -1766,45 +1770,52 @@ Overfull \hbox (3.66734pt too wide) detected at line 272
 <to be read again> 
                    \relax 
 l.44 \newpage
-              [4] (./doc.tdo)pdfTeX warning (ext4): destination with the same i
-dentifier (name{page.5}) has been already used, duplicate ignored
+              [4] (./content/einleitung.tex
+Kapitel 1.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd)pdfTeX warning (ext
+4): destination with the same identifier (name{page.5}) has been already used, 
+duplicate ignored
 <to be read again> 
                    \relax 
-l.44 \newpage
-              [5] (./content/einleitung.tex
-Kapitel 1.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/ts1lmss.fd) [6]) [7]
-(./content/aufgabenstellung.tex
+l.37 \item D
+            atensammlung an einem zugÃ¤nglichen GerÃ¤t, statt Einsammeln der...
+[5]) [6] (./content/aufgabenstellung.tex
 Kapitel 2.
-[8]) [9] (./content/vorgehen.tex
+[7]) [8] (./content/vorgehen.tex
 Kapitel 3.
-<images/visio/Situationskroki.pdf, id=884, 550.1012pt x 245.49718pt>
-<use images/visio/Situationskroki.pdf> [10 <./images/visio/Situationskroki.pdf>
-] [11]) [12] (./content/funktionale.tex
+<images/visio/Situationskroki.pdf, id=879, 550.1012pt x 245.49718pt>
+<use images/visio/Situationskroki.pdf> [9 <./images/visio/Situationskroki.pdf>]
+ [10]) [11] (./content/funktionale.tex
 Kapitel 4.
-[13]) [14] (./content/nichtfunktionale.tex
+[12]) [13] (./content/nichtfunktionale.tex
 Kapitel 5.
-) [15] (./content/tests.tex
+) [14] (./content/tests.tex
 Kapitel 6.
-<images/fotos/testaufbau1.jpg, id=1054, 2499.3375pt x 1960.32375pt>
+<images/fotos/testaufbau1.jpg, id=1049, 2499.3375pt x 1960.32375pt>
 <use images/fotos/testaufbau1.jpg>
-<images/fotos/testaufbau2.jpg, id=1055, 1450.41875pt x 896.34875pt>
-<use images/fotos/testaufbau2.jpg> [16] [17 <./images/fotos/testaufbau1.jpg> <.
-/images/fotos/testaufbau2.jpg>] [18]
-(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [19] [20]
-<images/comparison/comparison.png, id=1240, 578.16pt x 433.62pt>
-<use images/comparison/comparison.png> [21]) [22 <./images/comparison/compariso
+<images/fotos/testaufbau2.jpg, id=1050, 1450.41875pt x 896.34875pt>
+<use images/fotos/testaufbau2.jpg> [15] [16 <./images/fotos/testaufbau1.jpg> <.
+/images/fotos/testaufbau2.jpg>] [17]
+(/usr/local/texlive/2014/texmf-dist/tex/latex/lm/t1lmtt.fd) [18] [19]
+<images/comparison/comparison.png, id=1233, 578.16pt x 433.62pt>
+<use images/comparison/comparison.png> [20]) [21 <./images/comparison/compariso
 n.png>] (./content/hardware.tex
 Kapitel 7.
-<images/visio/hardwarekonzept_logger.pdf, id=1305, 333.68877pt x 262.51083pt>
+<images/visio/hardwarekonzept_logger.pdf, id=1300, 333.68877pt x 262.51083pt>
 <use images/visio/hardwarekonzept_logger.pdf>
-<images/visio/hardwarekonzept_sensor.pdf, id=1317, 335.7624pt x 247.96901pt>
-<use images/visio/hardwarekonzept_sensor.pdf> [23] [24 <./images/visio/hardware
+<images/visio/hardwarekonzept_sensor.pdf, id=1312, 335.7624pt x 247.96901pt>
+<use images/visio/hardwarekonzept_sensor.pdf> [22] [23 <./images/visio/hardware
 konzept_logger.pdf, page is rotated 90 degrees> <./images/visio/hardwarekonzept
 _sensor.pdf, page is rotated 90 degrees>]
-<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1492, 608.2725pt x 508.901
-25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [25] [26 <./images/
+<images/datasheets/Cortex-M4-chip-diagram-LG.png, id=1487, 608.2725pt x 508.901
+25pt> <use images/datasheets/Cortex-M4-chip-diagram-LG.png> [24] [25 <./images/
 datasheets/Cortex-M4-chip-diagram-LG.png>]
+Underfull \hbox (badness 5147) in paragraph at lines 156--160
+\T1/lmss/m/n/10 + CAN Con-trol-ler sen-det In-ter-rupt
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--160
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 162--163
 []\T1/lmss/m/n/10 slave
 
@@ -1828,83 +1839,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 183--184
 
 Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
-[27] [28] <images/differential.pdf, id=1597, 465.94815pt x 262.24684pt>
-<use images/differential.pdf> [29 <./images/differential.pdf>] [30]
+[26] [27] <images/differential.pdf, id=1592, 465.94815pt x 262.24684pt>
+<use images/differential.pdf> [28 <./images/differential.pdf>] [29]
 Overfull \hbox (0.63788pt too wide) in paragraph at lines 257--258
 \T1/lmss/m/n/10 Das ge-wähl-te \T1/lmss/m/sl/10 NXP LPC4088 Quick-Start Board \
 T1/lmss/m/n/10 ver-fügt über einen [][]Uni-ver-sal Se-ri-al Bus (USB)[]-Anschlu
 ss,
-[31] <images/visio/hardware_logger.pdf, id=1715, 502.87875pt x 360.61725pt>
+[30] <images/visio/hardware_logger.pdf, id=1710, 502.87875pt x 360.61725pt>
 <use images/visio/hardware_logger.pdf>
-<images/visio/hardware_sensor.pdf, id=1729, 502.87875pt x 354.93002pt>
-<use images/visio/hardware_sensor.pdf>) [32 <./images/visio/hardware_logger.pdf
->] [33 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
+<images/visio/hardware_sensor.pdf, id=1724, 502.87875pt x 354.93002pt>
+<use images/visio/hardware_sensor.pdf>) [31 <./images/visio/hardware_logger.pdf
+>] [32 <./images/visio/hardware_sensor.pdf>] (./content/software.tex
 Kapitel 8.
-<images/visio/Softwarestack_Logger.pdf, id=1811, 509.39299pt x 348.64674pt>
+<images/visio/Softwarestack_Logger.pdf, id=1806, 509.39299pt x 348.64674pt>
 <use images/visio/Softwarestack_Logger.pdf>
-<images/visio/Softwarestack_Sensor.pdf, id=1818, 404.83546pt x 331.91002pt>
+<images/visio/Softwarestack_Sensor.pdf, id=1813, 404.83546pt x 331.91002pt>
 <use images/visio/Softwarestack_Sensor.pdf>
-<images/visio/IPC-Grob.pdf, id=1835, 593.7914pt x 454.62949pt>
-<use images/visio/IPC-Grob.pdf> [34] [35 <./images/visio/Softwarestack_Logger.p
+<images/visio/IPC-Grob.pdf, id=1830, 593.7914pt x 454.62949pt>
+<use images/visio/IPC-Grob.pdf> [33] [34 <./images/visio/Softwarestack_Logger.p
 df, page is rotated 90 degrees> <./images/visio/Softwarestack_Sensor.pdf>]
-<images/visio/AD-Er-Com.pdf, id=1992, 495.43294pt x 315.46657pt>
-<use images/visio/AD-Er-Com.pdf>
 (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty)
-(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [36 <./imag
-es/visio/IPC-Grob.pdf>] [37 <./images/visio/AD-Er-Com.pdf>]
-<images/curve_wsl.png, id=2075, 434.8245pt x 223.7961pt>
+(/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty) [35 <./imag
+es/visio/IPC-Grob.pdf>] [36]
+<images/visio/AD-Er-Com.pdf, id=2019, 495.43294pt x 315.46657pt>
+<use images/visio/AD-Er-Com.pdf> [37 <./images/visio/AD-Er-Com.pdf>]
+<images/curve_wsl.png, id=2077, 434.8245pt x 223.7961pt>
 <use images/curve_wsl.png>
-<images/FIR_Hilbert_Transform_Filter.png, id=2094, 2007.5pt x 1328.965pt>
-<use images/FIR_Hilbert_Transform_Filter.png> [38 <./images/curve_wsl.png>]
-<images/magicdraw/Ereigniserkennung.pdf, id=2130, 352.28412pt x 294.0074pt>
+<images/FIR_Hilbert_Transform_Filter.png, id=2096, 2007.5pt x 1328.965pt>
+<use images/FIR_Hilbert_Transform_Filter.png>
+<images/magicdraw/Ereigniserkennung.pdf, id=2108, 352.28412pt x 294.0074pt>
 <use images/magicdraw/Ereigniserkennung.pdf>
-<images/impact_params.png, id=2133, 578.16pt x 433.62pt>
-<use images/impact_params.png> [39 <./images/FIR_Hilbert_Transform_Filter.png>]
- [40 <./images/magicdraw/Ereigniserkennung.pdf> <./images/impact_params.png>]
-[41] <images/rawshort.png, id=2218, 578.16pt x 433.62pt>
-<use images/rawshort.png> <images/detailed.png, id=2219, 578.16pt x 433.62pt>
-<use images/detailed.png> <images/peaks.png, id=2220, 578.16pt x 433.62pt>
-<use images/peaks.png> <images/sparse.png, id=2221, 578.16pt x 433.62pt>
-<use images/sparse.png>
-Underfull \vbox (badness 1838) has occurred while \output is active [42 <./imag
-es/rawshort.png> <./images/detailed.png> <./images/peaks.png> <./images/sparse.
-png>] <images/magicdraw/AblaufLogger.pdf, id=2256, 597.23125pt x 845.1575pt>
+<images/impact_params.png, id=2111, 578.16pt x 433.62pt>
+<use images/impact_params.png> [38 <./images/curve_wsl.png>] [39 <./images/FIR_
+Hilbert_Transform_Filter.png> <./images/magicdraw/Ereigniserkennung.pdf>]
+[40 <./images/impact_params.png>]
+<images/rawshort.png, id=2209, 578.16pt x 433.62pt> <use images/rawshort.png>
+<images/detailed.png, id=2210, 578.16pt x 433.62pt> <use images/detailed.png>
+<images/peaks.png, id=2211, 578.16pt x 433.62pt> <use images/peaks.png>
+<images/sparse.png, id=2212, 578.16pt x 433.62pt> <use images/sparse.png>
+[41] [42 <./images/rawshort.png> <./images/detailed.png> <./images/peaks.png> <
+./images/sparse.png>]
+<images/magicdraw/AblaufLogger.pdf, id=2253, 343.40294pt x 585.38683pt>
 <use images/magicdraw/AblaufLogger.pdf>
-Overfull \hbox (2.08481pt too wide) in paragraph at lines 229--230
- [][] 
-<images/magicdraw/AblaufSensor.pdf, id=2266, 597.23125pt x 845.1575pt>
-<use images/magicdraw/AblaufSensor.pdf>
-<images/canarbitration.png, id=2274, 542.025pt x 281.05pt>
+<images/magicdraw/AblaufSensor.pdf, id=2263, 282.57568pt x 464.09384pt>
+<use images/magicdraw/AblaufSensor.pdf> [43] [44 <./images/magicdraw/AblaufLogg
+er.pdf>] [45 <./images/magicdraw/AblaufSensor.pdf>]
+<images/canarbitration.png, id=2318, 542.025pt x 281.05pt>
 <use images/canarbitration.png>
 
 pdfTeX warning: pdflatex (file ./images/canframe.pdf): PDF inclusion: found PDF
  version <1.6>, but at most version <1.5> allowed
-<images/canframe.pdf, id=2277, 460.64026pt x 275.20918pt>
-<use images/canframe.pdf> [43] [44 <./images/magicdraw/AblaufLogger.pdf>]
-[45 <./images/magicdraw/AblaufSensor.pdf>] [46 <./images/canarbitration.png> <.
-/images/canframe.pdf>]
-<images/canmess.pdf, id=2336, 741.61067pt x 171.88216pt>
-<use images/canmess.pdf>
+<images/canframe.pdf, id=2321, 460.64026pt x 275.20918pt>
+<use images/canframe.pdf>
+<images/canmess.pdf, id=2324, 741.61067pt x 171.88216pt>
+<use images/canmess.pdf> [46 <./images/canarbitration.png> <./images/canframe.p
+df>]
 
 pdfTeX warning: pdflatex (file ./images/cancontroller.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
 <images/cancontroller.pdf, id=2342, 415.93623pt x 228.71547pt>
-<use images/cancontroller.pdf> [47 <./images/canmess.pdf>]
+<use images/cancontroller.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfilterhit.pdf): PDF inclusion: found
  PDF version <1.6>, but at most version <1.5> allowed
-<images/canfilterhit.pdf, id=2370, 657.55765pt x 407.70317pt>
+<images/canfilterhit.pdf, id=2346, 657.55765pt x 407.70317pt>
 <use images/canfilterhit.pdf>
 
 pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: foun
 d PDF version <1.6>, but at most version <1.5> allowed
-<images/canfiltermiss.pdf, id=2371, 669.1208pt x 383.62282pt>
-<use images/canfiltermiss.pdf> [48 <./images/cancontroller.pdf>] [49 <./images/
-canfilterhit.pdf> <./images/canfiltermiss.pdf
-
-pdfTeX warning: pdflatex (file ./images/canfiltermiss.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
->]) [50] (./content/resultate.tex
+<images/canfiltermiss.pdf, id=2347, 669.1208pt x 383.62282pt>
+<use images/canfiltermiss.pdf> [47 <./images/canmess.pdf>] [48 <./images/cancon
+troller.pdf> <./images/canfilterhit.pdf>] [49 <./images/canfiltermiss.pdf>])
+[50] (./content/resultate.tex
 Kapitel 9.
 <use images/comparison/comparison.png> [51]) [52] [53]
 (./content/diskussion.tex
@@ -2034,5 +2040,5 @@ fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type
 /local/texlive/2014/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texl
 ive/2014/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texlive/2014/t
 exmf-dist/fonts/type1/public/lm/lmtt9.pfb>
-Output written on doc.pdf (112 pages, 14416841 bytes).
+Output written on doc.pdf (112 pages, 14417105 bytes).
 Transcript written on doc.log.
