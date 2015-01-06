@@ -272,3 +272,36 @@ int setTokenStatus(char status, char counter){
 	messageCounter = counter;
 	tokenReceived = status;
 }
+
+/*
+ *	see header
+ */
+
+void stopAllSensors(void){
+	enqueueMessage(0,0,0xff,0x01,SENSOR_OFF_BC);
+}
+
+/*
+ *	see header
+ */
+
+void stopSensor(uint8_t sensorId){
+	enqueueMessage(0,0,sensorId,0x01,SENSOR_OFF_SINGLE);	
+}
+
+/*
+ *	see header
+ */
+
+void emptyQueue(void){
+	char queueNotEmptied = 1;
+	while(queueNotEmptied){
+		osEvent evt = inQueue.get(0);
+		if (evt.status != osEventMessage){
+			queueNotEmptied = 0;
+		} else {
+			CANmessage_t *message = (CANmessage_t*)evt.value.p;
+			mpoolInQueue.free(message);
+		}
+	}
+}

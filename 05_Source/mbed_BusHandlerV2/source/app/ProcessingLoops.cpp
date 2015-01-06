@@ -32,6 +32,7 @@ volatile uint64_t timeStamp = 0;
 char settingsReceived = 0;
 char timeSet = 0;
 char startRecording = 0;
+char sensorOffline = 0;
 
 void time(void const *n) {
     timeStamp++;
@@ -194,9 +195,11 @@ void sensor_loop(void const *args){
 						switch (message->msgId){
 							case START_REC_MSG:
 								startRecording = 1;
+								sensorOffline = 0;
 								break;
 							case ALL_OFF_MSG:
-								// set offline
+								init_impact_event_handler();
+								sensorOffline = 1;
 								break;
 							default:
 								if (message->msgId == (SETTINGS_MSG | (canId << 16))){
@@ -204,13 +207,21 @@ void sensor_loop(void const *args){
 								} else if (message->msgId == (TOKEN_MSG | (canId << 16))){
 									setTokenStatus(1,message->payload[0]);
 									pcSerial.printf("Token received, start sending %d msgs\n",message->payload[0]);
+								} else if (message->msgId == (SINGLE_OFF_MSG| (canId << 16))){
+									init_impact_event_handler();
+									sensorOffline = 1;
 								}
 								break;
 						}
 					mpoolOutQueue.free(message);
 				}
 				// process detected events
-				impact_event_detection();
+				if (sensorOffline == 0){
+					impact_event_detection();
+				} else {
+					// if the sensor was set offline, the message queue will be emptied
+					emptyQueue();
+				}
 				osDelay(1);
 			}
 		}
@@ -238,6 +249,10 @@ void logger_loop (void const *args){
 	char allSensorsReceived = 0;
 	start_CAN_Bus(LOGGER);
 	RtosTimer timeMs (time,osTimerPeriodic);
+/* nicht sicher, ob passt... muss noch testen
+	cmd_mount_sd();
+  cmd_read_config_file();
+*/
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
 	osDelay(10000);
 	// send serial request broadcast

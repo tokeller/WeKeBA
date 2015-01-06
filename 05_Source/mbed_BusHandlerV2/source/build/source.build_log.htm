@@ -8,23 +8,41 @@ Project File Date:  12/16/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
+compiling main.cpp...
+app/ProcessingLoops.h(65): warning:  #1-D: last line of file ends without a newline
+  #endif
+main.cpp: 1 warning, 0 errors
+compiling BusHandler.cpp...
+app\BusProtocol\BusHandler.cpp(121): warning:  #550-D: variable "stat" was set but never used
+        osStatus stat;
+app\BusProtocol\BusHandler.cpp(274): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
+  }
+app\BusProtocol\BusHandler.cpp(307): warning:  #1-D: last line of file ends without a newline
+  }
+app\BusProtocol\BusHandler.cpp: 3 warnings, 0 errors
+compiling impact_action.cpp...
 compiling ProcessingLoops.cpp...
 app\ProcessingLoops.h(65): warning:  #1-D: last line of file ends without a newline
   #endif
-app\ProcessingLoops.cpp(238): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
+app\ProcessingLoops.cpp(249): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
         char allSensorsReceived = 0;
-app\ProcessingLoops.cpp(245): warning:  #177-D: variable "sensorCounter" was declared but never referenced
+app\ProcessingLoops.cpp(256): warning:  #177-D: variable "sensorCounter" was declared but never referenced
         char sensorCounter = 0;
-app\ProcessingLoops.cpp(418): warning:  #1-D: last line of file ends without a newline
+app\ProcessingLoops.cpp(429): warning:  #1-D: last line of file ends without a newline
   }
 app\ProcessingLoops.cpp: 4 warnings, 0 errors
+compiling cmd_action.cpp...
+app\CommandLine\cmd_action.h(409): warning:  #1-D: last line of file ends without a newline
+  void cmd_close_sensor_file(uint8_t sensor_index);
+app\CommandLine\cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
+        uint8_t success = 1;
+app\CommandLine\cmd_action.cpp: 2 warnings, 0 errors
 linking...
 HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=81856 RO-data=5536 RW-data=764 ZI-data=42560  
+Program Size: Code=82028 RO-data=5536 RW-data=768 ZI-data=42556  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 5 Warning(s).
-Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
-Erase Done.
-Programming Done.
-Verify OK.
+".\build\source.axf" - 0 Error(s), 11 Warning(s).
+</pre>
+</body>
+</html>

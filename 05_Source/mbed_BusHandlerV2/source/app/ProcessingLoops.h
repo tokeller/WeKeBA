@@ -10,6 +10,7 @@
 #include "cmd.h"
 #include "file_ops.h"
 #include "UART_RTOS_Interrupt.h"
+#include "cmd_action.h"
 
 /*
  *	Sensor thread

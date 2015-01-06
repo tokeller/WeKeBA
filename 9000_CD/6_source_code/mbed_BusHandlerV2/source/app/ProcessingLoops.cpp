@@ -339,7 +339,7 @@ void logger_loop (void const *args){
 		}
 		if (nrOfMsg <= 0){
 			nrOfMsg = 10;
-			if (sensorId < nrOfRegSensors + 2){
+			if (sensorId < nrOfRegSensors + 1){
 				sensorId++;
 			} else {
 				sensorId = 0x02;

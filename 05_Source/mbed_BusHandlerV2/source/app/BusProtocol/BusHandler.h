@@ -76,6 +76,7 @@
 
 #define TOKEN_MSG				0x04000101
 #define SETTINGS_MSG  	0x05000101
+#define SINGLE_OFF_MSG  0x06000101
 
 #define SERIAL_MSG			0x18010001
 
@@ -226,5 +227,27 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings);
  */
 
 int setTokenStatus(char status, char counter);
+
+/*
+ *	stop all sensor units
+ *
+ */
+
+void stopAllSensors(void);
+
+/*
+ *	stop one sensor units
+ *
+ */
+
+void stopSensor(uint8_t sensorId);
+
+/*
+ *	empty the queue of outbound messages
+ *
+ */
+
+void emptyQueue(void);
+
 
 #endif
