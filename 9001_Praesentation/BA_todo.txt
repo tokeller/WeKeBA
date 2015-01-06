@@ -1,0 +1,44 @@
+was fehlt noch bei BA?
+======================
+
+Messdaten in File schreiben
+
+Neuem Sensor muss unbenutzte ID zugewiesen werden
+
+ändern der input queue länge? Nötig? nicht unbedingt...
+
+python skript, das aus dem messdatenfile die kurve anzeigt.
+
+- Start/Stop der Sensoren einbauen
+- automatisches Einlesen der Konfig im Logger beim Start
+- Sensor-ACK mit Anzahl der Meldungen (aber würde auch ohne gehen)
+- Bug der verhindert, dass der Sensor 1 konfiguriert werden kann
+
+
+Präsentationsablauf
+===================
+
+??  1. Agenda
+??  2. Problemstellung
+TW  3. Lösungsidee
+TW      3.1 Reduktion der Daten am Sensor
+TW      3.2 Bussystem inkl. Stromversorgung
+TW      3.3 Miniaturisierung
+
+??  4. Hardware
+        4.1 Sensor
+        4.2 Prozessor
+        4.3 Bus
+TK  5. Software
+TK      5.1 CAN-Protokoll
+TW      5.2 Messdatenerfassung und Ereigniserkennung
+TW      5.3 Detailmodi
+  
+    6. Demonstration
+        6.1 Einschalten (vrooom!)
+        6.2 Konfiguration über Menü
+        6.3 ein paar Einschläge simulieren
+        6.4 SD-Karte in PC nehmen und Messdaten anzeigen
+        6.5 TK: "Einen hab' ich noch..." und zückt sein Handy... (müsstest dafür aber fast einen schwarzen Rollkragenpulli anziehen :-)
+
+Applaus, Note: 6 (mindestens!)
