@@ -1,0 +1,36 @@
+was fehlt noch bei BA?
+======================
+
+Messdaten in File schreiben
+
+Neuem Sensor muss unbenutzte ID zugewiesen werden
+
+ändern der input queue länge? Nötig? nicht unbedingt...
+
+python skript, das aus dem messdatenfile die kurve anzeigt.
+
+- Start/Stop der Sensoren einbauen
+- automatisches Einlesen der Konfig im Logger beim Start
+- Sensor-ACK mit Anzahl der Meldungen (aber würde auch ohne gehen)
+- Bug der verhindert, dass der Sensor 1 konfiguriert werden kann
+
+
+Präsentationsablauf
+===================
+
+1. Agenda
+2. Problemstellung
+3. Lösungsidee
+4. Hardware
+5. Software
+    5.1 CAN-Protokoll
+    5.2 Messdatenerfassung und Ereigniserkennung
+    5.3 Detailmodi
+
+6. Demonstration
+    6.1 Einschalten (vrooom!)
+    6.2 Konfiguration über Menü
+    6.3 ein paar Einschläge simulieren
+    6.4 SD-Karte in PC nehmen und Messdaten anzeigen
+
+Applaus, Note: 6 (mindestens!)
