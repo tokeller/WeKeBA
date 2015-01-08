@@ -101,6 +101,7 @@ uint8_t sensor_config_read_file(FILE *input, SensorConfig *sc)
 			
 		}
 	}
+	return result;
 	// TODO after this function, call the function to all sensors to send their serialID and register them, then send them their configuration and start capturing data.
 }
 

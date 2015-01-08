@@ -3,6 +3,7 @@
 #define IMPACT_EVENT
 
 #include "mbed.h"
+#include "sensor_config.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -154,6 +155,12 @@ extern "C" {
 	 * @param uint_16_t samples_until_timeout
 	 */
 	void set_samples_until_timeout(uint16_t samples);	
+	
+	/**
+	 * Set the detail level
+	 * @param detail_mode_t mode
+	 */
+	void setDetailMode(detail_mode_t mode);
 	
 	
 	

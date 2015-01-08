@@ -1,3 +1,4 @@
+#include "sensor_config.h"
 #include "impact_event.h"
 #include "impact_fsm.h"
 
@@ -31,6 +32,8 @@ static uint16_t input_queue_length = INPUTQUEUE_LEN;
 uint16_t maximum_impact_length = MAX_IMPACT_LENGTH;
 uint32_t samples_timeout = SAMPLES_UNTIL_TIMEOUT;  // how long must signal remain
                                                    // below threshold for impact to end
+detail_mode_t detail_mode = M_PEAKS;  // TODO: process setting of detail mode!
+
 uint32_t timeout_counter;
 uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 
@@ -315,4 +318,12 @@ static uint32_t value = 0;               // sampled value
 	void set_samples_until_timeout(uint16_t samples)
 	{
 		samples_timeout = samples;
+	}
+	
+	/*
+	 * See header file
+	 */
+	void setDetailMode(detail_mode_t mode)
+	{
+		detail_mode = mode;
 	}

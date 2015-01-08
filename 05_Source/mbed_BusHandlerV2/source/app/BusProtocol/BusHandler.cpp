@@ -148,7 +148,11 @@ int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char se
 		};
 		for (int i = 0; i<numberOfMessages; i++){
 			inOnQueue = mpoolInQueue.alloc();
-			inOnQueue->msgType = msgType;
+			if(msgType == IMPACT_EXT_SINGLE && i == 0){
+				inOnQueue->msgType = IMPACT_STD_SINGLE;
+			} else {
+				inOnQueue->msgType = msgType;
+			}
 			inOnQueue->receiver = receiver;
 			inOnQueue->sender = sender;
 			inOnQueue->msgId = numberOfMessages - i;

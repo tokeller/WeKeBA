@@ -1,6 +1,7 @@
 #include "impact_event.h"
 #include "impact_action.h"
 #include "BusHandler.h"
+#include "BusProtocol.h"
 
 /* TO DO
  * - check for overflow in peaks, samples
@@ -19,6 +20,7 @@ extern uint32_t samples_timeout;
 extern uint32_t baseline;
 extern uint16_t maximum_impact_length;
 extern uint32_t canId;
+extern detail_mode_t detail_mode;
 
 /* ------------------------------------------------------------------
  * -- Global variables
@@ -202,6 +204,14 @@ static Impact_t *impact = NULL;
 	void store_impact(void)
 	{
 		uint16_t i;
+		ImpStd_t std;
+		ImpExtData_t extData;
+		ImpRawDataStart_t rawDataStart;
+		ImpRawData_t rawData;
+		char *p_data;
+		uint32_t prev_timestamp;
+		uint32_t dataLength;
+		
 		pcSerial.printf("\nImpact complete:\nStarttime: %d\n", impact->starttime);
 		pcSerial.printf("Samples: %d\nPeaks: %d\nMaximum: %d\n***********\n", impact->sample_count, impact->peak_count, impact->max_amplitude);
 		
@@ -216,16 +226,83 @@ static Impact_t *impact = NULL;
 			pcSerial.printf("%3hu: %10u %5hd\n", i, impact->peaks[i].timestamp, impact->peaks[i].value);
 		}
 		pcSerial.printf("\n");
-		ImpStd_t std;
-		std.numberOfPkgs = 1;
-		std.maxPeaks = impact->max_amplitude;
-		//printf("amplitude %x\n",impact->max_amplitude);
-		std.timestamp = impact->starttime;
-		//printf("starttime %x\n",impact->starttime);
-		std.nrOfPeaks = impact->peak_count;
-		//printf("peak_count %x\n",impact->peak_count);
-		std.duration = impact->sample_count;
-		//printf("sample_count %x\n",impact->sample_count);
-		enqueueMessage(7,std,0x01,canId,IMPACT_STD_SINGLE);
+		
+		if(detail_mode == M_SPARSE){		
+			std.numberOfPkgs = 1;
+			std.maxPeaks = impact->max_amplitude;
+			//printf("amplitude %x\n",impact->max_amplitude);
+			std.timestamp = impact->starttime;
+			//printf("starttime %x\n",impact->starttime);
+			std.nrOfPeaks = impact->peak_count;
+			//printf("peak_count %x\n",impact->peak_count);
+			std.duration = impact->sample_count;
+			//printf("sample_count %x\n",impact->sample_count);
+			enqueueMessage(8,std,0x01,canId,IMPACT_STD_SINGLE);
+			
+		} else if(detail_mode == M_OFF){
+			// don't send anything
+			
+		} else if(detail_mode == M_PEAKS){
+			// send peaks only
+			// send std, then as many impextdata as necessary
+			/* numberOfPkgs = impact->peak_count / 4 + 1;
+			if(impact->peak_count%4){
+				numberOfPkgs += 1;
+			}
+			std.numberOfPkgs = numberOfPkgs;
+			std.maxPeak = impact->max_amplitude;
+			std.timestamp = impact->starttime;
+			std.nrOfPeaks = impact->peak_count;
+			std.duration = impact->sample_count;
+			enqueueMessage(8,std,0x01,canId,IMPACT_STD_SINGLE); */
+			
+			// prepare data 
+			dataLength = 8 + 2 * impact->peak_count;
+			p_data = (char *) malloc(dataLength);
+			if(p_data != NULL){
+				p_data[0] = ((impact->starttime) >> 24) & 0xff;
+				p_data[1] = ((impact->starttime) >> 16) & 0xff;
+				p_data[2] = ((impact->starttime) >> 8) & 0xff;
+				p_data[3] = (impact->starttime) & 0xff;
+				p_data[4] = (impact->max_amplitude >> 4) & 0xff;
+				p_data[5] = (impact->peak_count) & 0xff;
+				p_data[6] = (impact->sample_count >> 8) & 0xff;
+				p_data[7] = impact->sample_count & 0xff;
+				
+				prev_timestamp = impact->starttime;
+				for(i = 0; i < impact->peak_count; i++){
+					p_data[8+2*i] = (char)(impact->peaks[i].timestamp - prev_timestamp);
+					p_data[8+2*i+1] = (char)((impact->peaks[i].value >> 4) & 0xff);
+					prev_timestamp = impact->peaks[i].timestamp;
+				}
+				
+				enqueueMessage(dataLength, p_data, 0x01, canId, IMPACT_EXT_SINGLE);
+				free(p_data);
+				p_data = NULL;
+			}
+			
+			
+		} else if(detail_mode == M_DETAILED){
+			// send all samples
+			// send rawDataStart, then as many rawData as necessary
+			dataLength = 4 + impact->sample_count;
+			p_data = (char *) malloc(dataLength);
+			if(p_data != NULL){
+				p_data[0] = ((impact->starttime) >> 24) & 0xff;
+				p_data[1] = ((impact->starttime) >> 16) & 0xff;
+				p_data[2] = ((impact->starttime) >> 8) & 0xff;
+				p_data[3] = impact->starttime & 0xff;
+				for(i = 0; i < impact->sample_count; i++){
+					p_data[4+i] = (uint8_t)((impact->samples[i] >> 4) & 0xff);
+				}
+				
+				enqueueMessage(dataLength, p_data, 0x01, canId, RAW_DATA_SINGLE);
+				free(p_data);
+				p_data = NULL;
+			}
+			
+		} else if(detail_mode == M_RAW){
+			// TODO: DO NOT HANDLE HERE, RAW MODE SHOULD NOT USE FSM BUT SEND PACKETS DIRECTLY
+		}
 	}
 	
