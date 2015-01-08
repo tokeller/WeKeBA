@@ -98,8 +98,8 @@
 .\build\processingloops.o: HAL/mbed-src/hal/pinmap.h
 .\build\processingloops.o: app/ImpactDetection/impact_fsm.h
 .\build\processingloops.o: app/ImpactDetection/impact_event.h
-.\build\processingloops.o: app/ImpactDetection/impact_action.h
 .\build\processingloops.o: app/CommandLine/sensor_config.h
+.\build\processingloops.o: app/ImpactDetection/impact_action.h
 .\build\processingloops.o: app/CommandLine/cmd.h
 .\build\processingloops.o: app/Support/file_ops.h
 .\build\processingloops.o: .\HAL\EALib\MCIFileSystem.h
@@ -110,3 +110,4 @@
 .\build\processingloops.o: .\HAL\EALib\FATFileSystem\ChaN\integer.h
 .\build\processingloops.o: .\HAL\EALib\FATFileSystem\ChaN\ffconf.h
 .\build\processingloops.o: app/Support/UART_RTOS_Interrupt.h
+.\build\processingloops.o: app/CommandLine/cmd_action.h

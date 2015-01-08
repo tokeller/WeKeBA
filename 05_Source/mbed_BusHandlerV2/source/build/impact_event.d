@@ -1,5 +1,5 @@
 .\build\impact_event.o: app\ImpactDetection\impact_event.cpp
-.\build\impact_event.o: app\ImpactDetection\impact_event.h
+.\build\impact_event.o: app/CommandLine/sensor_config.h
 .\build\impact_event.o: HAL/mbed-src/api/mbed.h
 .\build\impact_event.o: HAL/mbed-src/api/platform.h
 .\build\impact_event.o: HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/device.h
@@ -80,5 +80,6 @@
 .\build\impact_event.o: HAL/mbed-src/api/wait_api.h
 .\build\impact_event.o: HAL/mbed-src/hal/sleep_api.h
 .\build\impact_event.o: HAL/mbed-src/api/rtc_time.h
+.\build\impact_event.o: app\ImpactDetection\impact_event.h
 .\build\impact_event.o: app\ImpactDetection\impact_fsm.h
 .\build\impact_event.o: app\ImpactDetection\impact_action.h

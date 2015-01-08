@@ -249,10 +249,10 @@ void logger_loop (void const *args){
 	char allSensorsReceived = 0;
 	start_CAN_Bus(LOGGER);
 	RtosTimer timeMs (time,osTimerPeriodic);
-/* nicht sicher, ob passt... muss noch testen
+	
 	cmd_mount_sd();
   cmd_read_config_file();
-*/
+	
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
 	osDelay(10000);
 	// send serial request broadcast
@@ -409,6 +409,9 @@ void processSettings(CANmessage_t *message){
 	// started and CTRL-Flags
 	setTokenStatus((message->payload[2]>>4)&0x01,0);
 	
+	// set detail mode
+	char detailMode = message->payload[1]&0x0f;
+	setDetailMode((detail_mode_t) detailMode);
 	
 	// 10000 Khz: (sampling rate (in 100 Hz steps) * 100) / 100 = micro sec
 	uint16_t fsampling = message->payload[2] & 0x0f;

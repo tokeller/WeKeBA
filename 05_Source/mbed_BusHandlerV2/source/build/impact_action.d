@@ -80,6 +80,7 @@
 .\build\impact_action.o: HAL/mbed-src/api/wait_api.h
 .\build\impact_action.o: HAL/mbed-src/hal/sleep_api.h
 .\build\impact_action.o: HAL/mbed-src/api/rtc_time.h
+.\build\impact_action.o: app/CommandLine/sensor_config.h
 .\build\impact_action.o: app\ImpactDetection\impact_action.h
 .\build\impact_action.o: app/BusProtocol/BusHandler.h
 .\build\impact_action.o: app/BusProtocol/BusProtocol.h

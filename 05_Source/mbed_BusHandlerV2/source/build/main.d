@@ -99,8 +99,8 @@
 .\build\main.o: HAL/mbed-src/hal/pinmap.h
 .\build\main.o: app/ImpactDetection/impact_fsm.h
 .\build\main.o: app/ImpactDetection/impact_event.h
-.\build\main.o: app/ImpactDetection/impact_action.h
 .\build\main.o: app/CommandLine/sensor_config.h
+.\build\main.o: app/ImpactDetection/impact_action.h
 .\build\main.o: app/CommandLine/cmd.h
 .\build\main.o: app/Support/file_ops.h
 .\build\main.o: .\HAL\EALib\MCIFileSystem.h
@@ -111,4 +111,5 @@
 .\build\main.o: .\HAL\EALib\FATFileSystem\ChaN\integer.h
 .\build\main.o: .\HAL\EALib\FATFileSystem\ChaN\ffconf.h
 .\build\main.o: app/Support/UART_RTOS_Interrupt.h
+.\build\main.o: app/CommandLine/cmd_action.h
 .\build\main.o: app/Support/file_ops.h

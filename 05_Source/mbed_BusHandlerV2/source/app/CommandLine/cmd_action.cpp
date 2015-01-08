@@ -615,8 +615,10 @@ void cmd_send_config_to_sensor(uint8_t index)
 	cfg.baseline = sensor[index].baseline;
 	cfg.fs = sensor[index].fs;
 	cfg.timeoutRange = sensor[index].timeout;
-	cfg.started = sensor[index].started;
-	
+	uint16_t started = sensor[index].detail_level;
+	started = started << 4;
+	started |= sensor[index].started & 0x0f;
+	cfg.started = started;
 	sendSettings(sensor[index].sensor_ID, cfg);
 }
 

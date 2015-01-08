@@ -81,4 +81,5 @@
 .\build\impact_fsm.o: HAL/mbed-src/hal/sleep_api.h
 .\build\impact_fsm.o: HAL/mbed-src/api/rtc_time.h
 .\build\impact_fsm.o: app\ImpactDetection\impact_event.h
+.\build\impact_fsm.o: app/CommandLine/sensor_config.h
 .\build\impact_fsm.o: app\ImpactDetection\impact_action.h

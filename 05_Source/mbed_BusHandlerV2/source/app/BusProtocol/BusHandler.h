@@ -3,11 +3,11 @@
 
 #include "BusProtocol.h"
 
-//#define SEN
+#define SEN
 
-#define LOG
-
-
+//#define LOG
+// left sensor  150576ea
+// right sensor 110b7676
 
 /*									P	Type	Target Addr	Source Addr	Mess-ID							
  *Logger Filter			1	1xxx	xxxx	xxxx	xxxx	xxxx	xxxx	xxxx
