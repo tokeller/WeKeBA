@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "sensor_config.h"
 
+
+extern SensorConfig sensor[MAX_SENSORS];
 /* ------------------------------------------------------------------
  * -- Constants
  * --------------------------------------------------------------- */
@@ -245,3 +247,70 @@ uint8_t register_sensor(uint32_t serialID, SensorConfig *sc){
 	}
 	return 0;
 }
+
+/*
+ * See header file
+ */
+uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLength, ImpactData_t *data){
+    
+    char buffer[3072], smallbuf[10];
+    int i;
+    uint32_t timest;
+    buffer = "";
+    smallbuf = "";
+    
+    // check if file open
+    if(sensor[Id]->pf_sensor_data == NULL){
+        if(sensor[id]->filename == ""){
+            return 1; // file was not created on start of logging
+        } else {
+            // try to open file
+            sensor[id]->pf_sensor_data = fopen(sensor[id]->filename, "a");
+            if(sensor[id]->pf_sensor_data == NULL){
+                // give up
+                return 1;
+            }
+        }
+    }
+    
+    // TODO prepare the data in a buffer string
+    switch(detail_mode){
+        case M_RAW:
+            // TODO
+            break;
+            
+        case M_DETAILED:
+            timest  = data[0] << 24;
+            timest += data[1] << 16;
+            timest += data[2] << 8;
+            timest += data[3];
+            
+            // TODO add safety, count space used in buffer!
+            sprintf(buffer, "start=%u,samples=%u;",timestamp, dataLength - 4)
+            for(i = 0; i < dataLength - 4; i++){
+                sprintf(smallbuf, "%hhd,");
+                strcat(buffer, smallbuf);
+            }
+            strcat(buffer,";\n");
+            break;
+            
+        case M_PEAKS:
+            // TODO
+            break;
+            
+        case M_SPARSE:
+            // TODO
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    // append buffer string to data file of sensor
+    fprintf(sensor[id]->pf_sensor_data, "%s", buffer);
+    
+    // return 0 if successful, 1 if failure
+    return 0;
+}
+

@@ -56,6 +56,33 @@
 		FILE *pf_sensor_data;  // data file pointer
 		
 	} SensorConfig;
+
+typedef struct {
+    uint8_t *data;        // pointer to array of data
+    // data array is expected to contain all relevant information
+    // depending on detail_mode:
+    
+    // M_SPARSE:
+    // uint32_t timestamp of start
+    // uint8_t  max_peak
+    // uint8_t  nrOfPeaks
+    // uint16_t duration of impact (nr of samples)
+    
+    // M_PEAKS:
+    // uint32_t timestamp of start
+    // uint8_t  max_peak
+    // uint8_t  nrOfPeaks
+    // uint16_t duration of impact (nr of samples)
+    // uint8_t  *data (containing pairs of uint8_t offset, uint8_t value according to nrOfPeaks)
+    
+    // M_DETAILED & M_RAW:
+    // uint32_t timestamp of start
+    // uint32_t nrOfSamples
+    // uint8_t  *data (uint8_t sample[nrOfSamples])
+} ImpactData_t;
+
+
+
 /* ------------------------------------------------------------------
  * -- Prototypes
  * --------------------------------------------------------------- */
@@ -142,5 +169,13 @@ void init_logger_config(LoggerConfig logger);
  */ 
 uint8_t register_sensor(uint32_t serialID, SensorConfig *sc);
 
+/**
+ * store impact data
+ *   @param   uint8_t sensorId: Index of Sensor in SensorConfig array
+ *   @param   detail_mode_t detail_mode: detail_mode of data
+ *   @param   ImpactData_t: Impact data according to detail_mode
+ *   @retval  uint8_t: 0 on success, 1 on failure
+ */
+uint8_t store_impact_data(uint8_t sensorId, detail_mode_t detail_mode, ImpactData_t *data);
 
 #endif

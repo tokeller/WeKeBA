@@ -941,8 +941,22 @@ void cmd_read_config_file(void)
 uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 {
 	char fname[25];
+    char datetime[5];
+    char format[10];
+    time_t currTime;
+    struct tm * timeinfo;
+    
+    // prepare time and format for creating timestamped filename
+    fname[0] = NULL;
+    datetime[0] = NULL;
+    format = "%m%d_%H%M";
+    time(&currTime);
+    timeinfo = localtime (&currTime);
+    
 	// open file, store filepointer, store filename
-	sprintf(fname, "s%02d_%s.dat", sensor[sensor_index].sensor_ID, "time");
+    // TODO check if this works
+    strftime(datetime, 4, format, timeinfo);
+	sprintf(fname, "s%02d_%s.dat", sensor[sensor_index].sensor_ID, datetime);
 	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
 	if(sensor[sensor_index].pf_sensor_data != NULL){
 		strncpy(sensor[sensor_index].filename, fname, 25);
