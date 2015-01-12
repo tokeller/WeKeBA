@@ -285,21 +285,39 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             timest += data[2] << 8;
             timest += data[3];
             
-            // TODO add safety, count space used in buffer!
+            // TODO add safety: count space used in buffer!
             sprintf(buffer, "start=%u,samples=%u;",timestamp, dataLength - 4)
-            for(i = 0; i < dataLength - 4; i++){
-                sprintf(smallbuf, "%hhd,");
+            for(i = 4; i < dataLength; i++){
+                sprintf(smallbuf, "%hhd,", data[i]);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
             break;
             
         case M_PEAKS:
-            // TODO
+            timest  = data[0] << 24;
+            timest += data[1] << 16;
+            timest += data[2] << 8;
+            timest += data[3];
+            
+            // TODO add safety: count space used in buffer!
+            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, data[6]<<8 + data[7], data[5]);
+            for(i = 8, i < datalength; i+=2){
+                sprintf(smallbuf, "%hhu %hhd,", data[i], data[i+1]);
+                strcat(buffer, smallbuf);
+            }
+            strcat(buffer,";\n");
             break;
             
         case M_SPARSE:
-            // TODO
+            timest  = data[0] << 24;
+            timest += data[1] << 16;
+            timest += data[2] << 8;
+            timest += data[3];
+            
+            // TODO add safety: count space used in buffer!
+            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, data[6]<<8 + data[7],
+                    data[5], data[4]);
             break;
             
         default:
