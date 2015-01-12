@@ -253,7 +253,7 @@ uint8_t register_sensor(uint32_t serialID, SensorConfig *sc){
  */
 uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLength, ImpactData_t *data){
     
-    char buffer[3072], smallbuf[10];
+    char buffer[10300], smallbuf[10];
     int i;
     uint32_t timest;
     buffer = "";
@@ -277,6 +277,16 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     switch(detail_mode){
         case M_RAW:
             // TODO
+            timest  = data[0] << 24;
+            timest += data[1] << 16;
+            timest += data[2] << 8;
+            timest += data[3];
+            sprintf(buffer, "start=%u,samples=%u;",timestamp, dataLength - 4)
+            for(i = 4; i < dataLength; i++){
+                sprintf(smallbuf, "%hhd,", data[i]);
+                strcat(buffer, smallbuf);
+            }
+            strcat(buffer,";\n");
             break;
             
         case M_DETAILED:
