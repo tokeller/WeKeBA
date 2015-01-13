@@ -228,6 +228,7 @@ static Impact_t *impact = NULL;
 		pcSerial.printf("\n");
 		
 		if(detail_mode == M_SPARSE){		
+			pcSerial.printf("sparse\n");
 			std.numberOfPkgs = 1;
 			std.maxPeaks = impact->max_amplitude;
 			//printf("amplitude %x\n",impact->max_amplitude);
@@ -239,10 +240,12 @@ static Impact_t *impact = NULL;
 			//printf("sample_count %x\n",impact->sample_count);
 			enqueueMessage(8,std,0x01,canId,IMPACT_STD_SINGLE);
 			
-		} else if(detail_mode == M_OFF){
+		} else if(detail_mode == M_OFF){	
+			pcSerial.printf("OFF\n");
 			// don't send anything
 			
-		} else if(detail_mode == M_PEAKS){
+		} else if(detail_mode == M_PEAKS){	
+			pcSerial.printf("peaks\n");
 			// send peaks only
 			// send std, then as many impextdata as necessary
 			/* numberOfPkgs = impact->peak_count / 4 + 1;
@@ -282,7 +285,8 @@ static Impact_t *impact = NULL;
 			}
 			
 			
-		} else if(detail_mode == M_DETAILED){
+		} else if(detail_mode == M_DETAILED){	
+			pcSerial.printf("detailed\n");
 			// send all samples
 			// send rawDataStart, then as many rawData as necessary
 			dataLength = 4 + impact->sample_count;
@@ -301,7 +305,8 @@ static Impact_t *impact = NULL;
 				p_data = NULL;
 			}
 			
-		} else if(detail_mode == M_RAW){
+		} else if(detail_mode == M_RAW){	
+			pcSerial.printf("RAW\n");
 			// TODO: DO NOT HANDLE HERE, RAW MODE SHOULD NOT USE FSM BUT SEND PACKETS DIRECTLY
 		}
 	}

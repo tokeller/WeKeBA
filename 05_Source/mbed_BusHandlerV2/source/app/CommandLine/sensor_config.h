@@ -173,9 +173,10 @@ uint8_t register_sensor(uint32_t serialID, SensorConfig *sc);
  * store impact data
  *   @param   uint8_t sensorId: Index of Sensor in SensorConfig array
  *   @param   detail_mode_t detail_mode: detail_mode of data
+ *   @param   uint32_t dataLength: length of received data
  *   @param   ImpactData_t: Impact data according to detail_mode
  *   @retval  uint8_t: 0 on success, 1 on failure
  */
-uint8_t store_impact_data(uint8_t sensorId, detail_mode_t detail_mode, ImpactData_t *data);
+uint8_t store_impact_data(uint8_t sensorId, detail_mode_t detail_mode, uint32_t dataLength, ImpactData_t *data);
 
 #endif

@@ -256,17 +256,18 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     char buffer[10300], smallbuf[10];
     int i;
     uint32_t timest;
+/*  Buffer init necessary?
     buffer = "";
     smallbuf = "";
-    
+  */  
     // check if file open
-    if(sensor[Id]->pf_sensor_data == NULL){
-        if(sensor[id]->filename == ""){
+    if(sensor[id].pf_sensor_data == NULL){
+        if(sensor[id].filename == ""){
             return 1; // file was not created on start of logging
         } else {
             // try to open file
-            sensor[id]->pf_sensor_data = fopen(sensor[id]->filename, "a");
-            if(sensor[id]->pf_sensor_data == NULL){
+            sensor[id].pf_sensor_data = fopen(sensor[id].filename, "a");
+            if(sensor[id].pf_sensor_data == NULL){
                 // give up
                 return 1;
             }
@@ -277,57 +278,69 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     switch(detail_mode){
         case M_RAW:
             // TODO
-            timest  = data[0] << 24;
-            timest += data[1] << 16;
-            timest += data[2] << 8;
-            timest += data[3];
-            sprintf(buffer, "start=%u,samples=%u;",timestamp, dataLength - 4)
+            timest  = data->data[0];
+						timest  = timest << 8;
+            timest |= data->data[1];
+						timest  = timest << 8;
+            timest |= data->data[2];
+						timest  = timest << 8;
+            timest |= data->data[3];
+            sprintf(buffer, "start=%u,samples=%u;",timest, dataLength - 4);
             for(i = 4; i < dataLength; i++){
-                sprintf(smallbuf, "%hhd,", data[i]);
+                sprintf(smallbuf, "%hhd,", data->data[i]);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
             break;
             
         case M_DETAILED:
-            timest  = data[0] << 24;
-            timest += data[1] << 16;
-            timest += data[2] << 8;
-            timest += data[3];
+            timest  = data->data[0];
+						timest  = timest << 8;
+            timest |= data->data[1];
+						timest  = timest << 8;
+            timest |= data->data[2];
+						timest  = timest << 8;
+            timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%u;",timestamp, dataLength - 4)
+            sprintf(buffer, "start=%u,samples=%u;",timest, dataLength - 4);
             for(i = 4; i < dataLength; i++){
-                sprintf(smallbuf, "%hhd,", data[i]);
+                sprintf(smallbuf, "%hhd,", data->data[i]);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
             break;
             
         case M_PEAKS:
-            timest  = data[0] << 24;
-            timest += data[1] << 16;
-            timest += data[2] << 8;
-            timest += data[3];
+            timest  = data->data[0];
+						timest  = timest << 8;
+            timest |= data->data[1];
+						timest  = timest << 8;
+            timest |= data->data[2];
+						timest  = timest << 8;
+            timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, data[6]<<8 + data[7], data[5]);
-            for(i = 8, i < datalength; i+=2){
-                sprintf(smallbuf, "%hhu %hhd,", data[i], data[i+1]);
+            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, data->data[6]<<8 + data->data[7], data->data[5]);
+            for(i = 8; i < dataLength; i+=2){
+                sprintf(smallbuf, "%hhu %hhd,", data->data[i], data->data[i+1]);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
             break;
             
         case M_SPARSE:
-            timest  = data[0] << 24;
-            timest += data[1] << 16;
-            timest += data[2] << 8;
-            timest += data[3];
+            timest  = data->data[0];
+						timest  = timest << 8;
+            timest |= data->data[1];
+						timest  = timest << 8;
+            timest |= data->data[2];
+						timest  = timest << 8;
+            timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, data[6]<<8 + data[7],
-                    data[5], data[4]);
+            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, data->data[6]<<8 + data->data[7],
+                    data->data[5], data->data[4]);
             break;
             
         default:
@@ -336,7 +349,7 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     
     
     // append buffer string to data file of sensor
-    fprintf(sensor[id]->pf_sensor_data, "%s", buffer);
+    fprintf(sensor[id].pf_sensor_data, "%s", buffer);
     
     // return 0 if successful, 1 if failure
     return 0;

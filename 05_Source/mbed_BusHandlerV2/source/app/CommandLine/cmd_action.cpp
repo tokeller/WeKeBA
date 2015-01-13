@@ -942,14 +942,13 @@ uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 {
 	char fname[25];
     char datetime[5];
-    char format[10];
+    const char format[10] = "%m%d_%H%M";
     time_t currTime;
     struct tm * timeinfo;
     
     // prepare time and format for creating timestamped filename
     fname[0] = NULL;
     datetime[0] = NULL;
-    format = "%m%d_%H%M";
     time(&currTime);
     timeinfo = localtime (&currTime);
     

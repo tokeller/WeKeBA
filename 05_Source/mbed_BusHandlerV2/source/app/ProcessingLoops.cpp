@@ -314,11 +314,11 @@ void logger_loop (void const *args){
 	for(int i = 0; i < nrOfRegSensors;i++){
 	// loop sending the configs to all sensors
 		SensorConfigMsg_t cfg;
-		cfg.threshold = 200;
-		cfg.baseline = 2047;
-		cfg.fs = 100;
-		cfg.timeoutRange = 30;
-		cfg.started = 0;
+		cfg.threshold = sensor[i].threshold;
+		cfg.baseline = sensor[i].baseline;
+		cfg.fs = sensor[i].fs;
+		cfg.timeoutRange = sensor[i].timeout;
+		cfg.started = (sensor[i].detail_level<<4);
 		sendSettings(i+2,cfg);
 	//end: loop sending the configs to all sensors
 	}
@@ -347,8 +347,18 @@ void logger_loop (void const *args){
 			for (int i = 0; i< message->dataLength; i++){
 				printf("%x", message->payload[i]);
 			}
-			printf("\nSensor id  : %0x \n\r", message->msgId);
-			printf("Sensor len : %d \n\r", message->dataLength);
+			uint8_t sensId = (message->msgId >> 8) & 0x0f;
+			printf("\nSensor msg id  : %0x \n\r", message->msgId);
+			printf("\nSensor id      : %0x \n\r", sensId);
+			printf("Sensor len       : %d \n\r", message->dataLength);
+			ImpactData_t *iData;
+			memcpy(iData->data,message->payload,message->dataLength);
+    	uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level,message->dataLength,iData);
+			if(res){
+				printf("written\n");
+			}else {
+				printf("error\n");
+			}
 			mpoolOutQueue.free(message);
 			nrOfMsg--;
 		}
@@ -411,6 +421,7 @@ void processSettings(CANmessage_t *message){
 	
 	// set detail mode
 	char detailMode = message->payload[1]&0x0f;
+	printf("Detail mode: %x\n",detailMode);
 	setDetailMode((detail_mode_t) detailMode);
 	
 	// 10000 Khz: (sampling rate (in 100 Hz steps) * 100) / 100 = micro sec
