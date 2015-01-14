@@ -8,15 +8,15 @@ Project File Date:  12/16/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
-compiling ProcessingLoops.cpp...
-app\ProcessingLoops.cpp(249): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
-        char allSensorsReceived = 0;
-app\ProcessingLoops.cpp(260): warning:  #177-D: variable "sensorCounter" was declared but never referenced
-        char sensorCounter = 0;
-app\ProcessingLoops.cpp: 2 warnings, 0 errors
+compiling sensor_config.cpp...
+app\CommandLine\sensor_config.cpp(148): warning:  #224-D: the format string requires additional arguments
+                        &detail_level, &started);
+app\CommandLine\sensor_config.cpp(240): warning:  #550-D: parameter "logger" was set but never used
+  void init_logger_config(LoggerConfig logger)
+app\CommandLine\sensor_config.cpp: 2 warnings, 0 errors
 linking...
 HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=84388 RO-data=5536 RW-data=776 ZI-data=42556  
+Program Size: Code=84860 RO-data=5536 RW-data=776 ZI-data=42556  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
 ".\build\source.axf" - 0 Error(s), 3 Warning(s).
@@ -24,87 +24,8 @@ Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.
 Erase Done.
 Programming Done.
 Verify OK.
-er referenced
-        char sensorCounter = 0;
-app\ProcessingLoops.cpp: 2 warnings, 0 errors
-compiling cmd.cpp...
-app\CommandLine\cmd.cpp(35): warning:  #177-D: variable "g_cTmpBuf" was declared but never referenced
-  static char g_cTmpBuf[PATH_BUF_SIZE];
-app\CommandLine\cmd.cpp(42): warning:  #177-D: variable "g_cCmdBuf" was declared but never referenced
-  static char g_cCmdBuf[CMD_BUF_SIZE];
-app\CommandLine\cmd.cpp: 2 warnings, 0 errors
-compiling cmd_action.cpp...
-app\CommandLine\cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
-        uint8_t success = 1;
-app\CommandLine\cmd_action.cpp: 1 warning, 0 errors
-compiling sensor_config.cpp...
-app\CommandLine\sensor_config.cpp(134): warning:  #224-D: the format string requires additional arguments
-                        &detail_level, &started);
-app\CommandLine\sensor_config.cpp(226): warning:  #550-D: parameter "logger" was set but never used
-  void init_logger_config(LoggerConfig logger)
-app\CommandLine\sensor_config.cpp: 2 warnings, 0 errors
-linking...
-HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=84388 RO-data=5536 RW-data=776 ZI-data=42556  
+PIFI_MEM).
+Program Size: Code=84852 RO-data=5536 RW-data=776 ZI-data=42556  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 11 Warning(s).
-er.cpp(121): warning:  #550-D: variable "stat" was set but never used
-        osStatus stat;
-app\BusProtocol\BusHandler.cpp(278): warning:  #940-D: missing return statement at end of non-void function "setTokenStatus"
-  }
-app\BusProtocol\BusHandler.cpp: 2 warnings, 0 errors
-compiling SerialID.cpp...
-compiling ADC_4088.cpp...
-compiling impact_action.cpp...
-app\ImpactDetection\impact_action.cpp(208): warning:  #177-D: variable "extData" was declared but never referenced
-                ImpExtData_t extData;
-app\ImpactDetection\impact_action.cpp(209): warning:  #177-D: variable "rawDataStart" was declared but never referenced
-                ImpRawDataStart_t rawDataStart;
-app\ImpactDetection\impact_action.cpp(210): warning:  #177-D: variable "rawData" was declared but never referenced
-                ImpRawData_t rawData;
-app\ImpactDetection\impact_action.cpp: 3 warnings, 0 errors
-compiling impact_event.cpp...
-compiling impact_fsm.cpp...
-compiling sdram.cpp...
-compiling ProcessingLoops.cpp...
-app\ProcessingLoops.cpp(357): error:  #167: argument of type "char" is incompatible with parameter of type "ImpactData_t *"
-        if(store_impact_data(sensId, sensor[sensId].detail_level, message->dataLength, data)){
-app\ProcessingLoops.cpp(357): error:  #140: too many arguments in function call
-        if(store_impact_data(sensId, sensor[sensId].detail_level, message->dataLength, data)){
-app\ProcessingLoops.cpp(249): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
-        char allSensorsReceived = 0;
-app\ProcessingLoops.cpp(260): warning:  #177-D: variable "sensorCounter" was declared but never referenced
-        char sensorCounter = 0;
-app\ProcessingLoops.cpp: 2 warnings, 2 errors
-compiling cmd.cpp...
-app\CommandLine\cmd.cpp(35): warning:  #177-D: variable "g_cTmpBuf" was declared but never referenced
-  static char g_cTmpBuf[PATH_BUF_SIZE];
-app\CommandLine\cmd.cpp(42): warning:  #177-D: variable "g_cCmdBuf" was declared but never referenced
-  static char g_cCmdBuf[CMD_BUF_SIZE];
-app\CommandLine\cmd.cpp: 2 warnings, 0 errors
-compiling cmd_action.cpp...
-app\CommandLine\cmd_action.cpp(183): warning:  #550-D: variable "success" was set but never used
-        uint8_t success = 1;
-app\CommandLine\cmd_action.cpp: 1 warning, 0 errors
-compiling file_ops.cpp...
-compiling sensor_config.cpp...
-app\CommandLine\sensor_config.cpp(134): warning:  #224-D: the format string requires additional arguments
-                        &detail_level, &started);
-app\CommandLine\sensor_config.cpp(226): warning:  #550-D: parameter "logger" was set but never used
-  void init_logger_config(LoggerConfig logger)
-app\CommandLine\sensor_config.cpp: 2 warnings, 0 errors
-compiling MCIFileSystem.cpp...
-compiling FATDirHandle.cpp...
-compiling FATFileHandle.cpp...
-compiling FATFileSystem.cpp...
-compiling ccsbcs.cpp...
-compiling diskio.cpp...
-compiling ff.cpp...
-HAL\EALib\FATFileSystem\ChaN\ff.cpp(1689): warning:  #111-D: statement is unreachable
-              w = (w << 8) + b;           /* Create a DBC */
-HAL\EALib\FATFileSystem\ChaN\ff.cpp: 1 warning, 0 errors
-compiling gpdma.cpp...
-compiling UART_RTOS_Interrupt.cpp...
-".\build\source.axf" - 2 Error(s), 15 Warning(s).
-Target not created
+".\build\source.axf" - 0 Error(s), 5 Warning(s).

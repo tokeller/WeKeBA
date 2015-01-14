@@ -183,9 +183,14 @@ void cmd_start_logger(void)
 	uint8_t success = 1;
 	// open all data files
 	for(i = 0; i < MAX_SENSORS; i++){
-		if(sensor[i].pf_sensor_data != NULL){
-			if(!cmd_open_sensor_file(i)){
-				success = 0;
+		//if(sensor[i].pf_sensor_data != NULL){
+		if(sensor[i].pf_sensor_data == NULL){
+			if(sensor[i].is_registered == 1){
+				printf("Sensorfiles anlegen\n");
+				if(!cmd_open_sensor_file(i)){
+					printf("Sensorfile failed\n");
+					success = 0;
+				}
 			}
 		}
 	}
@@ -553,7 +558,7 @@ void cmd_sensor_start(uint8_t sensor_index)
 		// set all sensors
 		for(i = 0; i < MAX_SENSORS; i++){
 			if(sensor[i].serialID != 0){
-				if(cmd_open_sensor_file(i)){
+				if(!cmd_open_sensor_file(i)){
 					sensor[i].started = 1;
 					cmd_send_config_to_sensor(i);
 					logger.config_modified = 1;
@@ -564,7 +569,7 @@ void cmd_sensor_start(uint8_t sensor_index)
 		} // rof
 	} else {
 		// open file, store filepointer
-		if(cmd_open_sensor_file(sensor_index)){
+		if(!cmd_open_sensor_file(sensor_index)){
 			if(sensor[sensor_index].started == 0){
 				logger.config_modified = 1;
 			}
@@ -932,7 +937,7 @@ void cmd_read_config_file(void)
 	
 	// if there remain sensors in foundsensors, look for free slots in config array and put them there
 	// with default configs
-	
+	fclose(fp);
 }
 
 /*
@@ -941,21 +946,22 @@ void cmd_read_config_file(void)
 uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 {
 	char fname[25];
-    char datetime[5];
-    const char format[10] = "%m%d_%H%M";
-    time_t currTime;
-    struct tm * timeinfo;
-    
-    // prepare time and format for creating timestamped filename
-    fname[0] = NULL;
-    datetime[0] = NULL;
-    time(&currTime);
-    timeinfo = localtime (&currTime);
-    
+  char datetime[5];
+	const char format[10] = "%m%d_%H%M";
+	time_t currTime;
+	struct tm * timeinfo;
+	
+	// prepare time and format for creating timestamped filename
+	fname[0] = NULL;
+	datetime[0] = NULL;
+	time(&currTime);
+	timeinfo = localtime (&currTime);
+	
 	// open file, store filepointer, store filename
-    // TODO check if this works
-    strftime(datetime, 4, format, timeinfo);
-	sprintf(fname, "s%02d_%s.dat", sensor[sensor_index].sensor_ID, datetime);
+	// TODO check if this works
+	strftime(datetime, 4, format, timeinfo);
+	sprintf(fname, "/mci/s%02d_%s", sensor[sensor_index].sensor_ID, datetime);
+	printf("created filename %s\n",fname);
 	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
 	if(sensor[sensor_index].pf_sensor_data != NULL){
 		strncpy(sensor[sensor_index].filename, fname, 25);

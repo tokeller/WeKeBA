@@ -252,12 +252,14 @@ void logger_loop (void const *args){
 	
 	cmd_mount_sd();
   cmd_read_config_file();
+	osDelay(2000);
+	recursiveList("/mci/");
 	
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
 	osDelay(10000);
 	// send serial request broadcast
 	enqueueMessage(0,0,0xff,0x01,GET_SENSOR_SERIAL_BC);
-	char sensorCounter = 0;
+	//char sensorCounter = 0;
 	// start a timer to count to 5s for the response timeout
 	timeStamp = 0;
 	timeMs.start(100);
@@ -268,6 +270,7 @@ void logger_loop (void const *args){
 			
 	uint16_t nrOfRegSensors = 0;
 	// loop through all sensors or till the timeout occurs
+	//while (timeStamp < 50 || allSensorsReceived == 0){
 	while (timeStamp < 50){
 		// received a response, check if it was a serial one
 		if (evt.status == osEventMessage) {
@@ -351,10 +354,25 @@ void logger_loop (void const *args){
 			printf("\nSensor msg id  : %0x \n\r", message->msgId);
 			printf("\nSensor id      : %0x \n\r", sensId);
 			printf("Sensor len       : %d \n\r", message->dataLength);
-			ImpactData_t *iData;
-			memcpy(iData->data,message->payload,message->dataLength);
-    	uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level,message->dataLength,iData);
-			if(res){
+			ImpactData_t *iData  = (ImpactData_t*) malloc(sizeof(ImpactData_t));
+			
+			//iData->data= (uint8_t*) malloc (message->dataLength);
+			
+			uint8_t array[8] = {0};
+			array[0] = (uint8_t) message->payload[0];
+			array[1] = (uint8_t) message->payload[1];
+			array[2] = (uint8_t) message->payload[2];
+			array[3] = (uint8_t) message->payload[3];
+			array[4] = (uint8_t) message->payload[4];
+			array[5] = (uint8_t) message->payload[5];
+			array[6] = (uint8_t) message->payload[6];
+			array[7] = (uint8_t) message->payload[7];
+			
+			//memcpy(iData->data,message->payload,message->dataLength);
+    	iData->data = &array[0];
+			sensId -= 2;
+			uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level,message->dataLength,iData);
+			if(res == 0){
 				printf("written\n");
 			}else {
 				printf("error\n");

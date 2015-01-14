@@ -359,7 +359,9 @@ extern "C" DIR *opendir(const char *path) {
     FileSystemLike* fs = fp.fileSystem();
     if (fs == NULL) return NULL;
 
-    return fs->opendir(fp.fileName());
+//    return fs->opendir(fp.fileName());
+		const char *name = fp.fileName();
+    return fs->opendir(name);		
 }
 
 extern "C" struct dirent *readdir(DIR *dir) {

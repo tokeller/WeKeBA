@@ -32,14 +32,14 @@
 // from the SD card.
 //
 //*****************************************************************************
-static char g_cTmpBuf[PATH_BUF_SIZE];
+//static char g_cTmpBuf[PATH_BUF_SIZE];
 
 //*****************************************************************************
 //
 // The buffer that holds the command line.
 //
 //*****************************************************************************
-static char g_cCmdBuf[CMD_BUF_SIZE];
+//static char g_cCmdBuf[CMD_BUF_SIZE];
 static MenuState menu_fsm_state;
 uint8_t menu_fsm_current_sensor;
 
@@ -264,6 +264,7 @@ void menu_fsm(uint32_t input)
 					if(logger.started){
 						cmd_stop_logger();
 					} else {
+						printf("logger started\n\n");
 						cmd_start_logger();
 					}
 					menu_fsm_state = S_BASEMENU;

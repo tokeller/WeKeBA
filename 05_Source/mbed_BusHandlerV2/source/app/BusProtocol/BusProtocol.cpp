@@ -34,11 +34,11 @@ int CAN_init(void){
  */
  
 void CANIRQHandler(void){
-  __disable_irq;
+  __disable_irq();
 	if(can1.read(msgIn)){
 		storeRecMessages(msgIn);
 	}
-	__enable_irq;
+	__enable_irq();
 }
 
 /*

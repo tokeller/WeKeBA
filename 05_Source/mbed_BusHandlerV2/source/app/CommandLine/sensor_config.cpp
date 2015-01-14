@@ -83,12 +83,25 @@ uint8_t sensor_config_read_file(FILE *input, SensorConfig *sc)
 	uint8_t result;
 	uint8_t entries = 0;
 	SensorConfig temp_config;
+
+
+//result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
+	char fileHdr[5];
+	if(fgets(fileHdr,5,input) != NULL){
+		printf("read Hdr OK\n");
+	};
+	int pos = ftell(input);
+	printf("position: %x\n",pos);
+	//result = sscanf(fileHdr, "{%hhu,%[^\n]\n", &entries);	
+	result = sscanf(fileHdr, "{%hhu,", &entries);	
 	
-	
-	result = fscanf(input, "{%hhu%[^\n]\n", &entries);
+	// position the file on the first data record
+	if(fgets(fileHdr,5,input) != NULL){
+		printf("preread Hdr OK\n");
+	};
 	printf("entries in file: %d, result: %d\n",entries, result);
 	// read the number of config entries
-	if(result == 2 && entries > 0 && entries <= MAX_SENSORS){
+	if(result == 1 && entries > 0 && entries <= MAX_SENSORS){
 		printf("read configs\n");
 		// read the configs and store them in the sensor config array
 		for(i = 0; i < entries; i++){
@@ -124,6 +137,7 @@ uint8_t sensor_config_from_file(FILE *input, SensorConfig *sc)
 	uint8_t started = 2;
 	
   //result = fscanf(input, "{%hhu, %x, %hu, %hu, %hu, %hu, %hu, %hhu},\n", 
+	
 	char string[45];
 	if(fgets(string,45,input) != NULL){
 		printf("read OK\n");
@@ -262,13 +276,18 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
   */  
     // check if file open
     if(sensor[id].pf_sensor_data == NULL){
-        if(sensor[id].filename == ""){
+			  printf("sensor data of %d is NULL\n", id);
+			  printf("sensor fname is %s\n", sensor[id].filename);
+        if(strcmp(sensor[id].filename," ")== 0){
+						printf("file not created\n");
             return 1; // file was not created on start of logging
         } else {
             // try to open file
             sensor[id].pf_sensor_data = fopen(sensor[id].filename, "a");
+						printf("trying file open\n");
             if(sensor[id].pf_sensor_data == NULL){
                 // give up
+								printf("giving up\n");
                 return 1;
             }
         }
@@ -277,6 +296,7 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     // TODO prepare the data in a buffer string
     switch(detail_mode){
         case M_RAW:
+				{
             // TODO
             timest  = data->data[0];
 						timest  = timest << 8;
@@ -292,8 +312,9 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             }
             strcat(buffer,";\n");
             break;
-            
+					}
         case M_DETAILED:
+				{
             timest  = data->data[0];
 						timest  = timest << 8;
             timest |= data->data[1];
@@ -310,8 +331,9 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             }
             strcat(buffer,";\n");
             break;
-            
+				} 
         case M_PEAKS:
+				{
             timest  = data->data[0];
 						timest  = timest << 8;
             timest |= data->data[1];
@@ -321,15 +343,19 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, data->data[6]<<8 + data->data[7], data->data[5]);
+						uint16_t samples = data->data[6];
+						samples = samples <<8;
+						samples |= data->data[7];
+            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, samples, data->data[5]);
             for(i = 8; i < dataLength; i+=2){
                 sprintf(smallbuf, "%hhu %hhd,", data->data[i], data->data[i+1]);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
             break;
-            
+				}
         case M_SPARSE:
+				{
             timest  = data->data[0];
 						timest  = timest << 8;
             timest |= data->data[1];
@@ -339,10 +365,15 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, data->data[6]<<8 + data->data[7],
+						uint16_t samplesSpar = data->data[6];
+						samplesSpar = samplesSpar <<8;
+						samplesSpar |= data->data[7];
+
+
+						sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, samplesSpar,
                     data->data[5], data->data[4]);
             break;
-            
+				}
         default:
             break;
     }

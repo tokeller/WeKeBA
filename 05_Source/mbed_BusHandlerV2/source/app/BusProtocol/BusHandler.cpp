@@ -275,6 +275,7 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
 int setTokenStatus(char status, char counter){
 	messageCounter = counter;
 	tokenReceived = status;
+	return 1;
 }
 
 /*

@@ -205,9 +205,9 @@ static Impact_t *impact = NULL;
 	{
 		uint16_t i;
 		ImpStd_t std;
-		ImpExtData_t extData;
-		ImpRawDataStart_t rawDataStart;
-		ImpRawData_t rawData;
+		//ImpExtData_t extData;
+		//ImpRawDataStart_t rawDataStart;
+		//ImpRawData_t rawData;
 		char *p_data;
 		uint32_t prev_timestamp;
 		uint32_t dataLength;
