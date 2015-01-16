@@ -650,7 +650,7 @@ void cmd_list_sensor_states(void)
 	for(i = 0; i < MAX_SENSORS; i++){
 		if(s->serialID != 0){
 			printf("%2d) %2d  %08x %5d      %4d     %4d    %4d %s\t%s\n", 
-				i, s->sensor_ID, s->serialID, s->fs, s->threshold, 
+				i+2, s->sensor_ID, s->serialID, s->fs, s->threshold, 
 				s->baseline, s->timeout, 
 				detail_str[(uint8_t)s->detail_level], s->started ? "started" : "stopped");
 		}
@@ -743,7 +743,7 @@ void cmd_internal_clock_inc_yr(void)
  */
 void cmd_internal_clock_dec_yr(void)
 {
-	time_t seconds = time(NULL) + 365*24*3600;
+	time_t seconds = time(NULL) - 365*24*3600;
 	set_time(seconds);
 	time_updated = 1;
 }

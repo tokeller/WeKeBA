@@ -288,6 +288,8 @@ void menu_fsm(uint32_t input)
                     
 				default:
 					// user gave a number, check if valid, select that sensor
+					// the sensors start with ID 2, but the config array starts with 0 (input - 2 necessary)
+					input -= 2;
 					if(cmd_sensor_id_is_valid(input)){ // check if valid
 						menu_fsm_current_sensor = input;
 						menu_fsm_state = S_SENSOR_PARAMETERS;
