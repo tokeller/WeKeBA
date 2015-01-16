@@ -40,7 +40,7 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 static uint32_t timestamp = 0;           // timestamp for samples
 static uint32_t value = 0;               // sampled value
 
-static raw_remaining_samples = 0;
+static uint64_t raw_remaining_samples = 0;
 static uint8_t raw_container[2044];
 static uint16_t raw_counter = 0;
 
@@ -91,7 +91,8 @@ static uint16_t raw_counter = 0;
                 
             }
             // add value to buffer, if buffer full, enqueue message in raw
-            raw_container[raw_counter++] = dequeue_impact_input() >> 4;
+						// CHECK TW
+            raw_container[raw_counter++] = dequeue_impact_input().value >> 4;
             raw_remaining_samples--;
             if(raw_counter == 2044){
                 // enqueue message with 2044 raw values

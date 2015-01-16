@@ -209,7 +209,24 @@ void sensor_loop(void const *args){
 								if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 									processSettings(message);
 								} else if (message->msgId == (TOKEN_MSG | (canId << 16))){
-									setTokenStatus(1,message->payload[0]);
+									uint64_t nrOfSamples = 0;
+									if (message->dataLength > 1){
+										nrOfSamples = message->payload[1];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[2];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[3];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[4];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[5];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[6];
+										nrOfSamples = nrOfSamples << 8;
+										nrOfSamples |= message->payload[7];
+									}
+									setTokenStatus(1,message->payload[0],nrOfSamples);
+									sensorOffline = 0;
 									pcSerial.printf("Token received, start sending %d msgs\n",message->payload[0]);
 								} else if (message->msgId == (SINGLE_OFF_MSG| (canId << 16))){
 									init_impact_event_handler();
@@ -340,14 +357,14 @@ void logger_loop (void const *args){
 	enqueueMessage(0,0,0xff,0x01,START_REC_BC);
 		
 	// send the token out
-	//char nrOfMsg = MAX_NR_OF_MESSAGES;
-	char nrOfMsg = 10;
+	char MaxOfMsg = MAX_NR_OF_MESSAGES;
+	uint64_t nrOfMsg = 10;
 	char sensorId = 0x02;
-	enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
+	enqueueMessage(1,&MaxOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
 	pcSerial.printf("nr of reg sensors: %d\n",nrOfRegSensors);
 	while (1){
 		// the logger will always have the send token, must be reset for each cycle
-		setTokenStatus(1,255);
+		setTokenStatus(1,255,0);
 		// receive the data from the sensors
 		osEvent evt = outQueue.get(0);
 		if (evt.status == osEventMessage) {
@@ -467,7 +484,7 @@ void logger_loop (void const *args){
 				sensorId = 0x02;
 			}
 			pcSerial.printf("give token to Sensor %d of %d\n",sensorId,nrOfRegSensors);
-			enqueueMessage(1,&nrOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
+			enqueueMessage(1,&MaxOfMsg,sensorId,0x01,SEND_TOKEN_SINGLE);
 		}
 	}	
 }
@@ -514,7 +531,7 @@ void processSettings(CANmessage_t *message){
 	set_threshold(threshold);
 	
 	// started and CTRL-Flags
-	setTokenStatus((message->payload[2]>>4)&0x01,0);
+	setTokenStatus((message->payload[2]>>4)&0x01,0,0);
 	
 	// set detail mode
 	char detailMode = message->payload[1]&0x0f;

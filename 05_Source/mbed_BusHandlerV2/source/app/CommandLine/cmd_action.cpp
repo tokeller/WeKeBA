@@ -499,7 +499,7 @@ void cmd_enter_sensor_params_detail(void)
 /*
  * See header file
  */
-cmd_enter_sensor_params_raw()
+void cmd_enter_sensor_params_raw(void)
 {
     printf("please enter duration of raw recording in seconds (max. 3600, 0 to cancel): \n");
 }
@@ -531,14 +531,13 @@ void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode)
 /*
  * See header file
  */
-cmd_set_detail_mode_raw(uint8_t sensor_index, uint32_t sec)
+void cmd_set_detail_mode_raw(uint8_t sensor_index, uint32_t sec)
 {
     if(sensor[sensor_index].detail_level != M_RAW){
         logger.config_modified = 1;
     }
-    sensor[sensor_index].detail_level = (detail_mode_t) mode;
-    // TODO: bushandler muss das entgegennehmen
-    start_sensor_raw(sensor_index, sec * sensor[sensor_index].fs);
+    sensor[sensor_index].detail_level = M_RAW;		
+    start_sensor_raw(sec * sensor[sensor_index].fs, sensor[sensor_index]);
 }
 
 /*

@@ -315,6 +315,9 @@ static Impact_t *impact = NULL;
 void store_raw(uint32_t starttime, uint16_t nrOfSamples, uint8_t *samples)
 {
     int i;
+		char *p_data;
+		uint32_t dataLength;
+		
     pcSerial.printf("RAW %d samples\n", nrOfSamples);
     
     dataLength = 4 + nrOfSamples;
@@ -324,7 +327,7 @@ void store_raw(uint32_t starttime, uint16_t nrOfSamples, uint8_t *samples)
         p_data[1] = (starttime >> 16) & 0xff;
         p_data[2] = (starttime >> 8) & 0xff;
         p_data[3] = starttime & 0xff;
-        for(i = 0; i < sample_count; i++){
+        for(i = 0; i < nrOfSamples; i++){
             p_data[4+i] = samples[i];
         }
         enqueueMessage(dataLength, p_data, 0x01, canId, RAW_DATA_SINGLE);

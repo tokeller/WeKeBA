@@ -24,7 +24,7 @@ char sentData = 0;
 // each sensor will revoke its token and wait till it gets one from the logger
 char tokenReceived = 1;
 // the messageCounter indicates, how many messages the logger will expect
-char messageCounter = 0;
+uint64_t messageCounter = 0;
 
 
 /*
@@ -69,7 +69,7 @@ void CAN_COM_thread(void const *args) {
 				messageCounter--;
 				// if all messages were sent, revoke the token
 				if (messageCounter <= 0){
-					setTokenStatus(0,0);
+					setTokenStatus(0,0,0);
 					pcSerial.printf("Token revoked\n");
 				}
 				mpoolInQueue.free(message);
@@ -272,8 +272,12 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
  *	see header
  */
 
-int setTokenStatus(char status, char counter){
-	messageCounter = counter;
+int setTokenStatus(char status, char counter, uint64_t rawNrSamples){
+	if (rawNrSamples > 0){
+		messageCounter = rawNrSamples;
+	} else {
+		messageCounter = counter;
+	}
 	tokenReceived = status;
 	return 1;
 }
@@ -313,4 +317,36 @@ void emptyQueue(void){
 
 void resetTimestamp(void){
 	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
+}
+
+
+void start_sensor_raw(uint64_t nrOfSamples, SensorConfig sensor){
+	// stop all sensors
+	stopAllSensors();
+
+	// send the changed config
+	SensorConfigMsg_t cfg;	
+	cfg.threshold = sensor.threshold;
+	cfg.baseline = sensor.baseline;
+	cfg.fs = sensor.fs;
+	cfg.timeoutRange = sensor.timeout;
+	uint16_t started = sensor.detail_level;
+	started = started << 4;
+	started |= 0x01 & 0x0f;
+	cfg.started = started;
+	sendSettings(sensor.sensor_ID, cfg);
+	
+	// send the token to the sensor.
+	char payload[8];
+	// set the number of packages to 255
+	payload[0]= 0xff;
+	// store the number of samples
+	for (int i = 7; i > 2; i--){
+		payload[i] = nrOfSamples & 0xff;
+		nrOfSamples = nrOfSamples >> 8;
+	}
+	// take the number of samples and send them to the sensor
+	enqueueMessage(8,payload,sensor.sensor_ID,0x01,SEND_TOKEN_SINGLE);
+	// overwrite the nrOfMsgs on the logger
+	
 }

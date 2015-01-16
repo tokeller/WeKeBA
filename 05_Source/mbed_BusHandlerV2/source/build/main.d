@@ -94,12 +94,12 @@
 .\build\main.o: HAL/mbed-rtos/rtos/Mail.h
 .\build\main.o: HAL/mbed-rtos/rtos/MemoryPool.h
 .\build\main.o: HAL/mbed-rtos/rtos/Queue.h
+.\build\main.o: app/CommandLine/sensor_config.h
 .\build\main.o: app/Support/SerialID.h
 .\build\main.o: app/ImpactDetection/ADC_4088.h
 .\build\main.o: HAL/mbed-src/hal/pinmap.h
 .\build\main.o: app/ImpactDetection/impact_fsm.h
 .\build\main.o: app/ImpactDetection/impact_event.h
-.\build\main.o: app/CommandLine/sensor_config.h
 .\build\main.o: app/ImpactDetection/impact_action.h
 .\build\main.o: app/CommandLine/cmd.h
 .\build\main.o: app/Support/file_ops.h

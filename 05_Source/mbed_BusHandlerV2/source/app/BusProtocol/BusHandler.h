@@ -2,6 +2,7 @@
 #define LPC4088_CAN_HANDLER
 
 #include "BusProtocol.h"
+#include "sensor_config.h"
 
 //#define SEN
 
@@ -86,7 +87,7 @@
 #define IMP_RAW_MSG				0x1fffffff
 
 
-#define MAX_NR_OF_MESSAGES							0xff
+#define MAX_NR_OF_MESSAGES							0x10
 
 
 typedef struct {
@@ -232,7 +233,7 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings);
  *
  */
 
-int setTokenStatus(char status, char counter);
+int setTokenStatus(char status, char counter, uint64_t rawNrSamples);
 
 /*
  *	stop all sensor units
@@ -263,5 +264,11 @@ void emptyQueue(void);
 
 void resetTimestamp(void);
 
+/*
+ *  Start a sensor in the raw mode and set the token to the proper amount
+ *
+ */
+
+void start_sensor_raw(uint64_t nrOfSamples, SensorConfig sensor);
 
 #endif

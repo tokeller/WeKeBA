@@ -93,12 +93,12 @@
 .\build\processingloops.o: HAL/mbed-rtos/rtos/Mail.h
 .\build\processingloops.o: HAL/mbed-rtos/rtos/MemoryPool.h
 .\build\processingloops.o: HAL/mbed-rtos/rtos/Queue.h
+.\build\processingloops.o: app/CommandLine/sensor_config.h
 .\build\processingloops.o: app/Support/SerialID.h
 .\build\processingloops.o: app/ImpactDetection/ADC_4088.h
 .\build\processingloops.o: HAL/mbed-src/hal/pinmap.h
 .\build\processingloops.o: app/ImpactDetection/impact_fsm.h
 .\build\processingloops.o: app/ImpactDetection/impact_event.h
-.\build\processingloops.o: app/CommandLine/sensor_config.h
 .\build\processingloops.o: app/ImpactDetection/impact_action.h
 .\build\processingloops.o: app/CommandLine/cmd.h
 .\build\processingloops.o: app/Support/file_ops.h

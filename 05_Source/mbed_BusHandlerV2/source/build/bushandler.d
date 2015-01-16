@@ -92,3 +92,4 @@
 .\build\bushandler.o: HAL/mbed-rtos/rtos/Mail.h
 .\build\bushandler.o: HAL/mbed-rtos/rtos/MemoryPool.h
 .\build\bushandler.o: HAL/mbed-rtos/rtos/Queue.h
+.\build\bushandler.o: app/CommandLine/sensor_config.h

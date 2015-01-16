@@ -99,6 +99,6 @@
 .\build\cmd_action.o: HAL/mbed-rtos/rtos/Mail.h
 .\build\cmd_action.o: HAL/mbed-rtos/rtos/MemoryPool.h
 .\build\cmd_action.o: HAL/mbed-rtos/rtos/Queue.h
-.\build\cmd_action.o: app\CommandLine\sensor_config.h
+.\build\cmd_action.o: app/CommandLine/sensor_config.h
 .\build\cmd_action.o: app/Support/file_ops.h
 .\build\cmd_action.o: app\CommandLine\cmd_action.h

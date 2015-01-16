@@ -116,7 +116,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=574,87,984,633,0)(1007=105,136,282,400,0)(1008=792,156,1158,381,0)(1009=1065,64,1299,601,1)(1012=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=574,87,984,633,0)(1007=105,136,282,400,0)(1008=792,156,1158,381,0)(1009=1065,64,1299,601,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -139,22 +139,39 @@
           <Name>UL2CM3(-O4303 -S0 -C0 -FO7 -FD10000000 -FC800 -FN1 -FF0LPC_IAP_512 -FS00 -FL080000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>964</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>35700</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>.\app\CommandLine\cmd_action.cpp</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>iData</ItemText>
+          <ItemText>sensor</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>message</ItemText>
+          <ItemText>sensor_index</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>array</ItemText>
+          <ItemText>fname</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1417,7 +1434,7 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>92</FileNumber>
       <FileType>8</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
