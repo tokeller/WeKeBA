@@ -488,11 +488,11 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 void cmd_enter_sensor_params_detail(void)
 {
 	printf("entering sensor params detail level \n");
-	printf(" 1) raw (continuous data)\n");
-	printf(" 2) detailed (start time, all samples of impact)\n");
+	printf(" 1) off\n");
+	printf(" 2) sparse (only start time, duration, nr of peaks, max peak)\n");
 	printf(" 3) peaks only (start time, nr of peaks, peaks\n");
-	printf(" 4) sparse (only start time, duration, nr of peaks, max peak)\n");
-	printf(" 5) off\n");
+	printf(" 4) detailed (start time, all samples of impact)\n");
+	printf(" 5) raw (continuous data)\n");
 	printf(" 0) cancel\n");
 }
 
@@ -673,6 +673,7 @@ void cmd_reset_timestamp(void)
 	// TODO call function to resync timestamp!
 	// TODO reset timestamp in impact_fsm
 	// 
+	resetTimestamp();
 	printf("timestamp has been reset.\n");
 }
 
@@ -945,7 +946,7 @@ void cmd_read_config_file(void)
  */
 uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 {
-	char fname[25];
+	char fname[13];
   char datetime[5];
 	const char format[10] = "%m%d_%H%M";
 	time_t currTime;
@@ -963,7 +964,18 @@ uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 	sprintf(fname, "/mci/s%02d_%s", sensor[sensor_index].sensor_ID, datetime);
 	printf("created filename %s\n",fname);
 	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
+
 	if(sensor[sensor_index].pf_sensor_data != NULL){
+		char writtenBytes = fprintf(sensor[sensor_index].pf_sensor_data,"%s\n",datetime);
+		if(writtenBytes<0){
+			printf("failed first write: %x to %s done\n",writtenBytes,fname);
+		} else {
+			printf("first write success: %x to %s done\n",writtenBytes,fname);
+		}
+		fflush(sensor[sensor_index].pf_sensor_data);
+		/*
+		fclose(sensor[sensor_index].pf_sensor_data);
+		sensor[sensor_index].pf_sensor_data = fopen(fname, "a");*/
 		strncpy(sensor[sensor_index].filename, fname, 25);
 		return 1;
 	} else {

@@ -1,3 +1,5 @@
+#define __DEBUG
+
 #include "mbed.h"
 #include "sdram.h"
 #include "ProcessingLoops.h"
@@ -5,6 +7,7 @@
 #include "sensor_config.h"
 #include "cmd.h"
 #include "file_ops.h"
+
 
 // Logger: 150576ea
 // Sensor: 61bfdf6

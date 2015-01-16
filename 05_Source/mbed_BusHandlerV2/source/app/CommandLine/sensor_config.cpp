@@ -269,11 +269,7 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     
     char buffer[10300], smallbuf[10];
     int i;
-    uint32_t timest;
-/*  Buffer init necessary?
-    buffer = "";
-    smallbuf = "";
-  */  
+    uint32_t timest;  
     // check if file open
     if(sensor[id].pf_sensor_data == NULL){
 			  printf("sensor data of %d is NULL\n", id);
@@ -284,7 +280,6 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
         } else {
             // try to open file
             sensor[id].pf_sensor_data = fopen(sensor[id].filename, "a");
-						printf("trying file open\n");
             if(sensor[id].pf_sensor_data == NULL){
                 // give up
 								printf("giving up\n");
@@ -306,8 +301,12 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
 						timest  = timest << 8;
             timest |= data->data[3];
             sprintf(buffer, "start=%u,samples=%u;",timest, dataLength - 4);
-            for(i = 4; i < dataLength; i++){
-                sprintf(smallbuf, "%hhd,", data->data[i]);
+            int16_t shiftingBuf = 0;
+						for(i = 4; i < dataLength; i++){
+								// cast the char from the message as the signed 8 bit it that it was
+								shiftingBuf = (int8_t) data->data[i];
+								shiftingBuf = shiftingBuf << 4;
+                sprintf(smallbuf, "%d,", shiftingBuf);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
@@ -324,9 +323,12 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-            sprintf(buffer, "start=%u,samples=%u;",timest, dataLength - 4);
-            for(i = 4; i < dataLength; i++){
-                sprintf(smallbuf, "%hhd,", data->data[i]);
+            sprintf(buffer, "start=%u,samples=%u;",timest, dataLength - 5);
+            int16_t shiftingBuf = 0;
+            for(i = 4; i < dataLength - 1; i++){
+								shiftingBuf = (int8_t) data->data[i];
+								shiftingBuf = shiftingBuf << 4;
+                sprintf(smallbuf, "%d,", shiftingBuf);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
@@ -334,6 +336,8 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
 				} 
         case M_PEAKS:
 				{
+					printf("write peak mode entered\n");
+					printf("data length: %x\n",dataLength);
             timest  = data->data[0];
 						timest  = timest << 8;
             timest |= data->data[1];
@@ -347,8 +351,11 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
 						samples = samples <<8;
 						samples |= data->data[7];
             sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu;", timest, samples, data->data[5]);
-            for(i = 8; i < dataLength; i+=2){
-                sprintf(smallbuf, "%hhu %hhd,", data->data[i], data->data[i+1]);
+						int16_t shiftingBuf = 0;
+            for(i = 8; i < dataLength - 1; i+=2){
+								shiftingBuf = (int8_t) data->data[i+1];
+								shiftingBuf = shiftingBuf << 4;
+                sprintf(smallbuf, "%hhu %d,", data->data[i], shiftingBuf);
                 strcat(buffer, smallbuf);
             }
             strcat(buffer,";\n");
@@ -365,13 +372,16 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
             timest |= data->data[3];
             
             // TODO add safety: count space used in buffer!
-						uint16_t samplesSpar = data->data[6];
+						int16_t samplesSpar = data->data[6];
 						samplesSpar = samplesSpar <<8;
 						samplesSpar |= data->data[7];
 
-
-						sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%hhd;\n", timest, samplesSpar,
-                    data->data[5], data->data[4]);
+						int16_t maxAmp = (int8_t) data->data[4];
+						printf("max amp pre %x\n",maxAmp);
+						maxAmp = maxAmp << 4;
+						printf("max amp post %x\n",maxAmp);
+						sprintf(buffer, "start=%u,samples=%hu,nrpeaks=%hhu,max=%d;\n", timest, samplesSpar,
+                    data->data[5], maxAmp);
             break;
 				}
         default:
@@ -380,7 +390,11 @@ uint8_t store_impact_data(uint8_t id, detail_mode_t detail_mode, uint32_t dataLe
     
     
     // append buffer string to data file of sensor
-    fprintf(sensor[id].pf_sensor_data, "%s", buffer);
+    if(fprintf(sensor[id].pf_sensor_data, "%s", buffer)<0){
+			printf("write error\n");
+		} else {
+			printf("write ok\n");
+		}
     
     // return 0 if successful, 1 if failure
     return 0;

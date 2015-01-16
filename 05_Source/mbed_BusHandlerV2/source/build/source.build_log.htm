@@ -8,6 +8,10 @@ Project File Date:  12/16/2014
 
 <h2>Output:</h2>
 Build target 'NXP LPC4088'
+compiling ProcessingLoops.cpp...
+app\ProcessingLoops.cpp(253): warning:  #177-D: variable "allSensorsReceived" was declared but never referenced
+        char allSensorsReceived = 0;
+app\ProcessingLoops.cpp: 1 warning, 0 errors
 compiling sensor_config.cpp...
 app\CommandLine\sensor_config.cpp(148): warning:  #224-D: the format string requires additional arguments
                         &detail_level, &started);
@@ -16,16 +20,11 @@ app\CommandLine\sensor_config.cpp(240): warning:  #550-D: parameter "logger" was
 app\CommandLine\sensor_config.cpp: 2 warnings, 0 errors
 linking...
 HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct(28): warning: L6314W: No section matches pattern *.o(SPIFI_MEM).
-Program Size: Code=84860 RO-data=5536 RW-data=776 ZI-data=42556  
+Program Size: Code=85620 RO-data=5536 RW-data=776 ZI-data=42556  
 Finished: 0 information, 1 warning and 0 error messages.
 After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 3 Warning(s).
+".\build\source.axf" - 0 Error(s), 4 Warning(s).
 Load "D:\\ZHAW\\BA\\WeKeBA\\05_Source\\mbed_BusHandlerV2\\source\\build\\source.axf" 
 Erase Done.
 Programming Done.
 Verify OK.
-PIFI_MEM).
-Program Size: Code=84852 RO-data=5536 RW-data=776 ZI-data=42556  
-Finished: 0 information, 1 warning and 0 error messages.
-After Build - User command #1: fromelf --bin -o build\source_LPC4088.bin build\source.axf
-".\build\source.axf" - 0 Error(s), 5 Warning(s).

@@ -431,7 +431,7 @@ void menu_fsm(uint32_t input)
 				default:
 					if(input <= 5){
 						// input valid, set mode of selected sensor.
-						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input);
+						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input - 1);
 					} else {
 						cmd_enter_sensor_params_detail();
 						printf("invalid input. Enter choice (0 to exit): \n");

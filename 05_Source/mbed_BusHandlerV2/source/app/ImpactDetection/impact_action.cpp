@@ -230,7 +230,7 @@ static Impact_t *impact = NULL;
 		if(detail_mode == M_SPARSE){		
 			pcSerial.printf("sparse\n");
 			std.numberOfPkgs = 1;
-			std.maxPeaks = impact->max_amplitude;
+			std.maxPeaks = (impact->max_amplitude >> 4);
 			//printf("amplitude %x\n",impact->max_amplitude);
 			std.timestamp = impact->starttime;
 			//printf("starttime %x\n",impact->starttime);

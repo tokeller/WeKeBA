@@ -80,6 +80,12 @@
 
 #define SERIAL_MSG			0x18010001
 
+#define IMP_SPARSE_MSG		0x1c010000
+#define IMP_PEAKS_MSG			0x1b010000
+#define IMP_DETAILED_MSG  0x1a010000
+#define IMP_RAW_MSG				0x1fffffff
+
+
 #define MAX_NR_OF_MESSAGES							0xff
 
 
@@ -248,6 +254,14 @@ void stopSensor(uint8_t sensorId);
  */
 
 void emptyQueue(void);
+
+
+/*
+ *	reset the timestamp of the sensors
+ *
+ */
+
+void resetTimestamp(void);
 
 
 #endif

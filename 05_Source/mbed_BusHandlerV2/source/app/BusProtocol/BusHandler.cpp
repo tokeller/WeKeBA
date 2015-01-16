@@ -310,3 +310,7 @@ void emptyQueue(void){
 		}
 	}
 }
+
+void resetTimestamp(void){
+	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
+}

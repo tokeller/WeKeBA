@@ -201,6 +201,10 @@ void sensor_loop(void const *args){
 								init_impact_event_handler();
 								sensorOffline = 1;
 								break;
+							case TIME_SYNC_MSG:
+								// reset the timer
+								reset_timestamp();
+								break;
 							default:
 								if (message->msgId == (SETTINGS_MSG | (canId << 16))){
 									processSettings(message);
@@ -247,16 +251,18 @@ void sensor_loop(void const *args){
 
 void logger_loop (void const *args){
 	char allSensorsReceived = 0;
+	char headerReceived = 0;
+	uint16_t cachePointer = 0;
+	uint8_t *dataCache;
+	
 	start_CAN_Bus(LOGGER);
 	RtosTimer timeMs (time,osTimerPeriodic);
 	
 	cmd_mount_sd();
   cmd_read_config_file();
-	osDelay(2000);
-	recursiveList("/mci/");
 	
 	Thread threadRec(CAN_COM_thread,NULL,osPriorityNormal);
-	osDelay(10000);
+	osDelay(1000);
 	// send serial request broadcast
 	enqueueMessage(0,0,0xff,0x01,GET_SENSOR_SERIAL_BC);
 	//char sensorCounter = 0;
@@ -327,7 +333,7 @@ void logger_loop (void const *args){
 	}
 	osDelay(1000);
 	// send time sync BC
-	enqueueMessage(0,0,0xff,0x01,TIME_SYNC_BC);
+	resetTimestamp();
 	osDelay(1000);
 	
 	// set all sensors to start recording
@@ -351,32 +357,105 @@ void logger_loop (void const *args){
 				printf("%x", message->payload[i]);
 			}
 			uint8_t sensId = (message->msgId >> 8) & 0x0f;
+			uint8_t msgNr = (message->msgId & 0xff);
 			printf("\nSensor msg id  : %0x \n\r", message->msgId);
 			printf("\nSensor id      : %0x \n\r", sensId);
 			printf("Sensor len       : %d \n\r", message->dataLength);
 			ImpactData_t *iData  = (ImpactData_t*) malloc(sizeof(ImpactData_t));
 			
-			//iData->data= (uint8_t*) malloc (message->dataLength);
-			
-			uint8_t array[8] = {0};
-			array[0] = (uint8_t) message->payload[0];
-			array[1] = (uint8_t) message->payload[1];
-			array[2] = (uint8_t) message->payload[2];
-			array[3] = (uint8_t) message->payload[3];
-			array[4] = (uint8_t) message->payload[4];
-			array[5] = (uint8_t) message->payload[5];
-			array[6] = (uint8_t) message->payload[6];
-			array[7] = (uint8_t) message->payload[7];
-			
-			//memcpy(iData->data,message->payload,message->dataLength);
-    	iData->data = &array[0];
-			sensId -= 2;
-			uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level,message->dataLength,iData);
-			if(res == 0){
-				printf("written\n");
-			}else {
-				printf("error\n");
+			// received a sparse message with just one part, can be stored right away
+			if ((message->msgId & 0x1fff0000) == IMP_SPARSE_MSG & msgNr == 1){	
+				uint8_t array[8] = {0};
+				array[0] = (uint8_t) message->payload[0];
+				array[1] = (uint8_t) message->payload[1];
+				array[2] = (uint8_t) message->payload[2];
+				array[3] = (uint8_t) message->payload[3];
+				array[4] = (uint8_t) message->payload[4];
+				array[5] = (uint8_t) message->payload[5];
+				array[6] = (uint8_t) message->payload[6];
+				array[7] = (uint8_t) message->payload[7];
+				
+				//memcpy(iData->data,message->payload,message->dataLength);
+				iData->data = &array[0];
+				sensId -= 2;
+				uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level,message->dataLength,iData);
+				if(res == 0){
+					printf("written\n");
+				}else {
+					printf("error\n");
+				}
+				     // received a peak message, either the start (SPARSE with more than 1 pkg) or a sole date package
+			} else if (((message->msgId & 0x1fff0000) == IMP_SPARSE_MSG & msgNr > 1) || ((message->msgId & 0x1fff0000) == IMP_PEAKS_MSG)){
+				
+				if (headerReceived == 0){
+					// get the message number to allocate enough memory
+					uint16_t cacheSize = (message->msgId & 0xff);
+					// allocate the data cache for 8 uint8_t per expected message
+					dataCache = (uint8_t *) malloc (sizeof(uint8_t) * 8 * cacheSize);
+					headerReceived = 1;
+					cachePointer = 0;
+				}
+				// store the received message data
+				for (int i = 0; i<message->dataLength; i++){
+					dataCache[cachePointer + i] = (uint8_t) message->payload[i];
+				}
+				
+				// if the last message was received (id = 1), write it to the file
+				if ((message->msgId & 0xff) == 1){
+					cachePointer += message->dataLength + 1;
+					iData->data = dataCache;
+					sensId -= 2;
+					uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level, cachePointer,iData);
+					if(res == 0){
+						printf("written\n");
+					}else {
+						printf("error\n");
+					}				
+					// initialize the pointer and flag for the next message
+					cachePointer = 0;
+					headerReceived = 0;
+				} else {					
+					// set the cachPointer ready for the next message
+					cachePointer += 8;
+				}
+				
+			// received a detailed impact message
+			}else if ((message->msgId & 0x1fff0000) == IMP_DETAILED_MSG){
+				if (headerReceived == 0){
+					// get the message number to allocate enough memory
+					uint16_t cacheSize = (message->msgId & 0xff);
+					// allocate the data cache for 8 uint8_t per expected message
+					dataCache = (uint8_t *) malloc (sizeof(uint8_t) * 8 * cacheSize);
+					headerReceived = 1;
+					cachePointer = 0;
+				}
+				// store the received message data
+				for (int i = 0; i<message->dataLength; i++){
+					dataCache[cachePointer + i] = (uint8_t) message->payload[i];
+				}
+				
+				// if the last message was received (id = 1), write it to the file
+				if ((message->msgId & 0xff) == 1){
+					cachePointer += message->dataLength + 1;
+					iData->data = dataCache;
+					sensId -= 2;
+					uint8_t res = store_impact_data(sensId,sensor[sensId].detail_level, cachePointer,iData);
+					if(res == 0){
+						printf("written\n");
+					}else {
+						printf("error\n");
+					}				
+					// initialize the pointer and flag for the next message
+					cachePointer = 0;
+					headerReceived = 0;
+				} else {					
+					// set the cachPointer ready for the next message
+					cachePointer += 8;
+				}
+				
 			}
+			// free the impacat data struct
+			free(iData);
 			mpoolOutQueue.free(message);
 			nrOfMsg--;
 		}
