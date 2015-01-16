@@ -162,7 +162,11 @@ extern "C" {
 	 */
 	void setDetailMode(detail_mode_t mode);
 	
-	
+    /**
+     * Set the detail level
+     * @param uint32_t nrOfSamples: nrOfSamples to send in raw data
+     */
+    void startRaw(uint32_t nrOfSamples);
 	
 #ifdef __cplusplus
 };

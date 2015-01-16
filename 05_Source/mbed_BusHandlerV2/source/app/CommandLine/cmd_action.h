@@ -185,6 +185,14 @@ void cmd_enter_sensor_params_detail(void);
 void cmd_set_detail_mode(uint8_t sensor_index, uint8_t mode);
 
 /**
+ * set raw mode and duration in samples
+ *   @param   sensor_index: the index in the sensor array to be configured
+ *   @param   sec: seconds to record in raw
+ *   @retval  none
+ */
+cmd_set_detail_mode_raw(uint8_t sensor_index, uint32_t sec);
+
+/**
  * Print message for starting/stopping the sensor
  *   @param   none
  *   @retval  none

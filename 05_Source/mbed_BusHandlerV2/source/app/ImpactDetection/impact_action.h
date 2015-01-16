@@ -108,9 +108,18 @@ extern "C" {
 	void stop_timer(void); 
 	
 	/**
-	 * Write impact data to file
+	 * Send impact data to logger
 	 */
 	void store_impact(void);
+    
+    /**
+     * Send raw data to logger
+     *
+     * @param uint32_t starttime: timestamp of first sample
+     * @param uint16_t nrOfSamples: length of data array
+     * @param uint8_t *samples: pointer to data array
+     */
+    void store_raw(uint32_t starttime, uint16_t nrOfSamples, uint8_t *samples);
 	
 #ifdef __cplusplus
 };

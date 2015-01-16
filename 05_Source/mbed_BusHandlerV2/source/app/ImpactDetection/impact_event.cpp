@@ -40,6 +40,10 @@ uint8_t timeout_active;         // is timeout counter active (1) or not(0)
 static uint32_t timestamp = 0;           // timestamp for samples
 static uint32_t value = 0;               // sampled value
 
+static raw_remaining_samples = 0;
+static uint8_t raw_container[2044];
+static uint16_t raw_counter = 0;
+
 
 /* ------------------------------------------------------------------
  * -- Functions
@@ -49,7 +53,7 @@ static uint32_t value = 0;               // sampled value
 	 * See header file
 	 */
 	void isr_nextMeasurement(){
-		//pcSerial.printf("ISR ADC Event Recognition called.\n");
+		// pcSerial.printf("ISR ADC Event Recognition called.\n");
 		// read ADC measurement from Register, automatically resets IRQ
 		value = LPC_ADC->GDR;
 		value = (value >> 4) & 0xFFF;
@@ -78,41 +82,61 @@ static uint32_t value = 0;               // sampled value
 		// DEBUG pcSerial.printf("f %d", input_queue.count);
 		// TODO add while(1) loop, os_delay etc so it can run as a task.
 
-		//if(input_queue->count > 0){
-		while(input_queue->count > 0){
-			new_event_id = E_NO_EVENT;
+        // handle raw mode
+        if(detail_mode == M_RAW){
+            if(raw_remaining_samples <= 0 && raw_counter != 0){
+                detail_mode = M_OFF;
+                // enqueue message with 'raw_counter' raw values
+                store_raw(timestamp - raw_counter, raw_counter, raw_container);
+                
+            }
+            // add value to buffer, if buffer full, enqueue message in raw
+            raw_container[raw_counter++] = dequeue_impact_input() >> 4;
+            raw_remaining_samples--;
+            if(raw_counter == 2044){
+                // enqueue message with 2044 raw values
+                store_raw(timestamp - raw_counter, raw_counter, raw_container);
+                raw_counter = 0;
+            }
+        } else {
+            // handle normal modes
+        
+            //if(input_queue->count > 0){
+            while(input_queue->count > 0){
+                new_event_id = E_NO_EVENT;
 			
-			/* if there is a measurement value waiting, we have to determine whether
-			 * it is above threshold value and generate the according event.
-			 * Input above threshold (E_INPUT_HIGH_POS or E_INPUT_HIGH_NEG) will 
-			 * stop the timeout counter.
-			 */
-			input = dequeue_impact_input();
-			value = input.value - baseline;
-			if(value >= threshold || value <= 0 - threshold){
-				if(value >= threshold){
-					new_event_id = E_INPUT_HIGH_POS;
-				} else {
-					new_event_id = E_INPUT_HIGH_NEG;
-				}
-			}	else if(timeout_active == 1){
-				// decrease the timeout counter. If zero, event is E_TIMEOUT
-				timeout_counter--;
-				if(timeout_counter == 0){
-					new_event_id = E_TIMEOUT;
+                /* if there is a measurement value waiting, we have to determine whether
+                 * it is above threshold value and generate the according event.
+                 * Input above threshold (E_INPUT_HIGH_POS or E_INPUT_HIGH_NEG) will
+                 * stop the timeout counter.
+                 */
+                input = dequeue_impact_input();
+                value = input.value - baseline;
+                if(value >= threshold || value <= 0 - threshold){
+                    if(value >= threshold){
+                        new_event_id = E_INPUT_HIGH_POS;
+                    } else {
+                        new_event_id = E_INPUT_HIGH_NEG;
+                    }
+                }	else if(timeout_active == 1){
+                    // decrease the timeout counter. If zero, event is E_TIMEOUT
+                    timeout_counter--;
+                    if(timeout_counter == 0){
+                    new_event_id = E_TIMEOUT;
 				} else{
-					new_event_id = E_INPUT_LOW;
-				}
-			} else {
-				new_event_id = E_INPUT_LOW;
-			}
+                    new_event_id = E_INPUT_LOW;
+                    }
+                } else {
+                    new_event_id = E_INPUT_LOW;
+                }
 			
-			input.value = value;
-			impact_fsm(new_event_id, input);
+                input.value = value;
+                impact_fsm(new_event_id, input);
 
-		}
+            }
+        }
 	}
-	
+
 	/*
 	 * See header file
 	 */
@@ -327,3 +351,12 @@ static uint32_t value = 0;               // sampled value
 	{
 		detail_mode = mode;
 	}
+
+/*
+ * See header file
+ */
+    void startRaw(uint32_t nrOfSamples)
+{
+    detail_mode = M_RAW;
+    raw_remaining_samples = nrOfSamples;
+}

@@ -198,6 +198,7 @@ static Impact_t *impact = NULL;
 	{
 		timeout_active = 0;
 	}
+
 	/*
 	 * See header file
 	 */
@@ -305,9 +306,30 @@ static Impact_t *impact = NULL;
 				p_data = NULL;
 			}
 			
-		} else if(detail_mode == M_RAW){	
-			pcSerial.printf("RAW\n");
-			// TODO: DO NOT HANDLE HERE, RAW MODE SHOULD NOT USE FSM BUT SEND PACKETS DIRECTLY
 		}
 	}
-	
+
+/*
+ * See header file
+ */
+void store_raw(uint32_t starttime, uint16_t nrOfSamples, uint8_t *samples)
+{
+    int i;
+    pcSerial.printf("RAW %d samples\n", nrOfSamples);
+    
+    dataLength = 4 + nrOfSamples;
+    p_data = (char *) malloc(dataLength);
+    if(p_data != NULL){
+        p_data[0] = (starttime >> 24) & 0xff;
+        p_data[1] = (starttime >> 16) & 0xff;
+        p_data[2] = (starttime >> 8) & 0xff;
+        p_data[3] = starttime & 0xff;
+        for(i = 0; i < sample_count; i++){
+            p_data[4+i] = samples[i];
+        }
+        enqueueMessage(dataLength, p_data, 0x01, canId, RAW_DATA_SINGLE);
+        free(p_data);
+        p_data = NULL;
+    }
+}
+

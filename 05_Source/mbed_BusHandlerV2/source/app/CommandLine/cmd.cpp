@@ -431,16 +431,43 @@ void menu_fsm(uint32_t input)
 				break;
 				
 				default:
-					if(input <= 5){
+					if(input < 5){
 						// input valid, set mode of selected sensor.
 						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input - 1);
-					} else {
+					} else if(input == 5){
+                        if(menu_fsm_current_sensor == 99){
+                            // unable to comply
+                            printf("raw mode not available for all sensors.\n");
+                            menu_fsm_state = S_SENSOR_PARAMETERS;
+                            cmd_enter_sensor_params();
+                        } else {
+                            cmd_enter_sensor_params_raw();
+                            menu_fsm_state = S_SENSOR_PARAMS_DETAIL_RAW_DURATION;
+                        }
+                    } else {
 						cmd_enter_sensor_params_detail();
 						printf("invalid input. Enter choice (0 to exit): \n");
 					}
 				break;
 			}
 			break;
+            
+        case(S_SENSOR_PARAMS_DETAIL_RAW_DURATION):
+            switch(input){
+                case(0):
+                    // exit
+                    menu_fsm_state = S_SENSOR_PARAMETERS;
+                    cmd_enter_sensor_params();
+                    break;
+                default:
+                    if(input > 3600){
+                        printf("invalid input. Enter duration (0 to cancel): \n");
+                    } else {
+                        menu_fsm_state = S_SENSOR_PARAMETERS;
+                        cmd_set_detail_mode_raw(menu_fsm_current_sensor, input);
+                        cmd_enter_sensor_params();
+                    }
+            }
 			
 		case(S_SENSOR_PARAMS_STARTSTOP):
 			switch(input){
