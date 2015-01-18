@@ -488,12 +488,12 @@ void cmd_set_timeout(uint8_t sensor_index, uint32_t timeout)
 void cmd_enter_sensor_params_detail(void)
 {
 	printf("entering sensor params detail level \n");
-	printf(" 1) off\n");
-	printf(" 2) sparse (only start time, duration, nr of peaks, max peak)\n");
-	printf(" 3) peaks only (start time, nr of peaks, peaks\n");
-	printf(" 4) detailed (start time, all samples of impact)\n");
-	printf(" 5) raw (continuous data)\n");
-	printf(" 0) cancel\n");
+	printf(" 0) off\n");
+	printf(" 1) sparse (only start time, duration, nr of peaks, max peak)\n");
+	printf(" 2) peaks only (start time, nr of peaks, peaks\n");
+	printf(" 3) detailed (start time, all samples of impact)\n");
+	printf(" 4) raw (continuous data)\n");
+	printf(" 9) cancel\n");
 }
 
 /*

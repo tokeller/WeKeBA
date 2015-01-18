@@ -426,17 +426,17 @@ void menu_fsm(uint32_t input)
 			
 		case(S_SENSOR_PARAMS_DETAIL):
 			switch(input){
-				case(0):
+				case(9):
 					// exit
 					menu_fsm_state = S_SENSOR_PARAMETERS;
 					cmd_enter_sensor_params();
 				break;
 				
 				default:
-					if(input < 5){
+					if(input < 4){
 						// input valid, set mode of selected sensor.
-						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input - 1);
-					} else if(input == 5){
+						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input);
+					} else if(input == 4){
                         if(menu_fsm_current_sensor == 99){
                             // unable to comply
                             printf("raw mode not available for all sensors.\n");
