@@ -322,7 +322,9 @@ void store_raw(uint32_t starttime, uint16_t nrOfSamples, uint8_t *samples)
     
     dataLength = 4 + nrOfSamples;
     p_data = (char *) malloc(dataLength);
+		printf("datalength %d\n",dataLength);
     if(p_data != NULL){
+				printf("malloc ok\n");
         p_data[0] = (starttime >> 24) & 0xff;
         p_data[1] = (starttime >> 16) & 0xff;
         p_data[2] = (starttime >> 8) & 0xff;

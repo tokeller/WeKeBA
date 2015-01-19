@@ -364,7 +364,7 @@
               <MiscControls>--gnu --no_rtti </MiscControls>
               <Define>TARGET_LPC4088,  TARGET_M4,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC408X,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M4,  ARM_MATH_CM4,  __FPU_PRESENT=1,  MBED_BUILD_TIMESTAMP=1416915036.73,  __MBED__=1,  __ASSERT_MSG,</Define>
               <Undefine></Undefine>
-              <IncludePath>.;.\EALib;.\EALib\FATFileSystem;.\EALib\FATFileSystem\ChaN;mbed-src;mbed-src/targets;mbed-src/targets/cmsis;mbed-src/targets/cmsis/TARGET_NXP;mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X;mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD;mbed-src/targets/hal;mbed-src/targets/hal/TARGET_NXP;mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X;mbed-src/common;mbed-src/api;mbed-src/hal;mbed-rtos;mbed-rtos/rtx;mbed-rtos/rtx/TARGET_CORTEX_M;mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4;mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM;mbed-rtos/rtos</IncludePath>
+              <IncludePath>.;.\HAL\EALib;.\HAL\EALib\FATFileSystem;.\HAL\EALib\FATFileSystem\ChaN;HAL/mbed-src;HAL/mbed-src/targets;HAL/mbed-src/targets/cmsis;HAL/mbed-src/targets/cmsis/TARGET_NXP;HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X;HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD;HAL/mbed-src/targets/hal;HAL/mbed-src/targets/hal/TARGET_NXP;HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X;HAL/mbed-src/common;HAL/mbed-src/api;HAL/mbed-src/hal;HAL/mbed-rtos;HAL/mbed-rtos/rtx;HAL/mbed-rtos/rtx/TARGET_CORTEX_M;HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4;HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM;HAL/mbed-rtos/rtos;app/;app/Support/;app/BusProtocol/;app/CommandLine/;app/ImpactDetection/</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -394,7 +394,7 @@
             <TextAddressRange>0x00000000</TextAddressRange>
             <DataAddressRange>0x10000000</DataAddressRange>
             <pXoBase></pXoBase>
-            <ScatterFile>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct</ScatterFile>
+            <ScatterFile>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/LPC407X_8X.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>
@@ -413,17 +413,17 @@
             <File>
               <FileName>startup_LPC407x_8x_177x_8x.s</FileName>
               <FileType>2</FileType>
-              <FilePath>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s</FilePath>
+              <FilePath>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/startup_LPC407x_8x_177x_8x.s</FilePath>
             </File>
             <File>
               <FileName>SVC_Table.s</FileName>
               <FileType>2</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/SVC_Table.s</FilePath>
             </File>
             <File>
               <FileName>cmsis_nvic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/cmsis_nvic.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -471,7 +471,7 @@
             <File>
               <FileName>system_LPC407x_8x_177x_8x.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/system_LPC407x_8x_177x_8x.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/system_LPC407x_8x_177x_8x.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -519,7 +519,7 @@
             <File>
               <FileName>analogin_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogin_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogin_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -567,7 +567,7 @@
             <File>
               <FileName>spi_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/spi_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/spi_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -615,7 +615,7 @@
             <File>
               <FileName>gpio_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -663,7 +663,7 @@
             <File>
               <FileName>i2c_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/i2c_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/i2c_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -711,7 +711,7 @@
             <File>
               <FileName>analogout_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogout_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/analogout_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -759,7 +759,7 @@
             <File>
               <FileName>rtc_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/rtc_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/rtc_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -807,7 +807,7 @@
             <File>
               <FileName>can_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/can_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/can_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -855,7 +855,7 @@
             <File>
               <FileName>port_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/port_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/port_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -903,7 +903,7 @@
             <File>
               <FileName>pwmout_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pwmout_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pwmout_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -951,7 +951,7 @@
             <File>
               <FileName>serial_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/serial_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/serial_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -999,7 +999,7 @@
             <File>
               <FileName>sleep.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/sleep.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/sleep.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1047,7 +1047,7 @@
             <File>
               <FileName>gpio_irq_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_irq_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/gpio_irq_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1095,7 +1095,7 @@
             <File>
               <FileName>pinmap.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pinmap.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/pinmap.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1143,7 +1143,7 @@
             <File>
               <FileName>ethernet_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/ethernet_api.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/ethernet_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1191,7 +1191,7 @@
             <File>
               <FileName>us_ticker.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/us_ticker.c</FilePath>
+              <FilePath>HAL/mbed-src/targets/hal/TARGET_NXP/TARGET_LPC408X/us_ticker.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1239,7 +1239,7 @@
             <File>
               <FileName>exit.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/exit.c</FilePath>
+              <FilePath>HAL/mbed-src/common/exit.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1287,7 +1287,7 @@
             <File>
               <FileName>wait_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/wait_api.c</FilePath>
+              <FilePath>HAL/mbed-src/common/wait_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1335,7 +1335,7 @@
             <File>
               <FileName>board.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/board.c</FilePath>
+              <FilePath>HAL/mbed-src/common/board.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1383,7 +1383,7 @@
             <File>
               <FileName>semihost_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/semihost_api.c</FilePath>
+              <FilePath>HAL/mbed-src/common/semihost_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1431,7 +1431,7 @@
             <File>
               <FileName>pinmap_common.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/pinmap_common.c</FilePath>
+              <FilePath>HAL/mbed-src/common/pinmap_common.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1479,7 +1479,7 @@
             <File>
               <FileName>us_ticker_api.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/us_ticker_api.c</FilePath>
+              <FilePath>HAL/mbed-src/common/us_ticker_api.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1527,7 +1527,7 @@
             <File>
               <FileName>assert.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/assert.c</FilePath>
+              <FilePath>HAL/mbed-src/common/assert.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1575,7 +1575,7 @@
             <File>
               <FileName>gpio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/gpio.c</FilePath>
+              <FilePath>HAL/mbed-src/common/gpio.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1623,7 +1623,7 @@
             <File>
               <FileName>error.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/error.c</FilePath>
+              <FilePath>HAL/mbed-src/common/error.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1671,7 +1671,7 @@
             <File>
               <FileName>mbed_interface.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/mbed_interface.c</FilePath>
+              <FilePath>HAL/mbed-src/common/mbed_interface.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1719,7 +1719,7 @@
             <File>
               <FileName>rtc_time.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-src/common/rtc_time.c</FilePath>
+              <FilePath>HAL/mbed-src/common/rtc_time.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1767,7 +1767,7 @@
             <File>
               <FileName>rt_Task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1815,7 +1815,7 @@
             <File>
               <FileName>rt_MemBox.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_MemBox.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1863,7 +1863,7 @@
             <File>
               <FileName>rt_Robin.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Robin.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1911,7 +1911,7 @@
             <File>
               <FileName>rt_Mailbox.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -1959,7 +1959,7 @@
             <File>
               <FileName>rt_System.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2007,7 +2007,7 @@
             <File>
               <FileName>rt_CMSIS.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2055,7 +2055,7 @@
             <File>
               <FileName>rt_Event.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2103,7 +2103,7 @@
             <File>
               <FileName>rt_Semaphore.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2151,7 +2151,7 @@
             <File>
               <FileName>RTX_Conf_CM.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2199,7 +2199,7 @@
             <File>
               <FileName>rt_Time.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2247,7 +2247,7 @@
             <File>
               <FileName>rt_Mutex.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2295,7 +2295,7 @@
             <File>
               <FileName>rt_List.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2343,7 +2343,7 @@
             <File>
               <FileName>HAL_CM.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2391,7 +2391,7 @@
             <File>
               <FileName>HAL_CM4.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/HAL_CM4.c</FilePath>
+              <FilePath>HAL/mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M4/TOOLCHAIN_ARM/HAL_CM4.c</FilePath>
               <FileOption>
                 <CommonProperty>
                   <UseCPPCompiler>2</UseCPPCompiler>
@@ -2444,272 +2444,277 @@
             <File>
               <FileName>sys.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys.cpp</FilePath>
+              <FilePath>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys.cpp</FilePath>
             </File>
             <File>
               <FileName>sys_helper.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys_helper.cpp</FilePath>
+              <FilePath>HAL/mbed-src/targets/cmsis/TARGET_NXP/TARGET_LPC408X/TOOLCHAIN_ARM_STD/sys_helper.cpp</FilePath>
             </File>
             <File>
               <FileName>RawSerial.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/RawSerial.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/RawSerial.cpp</FilePath>
             </File>
             <File>
               <FileName>Stream.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Stream.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Stream.cpp</FilePath>
             </File>
             <File>
               <FileName>Timeout.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Timeout.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Timeout.cpp</FilePath>
             </File>
             <File>
               <FileName>LocalFileSystem.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/LocalFileSystem.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/LocalFileSystem.cpp</FilePath>
             </File>
             <File>
               <FileName>FunctionPointer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/FunctionPointer.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/FunctionPointer.cpp</FilePath>
             </File>
             <File>
               <FileName>I2CSlave.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/I2CSlave.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/I2CSlave.cpp</FilePath>
             </File>
             <File>
               <FileName>FilePath.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/FilePath.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/FilePath.cpp</FilePath>
             </File>
             <File>
               <FileName>InterruptManager.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/InterruptManager.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/InterruptManager.cpp</FilePath>
             </File>
             <File>
               <FileName>BusOut.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/BusOut.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/BusOut.cpp</FilePath>
             </File>
             <File>
               <FileName>Timer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Timer.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Timer.cpp</FilePath>
             </File>
             <File>
               <FileName>FileSystemLike.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/FileSystemLike.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/FileSystemLike.cpp</FilePath>
             </File>
             <File>
               <FileName>I2C.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/I2C.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/I2C.cpp</FilePath>
             </File>
             <File>
               <FileName>CAN.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/CAN.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/CAN.cpp</FilePath>
             </File>
             <File>
               <FileName>SPISlave.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/SPISlave.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/SPISlave.cpp</FilePath>
             </File>
             <File>
               <FileName>TimerEvent.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/TimerEvent.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/TimerEvent.cpp</FilePath>
             </File>
             <File>
               <FileName>Serial.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Serial.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Serial.cpp</FilePath>
             </File>
             <File>
               <FileName>SPI.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/SPI.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/SPI.cpp</FilePath>
             </File>
             <File>
               <FileName>SerialBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/SerialBase.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/SerialBase.cpp</FilePath>
             </File>
             <File>
               <FileName>Ethernet.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Ethernet.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Ethernet.cpp</FilePath>
             </File>
             <File>
               <FileName>retarget.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/retarget.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/retarget.cpp</FilePath>
             </File>
             <File>
               <FileName>CallChain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/CallChain.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/CallChain.cpp</FilePath>
             </File>
             <File>
               <FileName>BusIn.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/BusIn.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/BusIn.cpp</FilePath>
             </File>
             <File>
               <FileName>Ticker.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/Ticker.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/Ticker.cpp</FilePath>
             </File>
             <File>
               <FileName>InterruptIn.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/InterruptIn.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/InterruptIn.cpp</FilePath>
             </File>
             <File>
               <FileName>FileLike.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/FileLike.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/FileLike.cpp</FilePath>
             </File>
             <File>
               <FileName>BusInOut.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/BusInOut.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/BusInOut.cpp</FilePath>
             </File>
             <File>
               <FileName>FileBase.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-src/common/FileBase.cpp</FilePath>
+              <FilePath>HAL/mbed-src/common/FileBase.cpp</FilePath>
             </File>
             <File>
               <FileName>RtosTimer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/RtosTimer.cpp</FilePath>
+              <FilePath>HAL/mbed-rtos/rtos/RtosTimer.cpp</FilePath>
             </File>
             <File>
               <FileName>Thread.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/Thread.cpp</FilePath>
+              <FilePath>HAL/mbed-rtos/rtos/Thread.cpp</FilePath>
             </File>
             <File>
               <FileName>Mutex.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/Mutex.cpp</FilePath>
+              <FilePath>HAL/mbed-rtos/rtos/Mutex.cpp</FilePath>
             </File>
             <File>
               <FileName>Semaphore.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/Semaphore.cpp</FilePath>
+              <FilePath>HAL/mbed-rtos/rtos/Semaphore.cpp</FilePath>
             </File>
             <File>
               <FileName>BusProtocol.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\BusProtocol.cpp</FilePath>
+              <FilePath>.\app\BusProtocol\BusProtocol.cpp</FilePath>
             </File>
             <File>
               <FileName>BusHandler.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\BusHandler.cpp</FilePath>
+              <FilePath>.\app\BusProtocol\BusHandler.cpp</FilePath>
             </File>
             <File>
               <FileName>SerialID.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\SerialID.cpp</FilePath>
+              <FilePath>.\app\Support\SerialID.cpp</FilePath>
             </File>
             <File>
               <FileName>ADC_4088.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ADC_4088.cpp</FilePath>
+              <FilePath>.\app\ImpactDetection\ADC_4088.cpp</FilePath>
             </File>
             <File>
               <FileName>impact_action.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\impact_action.cpp</FilePath>
+              <FilePath>.\app\ImpactDetection\impact_action.cpp</FilePath>
             </File>
             <File>
               <FileName>impact_event.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\impact_event.cpp</FilePath>
+              <FilePath>.\app\ImpactDetection\impact_event.cpp</FilePath>
             </File>
             <File>
               <FileName>impact_fsm.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\impact_fsm.cpp</FilePath>
+              <FilePath>.\app\ImpactDetection\impact_fsm.cpp</FilePath>
             </File>
             <File>
               <FileName>sdram.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\sdram.cpp</FilePath>
+              <FilePath>.\HAL\EALib\sdram.cpp</FilePath>
             </File>
             <File>
               <FileName>ProcessingLoops.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\ProcessingLoops.cpp</FilePath>
+              <FilePath>.\app\ProcessingLoops.cpp</FilePath>
             </File>
             <File>
               <FileName>cmd.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\cmd.cpp</FilePath>
+              <FilePath>.\app\CommandLine\cmd.cpp</FilePath>
             </File>
             <File>
               <FileName>cmd_action.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\cmd_action.cpp</FilePath>
+              <FilePath>.\app\CommandLine\cmd_action.cpp</FilePath>
             </File>
             <File>
               <FileName>file_ops.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\file_ops.cpp</FilePath>
+              <FilePath>.\app\Support\file_ops.cpp</FilePath>
             </File>
             <File>
               <FileName>sensor_config.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\sensor_config.cpp</FilePath>
+              <FilePath>.\app\CommandLine\sensor_config.cpp</FilePath>
             </File>
             <File>
               <FileName>MCIFileSystem.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\MCIFileSystem.cpp</FilePath>
+              <FilePath>.\HAL\EALib\MCIFileSystem.cpp</FilePath>
             </File>
             <File>
               <FileName>FATDirHandle.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\FATDirHandle.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\FATDirHandle.cpp</FilePath>
             </File>
             <File>
               <FileName>FATFileHandle.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\FATFileHandle.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\FATFileHandle.cpp</FilePath>
             </File>
             <File>
               <FileName>FATFileSystem.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\FATFileSystem.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\FATFileSystem.cpp</FilePath>
             </File>
             <File>
               <FileName>ccsbcs.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\ChaN\ccsbcs.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\ChaN\ccsbcs.cpp</FilePath>
             </File>
             <File>
               <FileName>diskio.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\ChaN\diskio.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\ChaN\diskio.cpp</FilePath>
             </File>
             <File>
               <FileName>ff.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\FATFileSystem\ChaN\ff.cpp</FilePath>
+              <FilePath>.\HAL\EALib\FATFileSystem\ChaN\ff.cpp</FilePath>
             </File>
             <File>
               <FileName>gpdma.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>.\EALib\gpdma.cpp</FilePath>
+              <FilePath>.\HAL\EALib\gpdma.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>UART_RTOS_Interrupt.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\app\Support\UART_RTOS_Interrupt.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -159,11 +159,11 @@ int enqueueMessage(uint32_t dataLength, ImpStd_t payload, char receiver, char se
 			if ((i == (numberOfMessages - 1)) && (restSize > 0)){
 				inOnQueue->dataLength = restSize;
 				memcpy(inOnQueue->payload,payload+(i*8),restSize);
-				//printf("payload multi part %s\n",inOnQueue->data+0x00);
+				printf("payload multi part %s\n",inOnQueue->payload+0x00);
 			}else{
 				inOnQueue->dataLength =8;
 				memcpy(inOnQueue->payload,payload+(i*8),8);
-				//printf("payload multi end %s\n",inOnQueue->payload+0x00);
+				printf("payload multi end %s\n",inOnQueue->payload+0x00);
 			}
 			stat = inQueue.put(inOnQueue);
 		};
@@ -273,11 +273,11 @@ void sendSettings(uint16_t receiver, SensorConfigMsg_t settings){
  */
 
 int setTokenStatus(char status, char counter, uint64_t rawNrSamples){
-	if (rawNrSamples > 0){
+	/*if (rawNrSamples > 0){
 		messageCounter = rawNrSamples;
-	} else {
+	} else {*/
 		messageCounter = counter;
-	}
+	//}
 	tokenReceived = status;
 	return 1;
 }

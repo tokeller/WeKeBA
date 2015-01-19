@@ -39,6 +39,25 @@ Serial pcSerial(USBTX, USBRX);
  
 int main() {
 	pcSerial.baud(115200);
+
+/*	set_time(1417860000); // initially set time to 06.12.2014
+	const char format[10] = "%m%d_%H%M";
+	time_t currTime;
+	struct tm * timeinfo;
+	
+	// prepare time and format for creating timestamped filename
+	
+  char datetime[10];
+	datetime[0] = NULL;
+	time(&currTime);
+	timeinfo = localtime (&currTime);
+	strftime(datetime, 9, format, timeinfo);
+	printf("die zeit ist: %s\n",datetime);
+	*/
+	
+	
+	
+	
 	if (sdram_init()) {
 		printf("Failed to initialized SDRAM\n");
 	}
@@ -48,7 +67,6 @@ int main() {
 	#endif
 	#ifdef LOG
 		set_time(1417860000); // initially set time to 06.12.2014
-		
 		// initialize 
 		/*init_sensor_config_array(sensor);
 		init_logger_config(logger);

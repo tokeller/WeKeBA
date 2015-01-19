@@ -966,8 +966,9 @@ void cmd_read_config_file(void)
  */
 uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 {
-	char fname[13];
-  char datetime[5];
+	/*
+	char fname[23];
+  char datetime[10];
 	const char format[10] = "%m%d_%H%M";
 	time_t currTime;
 	struct tm * timeinfo;
@@ -975,16 +976,40 @@ uint8_t cmd_open_sensor_file(uint8_t sensor_index)
 	// prepare time and format for creating timestamped filename
 	fname[0] = NULL;
 	datetime[0] = NULL;
+	datetime[9] = NULL;
+	time(&currTime);
+	timeinfo = localtime (&currTime);
+	
+	// open file, store filepointer, store filename
+	// TODO check if this works
+	strftime(datetime, 9, format, timeinfo);
+	sprintf(fname, "/mci/s%02d_%s.dat", sensor[sensor_index].sensor_ID, datetime);
+	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
+	
+	printf("created filename %s\n",fname);
+	*/
+	char fname[18];
+  char datetime[5];
+	const char format[5] = "%m%d";
+	time_t currTime;
+	struct tm * timeinfo;
+	
+	// prepare time and format for creating timestamped filename
+	fname[0] = NULL;
+	fname[17] = NULL;
+	datetime[0] = NULL;
+	datetime[4] = NULL;
 	time(&currTime);
 	timeinfo = localtime (&currTime);
 	
 	// open file, store filepointer, store filename
 	// TODO check if this works
 	strftime(datetime, 4, format, timeinfo);
-	sprintf(fname, "/mci/s%02d_%s", sensor[sensor_index].sensor_ID, datetime);
-	printf("created filename %s\n",fname);
+	sprintf(fname, "/mci/s%02d_%s.dat", sensor[sensor_index].sensor_ID, datetime);
 	sensor[sensor_index].pf_sensor_data = fopen(fname, "a");
-
+	
+	printf("created filename %s\n",fname);
+	
 	if(sensor[sensor_index].pf_sensor_data != NULL){
 		char writtenBytes = fprintf(sensor[sensor_index].pf_sensor_data,"%s\n",datetime);
 		if(writtenBytes<0){

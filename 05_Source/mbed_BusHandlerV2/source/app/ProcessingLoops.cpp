@@ -531,7 +531,7 @@ void processSettings(CANmessage_t *message){
 	set_threshold(threshold);
 	
 	// started and CTRL-Flags
-	setTokenStatus((message->payload[2]>>4)&0x01,0,0);
+	//setTokenStatus((message->payload[2]>>4)&0x01,0,0);
 	
 	// set detail mode
 	char detailMode = message->payload[1]&0x0f;

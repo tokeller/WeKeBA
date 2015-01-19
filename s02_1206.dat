@@ -1,0 +1,21 @@
+1206
+start=791725,samples=5,nrpeaks=2;1 1104,3 208,;
+start=800262,samples=6,nrpeaks=4;168 1104,91 224,1 -304,1 224,;
+start=807900,samples=9,nrpeaks=6;210 1104,48 -384,1 256,1 -224,2 224,2 288,;
+start=818102,samples=7,nrpeaks=4;248 1104,10 -400,1 224,3 224,;
+start=834698,samples=1,nrpeaks=1;36 1104,;
+start=846514,samples=1,nrpeaks=1;252 1104,;
+start=852552,samples=6,nrpeaks=2;102 1104,159 -224,;
+start=2554686195,samples=485,nrpeaks=16;4 416,;
+start=1045020,samples=2,nrpeaks=1;146 1104,;
+start=1049573,samples=1,nrpeaks=1;0 -240,;
+start=1051439,samples=1,nrpeaks=1;0 272,;
+start=1052744,samples=2,nrpeaks=1;231 272,;
+start=16777216,samples=0,nrpeaks=0;168 -1104,;
+start=1054535,samples=2,nrpeaks=1;232 272,;
+start=1059807,samples=2,nrpeaks=1;0 352,;
+start=1060892,samples=3,nrpeaks=1;1 352,;
+start=201392144,samples=0,nrpeaks=0;35 1040,0 0,;
+start=167772160,samples=23907,nrpeaks=55;126 368,;
+start=1068682,samples=2,nrpeaks=1;1 368,;
+start=3518877647,samples=62911,nrpeaks=189;117 -864,58 -1040,;

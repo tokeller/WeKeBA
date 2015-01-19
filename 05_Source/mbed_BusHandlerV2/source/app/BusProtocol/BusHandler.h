@@ -4,9 +4,9 @@
 #include "BusProtocol.h"
 #include "sensor_config.h"
 
-//#define SEN
+#define SEN
 
-#define LOG
+//#define LOG
 // left sensor  150576ea
 // right sensor 110b7676
 

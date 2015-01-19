@@ -84,6 +84,7 @@ static uint16_t raw_counter = 0;
 
         // handle raw mode
         if(detail_mode == M_RAW){
+					while(input_queue->count > 0){
             if(raw_remaining_samples <= 0 && raw_counter != 0){
                 detail_mode = M_OFF;
                 // enqueue message with 'raw_counter' raw values
@@ -99,6 +100,7 @@ static uint16_t raw_counter = 0;
                 store_raw(timestamp - raw_counter, raw_counter, raw_container);
                 raw_counter = 0;
             }
+					}
         } else {
             // handle normal modes
         
