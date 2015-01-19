@@ -84,20 +84,22 @@ static uint16_t raw_counter = 0;
 
         // handle raw mode
         if(detail_mode == M_RAW){
-            if(raw_remaining_samples <= 0 && raw_counter != 0){
-                detail_mode = M_OFF;
-                // enqueue message with 'raw_counter' raw values
-                store_raw(timestamp - raw_counter, raw_counter, raw_container);
+            while(input_queue->count > 0){
+                if(raw_remaining_samples <= 0 && raw_counter != 0){
+                    detail_mode = M_OFF;
+                    // enqueue message with 'raw_counter' raw values
+                    store_raw(timestamp - raw_counter, raw_counter, raw_container);
                 
-            }
-            // add value to buffer, if buffer full, enqueue message in raw
+                }
+                // add value to buffer, if buffer full, enqueue message in raw
 						// CHECK TW
-            raw_container[raw_counter++] = dequeue_impact_input().value >> 4;
-            raw_remaining_samples--;
-            if(raw_counter == 2044){
-                // enqueue message with 2044 raw values
-                store_raw(timestamp - raw_counter, raw_counter, raw_container);
-                raw_counter = 0;
+                raw_container[raw_counter++] = dequeue_impact_input().value >> 4;
+                raw_remaining_samples--;
+                if(raw_counter == 2044){
+                    // enqueue message with 2044 raw values
+                    store_raw(timestamp - raw_counter, raw_counter, raw_container);
+                    raw_counter = 0;
+                }
             }
         } else {
             // handle normal modes
