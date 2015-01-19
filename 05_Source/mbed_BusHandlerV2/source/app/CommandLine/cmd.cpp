@@ -436,6 +436,8 @@ void menu_fsm(uint32_t input)
 					if(input < 4){
 						// input valid, set mode of selected sensor.
 						cmd_set_detail_mode(menu_fsm_current_sensor, (uint8_t) input);
+						menu_fsm_state = S_SENSOR_PARAMETERS;
+						cmd_enter_sensor_params();
 					} else if(input == 4){
                         if(menu_fsm_current_sensor == 99){
                             // unable to comply
@@ -448,7 +450,7 @@ void menu_fsm(uint32_t input)
                         }
                     } else {
 						cmd_enter_sensor_params_detail();
-						printf("invalid input. Enter choice (0 to exit): \n");
+						printf("invalid input. Enter choice (9 to exit): \n");
 					}
 				break;
 			}
