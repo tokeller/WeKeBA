@@ -17,11 +17,11 @@ extern MCIFileSystem mcifs;
 static uint8_t detail_str[6][11] = 
 {
 	// strings to describe the detail levels
-	"raw",
-	"detailed",
-	"peaks only",
-	"sparse",
 	"off",
+	"sparse",
+	"peaks only",
+	"detailed",
+	"raw",
 	""
 };
 
@@ -194,7 +194,7 @@ void cmd_start_logger(void)
 			}
 		}
 	}
-	// TODO was, wenn nicht alle files geöffnet werden konnten?
+	// TODO was, wenn nicht alle files geÃ¶ffnet werden konnten?
 	// TODO was muss man alles noch tun, um den logger zu starten?
 	logger.started = 1;
 }
