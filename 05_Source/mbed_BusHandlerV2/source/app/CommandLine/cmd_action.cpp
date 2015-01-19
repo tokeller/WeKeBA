@@ -17,11 +17,11 @@ extern MCIFileSystem mcifs;
 static uint8_t detail_str[6][11] = 
 {
 	// strings to describe the detail levels
-	"raw",
-	"detailed",
-	"peaks only",
-	"sparse",
 	"off",
+	"sparse",
+	"peaks only",
+	"detailed",
+	"raw",
 	""
 };
 
