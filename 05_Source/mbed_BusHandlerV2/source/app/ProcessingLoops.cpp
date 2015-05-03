@@ -38,6 +38,433 @@ void time(void const *n) {
     timeStamp++;
 }
 
+void init_logger_fsm(void){
+    PL_Event event;
+    
+    event = E_L_RESET;
+    logger_fsm(event);
+}
+
+void logger_fsm(PLEvent new_event){
+    static PLState state = S_L_Started;
+    switch(state){
+        case S_L_Started:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_Started, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_RESET:
+                    // TODO
+                    break;
+                    
+                case E_L_SDCardDetected:
+                    state = S_L_SDCardDetected;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_SDCardDetected:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_SDCardDetected, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_configFileRead:
+                    // TODO: go ahead
+                    // TODO: send SerialRequest
+                    state = S_L_WaitForSerialNumbers;
+                    break;
+                    
+                case E_L_configFileNotFound:
+                    // TODO: use default configs
+                    // TODO: send SerialRequest
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_WaitForSerialNumbers:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_WaitForSerialNumbers, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_timeout:
+                    // TODO: if at least one sensor there, go ahead
+                    // TODO: else if no sensors answered, stop here???
+                    break;
+                    
+                case E_L_receivedSerialNumber:
+                    // TODO: if all sensors answered, go ahead
+                    // TODO: else if some sensors have not answered, stay here
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_SendOutConfigurations:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_SendOutConfigurations, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_configSentToSensor:
+                    // TODO: if all sensors have been sent their config, go ahead
+                    // TODO: else stay here
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_SendOutTimeSyncs:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_SendOutTimeSyncs, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_timesyncSentToSensor:
+                    // TODO: if all sensors have been sent their timeSync, go ahead
+                    // TODO: else stay here
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_AllSensorsReady:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_AllSensorsReady, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_timeout: // = auto
+                    // TODO: if config requests it, start recording automatically
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_ProcessingHoldingToken:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_ProcessingHoldingToken, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_sentTokenToSensor:
+                    // TODO: go ahead
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            
+        case S_L_ProcessingWaitingForData:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_L_ProcessingWaitingForData, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_L_receiveEndOfData:
+                    // TODO: store data
+                    // TODO: go ahead
+                    break;
+                    
+                case E_L_tokenTimeout:
+                    // TODO: tell sensor unit to stop
+                    // TODO: store data
+                    // TODO: go ahead
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+void init_sensor_fsm(void){
+    PL_Event event;
+    
+    event = E_S_RESET;
+    sensor_fsm(event);
+}
+
+void sensor_fsm(PLEvent new_event){
+    static PLState state = S_S_Started;
+    switch(state){
+        case S_S_Started:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_Started, E: %d", new_event);
+#endif
+            switch(new_event){
+                case E_S_RESET:
+                    // TODO Initialize CANBus
+                    break;
+                    
+                case E_S_CANBusInitialized:
+                    // TODO Go ahead.
+                    state = S_S_InitializedCANBus;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_InitializedCANBus:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_InitializedCANBus, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_serialNumberRetrieved:
+                    // TODO Go ahead.
+                    state = S_S_RetrievedSerialNumber;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_RetrievedSerialNumber:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_RetrievedSerialNumber, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_commThreadStarted:
+                    // TODO Go ahead.
+                    state = S_S_CommThreadListeningForBroadcastMessages;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_CommThreadListeningForBroadcastMessages:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_CommThreadListeningForBroadcastMessages, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedSerialRequest:
+                    // TODO Go ahead.
+                    state = S_S_SerialNumberSent;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_SerialNumberSent:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_SerialNumberSent, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedCanID:
+                    // TODO Go ahead.
+                    state = S_S_CANIDReceived;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_CANIDReceived:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_CANIDReceived, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedSettings:
+                    // TODO Go ahead.
+                    state = S_S_ConfigurationReceived;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_ConfigurationReceived:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_ConfigurationReceived, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedTimesync:
+                    // TODO Go ahead.
+                    // TODO start operation loop
+                    state = S_S_OperationLoopStartedNotRecording;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_OperationLoopStartedNotRecording:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_OperationLoopStartedNotRecording, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedStartRecordingMessage:
+                    // TODO Go ahead.
+                    // TODO if raw
+                    state = S_S_RecordingRawData;
+                    // TODO if detecting events
+                    state = S_S_DetectingEvents;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_OperationLoopStartedNotRecordingAndSending:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_OperationLoopStartedNotRecordingAndSending, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedStartRecordingMessage:
+                    // TODO Go ahead.
+                    // TODO if raw
+                    state = S_S_RecordingRawDataAndSending;
+                    // TODO if detecting events
+                    state = S_S_DetectingEventsAndSending;
+                    break;
+                    
+                case E_S_tokenTimeout:
+                    // TODO stop sending
+                    // go ahead
+                    state = S_S_OperationLoopStartedNotRecording;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_RecordingRawData:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_RecordingRawData, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_rawRecordingTimeout:
+                    // TODO Go ahead.
+                    state = S_S_OperationLoopStartedNotRecording;
+                    break;
+                    
+                case E_S_receivedToken:
+                    // TODO setTimeout
+                    // TODO start sending
+                    // TODO go ahead
+                    state = S_S_RecordingRawDataAndSending;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_RecordingRawDataAndSending:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_RecordingRawDataAndSending, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_rawRecordingTimeout:
+                    // TODO Go ahead
+                    state = S_S_OperationLoopStartedNotRecordingAndSending;
+                    break;
+                    
+                case E_S_tokenTimeout:
+                    // TODO stop sending
+                    state = S_S_RecordingRawData;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_DetectingEvents:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_DetectingEvents, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedStopRecordingMessage:
+                    // TODO Go ahead.
+                    state = S_S_OperationLoopStartedNotRecording;
+                    break;
+                    
+                case E_S_receivedToken:
+                    // TODO start sending
+                    // TODO go ahead;
+                    state = S_S_DetectingEventsAndSending;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+        case S_S_DetectingEventsAndSending:
+#ifdef DEBUG_PROCLOOP_
+            printf("S_S_DetectingEventsAndSending, E: %d", new_event);
+#endif
+            switch(new_event){
+                    
+                case E_S_receivedStopRecordingMessage:
+                    // TODO Go ahead.
+                    state = S_S_OperationLoopStartedNotRecordingAndSending;
+                    break;
+                    
+                case E_S_tokenTimeout:
+                    // TODO start sending
+                    // TODO go ahead;
+                    state = S_S_DetectingEvents;
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+            
+            // should sending data (holding token or not) be done in another fsm?
+            
+        default:
+            break;
+    }
+
+}
+
+
 
 /*
  *	Sensor thread
