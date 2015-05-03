@@ -39,7 +39,7 @@ void time(void const *n) {
 }
 
 void init_logger_fsm(void){
-    PL_Event event;
+    PLEvent event;
     
     event = E_L_RESET;
     logger_fsm(event);
@@ -199,7 +199,7 @@ void logger_fsm(PLEvent new_event){
 }
 
 void init_sensor_fsm(void){
-    PL_Event event;
+    PLEvent event;
     
     event = E_S_RESET;
     sensor_fsm(event);
